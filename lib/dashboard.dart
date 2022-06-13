@@ -123,15 +123,27 @@ class _DashboardPageState extends State<DashboardPage> {
                             ]),
                         child: Column(
                           children: [
-                            Text(
-                              'Batch $index',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 22, color: Colors.white),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Batch $index',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 22, color: Colors.white),
+                                ),
+                              ),
                             ),
-                            Text(
-                              '$date',
-                              style: GoogleFonts.prompt(
-                                  fontSize: 12, color: Colors.white),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  '$date',
+                                  style: GoogleFonts.prompt(
+                                      fontSize: 12, color: Colors.white),
+                                ),
+                              ),
                             )
                           ],
                         ),
