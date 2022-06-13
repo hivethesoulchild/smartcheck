@@ -1,4 +1,4 @@
-# smartcheck
+# Smartcheck
 
 A new Flutter project.
 
