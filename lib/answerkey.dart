@@ -11,14 +11,16 @@ class AnswerKeyPage extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Padding(
         padding: EdgeInsets.all(20.0),
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: () {},
-          color: HexColor('#35408f'),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          style: ElevatedButton.styleFrom(
+              primary: HexColor('#35408f'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0))),
           child: Text(
             'Create Answer Key',
-            style: GoogleFonts.poppins(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+            style: GoogleFonts.poppins(
+                fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
           ),
         ),
       ),

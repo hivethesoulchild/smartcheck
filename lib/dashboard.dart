@@ -75,10 +75,11 @@ class DashboardPage extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Container(
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-            color: HexColor('#35408f'),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: HexColor('#35408f'),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0))),
             onPressed: () {},
             child: Text(
               'Add/Import',
