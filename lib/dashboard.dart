@@ -86,7 +86,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  String date = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
+  String date = DateFormat("MMMM dd, yyyy").format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -96,23 +96,7 @@ class _DashboardPageState extends State<DashboardPage> {
         padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Container(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: HexColor('#35408f'),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0))),
-                onPressed: () {},
-                child: Text(
-                  'Add/Import',
-                  style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-            Container(
+            Expanded(
               child: GridView.builder(
                   padding: const EdgeInsets.all(10.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
