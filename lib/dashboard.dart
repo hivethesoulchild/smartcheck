@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/intl.dart';
 import 'package:smartcheck/answerkey.dart';
 import 'package:smartcheck/archives.dart';
 
@@ -45,6 +46,18 @@ class _DashboardState extends State<Dashboard> {
             ),
           ],
         ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+            color: HexColor('#35408f'),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+            color: HexColor('#35408f'),
+          ),
+        ],
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -65,8 +78,15 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  String date = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -74,21 +94,68 @@ class DashboardPage extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       body: Padding(
         padding: EdgeInsets.all(20.0),
-        child: Container(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: HexColor('#35408f'),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0))),
-            onPressed: () {},
-            child: Text(
-              'Add/Import',
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500),
+        child: Column(
+          children: [
+            Container(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: HexColor('#35408f'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0))),
+                onPressed: () {},
+                child: Text(
+                  'Add/Import',
+                  style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
-          ),
+            Container(
+              child: GridView.builder(
+                  padding: const EdgeInsets.all(10.0),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisExtent: 300,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Archives()));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.primaries[index & 15],
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
+                              )
+                            ]),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Batch $index',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 22, color: Colors.white),
+                            ),
+                            Text(
+                              '$date',
+                              style: GoogleFonts.prompt(
+                                  fontSize: 12, color: Colors.white),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );
