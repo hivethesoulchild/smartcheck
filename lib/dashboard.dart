@@ -34,6 +34,7 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: HexColor('#ffffff'),
         title: Row(
           children: [
