@@ -8,74 +8,84 @@ class BatchDetail extends StatelessWidget {
 
   const BatchDetail({Key? key, required this.s_new}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     showDataAlert() {
       showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              contentPadding: EdgeInsets.only(top: 10.0),
-              title: Text(
-                'Scores',
-                style: GoogleFonts.poppins(),
-              ),
-              content: Container(
-                height: 500,
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [Text('English 0')],
-                        ),
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            contentPadding: EdgeInsets.only(top: 10.0),
+            title: Text(
+              'Scores',
+              style: GoogleFonts.poppins(),
+            ),
+            content: Container(
+              height: 500,
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [Text('English 0')],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [Text('Math 0')],
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [Text('Math 0')],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [Text('Science 0')],
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [Text('Science 0')],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [Text('Aptitude 0')],
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [Text('Aptitude 0')],
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Status', style: GoogleFonts.poppins(),),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Status',
+                        style: GoogleFonts.poppins(),
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Recommendations', style: GoogleFonts.poppins(),),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Recommendations',
+                        style: GoogleFonts.poppins(),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          });
+            ),
+          );
+        },
+      );
     }
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: HexColor('#35408f')),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         centerTitle: true,
         title: Text(
           this.s_new.title,
