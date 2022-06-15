@@ -4,6 +4,9 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:smartcheck/answerkey.dart';
 import 'package:smartcheck/archives.dart';
+import 'package:smartcheck/batch_detail.dart';
+
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int _currentIndex = 0;
   final List _children = [
-    DashboardPage(),
+    DashboardPage(title: 'Batch',),
     AnswerKeyPage(),
     Archives(),
   ];
@@ -78,16 +81,25 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
+class News{
+  final String title;
+  final String description;
+
+  News(this.title, this.description);
+}
+
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+  final String title;
+  const DashboardPage({Key? key,required this.title}) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
+
 class _DashboardPageState extends State<DashboardPage> {
   String date = DateFormat("MMMM dd, yyyy").format(DateTime.now());
-
+  final news=List<News>.generate(20, (index) => News("Batch $index", "Batch $index\'s List of Applicants"));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,11 +115,12 @@ class _DashboardPageState extends State<DashboardPage> {
                     crossAxisCount: 1,
                     mainAxisExtent: 300,
                   ),
+                  itemCount: news.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Archives()));
+                            MaterialPageRoute(builder: (context) => BatchDetail(s_new: news[index])));
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -157,3 +170,4 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 }
+
