@@ -9,6 +9,7 @@ import 'package:smartcheck/answerkey.dart';
 import 'package:smartcheck/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
 import 'package:csv/csv.dart';
+import 'package:smartcheck/settings.dart';
 import 'dart:convert' show utf8;
 import 'data.dart' as global;
 
@@ -27,6 +28,7 @@ class _DashboardState extends State<Dashboard> {
     ),
     const AnswerKeyPage(),
     const Archives(),
+    const Settings(),
   ];
 
   void onTabTapped(int index) {
@@ -86,11 +88,11 @@ class _DashboardState extends State<Dashboard> {
                       fields[0][0].toString().toLowerCase(): value[0],
                       fields[0][1].toString().toLowerCase(): value[1],
                       'English': 0,
-                      'Mathematics' : 0,
+                      'Mathematics': 0,
                       'Science': 0,
                       'Aptitude': 0,
                       'Status': 'Not yet taken',
-                      'Recommendation': ['BSIT','BSCS']
+                      'Recommendation': ['BSIT', 'BSCS']
                     });
                   });
                 }
@@ -111,14 +113,17 @@ class _DashboardState extends State<Dashboard> {
         onTap: onTabTapped,
         backgroundColor: HexColor('#ffffff'),
         selectedItemColor: HexColor('#35408f'),
+        unselectedItemColor: HexColor('#35408f'),
         currentIndex: _currentIndex,
         selectedLabelStyle: GoogleFonts.poppins(),
         unselectedLabelStyle: GoogleFonts.lato(),
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: 'Dashboard'),
           BottomNavigationBarItem(icon: Icon(Icons.copy), label: 'Answer Key'),
           BottomNavigationBarItem(icon: Icon(Icons.archive), label: 'Archive'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
     );
@@ -162,59 +167,60 @@ class _DashboardPageState extends State<DashboardPage> {
                   itemCount: global.batchData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
-                      onTap: () {
-                        setState(() {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BatchDetail(i: index)));
-                        });
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(3.0),
-                        child:Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 4,
-                                  offset: Offset(0, 3),
+                        onTap: () {
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        BatchDetail(i: index)));
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(3.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 4,
+                                    offset: Offset(0, 3),
+                                  )
+                                ]),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Batch ${global.batchData[index]["batchID"]}',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      '$date',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
+                                    ),
+                                  ),
                                 )
-                              ]),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Batch ${global.batchData[index]["batchID"]}',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: HexColor("#35408f")),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    '$date',
-                                    style: GoogleFonts.prompt(
-                                        fontSize: 12, color: HexColor("#35408f")),
-                                  ),
-                                ),
-                              )
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    );
+                        ));
                   }),
             ),
           ],
