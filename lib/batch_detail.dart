@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/dashboard.dart';
 import 'data.dart' as global;
 
 class BatchDetail extends StatelessWidget {
@@ -31,7 +30,7 @@ class BatchDetail extends StatelessWidget {
               'Scores',
               style: GoogleFonts.poppins(),
             ),
-            content: Container(
+            content: SizedBox(
               height: 500,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(8.0),
