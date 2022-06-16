@@ -154,7 +154,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: [
             Expanded(
               child: GridView.builder(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(5.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     mainAxisExtent: 150,
@@ -170,47 +170,50 @@ class _DashboardPageState extends State<DashboardPage> {
                                   builder: (context) => BatchDetail(i: index)));
                         });
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: Offset(0, 3),
+                      child: Padding(
+                        padding: EdgeInsets.all(3.0),
+                        child:Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 3),
+                                )
+                              ]),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Batch ${global.batchData[index]["batchID"]}',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: HexColor("#35408f")),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    '$date',
+                                    style: GoogleFonts.prompt(
+                                        fontSize: 12, color: HexColor("#35408f")),
+                                  ),
+                                ),
                               )
-                            ]),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Batch ${global.batchData[index]["batchID"]}',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: HexColor("#35408f")),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  '$date',
-                                  style: GoogleFonts.prompt(
-                                      fontSize: 12, color: HexColor("#35408f")),
-                                ),
-                              ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                      )
                     );
                   }),
             ),
