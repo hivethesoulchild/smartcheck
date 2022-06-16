@@ -66,6 +66,7 @@ class _LoginState extends State<Login> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Dashboard()));
+                      dispose();
                     },
                     child: Container(
                       padding: EdgeInsets.all(18),
