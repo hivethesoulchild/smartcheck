@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -5,8 +8,9 @@ import 'package:intl/intl.dart';
 import 'package:smartcheck/answerkey.dart';
 import 'package:smartcheck/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
-
-
+import 'package:csv/csv.dart';
+import 'dart:convert' show utf8;
+import 'data.dart' as global;
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -18,9 +22,11 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int _currentIndex = 0;
   final List _children = [
-    DashboardPage(title: 'Batch',),
-    AnswerKeyPage(),
-    Archives(),
+    const DashboardPage(
+      title: 'Batch',
+    ),
+    const AnswerKeyPage(),
+    const Archives(),
   ];
 
   void onTabTapped(int index) {
@@ -31,6 +37,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    var applicantList = [];
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -57,7 +64,43 @@ class _DashboardState extends State<Dashboard> {
             color: HexColor('#35408f'),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  allowMultiple: false,
+                  withData: true,
+                  type: FileType.custom,
+                  allowedExtensions: ['csv']);
+              setState(() async {
+                if (result != null) {
+                  final input = File(result.files.single.path!).openRead();
+                  final fields = await input
+                      .transform(utf8.decoder)
+                      .transform(const CsvToListConverter())
+                      .toList();
+
+                  fields.asMap().forEach((key, value) {
+                    if (key == 0) {
+                      return;
+                    }
+                    applicantList.add({
+                      fields[0][0].toString().toLowerCase(): value[0],
+                      fields[0][1].toString().toLowerCase(): value[1],
+                      'English': 0,
+                      'Mathematics' : 0,
+                      'Science': 0,
+                      'Aptitude': 0,
+                      'Status': 'Not yet taken',
+                      'Recommendation': ['BSIT','BSCS']
+                    });
+                  });
+                }
+
+                global.batchData.add({
+                  'batchID': global.batchData.length,
+                  'applicantList': applicantList
+                });
+              });
+            },
             icon: const Icon(Icons.add),
             color: HexColor('#35408f'),
           ),
@@ -82,7 +125,7 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-class News{
+class News {
   final String title;
   final String description;
 
@@ -91,20 +134,20 @@ class News{
 
 class DashboardPage extends StatefulWidget {
   final String title;
-  const DashboardPage({Key? key,required this.title}) : super(key: key);
+
+  const DashboardPage({Key? key, required this.title}) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-
 class _DashboardPageState extends State<DashboardPage> {
   String date = DateFormat("MMMM dd, yyyy").format(DateTime.now());
-  final news=List<News>.generate(20, (index) => News("Batch $index", "Batch $index\'s List of Applicants"));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
@@ -114,19 +157,23 @@ class _DashboardPageState extends State<DashboardPage> {
                   padding: const EdgeInsets.all(10.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
-                    mainAxisExtent: 300,
+                    mainAxisExtent: 150,
                   ),
-                  itemCount: news.length,
+                  itemCount: global.batchData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => BatchDetail(s_new: news[index])));
+                        setState(() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BatchDetail(i: index)));
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.0),
-                            color: Colors.primaries[index & 15],
+                            color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.5),
@@ -142,9 +189,11 @@ class _DashboardPageState extends State<DashboardPage> {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Batch $index',
+                                  'Batch ${global.batchData[index]["batchID"]}',
                                   style: GoogleFonts.poppins(
-                                      fontSize: 22, color: Colors.white),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: HexColor("#35408f")),
                                 ),
                               ),
                             ),
@@ -155,7 +204,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 child: Text(
                                   '$date',
                                   style: GoogleFonts.prompt(
-                                      fontSize: 12, color: Colors.white),
+                                      fontSize: 12, color: HexColor("#35408f")),
                                 ),
                               ),
                             )
@@ -171,4 +220,3 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 }
-

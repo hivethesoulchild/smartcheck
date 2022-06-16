@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/dashboard.dart';
+import 'data.dart' as global;
 
 class BatchDetail extends StatelessWidget {
-  final News s_new;
+  final int i;
 
-  const BatchDetail({Key? key, required this.s_new}) : super(key: key);
+  const BatchDetail({Key? key, required this.i}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    showDataAlert() {
+    showDataAlert(int batchIndex, int applicantIndex) {
+      var recommendations = global.batchData[batchIndex]['applicantList']
+          [applicantIndex]['Recommendation'];
+      if (recommendations == null) {
+        recommendations = '';
+      } else {
+        recommendations = recommendations.join(',');
+      }
       showDialog(
         context: context,
         builder: (context) {
@@ -35,38 +43,50 @@ class BatchDetail extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        children: [Text('English 0')],
+                        children: [
+                          Text(
+                              'English: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['English']}')
+                        ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        children: [Text('Math 0')],
+                        children: [
+                          Text(
+                              'Mathematics: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Mathematics']}')
+                        ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        children: [Text('Science 0')],
+                        children: [
+                          Text(
+                              'Science: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Science']}')
+                        ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        children: [Text('Aptitude 0')],
+                        children: [
+                          Text(
+                              'Aptitude: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Aptitude']}')
+                        ],
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Status',
+                        'Status: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Status']}',
                         style: GoogleFonts.poppins(),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Recommendations',
+                        'Recommendations: $recommendations',
                         style: GoogleFonts.poppins(),
                       ),
                     ),
@@ -80,7 +100,7 @@ class BatchDetail extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: HexColor('#35408f')),
@@ -88,7 +108,7 @@ class BatchDetail extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          this.s_new.title,
+          'Batch ${global.batchData[i]['batchID']}',
           style: GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
         ),
         backgroundColor: Colors.white,
@@ -97,18 +117,26 @@ class BatchDetail extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: ListView.builder(
-            itemCount: 150,
+            itemCount: global.batchData[i]['applicantList'].length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
-                  showDataAlert();
+                  showDataAlert(i, index);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  padding: const EdgeInsets.all( 2.0),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.primaries[index & 15],
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 3,
+                          offset: Offset(2, 3),
+                        )
+                      ]
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
@@ -118,10 +146,10 @@ class BatchDetail extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Applicant ID',
+                                  'Applicant ID: ${global.batchData[i]['applicantList'][index]['id']}',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(fontSize: 14),
+                                  style: GoogleFonts.poppins(fontSize: 14, color: HexColor("#35408f")),
                                 ),
                               ),
                             ],
@@ -130,10 +158,10 @@ class BatchDetail extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Name',
+                                  '${global.batchData[i]['applicantList'][index]['name']}',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(fontSize: 20),
+                                  style: GoogleFonts.poppins(fontSize: 20, color: HexColor("#35408f")),
                                 ),
                               ),
                             ],
