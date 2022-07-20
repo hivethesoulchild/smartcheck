@@ -26,7 +26,6 @@ class _DashboardState extends State<Dashboard> {
     const DashboardPage(
       title: 'Batch',
     ),
-    const AnswerKeyPage(),
     const Archives(),
     const Settings(),
   ];
@@ -50,12 +49,12 @@ class _DashboardState extends State<Dashboard> {
             Text(
               'Smart',
               style:
-                  GoogleFonts.poppins(fontSize: 24, color: HexColor('#35408f')),
+              GoogleFonts.poppins(fontSize: 24, color: HexColor('#35408f')),
             ),
             Text(
               'Check',
               style:
-                  GoogleFonts.poppins(fontSize: 24, color: HexColor('#CAB358')),
+              GoogleFonts.poppins(fontSize: 24, color: HexColor('#CAB358')),
             ),
           ],
         ),
@@ -117,10 +116,10 @@ class _DashboardState extends State<Dashboard> {
         currentIndex: _currentIndex,
         selectedLabelStyle: GoogleFonts.poppins(),
         unselectedLabelStyle: GoogleFonts.lato(),
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: 'Dashboard'),
-          BottomNavigationBarItem(icon: Icon(Icons.copy), label: 'Answer Key'),
           BottomNavigationBarItem(icon: Icon(Icons.archive), label: 'Archive'),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: 'Settings'),
@@ -170,7 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(5.0),
                       gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisExtent: 100,
                         mainAxisSpacing: 5.0,
@@ -256,6 +255,10 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ),
                         InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => AnswerKeyPage()));
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -359,7 +362,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Batch ${global.batchData[index]["batchID"]}',
+                                      'Batch ${global
+                                          .batchData[index]["batchID"]}',
                                       style: GoogleFonts.poppins(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold,

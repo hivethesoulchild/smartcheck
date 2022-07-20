@@ -100,7 +100,7 @@ class Settings extends StatelessWidget {
                             padding: EdgeInsets.all(8.0),
                             child: Container(
                               child: Text(
-                                'Manage Users',
+                                'Dark Mode',
                                 style: GoogleFonts.poppins(),
                               ),
                             ),

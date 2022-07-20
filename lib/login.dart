@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/dashboard.dart';
+import 'package:smartcheck/register.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -21,6 +23,22 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Smart',
+                      style: GoogleFonts.poppins(
+                          fontSize: 24, color: HexColor('#35408f')),
+                    ),
+                    Text(
+                      'Check',
+                      style: GoogleFonts.poppins(
+                          fontSize: 24, color: HexColor('#CAB358')),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -84,7 +102,27 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: 20.0,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not registered yet? ',
+                      style: GoogleFonts.poppins(),
+                    ),
+                    InkWell(
+                      child: Text(
+                        'Register Now',
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      ),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Register()));
+                      },
+                    )
+                  ],
+                ),
               ],
             ),
           ),
