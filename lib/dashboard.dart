@@ -151,7 +151,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: HexColor('#FFD700'),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
