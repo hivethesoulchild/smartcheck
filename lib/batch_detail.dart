@@ -123,20 +123,19 @@ class BatchDetail extends StatelessWidget {
                   showDataAlert(i, index);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all( 2.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 3,
-                          blurRadius: 3,
-                          offset: Offset(2, 3),
-                        )
-                      ]
-                    ),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: Offset(2, 3),
+                          )
+                        ]),
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
@@ -148,7 +147,8 @@ class BatchDetail extends StatelessWidget {
                                   'Applicant ID: ${global.batchData[i]['applicantList'][index]['id']}',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(fontSize: 14, color: HexColor("#35408f")),
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 14, color: HexColor("#35408f")),
                                 ),
                               ),
                             ],
@@ -160,7 +160,8 @@ class BatchDetail extends StatelessWidget {
                                   '${global.batchData[i]['applicantList'][index]['name']}',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
-                                  style: GoogleFonts.poppins(fontSize: 20, color: HexColor("#35408f")),
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 20, color: HexColor("#35408f")),
                                 ),
                               ),
                             ],
