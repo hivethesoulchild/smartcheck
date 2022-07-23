@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/dashboard.dart';
+import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/register.dart';
+import 'package:smartcheck/apiModel/usermodel.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,6 +13,39 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final formKey = GlobalKey<FormState>();
+
+  late UserModel _user;
+  String username = "";
+  String password = "";
+
+  Widget buildUsername() => TextFormField(
+        obscureText: false,
+        decoration: const InputDecoration(
+            border: InputBorder.none, hintText: 'Username'),
+        onSaved: (value) => setState(() => username = value!),
+        validator: (value) {
+          if (value?.isEmpty == true) {
+            return 'Username must be filled out';
+          } else {
+            return null;
+          }
+        },
+      );
+
+  Widget buildPassword() => TextFormField(
+        obscureText: true,
+        decoration: const InputDecoration(
+            border: InputBorder.none, hintText: 'Password'),
+        onSaved: (value) => setState(() => password = value!),
+        validator: (value) {
+          if (value?.isEmpty == true) {
+            return 'Password must be filled out';
+          } else {
+            return null;
+          }
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +72,9 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0,),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
@@ -46,12 +82,9 @@ class _LoginState extends State<Login> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(12)),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 24.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Username'),
-                      ),
+                      child: buildUsername(),
                     ),
                   ),
                 ),
@@ -65,13 +98,9 @@ class _LoginState extends State<Login> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(12)),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 24.0),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Password'),
-                      ),
+                      child: buildPassword(),
                     ),
                   ),
                 ),
@@ -81,10 +110,16 @@ class _LoginState extends State<Login> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: InkWell(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Dashboard()));
-                      dispose();
+                    onTap: () async {
+                      final user =
+                          await BackEndPy.checkUser(username, password);
+
+                      setState(() {
+                        _user = user;
+                      });
+                      //Navigator.push(context,
+                      //    MaterialPageRoute(builder: (context) => Dashboard()));
+                      //dispose();
                     },
                     child: Container(
                       padding: EdgeInsets.all(18),
@@ -103,7 +138,9 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0,),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -117,8 +154,10 @@ class _LoginState extends State<Login> {
                         style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Register()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Register()));
                       },
                     )
                   ],
