@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smartcheck/welcome.dart';
+import 'package:smartcheck/models/user_dashboard.dart';
+import 'package:smartcheck/models/welcome.dart';
+
 
 void main() {
   runApp(const MyApp());
