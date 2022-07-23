@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:smartcheck/model/usermodel.dart';
+import 'package:smartcheck/apiModel/usermodel.dart';
 
 const MONGO_CONN_URL =
     'mongodb+srv://NUSMartCheck:9jdFoZTyYfgPpGmT@tc.xaicy.mongodb.net/NUSmartApp?retryWrites=true&w=majority';
