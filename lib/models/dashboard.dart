@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:smartcheck/answerkey.dart';
-import 'package:smartcheck/archives.dart';
+import 'package:smartcheck/models/answerkey.dart';
+import 'package:smartcheck/models/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
 import 'package:csv/csv.dart';
-import 'package:smartcheck/settings.dart';
+import 'package:smartcheck/models/batch_page.dart';
+import 'package:smartcheck/models/settings.dart';
 import 'dart:convert' show utf8;
-import 'data.dart' as global;
+import '../data.dart' as global;
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -338,7 +339,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        BatchDetail(i: index)));
+                                        BatchPage(i: index)));
                           });
                         },
                         child: Padding(

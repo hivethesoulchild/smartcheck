@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:smartcheck/archives.dart';
+import 'package:smartcheck/models/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
 import 'package:csv/csv.dart';
-import 'package:smartcheck/settings.dart';
+import 'package:smartcheck/models/settings.dart';
 import 'dart:convert' show utf8;
-import 'data.dart' as global;
+import '../data.dart' as global;
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class UserDashboard extends StatefulWidget {
+  const UserDashboard({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<UserDashboard> createState() => _UserDashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _UserDashboardState extends State<UserDashboard> {
   int _currentIndex = 0;
   final List _children = [
     const UserDashboardPage(
@@ -149,6 +149,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    var applicantList = [];
     return Scaffold(
       backgroundColor: HexColor('#FFD700'),
       body: Padding(
@@ -169,8 +170,8 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                       padding: const EdgeInsets.all(5.0),
                       gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisExtent: 100,
+                        crossAxisCount: 1,
+                        mainAxisExtent: 250,
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
                       ),
@@ -201,32 +202,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                             ),
                           ),
                         ),
-                        InkWell(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: HexColor('#35408f'),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 3),
-                                  )
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Timer',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+
                       ],
                     ),
                   ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/login.dart';
-import 'package:smartcheck/register.dart';
+import 'package:smartcheck/models/login.dart';
+import 'package:smartcheck/models/register.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
