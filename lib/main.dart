@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smartcheck/models/charts.dart';
+import 'package:smartcheck/models/timer.dart';
 import 'package:smartcheck/models/user_dashboard.dart';
 import 'package:smartcheck/models/welcome.dart';
 
