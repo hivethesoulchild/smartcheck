@@ -12,6 +12,57 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final formKey = GlobalKey<FormState>();
+
+  String username = "";
+  String password = "";
+  String confirmPassword = "";
+
+  Widget buildUsername() => TextFormField(
+    obscureText: false,
+    key: formKey,
+    decoration: const InputDecoration(
+        border: InputBorder.none, hintText: 'Username'),
+    onSaved: (value) => setState(() => username = value!),
+    validator: (value) {
+      if (value?.isEmpty == true) {
+        return 'Username must be filled out';
+      } else {
+        return null;
+      }
+    },
+  );
+
+  Widget buildPassword() => TextFormField(
+    obscureText: true,
+    key: formKey,
+    decoration: const InputDecoration(
+        border: InputBorder.none, hintText: 'Username'),
+    onSaved: (value) => setState(() => username = value!),
+    validator: (value) {
+      if (value?.isEmpty == true) {
+        return 'Password must be filled out';
+      } else {
+        return null;
+      }
+    },
+  );
+
+  Widget buildConfirmPassword() => TextFormField(
+    obscureText: true,
+    key: formKey,
+    decoration: const InputDecoration(
+        border: InputBorder.none, hintText: 'Username'),
+    onSaved: (value) => setState(() => username = value!),
+    validator: (value) {
+      if (value?.isEmpty == true) {
+        return 'Please re-enter the password';
+      } else {
+        return null;
+      }
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +96,9 @@ class _RegisterState extends State<Register> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(12)),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 24.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Username'),
-                      ),
+                      child: buildUsername(),
                     ),
                   ),
                 ),
@@ -64,13 +112,9 @@ class _RegisterState extends State<Register> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(12)),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 24.0),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Password'),
-                      ),
+                      child: buildPassword(),
                     ),
                   ),
                 ),
@@ -84,14 +128,9 @@ class _RegisterState extends State<Register> {
                         color: Colors.grey[200],
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(12)),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 24.0),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Confirm Password'),
-                      ),
+                      child: buildConfirmPassword(),
                     ),
                   ),
                 ),
