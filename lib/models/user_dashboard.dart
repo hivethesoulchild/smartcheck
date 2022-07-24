@@ -171,7 +171,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                       gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
-                        mainAxisExtent: 250,
+                        mainAxisExtent: 200,
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
                       ),

@@ -41,7 +41,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               SizedBox(height: 20.0,),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 200.0),
+                padding: const EdgeInsets.symmetric(horizontal: 100.0),
                 child: InkWell(
                   onTap: () {
                     Navigator.push(context,
