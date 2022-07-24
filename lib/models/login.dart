@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/backend/backendpy.dart';
+import 'package:smartcheck/models/dashboard.dart';
 import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
 
@@ -117,8 +118,12 @@ class _LoginState extends State<Login> {
                       setState(() {
                         _user = user;
                       });
-                      //Navigator.push(context,
-                      //    MaterialPageRoute(builder: (context) => Dashboard()));
+
+                      if (_user.username.isNotEmpty) {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => Dashboard()));
+                      }
                       //dispose();
                     },
                     child: Container(
