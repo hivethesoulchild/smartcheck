@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
 
   Widget buildUsername() => TextFormField(
         obscureText: false,
+        key: formKey,
         decoration: const InputDecoration(
             border: InputBorder.none, hintText: 'Username'),
         onSaved: (value) => setState(() => username = value!),
@@ -36,6 +37,7 @@ class _LoginState extends State<Login> {
 
   Widget buildPassword() => TextFormField(
         obscureText: true,
+        key: formKey,
         decoration: const InputDecoration(
             border: InputBorder.none, hintText: 'Password'),
         onSaved: (value) => setState(() => password = value!),
@@ -111,6 +113,8 @@ class _LoginState extends State<Login> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: InkWell(
+
+
                     onTap: () async {
                       final user =
                           await BackEndPy.checkUser(username, password);
