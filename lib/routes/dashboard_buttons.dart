@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/models/scanner.dart';
+import 'package:smartcheck/models/user_access.dart';
 
 import '../models/answerkey.dart';
 import '../models/charts.dart';
+import '../models/timer.dart';
 
-Widget buildAnalysisChartButton(BuildContext context) => InkWell(
+Widget buildAnalysisChartButton(BuildContext context) =>
+    InkWell(
       onTap: () {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => Chart()));
@@ -39,7 +42,12 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       ),
     );
 
-Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
+Widget buildPrivilegedUserButton(BuildContext context) =>
+    InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => UserAccess()));
+      },
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
@@ -68,7 +76,8 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
       ),
     );
 
-Widget buildAnswerKeyButton(BuildContext context) => InkWell(
+Widget buildAnswerKeyButton(BuildContext context) =>
+    InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => AnswerKeyPage()));
@@ -89,7 +98,7 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: Text(
-              'Answer Key',
+              'Answer \n    Key',
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -101,7 +110,8 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
       ),
     );
 
-Widget buildScannerButton(BuildContext context) => InkWell(
+Widget buildScannerButton(BuildContext context) =>
+    InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ScannerPage()));
@@ -122,7 +132,7 @@ Widget buildScannerButton(BuildContext context) => InkWell(
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: Text(
-              'Check Papers',
+              'Check \nPapers',
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -134,10 +144,11 @@ Widget buildScannerButton(BuildContext context) => InkWell(
       ),
     );
 
-Widget buildTimerButton(BuildContext context) => InkWell(
+Widget buildTimerButton(BuildContext context) =>
+    InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AnswerKeyPage()));
+            context, MaterialPageRoute(builder: (context) => TimerPage()));
       },
       child: Container(
         decoration: BoxDecoration(

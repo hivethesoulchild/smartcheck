@@ -257,7 +257,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        BatchDetail(i: index)));
+                                        BatchDetail()));
                           });
                         },
                         child: Padding(

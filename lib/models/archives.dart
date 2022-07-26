@@ -40,7 +40,7 @@ class _ArchivesState extends State<Archives> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        BatchDetail(i: index)));
+                                        BatchDetail()));
                           });
                         },
                         child: Padding(

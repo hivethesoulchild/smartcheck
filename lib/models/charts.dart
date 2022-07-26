@@ -11,9 +11,9 @@ class Chart extends StatefulWidget {
   const Chart({Key? key}) : super(key: key);
 
   static final List<BatchChart> batch = [
-    BatchChart('Batch 1', 100, Colors.red),
-    BatchChart('Batch 2', 200, Colors.purple),
-    BatchChart('Batch 3', 300, Colors.yellow),
+    BatchChart('Batch 1', 100, HexColor('35408F')),
+    BatchChart('Batch 2', 200, HexColor('35408F')),
+    BatchChart('Batch 3', 300, HexColor('35408F')),
   ];
 
   static final List<ItemAnalysisChart> items = [
@@ -33,10 +33,10 @@ class _ChartState extends State<Chart> {
   @override
   void initState() {
     Timer? timer;
-    timer = Timer.periodic(Duration(milliseconds:1000),(_){
+    timer = Timer.periodic(Duration(milliseconds: 1000), (_) {
       setState(() {
-        percent+=10;
-        if(percent >= 50){
+        percent += 10;
+        if (percent >= 50) {
           timer?.cancel();
           // percent=0;
         }
@@ -106,152 +106,172 @@ class _ChartState extends State<Chart> {
             Center(
               child: Padding(
                 padding: EdgeInsets.all(10),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: charts.BarChart(series),
+                child: Column(
+                  children: [
+                    Text(
+                      'Number of Applicants',
+                      style: GoogleFonts.poppins(),
+                    ),
+                    SizedBox(height: 20,),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: charts.BarChart(
+                        series,
+                        behaviors: [new charts.SeriesLegend()],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
             Center(
               child: Padding(
                 padding: EdgeInsets.all(10),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 3,
-                                blurRadius: 3,
-                                offset: Offset(2, 3),
-                              )
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Column(
-                              children: <Widget>[
-                                Column(
-                                  children: [
-                                    Text('Question 1 - English'),
-                                    Text('A'),
-                                    Container(
-                                      padding:
-                                          EdgeInsets.only(left: 30, right: 30),
-                                      child: LinearPercentIndicator(
-                                        animation: true,
-                                        animationDuration: 1000,
-                                        lineHeight: 25.0,
-                                        percent: percent / 100,
-                                        center: Text(
-                                          percent.toString() + "%",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
+                child: Column(
+                  children: [
+                    Text(
+                      'Item Analysis',
+                      style: GoogleFonts.poppins(),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ListView(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 3,
+                                    blurRadius: 3,
+                                    offset: Offset(2, 3),
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Column(
+                                  children: <Widget>[
+                                    Column(
+                                      children: [
+                                        Text('Question 1 - English'),
+                                        Text('A'),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 30, right: 30),
+                                          child: LinearPercentIndicator(
+                                            animation: true,
+                                            animationDuration: 1000,
+                                            lineHeight: 25.0,
+                                            percent: percent / 100,
+                                            center: Text(
+                                              percent.toString() + "%",
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            backgroundColor: Colors.grey[300],
+                                            progressColor: Colors.redAccent,
+                                            linearStrokeCap:
+                                                LinearStrokeCap.roundAll,
                                           ),
                                         ),
-                                        backgroundColor: Colors.grey[300],
-                                        progressColor: Colors.redAccent,
-                                        linearStrokeCap:
-                                            LinearStrokeCap.roundAll,
-                                      ),
-                                    ),
-                                    Text('B'),
-                                    Container(
-                                      padding:
-                                      EdgeInsets.only(left: 30, right: 30),
-                                      child: LinearPercentIndicator(
-                                        animation: true,
-                                        animationDuration: 1000,
-                                        lineHeight: 25.0,
-                                        percent: percent / 100,
-                                        center: Text(
-                                          percent.toString() + "%",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
+                                        Text('B'),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 30, right: 30),
+                                          child: LinearPercentIndicator(
+                                            animation: true,
+                                            animationDuration: 1000,
+                                            lineHeight: 25.0,
+                                            percent: percent / 100,
+                                            center: Text(
+                                              percent.toString() + "%",
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            backgroundColor: Colors.grey[300],
+                                            progressColor: Colors.redAccent,
+                                            linearStrokeCap:
+                                                LinearStrokeCap.roundAll,
                                           ),
                                         ),
-                                        backgroundColor: Colors.grey[300],
-                                        progressColor: Colors.redAccent,
-                                        linearStrokeCap:
-                                        LinearStrokeCap.roundAll,
-                                      ),
-                                    ),
-                                    Text('C'),
-                                    Container(
-                                      padding:
-                                      EdgeInsets.only(left: 30, right: 30),
-                                      child: LinearPercentIndicator(
-                                        animation: true,
-                                        animationDuration: 1000,
-                                        lineHeight: 25.0,
-                                        percent: percent / 100,
-                                        center: Text(
-                                          percent.toString() + "%",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
+                                        Text('C'),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 30, right: 30),
+                                          child: LinearPercentIndicator(
+                                            animation: true,
+                                            animationDuration: 1000,
+                                            lineHeight: 25.0,
+                                            percent: percent / 100,
+                                            center: Text(
+                                              percent.toString() + "%",
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            backgroundColor: Colors.grey[300],
+                                            progressColor: Colors.redAccent,
+                                            linearStrokeCap:
+                                                LinearStrokeCap.roundAll,
                                           ),
                                         ),
-                                        backgroundColor: Colors.grey[300],
-                                        progressColor: Colors.redAccent,
-                                        linearStrokeCap:
-                                        LinearStrokeCap.roundAll,
-                                      ),
-                                    ),
-                                    Text('D'),
-                                    Container(
-                                      padding:
-                                      EdgeInsets.only(left: 30, right: 30),
-                                      child: LinearPercentIndicator(
-                                        animation: true,
-                                        animationDuration: 1000,
-                                        lineHeight: 25.0,
-                                        percent: percent / 100,
-                                        center: Text(
-                                          percent.toString() + "%",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
+                                        Text('D'),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 30, right: 30),
+                                          child: LinearPercentIndicator(
+                                            animation: true,
+                                            animationDuration: 1000,
+                                            lineHeight: 25.0,
+                                            percent: percent / 100,
+                                            center: Text(
+                                              percent.toString() + "%",
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            backgroundColor: Colors.grey[300],
+                                            progressColor: Colors.redAccent,
+                                            linearStrokeCap:
+                                                LinearStrokeCap.roundAll,
                                           ),
                                         ),
-                                        backgroundColor: Colors.grey[300],
-                                        progressColor: Colors.redAccent,
-                                        linearStrokeCap:
-                                        LinearStrokeCap.roundAll,
-                                      ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

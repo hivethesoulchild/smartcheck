@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:smartcheck/routes/applicant_dialog.dart';
 import 'data.dart' as global;
 
-class BatchDetail extends StatelessWidget {
-  final int i;
+class BatchDetail extends StatefulWidget {
+  //final int i;
 
-  const BatchDetail({Key? key, required this.i}) : super(key: key);
+  const BatchDetail({Key? key,}) : super(key: key);
 
+  @override
+  State<BatchDetail> createState() => _BatchDetailState();
+}
+
+class _BatchDetailState extends State<BatchDetail> {
+  int _currentIndex = 0;
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     showDataAlert(int batchIndex, int applicantIndex) {
@@ -107,12 +119,12 @@ class BatchDetail extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          'Batch ${global.batchData[i]['batchID']}',
+          'Batch 1',
           style: GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
         ),
         backgroundColor: Colors.white,
       ),
-      body: Padding(
+    /*  body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: ListView.builder(
@@ -173,6 +185,16 @@ class BatchDetail extends StatelessWidget {
                 ),
               );
             },
+          ),
+        ),
+      ), */
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: ListView(
+            children: [
+              ApplicantDialog(),
+            ],
           ),
         ),
       ),
