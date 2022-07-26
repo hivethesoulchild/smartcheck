@@ -7,20 +7,23 @@ class AnswerKeyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-              primary: HexColor('#35408f'),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0))),
-          child: Text(
-            'Create Answer Key',
-            style: GoogleFonts.poppins(
-                fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                primary: HexColor('#35408f'),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0))),
+            child: Text(
+              'Create Answer Key',
+              style: GoogleFonts.poppins(
+                  fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),
