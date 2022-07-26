@@ -10,9 +10,11 @@ import 'package:smartcheck/models/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
 import 'package:csv/csv.dart';
 import 'package:smartcheck/models/batch_page.dart';
+import 'package:smartcheck/models/charts.dart';
 import 'package:smartcheck/models/settings.dart';
 import 'dart:convert' show utf8;
 import '../data.dart' as global;
+import '../routes/dashboard_buttons.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -50,12 +52,12 @@ class _DashboardState extends State<Dashboard> {
             Text(
               'Smart',
               style:
-              GoogleFonts.poppins(fontSize: 24, color: HexColor('#35408f')),
+                  GoogleFonts.poppins(fontSize: 24, color: HexColor('#35408f')),
             ),
             Text(
               'Check',
               style:
-              GoogleFonts.poppins(fontSize: 24, color: HexColor('#CAB358')),
+                  GoogleFonts.poppins(fontSize: 24, color: HexColor('#CAB358')),
             ),
           ],
         ),
@@ -109,22 +111,31 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
-        backgroundColor: HexColor('#ffffff'),
-        selectedItemColor: HexColor('#35408f'),
-        unselectedItemColor: HexColor('#35408f'),
-        currentIndex: _currentIndex,
-        selectedLabelStyle: GoogleFonts.poppins(),
-        unselectedLabelStyle: GoogleFonts.lato(),
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard), label: 'Dashboard'),
-          BottomNavigationBarItem(icon: Icon(Icons.archive), label: 'Archive'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
-        ],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 1,
+          ),
+        ]),
+        child: BottomNavigationBar(
+          onTap: onTabTapped,
+          backgroundColor: HexColor('#ffffff'),
+          selectedItemColor: HexColor('#35408f'),
+          unselectedItemColor: HexColor('#35408f'),
+          currentIndex: _currentIndex,
+          selectedLabelStyle: GoogleFonts.poppins(),
+          unselectedLabelStyle: GoogleFonts.lato(),
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard), label: 'Dashboard'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.archive), label: 'Archive'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: 'Settings'),
+          ],
+        ),
       ),
     );
   }
@@ -152,7 +163,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('#FFD700'),
+      backgroundColor: HexColor('#FFFFFF'),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
@@ -166,125 +177,21 @@ class _DashboardPageState extends State<DashboardPage> {
                     flex: 1,
                     fit: FlexFit.tight,
                     child: GridView(
-                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(5.0),
                       gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
                         mainAxisExtent: 100,
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
                       ),
                       children: [
-                        InkWell(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: HexColor('#35408f'),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 3),
-                                  )
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Analysis Chart',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: HexColor('#35408f'),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 3),
-                                  )
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Privileged Users',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: HexColor('#35408f'),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 3),
-                                  )
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Timer',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => AnswerKeyPage()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0),
-                                color: HexColor('#35408f'),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0,
-                                    blurRadius: 4,
-                                    offset: Offset(0, 3),
-                                  )
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Answer Key',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        buildAnalysisChartButton(context),
+                        buildPrivilegedUserButton(context),
+                        buildAnswerKeyButton(context),
+                        buildTimerButton(context),
+                        buildScannerButton(context),
                       ],
                     ),
                   ),
@@ -305,8 +212,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   alignment: Alignment.topLeft,
                   child: Text(
                     'Recent Batch',
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
+                    style: GoogleFonts.nunito(
+                        fontWeight: FontWeight.w800,
                         fontSize: 20,
                         color: HexColor('#35408f')),
                   ),
@@ -321,8 +228,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ],
             ),
-            Flexible(
-              flex: 2,
+            /* Flexible(
+              flex: 3,
               fit: FlexFit.loose,
               child: GridView.builder(
                   padding: const EdgeInsets.all(5.0),
@@ -338,8 +245,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        BatchPage(i: index)));
+                                    builder: (context) => BatchDetail(i: index)));
                           });
                         },
                         child: Padding(
@@ -363,8 +269,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Batch ${global
-                                          .batchData[index]["batchID"]}',
+                                      'Batch ${global.batchData[index]["batchID"]}',
                                       style: GoogleFonts.poppins(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold,
@@ -389,7 +294,298 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         ));
                   }),
-            ),
+            ), */
+            Flexible(
+              flex: 2,
+              fit: FlexFit.loose,
+              child: GridView(
+                padding: EdgeInsets.all(7),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  mainAxisExtent: 120,
+                  mainAxisSpacing: 5.0,
+                ),
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BatchDetail()));
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 4,
+                                offset: Offset(0, 3),
+                              )
+                            ]),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Haggard University',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: HexColor("#35408f")),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Number of Applicants: 1',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Submitted: 1',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Did Not Submitted: 0',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16,top: 5),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  '$date',
+                                  style: GoogleFonts.prompt(
+                                      fontSize: 12, color: HexColor("#35408f")),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BatchDetail()));
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 4,
+                                offset: Offset(0, 3),
+                              )
+                            ]),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Ricardo Dimagiba College',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: HexColor("#35408f")),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Number of Applicants: 1',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Submitted: 1',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Did Not Submitted: 0',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      '$date',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BatchDetail()));
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(3.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 4,
+                                offset: Offset(0, 3),
+                              )
+                            ]),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Boracay State Academy',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: HexColor("#35408f")),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Number of Applicants: 1',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Submitted: 1',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Did Not Submitted: 0',
+                                      style: GoogleFonts.prompt(
+                                          fontSize: 12, color: HexColor("#35408f")),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16,top: 5),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  '$date',
+                                  style: GoogleFonts.prompt(
+                                      fontSize: 12, color: HexColor("#35408f")),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
