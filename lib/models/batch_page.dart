@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:smartcheck/models/answerkey.dart';
+import 'package:smartcheck/models/scanner.dart';
+import 'package:smartcheck/models/timer.dart';
 import '../data.dart' as global;
 
 class BatchPage extends StatelessWidget {
@@ -10,6 +13,94 @@ class BatchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    showDataAlert(int batchIndex, int applicantIndex) {
+      var recommendations = global.batchData[batchIndex]['applicantList']
+          [applicantIndex]['Recommendation'];
+      if (recommendations == null) {
+        recommendations = '';
+      } else {
+        recommendations = recommendations.join(',');
+      }
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            contentPadding: EdgeInsets.only(top: 10.0),
+            title: Text(
+              'Scores',
+              style: GoogleFonts.poppins(),
+            ),
+            content: SizedBox(
+              height: 500,
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                              'English: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['English']}')
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                              'Mathematics: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Mathematics']}')
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                              'Science: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Science']}')
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                              'Aptitude: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Aptitude']}')
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Status: ${global.batchData[batchIndex]['applicantList'][applicantIndex]['Status']}',
+                        style: GoogleFonts.poppins(),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Recommendations: $recommendations',
+                        style: GoogleFonts.poppins(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -40,6 +131,10 @@ class BatchPage extends StatelessWidget {
                 ),
                 children: [
                   InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ScannerPage()));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
@@ -66,6 +161,10 @@ class BatchPage extends StatelessWidget {
                     ),
                   ),
                   InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AnswerKeyPage()));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
@@ -92,6 +191,10 @@ class BatchPage extends StatelessWidget {
                     ),
                   ),
                   InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => TimerPage()));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
