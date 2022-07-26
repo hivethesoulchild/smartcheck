@@ -20,7 +20,6 @@ class _RegisterState extends State<Register> {
 
   Widget buildUsername() => TextFormField(
     obscureText: false,
-    key: formKey,
     decoration: const InputDecoration(
         border: InputBorder.none, hintText: 'Username'),
     onSaved: (value) => setState(() => username = value!),
@@ -35,7 +34,6 @@ class _RegisterState extends State<Register> {
 
   Widget buildPassword() => TextFormField(
     obscureText: true,
-    key: formKey,
     decoration: const InputDecoration(
         border: InputBorder.none, hintText: 'Username'),
     onSaved: (value) => setState(() => username = value!),
@@ -50,14 +48,16 @@ class _RegisterState extends State<Register> {
 
   Widget buildConfirmPassword() => TextFormField(
     obscureText: true,
-    key: formKey,
     decoration: const InputDecoration(
         border: InputBorder.none, hintText: 'Username'),
     onSaved: (value) => setState(() => username = value!),
     validator: (value) {
       if (value?.isEmpty == true) {
         return 'Please re-enter the password';
-      } else {
+      }else if(password != value){
+        return 'Password doesn\'t match';
+      }
+      else {
         return null;
       }
     },
@@ -70,6 +70,7 @@ class _RegisterState extends State<Register> {
       body: SafeArea(
         child: Center(
           child: Form(
+            key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
