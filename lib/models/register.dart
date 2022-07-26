@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
   Widget buildPassword() => TextFormField(
     obscureText: true,
     decoration: const InputDecoration(
-        border: InputBorder.none, hintText: 'Username'),
+        border: InputBorder.none, hintText: 'Password'),
     onSaved: (value) => setState(() => username = value!),
     validator: (value) {
       if (value?.isEmpty == true) {
@@ -49,7 +49,7 @@ class _RegisterState extends State<Register> {
   Widget buildConfirmPassword() => TextFormField(
     obscureText: true,
     decoration: const InputDecoration(
-        border: InputBorder.none, hintText: 'Username'),
+        border: InputBorder.none, hintText: 'Re-enter Password'),
     onSaved: (value) => setState(() => username = value!),
     validator: (value) {
       if (value?.isEmpty == true) {
@@ -179,6 +179,8 @@ class _RegisterState extends State<Register> {
                         style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
+
+
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Login()));
                       },
