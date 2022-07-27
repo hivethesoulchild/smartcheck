@@ -5,6 +5,7 @@ import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/models/dashboard.dart';
 import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -112,21 +113,37 @@ class _LoginState extends State<Login> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: InkWell(
-
-
                     onTap: () async {
-                      final user =
-                          await BackEndPy.checkUser(username, password);
+                      final isValid = formKey.currentState?.validate();
 
-                      setState(() {
-                        _user = user;
-                      });
+                      if (isValid!) {
+                        formKey.currentState?.save();
 
-                      if (_user.username.isNotEmpty) {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => Dashboard()));
+                        final user =
+                            await BackEndPy.checkUser(username, password);
+                        print(user);
+
+                        setState(() {
+                          _user = user;
+                        });
+
+                        if (_user.username == username) {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => Dashboard()));
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "The username or password is invalid.",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        }
                       }
+
                       //dispose();
                     },
                     child: Container(
