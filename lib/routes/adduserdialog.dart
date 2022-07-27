@@ -39,10 +39,6 @@ class AddUserDialog extends StatelessWidget {
         ),
         actions: [
           ElevatedButton(
-            onPressed: () {},
-            child: Text('Generate'),
-          ),
-          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },
