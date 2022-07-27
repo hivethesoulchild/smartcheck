@@ -154,7 +154,11 @@ class _TimerPageState extends State<TimerPage> {
                     startTimer();
                   }
                 },
-                child: isRunning ? Text('STOP') : Text('RESUME'),
+                child: isRunning ? Text('STOP') : Text('START'),
+                style: ElevatedButton.styleFrom(
+                    primary: HexColor('#35408f'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0))),
               ),
               SizedBox(
                 width: 12,
@@ -164,6 +168,12 @@ class _TimerPageState extends State<TimerPage> {
                   stopTimer();
                 },
                 child: Text('CANCEL'),
+                style: ElevatedButton.styleFrom(
+                  primary: HexColor('#35408f'),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
               ),
             ],
           )
@@ -172,6 +182,10 @@ class _TimerPageState extends State<TimerPage> {
               startTimer();
             },
             child: Text('Start Timer'),
+            style: ElevatedButton.styleFrom(
+                primary: HexColor('#35408f'),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0))),
           );
   }
 }

@@ -29,37 +29,25 @@ class ApplicantDialog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text(
-                          'English: 17')
-                    ],
+                    children: [Text('English: 17')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text(
-                          'Mathematics: 15')
-                    ],
+                    children: [Text('Mathematics: 15')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text(
-                          'Science: 13')
-                    ],
+                    children: [Text('Science: 13')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text(
-                          'Aptitude: 10')
-                    ],
+                    children: [Text('Aptitude: 10')],
                   ),
                 ),
                 Container(
@@ -87,6 +75,7 @@ class ApplicantDialog extends StatelessWidget {
             return alert;
           });
     }
+
     return InkWell(
       onTap: () {
         showAlertDialog(context);
@@ -118,7 +107,19 @@ class ApplicantDialog extends StatelessWidget {
                       style: GoogleFonts.poppins(
                           fontSize: 14, color: HexColor("#35408f")),
                     ),
-                    Icon(Icons.menu),
+                    Spacer(),
+                    InkWell(
+                      onTap: () {
+                        PopupMenuButton<int>(
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              child: Text('Details'),
+                            ),
+                          ],
+                        );
+                      },
+                      child: Icon(Icons.more_vert),
+                    ),
                   ],
                 ),
                 Row(
@@ -141,5 +142,4 @@ class ApplicantDialog extends StatelessWidget {
       ),
     );
   }
-
 }

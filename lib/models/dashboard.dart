@@ -331,18 +331,27 @@ class _DashboardPageState extends State<DashboardPage> {
                             ]),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Haggard University',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: HexColor("#35408f")),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Haggard University',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColor("#35408f")),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: const Icon(Icons.more_vert),
+                                ),
+                              ],
                             ),
                             Row(
                               children: [
@@ -373,7 +382,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Did Not Submitted: 0',
+                                      'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
                                           fontSize: 12, color: HexColor("#35408f")),
                                     ),
@@ -422,18 +431,27 @@ class _DashboardPageState extends State<DashboardPage> {
                             ]),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Ricardo Dimagiba College',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: HexColor("#35408f")),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Ricardo Dimagiba College',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColor("#35408f")),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: const Icon(Icons.more_vert),
+                                ),
+                              ],
                             ),
                             Row(
                               children: [
@@ -464,7 +482,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Did Not Submitted: 0',
+                                      'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
                                           fontSize: 12, color: HexColor("#35408f")),
                                     ),
@@ -517,18 +535,27 @@ class _DashboardPageState extends State<DashboardPage> {
                             ]),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Boracay State Academy',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: HexColor("#35408f")),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Boracay State Academy',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColor("#35408f")),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: const Icon(Icons.more_vert),
+                                ),
+                              ],
                             ),
                             Row(
                               children: [
@@ -559,7 +586,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Did Not Submitted: 0',
+                                      'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
                                           fontSize: 12, color: HexColor("#35408f")),
                                     ),
