@@ -18,7 +18,7 @@ class ApplicantDialog extends StatelessWidget {
           style: GoogleFonts.poppins(),
         ),
         content: SizedBox(
-          height: 500,
+          height: 300,
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
             child: Column(

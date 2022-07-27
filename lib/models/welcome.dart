@@ -66,7 +66,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               SizedBox(height: 20.0,),
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -84,7 +84,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     },
                   )
                 ],
-              ),
+              ),*/
             ],
           ),
         ),

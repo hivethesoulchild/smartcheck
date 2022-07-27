@@ -166,7 +166,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 20.0,
                 ),
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -186,7 +186,7 @@ class _LoginState extends State<Login> {
                       },
                     )
                   ],
-                ),
+                ),*/
               ],
             ),
           ),
