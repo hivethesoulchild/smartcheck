@@ -181,7 +181,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       padding: const EdgeInsets.all(5.0),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: 2,
                         mainAxisExtent: 100,
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
@@ -190,7 +190,6 @@ class _DashboardPageState extends State<DashboardPage> {
                         buildAnalysisChartButton(context),
                         buildPrivilegedUserButton(context),
                         buildAnswerKeyButton(context),
-                        buildTimerButton(context),
                         buildScannerButton(context),
                       ],
                     ),

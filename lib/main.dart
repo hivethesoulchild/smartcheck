@@ -6,6 +6,7 @@ import 'package:smartcheck/models/scanner.dart';
 import 'package:smartcheck/models/timer.dart';
 import 'package:smartcheck/models/user_dashboard.dart';
 import 'package:smartcheck/models/welcome.dart';
+import 'package:smartcheck/pages/splash_screen.dart';
 
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WelcomePage(),
+      home: const SplashScreen(),
     );
   }
 }
