@@ -3,9 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/models/dashboard.dart';
+import 'package:smartcheck/models/login_loading.dart';
 import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../backend/backend.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -114,20 +116,21 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: InkWell(
                     onTap: () async {
+                      showLoaderDialog(context);
                       final isValid = formKey.currentState?.validate();
 
                       if (isValid!) {
                         formKey.currentState?.save();
-
-                        final user =
-                            await BackEndPy.checkUser(username, password);
-                        print(user);
-
-                        setState(() {
-                          _user = user;
-                        });
-
-                        if (_user.username == username) {
+                        Fluttertoast.showToast(
+                            msg: "Loggin in...",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        var res = await checkUser(username, password);
+                        if (res) {
                           Navigator.of(context).pop();
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -142,6 +145,14 @@ class _LoginState extends State<Login> {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         }
+                        /**
+                            final user =
+                            await BackEndPy.checkUser(username, password);
+                            print(user);
+                            setState(() {
+                            _user = user as UserModel;
+                            });
+                         **/
                       }
 
                       //dispose();
