@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/models/dashboard.dart';
-import 'package:smartcheck/models/login_loading.dart';
 import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -115,7 +114,6 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: InkWell(
                     onTap: () async {
-                      LoginLoading();
                       final isValid = formKey.currentState?.validate();
 
                       if (isValid!) {
@@ -130,7 +128,6 @@ class _LoginState extends State<Login> {
                         });
 
                         if (_user.username == username) {
-                          LoginLoading();
                           Navigator.of(context).pop();
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
