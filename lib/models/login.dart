@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
   late UserModel _user;
   String username = "";
   String password = "";
+  bool isLoggedIn = true;
 
   Widget buildUsername() => TextFormField(
         obscureText: false,
@@ -116,7 +117,6 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: InkWell(
                     onTap: () async {
-                      showLoaderDialog(context);
                       final isValid = formKey.currentState?.validate();
 
                       if (isValid!) {
@@ -162,14 +162,38 @@ class _LoginState extends State<Login> {
                       decoration: BoxDecoration(
                           color: HexColor('#35408f'),
                           borderRadius: BorderRadius.circular(12)),
-                      child: const Center(
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
+                      child: Center(
+                        child: isLoggedIn
+                            ? const Text(
+                                'Sign In',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  SizedBox(
+                                    width: 15,
+                                    height: 15,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 3,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Logged in....',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )
+                                ],
+                              ),
                       ),
                     ),
                   ),
