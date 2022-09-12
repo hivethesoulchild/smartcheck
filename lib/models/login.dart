@@ -19,7 +19,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
 
-  late UserModel _user;
+  var user;
   String username = "";
   String password = "";
   bool isLoggedIn = true;
@@ -129,9 +129,10 @@ class _LoginState extends State<Login> {
                             backgroundColor: Colors.red,
                             textColor: Colors.white,
                             fontSize: 16.0);
-                        var res = await checkUser(username, password);
-                        if (res) {
-                          Navigator.of(context).pop();
+                        //var res = await checkUser(username, password);
+                         user = await BackEndPy.checkUser(username, password);
+
+                        if (user.username == username) {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Dashboard()));
@@ -146,12 +147,7 @@ class _LoginState extends State<Login> {
                               fontSize: 16.0);
                         }
                         /**
-                            final user =
-                            await BackEndPy.checkUser(username, password);
-                            print(user);
-                            setState(() {
-                            _user = user as UserModel;
-                            });
+
                          **/
                       }
 
