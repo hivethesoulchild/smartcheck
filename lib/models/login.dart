@@ -122,7 +122,7 @@ class _LoginState extends State<Login> {
                       if (isValid!) {
                         formKey.currentState?.save();
                         Fluttertoast.showToast(
-                            msg: "Loggin in...",
+                            msg: "nyenye",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
@@ -130,9 +130,16 @@ class _LoginState extends State<Login> {
                             textColor: Colors.white,
                             fontSize: 16.0);
                         //var res = await checkUser(username, password);
-                         user = await BackEndPy.checkUser(username, password);
-
-                        if (user.username == username) {
+                        user = await BackEndPy.checkUser(username, password);
+                        Fluttertoast.showToast(
+                            msg: user.username,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        if (username == user.username) {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Dashboard()));
