@@ -8,8 +8,7 @@ import '../models/answerkey.dart';
 import '../models/charts.dart';
 import '../models/timer.dart';
 
-Widget buildAnalysisChartButton(BuildContext context) =>
-    InkWell(
+Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => Chart()));
@@ -29,21 +28,32 @@ Widget buildAnalysisChartButton(BuildContext context) =>
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Text(
-              'Analysis \n  Chart',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons8_bar_chart_1.png',
+                  scale: 5,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Analysis Chart',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
 
-Widget buildPrivilegedUserButton(BuildContext context) =>
-    InkWell(
+Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => UserAccess()));
@@ -63,21 +73,32 @@ Widget buildPrivilegedUserButton(BuildContext context) =>
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Text(
-              'Privileged \n     Users',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons8_user_account.png',
+                  scale: 5,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'User Management',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
 
-Widget buildAnswerKeyButton(BuildContext context) =>
-    InkWell(
+Widget buildAnswerKeyButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => AnswerKeyPage()));
@@ -97,21 +118,32 @@ Widget buildAnswerKeyButton(BuildContext context) =>
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Text(
-              'Answer \n    Key',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons8_test_1.png',
+                  scale: 5,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Answer Key',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
 
-Widget buildScannerButton(BuildContext context) =>
-    InkWell(
+Widget buildScannerButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ScannerPage()));
@@ -131,21 +163,32 @@ Widget buildScannerButton(BuildContext context) =>
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Text(
-              'Check \nPapers',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons8_exam_1.png',
+                  scale: 5,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Check Papers',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
 
-Widget buildTimerButton(BuildContext context) =>
-    InkWell(
+Widget buildTimerButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => TimerPage()));

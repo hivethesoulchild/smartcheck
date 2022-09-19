@@ -169,7 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Column(
           children: [
             Flexible(
-              flex: 1,
+              flex: 2,
               fit: FlexFit.tight,
               child: Row(
                 children: [
@@ -182,7 +182,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisExtent: 100,
+                        mainAxisExtent: 150,
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
                       ),
@@ -333,7 +333,8 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 16, bottom: 2, top: 10),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
@@ -355,42 +356,48 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Number of Applicants: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Submitted: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 16,top: 5),
+                              padding: const EdgeInsets.only(left: 16, top: 5),
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
@@ -433,7 +440,8 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 16, bottom: 2, top: 10),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
@@ -455,35 +463,41 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Number of Applicants: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Submitted: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
@@ -492,13 +506,15 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       '$date',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
@@ -537,7 +553,8 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16, bottom: 2,top: 10),
+                                  padding: const EdgeInsets.only(
+                                      left: 16, bottom: 2, top: 10),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
@@ -559,42 +576,48 @@ class _DashboardPageState extends State<DashboardPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Number of Applicants: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Submitted: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12, color: HexColor("#35408f")),
+                                          fontSize: 12,
+                                          color: HexColor("#35408f")),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 16,top: 5),
+                              padding: const EdgeInsets.only(left: 16, top: 5),
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
