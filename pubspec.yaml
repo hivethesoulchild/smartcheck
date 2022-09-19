@@ -69,6 +69,14 @@ flutter:
     - assets/NU Logo_2L_H_FC_RGB_POS_AW.jpg
     - assets/NU Logo_V_FC_RGB_POS_AW.jpg
     - assets/smartcheck_logo.png
+    - assets/icons8_bar_chart_1.png
+    - assets/icons8_calculator_1.png
+    - assets/icons8_discrepancy_1.png
+    - assets/icons8_exam_1.png
+    - assets/icons8_physics.png
+    - assets/icons8_spell_check.png
+    - assets/icons8_test_1.png
+    - assets/icons8_user_account.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
