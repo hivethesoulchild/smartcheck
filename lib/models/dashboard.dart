@@ -182,7 +182,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisExtent: 150,
+                        mainAxisExtent: 130,
                         mainAxisSpacing: 5.0,
                         crossAxisSpacing: 5.0,
                       ),
@@ -301,7 +301,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 padding: EdgeInsets.all(7),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
-                  mainAxisExtent: 120,
+                  mainAxisExtent: 130,
                   mainAxisSpacing: 5.0,
                 ),
                 children: [
@@ -340,7 +340,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Haggard University',
                                       style: GoogleFonts.poppins(
-                                          fontSize: 22,
+                                          fontSize: 19,
                                           fontWeight: FontWeight.bold,
                                           color: HexColor("#35408f")),
                                     ),
@@ -349,7 +349,18 @@ class _DashboardPageState extends State<DashboardPage> {
                                 Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: const Icon(Icons.more_vert),
+                                  child: PopupMenuButton<int>(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        child: Text('Archive'),
+                                        value: 1,
+                                      ),
+                                      PopupMenuItem(
+                                        child: Text('Delete'),
+                                        value: 2,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -363,7 +374,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Number of Applicants: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
                                     ),
                                   ),
@@ -376,7 +387,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Submitted: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
                                     ),
                                   ),
@@ -389,8 +400,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
                                     ),
                                   ),
                                 ),
@@ -447,7 +460,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Ricardo Dimagiba College',
                                       style: GoogleFonts.poppins(
-                                          fontSize: 22,
+                                          fontSize: 19,
                                           fontWeight: FontWeight.bold,
                                           color: HexColor("#35408f")),
                                     ),
@@ -456,7 +469,18 @@ class _DashboardPageState extends State<DashboardPage> {
                                 Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: const Icon(Icons.more_vert),
+                                  child: PopupMenuButton<int>(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        child: Text('Archive'),
+                                        value: 1,
+                                      ),
+                                      PopupMenuItem(
+                                        child: Text('Delete'),
+                                        value: 2,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -470,7 +494,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Number of Applicants: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
                                     ),
                                   ),
@@ -483,7 +507,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Submitted: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
                                     ),
                                   ),
@@ -496,8 +520,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
                                     ),
                                   ),
                                 ),
@@ -560,7 +586,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Boracay State Academy',
                                       style: GoogleFonts.poppins(
-                                          fontSize: 22,
+                                          fontSize: 19,
                                           fontWeight: FontWeight.bold,
                                           color: HexColor("#35408f")),
                                     ),
@@ -569,7 +595,18 @@ class _DashboardPageState extends State<DashboardPage> {
                                 Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
-                                  child: const Icon(Icons.more_vert),
+                                  child: PopupMenuButton<int>(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        child: Text('Archive'),
+                                        value: 1,
+                                      ),
+                                      PopupMenuItem(
+                                        child: Text('Delete'),
+                                        value: 2,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -583,7 +620,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Number of Applicants: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
                                     ),
                                   ),
@@ -596,7 +633,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Submitted: 1',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
                                     ),
                                   ),
@@ -609,8 +646,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                     child: Text(
                                       'Did Not Submit: 0',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           color: HexColor("#35408f")),
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
                                     ),
                                   ),
                                 ),

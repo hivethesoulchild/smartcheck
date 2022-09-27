@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/models/scanner.dart';
 import 'package:smartcheck/models/user_access.dart';
+import 'package:smartcheck/pages/item_analysis.dart';
 
 import '../models/answerkey.dart';
 import '../models/charts.dart';
@@ -11,7 +12,7 @@ import '../models/timer.dart';
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Chart()));
+            .push(MaterialPageRoute(builder: (context) => ItemAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -84,7 +85,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
                   height: 20,
                 ),
                 Text(
-                  'User Management',
+                  'Manage Users' ,
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
