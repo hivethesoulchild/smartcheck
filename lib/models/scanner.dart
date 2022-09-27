@@ -44,9 +44,37 @@ class _ScannerPageState extends State<ScannerPage> {
   Widget build(BuildContext context) {
     if (cameraController.value.isInitialized) {
       return Scaffold(
-        body: Stack(
+        body: Column(
           children: [
-            CameraPreview(cameraController),
+            Padding(
+              padding: const EdgeInsets.all(0),
+              child: Center(
+                child: SizedBox(
+                  height: 650,
+                  width: 420,
+                  child: CameraPreview(cameraController),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {},
+                child: SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: Icon(
+                      Icons.camera_alt,
+                      size: 30,
+                      color: Colors.black,
+                    )),
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  primary: Colors.white,
+                  shadowColor: Colors.black,
+                ),
+              ),
+            ),
           ],
         ),
       );
