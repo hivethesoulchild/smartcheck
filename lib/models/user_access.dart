@@ -35,7 +35,7 @@ class _UserAccessState extends State<UserAccess> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          'Privileged Users',
+          'User Management',
           style: GoogleFonts.poppins(
             color: HexColor('#35408F'),
           ),
