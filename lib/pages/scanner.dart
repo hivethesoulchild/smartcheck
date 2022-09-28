@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 class ScannerPage extends StatefulWidget {
   const ScannerPage({Key? key}) : super(key: key);
 
@@ -141,7 +142,7 @@ class _ScannerPageState extends State<ScannerPage> {
                     )),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shadowColor: Colors.black,
                 ),
               ),
