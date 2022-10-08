@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/models/dashboard.dart';
-import 'package:smartcheck/models/login.dart';
+import 'package:smartcheck/pages/dashboard.dart';
+import 'package:smartcheck/pages/login.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

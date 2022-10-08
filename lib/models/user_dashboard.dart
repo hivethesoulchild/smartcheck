@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:smartcheck/models/archives.dart';
+import 'package:smartcheck/pages/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
 import 'package:csv/csv.dart';
 import 'package:smartcheck/models/settings.dart';

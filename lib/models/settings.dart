@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smartcheck/models/login.dart';
+import 'package:smartcheck/pages/login.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);

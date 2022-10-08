@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/models/scanner.dart';
-import 'package:smartcheck/models/user_access.dart';
+import 'package:smartcheck/pages/scanner.dart';
+import 'package:smartcheck/pages/user_access.dart';
 import 'package:smartcheck/pages/item_analysis.dart';
 
-import '../models/answerkey.dart';
+import '../pages/answerkey.dart';
 import '../models/charts.dart';
 import '../models/timer.dart';
+import '../pages/answerkey.dart';
 
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/models/answerkey.dart';
-import 'package:smartcheck/models/scanner.dart';
+import 'answerkey.dart';
+import 'scanner.dart';
 import 'package:smartcheck/models/timer.dart';
+import 'package:smartcheck/pages/answerkey.dart';
 import '../data.dart' as global;
 
 class BatchPage extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/backend/backendpy.dart';
-import 'package:smartcheck/models/dashboard.dart';
+import 'package:smartcheck/pages/dashboard.dart';
 import 'package:smartcheck/models/login_loading.dart';
 import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
