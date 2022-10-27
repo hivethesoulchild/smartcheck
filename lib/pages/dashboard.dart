@@ -329,12 +329,15 @@ class _DashboardPageState extends State<DashboardPage> {
                               )
                             ]),
                         child: Column(
-                          children: [
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
                             Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 16, bottom: 2, top: 10),
+                                      left: 12, bottom: 2, top: 10),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
