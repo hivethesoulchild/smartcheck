@@ -129,7 +129,7 @@ class _DashboardState extends State<Dashboard> {
           showUnselectedLabels: false,
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard), label: 'Dashboard'),
+                icon: Icon(Icons.home), label: 'Homepage'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.archive), label: 'Archive'),
             BottomNavigationBarItem(

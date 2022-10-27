@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:smartcheck/pages/scanner.dart';
 import 'package:smartcheck/routes/applicant_dialog.dart';
 import 'data.dart' as global;
 
 class BatchDetail extends StatefulWidget {
   //final int i;
 
-  const BatchDetail({Key? key,}) : super(key: key);
+  const BatchDetail({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<BatchDetail> createState() => _BatchDetailState();
@@ -15,11 +18,13 @@ class BatchDetail extends StatefulWidget {
 
 class _BatchDetailState extends State<BatchDetail> {
   int _currentIndex = 0;
+
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     showDataAlert(int batchIndex, int applicantIndex) {
@@ -111,6 +116,17 @@ class _BatchDetailState extends State<BatchDetail> {
     }
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.camera_alt),
+        backgroundColor: HexColor('#35408f'),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ScannerPage(),
+            ),
+          );
+        },
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
@@ -124,7 +140,7 @@ class _BatchDetailState extends State<BatchDetail> {
         ),
         backgroundColor: Colors.white,
       ),
-    /*  body: Padding(
+      /*  body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: ListView.builder(
