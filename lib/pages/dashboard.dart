@@ -128,8 +128,7 @@ class _DashboardState extends State<Dashboard> {
           unselectedLabelStyle: GoogleFonts.lato(),
           showUnselectedLabels: false,
           items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: 'Homepage'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Homepage'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.archive), label: 'Archive'),
             BottomNavigationBarItem(
@@ -475,12 +474,12 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: PopupMenuButton<int>(
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
-                                        child: Text('Archive'),
                                         value: 1,
+                                        child: Text('Archive'),
                                       ),
                                       PopupMenuItem(
-                                        child: Text('Delete'),
                                         value: 2,
+                                        child: Text('Delete'),
                                       )
                                     ],
                                   ),
