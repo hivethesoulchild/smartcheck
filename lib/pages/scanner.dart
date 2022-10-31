@@ -142,8 +142,8 @@ class _ScannerPageState extends State<ScannerPage> {
                     )),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
-                  backgroundColor: Colors.white,
                   shadowColor: Colors.black,
+                  primary: Colors.white,
                 ),
               ),
             ),
