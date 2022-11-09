@@ -1,1 +1,2 @@
 var batchData = [];
+var answerkey = [];
