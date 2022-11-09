@@ -28,6 +28,7 @@ class _UserAccessState extends State<UserAccess> {
   TextEditingController _textFieldController = TextEditingController();
 
   showAddUserDialog(BuildContext context) {
+    String selectedValue = "Superuser";
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
@@ -53,6 +54,26 @@ class _UserAccessState extends State<UserAccess> {
                 hintText: 'Password',
               ),
             ),
+            DropdownButton(
+              dropdownColor: Colors.white,
+              value: selectedValue,
+              items: <String>['Superuser', 'User'].map((String value) {
+                return DropdownMenuItem<String>(
+                  child: Text(
+                    value,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  value: value,
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(
+                  () {
+                    selectedValue = value.toString();
+                  },
+                );
+              },
+            )
           ],
         ),
       ),
@@ -63,7 +84,10 @@ class _UserAccessState extends State<UserAccess> {
           },
           child: Text('Done'),
           style: ElevatedButton.styleFrom(
-              primary: Colors.white, textStyle: GoogleFonts.poppins()),
+            primary: Colors.white,
+            textStyle: GoogleFonts.poppins(),
+            onPrimary: Colors.black,
+          ),
         ),
       ],
     );
@@ -92,7 +116,10 @@ class _UserAccessState extends State<UserAccess> {
         backgroundColor: Colors.white,
         actions: [
           PopupMenuButton(
-            icon: Icon(Icons.sort, color: Colors.grey,),
+            icon: Icon(
+              Icons.sort,
+              color: Colors.grey,
+            ),
             itemBuilder: (context) => [
               PopupMenuItem(
                 child: Text("Sort by name"),
