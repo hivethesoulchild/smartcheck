@@ -62,6 +62,8 @@ class _UserAccessState extends State<UserAccess> {
             Navigator.pop(context);
           },
           child: Text('Done'),
+          style: ElevatedButton.styleFrom(
+              primary: Colors.white, textStyle: GoogleFonts.poppins()),
         ),
       ],
     );
@@ -88,6 +90,21 @@ class _UserAccessState extends State<UserAccess> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
+        actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.sort, color: Colors.grey,),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text("Sort by name"),
+                onTap: () {},
+              ),
+              PopupMenuItem(
+                child: Text("Sort by position"),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -156,6 +173,17 @@ class _UserAccessState extends State<UserAccess> {
                             ),
                           )
                         ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 16, bottom: 5, top: 3),
+                      child: Align(
+                        child: Text(
+                          "Superuser",
+                          style: GoogleFonts.poppins(),
+                        ),
+                        alignment: Alignment.topLeft,
                       ),
                     ),
                   ],
