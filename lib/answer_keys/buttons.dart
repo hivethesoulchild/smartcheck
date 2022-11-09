@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InputChipotle extends StatefulWidget {
-  const InputChipotle({Key? key}) : super(key: key);
+  final String answer;
+  final String number;
+  const InputChipotle({Key? key, required this.answer, required this.number})
+      : super(key: key);
 
   @override
   State<InputChipotle> createState() => InputChipotleState();
@@ -10,11 +13,32 @@ class InputChipotle extends StatefulWidget {
 
 class InputChipotleState extends State<InputChipotle>
     with TickerProviderStateMixin {
+  var updatedIndex;
   var _selectedIndex;
   List<String> _options = ['A', 'B', 'C', 'D'];
 
   Widget _buildChips() {
     List<Widget> chips = [];
+
+    if (widget.answer == _options[0]) {
+      _selectedIndex = 0;
+    } else if (widget.answer == _options[1]) {
+      _selectedIndex = 1;
+    } else if (widget.answer == _options[2]) {
+      _selectedIndex = 2;
+    } else {
+      _selectedIndex = 3;
+    }
+
+    if (updatedIndex == 0) {
+      _selectedIndex = 0;
+    } else if (updatedIndex == 1) {
+      _selectedIndex = 1;
+    } else if (updatedIndex == 2) {
+      _selectedIndex = 2;
+    } else if (updatedIndex == 3) {
+      _selectedIndex = 3;
+    }
 
     for (int i = 0; i < _options.length; i++) {
       ChoiceChip choiceChip = ChoiceChip(
@@ -34,6 +58,8 @@ class InputChipotleState extends State<InputChipotle>
             if (selected) {
               _selectedIndex = i;
               print(_options[_selectedIndex]);
+              print(widget.number);
+              updatedIndex = i;
             }
           });
         },
