@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:flutter/widgets.dart';
 
 class Chart extends StatefulWidget {
@@ -65,16 +64,6 @@ class _ChartState extends State<Chart> {
       ),
     ];
 
-    List<charts.Series<ItemAnalysisChart, String>> secondSeries = [
-      charts.Series(
-        data: Chart.items,
-        id: 'Item Analysis',
-        domainFn: (ItemAnalysisChart aytem, _) => aytem.subjects,
-        measureFn: (ItemAnalysisChart aytem, _) => aytem.numbers,
-        colorFn: (ItemAnalysisChart aytem, _) =>
-            charts.ColorUtil.fromDartColor(aytem.pieColor),
-      ),
-    ];
 
     return DefaultTabController(
       length: 4,
@@ -90,6 +79,24 @@ class _ChartState extends State<Chart> {
             'Charts',
             style: GoogleFonts.poppins(color: HexColor('#35408f')),
           ),
+          actions: [
+            PopupMenuButton(
+              icon: Icon(
+                Icons.sort,
+                color: Colors.grey,
+              ),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text("Sort by number"),
+                  onTap: () {},
+                ),
+                PopupMenuItem(
+                  child: Text("Sort by items"),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ],
           bottom: TabBar(
             physics: BouncingScrollPhysics(),
             labelColor: HexColor('#35408f'),
