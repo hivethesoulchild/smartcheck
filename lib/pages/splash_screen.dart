@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image(
               image: AssetImage('assets/smartcheck_logo.png'),
-              width: 400,
+              width: 300,
             ),
             SizedBox(
               height: 90,
