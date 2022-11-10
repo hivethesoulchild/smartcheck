@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import '../models/charts.dart';
+import 'package:smartcheck/charts/aptitude_chart.dart';
+import 'package:smartcheck/charts/english_analysis.dart';
+import 'package:smartcheck/charts/math_analysis.dart';
+import 'package:smartcheck/charts/science_analysis.dart';
 
 Widget buildEnglishButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Chart()));
+            .push(MaterialPageRoute(builder: (context) => EnglishAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -52,7 +54,7 @@ Widget buildEnglishButton(BuildContext context) => InkWell(
 Widget buildScienceButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Chart()));
+            .push(MaterialPageRoute(builder: (context) => ScienceAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -97,7 +99,7 @@ Widget buildScienceButton(BuildContext context) => InkWell(
 Widget buildMathematicsButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Chart()));
+            .push(MaterialPageRoute(builder: (context) => MathAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -142,7 +144,7 @@ Widget buildMathematicsButton(BuildContext context) => InkWell(
 Widget buildAptitudeButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Chart()));
+            .push(MaterialPageRoute(builder: (context) => AptitudeAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
