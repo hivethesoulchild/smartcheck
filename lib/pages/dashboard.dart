@@ -227,7 +227,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ],
             ),
             /* Flexible(
-              flex: 3,
+              flex: 2,
               fit: FlexFit.loose,
               child: GridView.builder(
                   padding: const EdgeInsets.all(5.0),
@@ -293,6 +293,8 @@ class _DashboardPageState extends State<DashboardPage> {
                         ));
                   }),
             ), */
+
+            //TODO: Make this as a builder that will serves as a data, and fix the formatting
             Flexible(
               flex: 2,
               fit: FlexFit.loose,
