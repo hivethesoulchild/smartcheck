@@ -84,9 +84,9 @@ class _UserAccessState extends State<UserAccess> {
           },
           child: Text('Done'),
           style: ElevatedButton.styleFrom(
-            primary: Colors.white,
+            backgroundColor: Colors.white,
             textStyle: GoogleFonts.poppins(),
-            onPrimary: Colors.black,
+            foregroundColor: Colors.black,
           ),
         ),
       ],

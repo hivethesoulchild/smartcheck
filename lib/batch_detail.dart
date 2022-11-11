@@ -135,10 +135,29 @@ class _BatchDetailState extends State<BatchDetail> {
         ),
         centerTitle: true,
         title: Text(
-          'Batch 1',
+          'Lorem Ipsum College',
           style: GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
         ),
         backgroundColor: Colors.white,
+        actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.sort, color: Colors.grey,),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text("Sort by name"),
+                onTap: () {},
+              ),
+              PopupMenuItem(
+                child: Text("Sort by number"),
+                onTap: () {},
+              ),
+              PopupMenuItem(
+                child: Text("Sort by status"),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ],
       ),
       /*  body: Padding(
         padding: const EdgeInsets.all(8.0),
