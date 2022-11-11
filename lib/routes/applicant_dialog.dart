@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class ApplicantDialog extends StatelessWidget {
-  const ApplicantDialog({Key? key}) : super(key: key);
+class ApplicantBuilder extends StatelessWidget {
+  const ApplicantBuilder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +101,14 @@ class ApplicantDialog extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Applicant ID: 1',
+                      'Allisandra Bendijo III',
                       softWrap: false,
                       overflow: TextOverflow.fade,
                       style: GoogleFonts.poppins(
-                          fontSize: 14, color: HexColor("#35408f")),
+                        fontSize: 20,
+                        color: HexColor("#35408f"),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     Spacer(),
                     InkWell(
@@ -118,7 +121,18 @@ class ApplicantDialog extends StatelessWidget {
                           ],
                         );
                       },
-                      child: Icon(Icons.more_vert),
+                      child: PopupMenuButton(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: Text('Edit'),
+                            onTap: () {},
+                          ),
+                          PopupMenuItem(
+                            child: Text('Delete'),
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -126,15 +140,31 @@ class ApplicantDialog extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'Royce Abante',
+                        'Applicant ID: 001',
                         softWrap: false,
                         overflow: TextOverflow.fade,
                         style: GoogleFonts.poppins(
-                            fontSize: 20, color: HexColor("#35408f")),
+                            fontSize: 14, color: HexColor("#35408f")),
                       ),
                     ),
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Did not take yet",
+                        softWrap: false,
+                        overflow: TextOverflow.fade,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 14, color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -143,3 +173,5 @@ class ApplicantDialog extends StatelessWidget {
     );
   }
 }
+
+//TODO: Need mo nalang ayusin yung scores, name, applicantID and status either passed, failed or did not take yet

@@ -226,9 +226,10 @@ class _BatchDetailState extends State<BatchDetail> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
+          //TODO: Convert to ListView.builder in order to make data
           child: ListView(
             children: [
-              ApplicantDialog(),
+              ApplicantBuilder(),
             ],
           ),
         ),
