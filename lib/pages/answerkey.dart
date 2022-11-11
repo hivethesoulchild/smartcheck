@@ -8,6 +8,8 @@ import 'package:smartcheck/answer_keys/english_answerkey.dart';
 import 'package:smartcheck/answer_keys/math_answerkey.dart';
 import 'package:smartcheck/answer_keys/science_answerkey.dart';
 import 'package:smartcheck/models/create_answerkey.dart';
+import '../data.dart' as global;
+import '../backend/backendpy.dart';
 
 class AnswerKeyPage extends StatelessWidget {
   const AnswerKeyPage({Key? key}) : super(key: key);
@@ -22,7 +24,11 @@ class AnswerKeyPage extends StatelessWidget {
           elevation: 0.0,
           child: new Icon(Icons.save),
           backgroundColor: HexColor('#35408f'),
-          onPressed: () {},
+          onPressed: () {
+            global.updateAnswerKeyDatabase();
+            BackEndPy.updateAnswerKey('1', global.answer_key);
+
+          },
         ),
         appBar: AppBar(
           leading: IconButton(

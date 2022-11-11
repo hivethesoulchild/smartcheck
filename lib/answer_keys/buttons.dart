@@ -1,5 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../data.dart' as global;
 
 class InputChipotle extends StatefulWidget {
   final String answer;
@@ -41,6 +44,7 @@ class InputChipotleState extends State<InputChipotle>
       _selectedIndex = 3;
     }
 
+
     for (int i = 0; i < _options.length; i++) {
       ChoiceChip choiceChip = ChoiceChip(
         selected: _selectedIndex == i,
@@ -62,6 +66,7 @@ class InputChipotleState extends State<InputChipotle>
               print(widget.number);
               print(widget.subject);
               updatedIndex = i;
+              global.updateAnswerKeyCache(widget.subject, _options[_selectedIndex], int.parse(widget.number) - 1);
             }
           });
         },

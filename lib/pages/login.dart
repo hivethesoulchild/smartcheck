@@ -8,6 +8,7 @@ import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../backend/backend.dart';
+import '../data.dart' as global;
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -122,7 +123,7 @@ class _LoginState extends State<Login> {
                       if (isValid!) {
                         formKey.currentState?.save();
                         Fluttertoast.showToast(
-                            msg: "nyenye",
+                            msg: "Logged in!",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
@@ -140,6 +141,10 @@ class _LoginState extends State<Login> {
                             textColor: Colors.white,
                             fontSize: 16.0);
                         if (username == user.username) {
+                          var value = await BackEndPy.getAnswerKey();
+
+                          global.setAnswerKeyCache(value);
+
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => Dashboard()));

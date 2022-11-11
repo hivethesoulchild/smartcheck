@@ -1,9 +1,12 @@
+import 'backend/backendpy.dart';
+
 var batchData = [];
+//english 0, science 1, math 2, aptitude 3
 var answer_key = [[],[],[],[]];
-var answerkey = [];
 
-void setAnswerKeyCache(Map data){
-
+void setAnswerKeyCache(Map data)async{
+  print('run');
+  answer_key = [[],[],[],[]];
   answer_key[0].add(data["english"]["1"]);
   answer_key[0].add(data["english"]["2"]);
   answer_key[0].add(data["english"]["3"]);
@@ -145,5 +148,24 @@ void setAnswerKeyCache(Map data){
 
   print(answer_key);
 }
+
+void updateAnswerKeyCache(String subject, String answer, int number){
+  if(subject == "english"){
+    answer_key[0][number] = answer;
+
+  }else if(subject == "science"){
+    answer_key[1][number] = answer;
+  }else if(subject == "mathematics"){
+    answer_key[2][number] = answer;
+  }else if(subject == "aptitude"){
+    answer_key[3][number] = answer;
+    print(answer_key[3]);
+  }
+}
+
+void updateAnswerKeyDatabase() async{
+  print(answer_key[3]);
+}
+
 
 
