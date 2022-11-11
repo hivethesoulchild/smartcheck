@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 class InputChipotle extends StatefulWidget {
   final String answer;
   final String number;
-  const InputChipotle({Key? key, required this.answer, required this.number})
+  final String subject;
+  const InputChipotle({Key? key, required this.answer, required this.number, required this.subject})
       : super(key: key);
 
   @override
@@ -59,6 +60,7 @@ class InputChipotleState extends State<InputChipotle>
               _selectedIndex = i;
               print(_options[_selectedIndex]);
               print(widget.number);
+              print(widget.subject);
               updatedIndex = i;
             }
           });
