@@ -114,6 +114,24 @@ class BatchPage extends StatelessWidget {
           style: GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
         ),
         backgroundColor: Colors.white,
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text("Sort by name"),
+                onTap: () {},
+              ),
+              PopupMenuItem(
+                child: Text("Sort by number"),
+                onTap: () {},
+              ),
+              PopupMenuItem(
+                child: Text("Sort by status"),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
