@@ -31,7 +31,8 @@ class AptitudeAnalysis extends StatefulWidget {
 
 class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
 
-
+  List<String> datee = ['2020','2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028','2029', '2030', '2031', '2032', '2033', '2034'];
+  var selectedValue = '2022';
   @override
   Widget build(BuildContext context) {
     List<charts.Series<BatchChart, String>> series = [
@@ -46,79 +47,101 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
     ];
     return DefaultTabController(
       length: 1,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: HexColor('#35408f')),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          backgroundColor: HexColor('#ffffff'),
-          title: Text(
-            'Charts',
-            style: GoogleFonts.poppins(color: HexColor('#35408f')),
-          ),
-          actions: [
-            PopupMenuButton(
-              icon: Icon(
-                Icons.sort,
-                color: Colors.grey,
+      child: StatefulBuilder(
+        builder: (context, setStateSB) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, color: HexColor('#35408f')),
+                onPressed: () => Navigator.of(context).pop(),
               ),
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: Text("Sort by number"),
-                  onTap: () {},
-                ),
-                PopupMenuItem(
-                  child: Text("Sort by items"),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ],
-          bottom: TabBar(
-            physics: BouncingScrollPhysics(),
-            labelColor: HexColor('#35408f'),
-            indicatorColor: HexColor('#35408f'),
-            labelStyle: GoogleFonts.poppins(fontSize: 17,),
-            unselectedLabelStyle: GoogleFonts.poppins(fontSize: 17,),
-            tabs: [
-              Tab(
-                text: "1-15",
+              backgroundColor: HexColor('#ffffff'),
+              title: Text(
+                'Charts',
+                style: GoogleFonts.poppins(color: HexColor('#35408f')),
               ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Text(
-                      'Item Analysis',
-                      style: GoogleFonts.poppins(),
+              actions: [
+                PopupMenuButton(
+                  icon: Icon(
+                    Icons.sort,
+                    color: Colors.grey,
+                  ),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      child: Text("Sort by date"),
+                      onTap: () {},
                     ),
-                    SizedBox(height: 20,),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 2,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: charts.BarChart(
-                        series,
-                        behaviors: [new charts.SeriesLegend()],
-                      ),
+                    PopupMenuItem(
+                      child: Text("Sort by school"),
+                      onTap: () {},
                     ),
                   ],
                 ),
+              ],
+              bottom: TabBar(
+                physics: BouncingScrollPhysics(),
+                labelColor: HexColor('#35408f'),
+                indicatorColor: HexColor('#35408f'),
+                labelStyle: GoogleFonts.poppins(fontSize: 17,),
+                unselectedLabelStyle: GoogleFonts.poppins(fontSize: 17,),
+                tabs: [
+                  Tab(
+                    text: "1-15",
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+            body: TabBarView(
+              children: [
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            width: 70,
+                            child: Row(
+                              children: [
+                                DropdownButton(
+                                    value: selectedValue,
+                                    items: datee
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) =>
+                                                DropdownMenuItem<String>(
+                                                  child: Text(value),
+                                                  value: value,
+                                                ))
+                                        .toList(),
+                                    onChanged: (String? value) {
+                                      setStateSB(() {
+                                        selectedValue = value!;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ),
+                        SizedBox(height: 20,),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height / 2,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: charts.BarChart(
+                            series,
+                            behaviors: [new charts.SeriesLegend()],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
       ),
     );
   }

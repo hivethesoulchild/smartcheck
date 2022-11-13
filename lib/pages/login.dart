@@ -1,17 +1,18 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/pages/dashboard.dart';
 import 'package:smartcheck/models/login_loading.dart';
-import 'package:smartcheck/models/register.dart';
 import 'package:smartcheck/apiModel/usermodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../backend/backend.dart';
+import '../models/user_dashboard.dart';
 import '../data.dart' as global;
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  final List<CameraDescription> cameras;
+  const Login({Key? key, required this.cameras}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -24,8 +25,11 @@ class _LoginState extends State<Login> {
   String username = "";
   String password = "";
   bool isLoggedIn = true;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   Widget buildUsername() => TextFormField(
+    controller: emailController,
         obscureText: false,
         decoration: const InputDecoration(
             border: InputBorder.none, hintText: 'Username'),
@@ -40,6 +44,7 @@ class _LoginState extends State<Login> {
       );
 
   Widget buildPassword() => TextFormField(
+        controller: passwordController,
         obscureText: true,
         decoration: const InputDecoration(
             border: InputBorder.none, hintText: 'Password'),
@@ -121,40 +126,54 @@ class _LoginState extends State<Login> {
                       final isValid = formKey.currentState?.validate();
 
                       if (isValid!) {
-                        formKey.currentState?.save();
+                        print(true);
+                        user = await BackEndPy.checkUser(emailController.text, passwordController.text);
+                        print(user);
                         Fluttertoast.showToast(
+                            msg: "Logging in...",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.grey,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        if (emailController.text == user["username"]) {
+
+                          var answerValue = await BackEndPy.getAnswerKey();
+                          var allUserValue = await BackEndPy.getAllUser();
+                          var batchData = await BackEndPy.getAllApplicantList();
+
+                          global.setAnswerKeyCache(answerValue);
+                          global.setUserListCache(allUserValue);
+                          global.setUserLoggedIn(user);
+                          global.setBatchData(batchData);
+                          //temporary
+
+                            formKey.currentState?.save();
+                            Fluttertoast.showToast(
                             msg: "Logged in!",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.grey,
                             textColor: Colors.white,
                             fontSize: 16.0);
-                        //var res = await checkUser(username, password);
-                        user = await BackEndPy.checkUser(username, password);
-                        Fluttertoast.showToast(
-                            msg: user.username,
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        if (username == user.username) {
-                          var value = await BackEndPy.getAnswerKey();
-
-                          global.setAnswerKeyCache(value);
-
+                          
+                          if(user['role'] == 'SUPERUSER')
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => Dashboard()));
+                                  builder: (context) => Dashboard(cameras: widget.cameras,)));
+                          else
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => UserDashboard(cameras: widget.cameras,)));
                         } else {
                           Fluttertoast.showToast(
                               msg: "The username or password is invalid.",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
+                              backgroundColor: Colors.grey,
                               textColor: Colors.white,
                               fontSize: 16.0);
                         }

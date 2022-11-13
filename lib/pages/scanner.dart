@@ -2,16 +2,18 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class ScannerPage extends StatefulWidget {
-  const ScannerPage({Key? key}) : super(key: key);
+  final List<CameraDescription> cameras;
+  const ScannerPage({Key? key, required this.cameras}) : super(key: key);
 
   @override
   State<ScannerPage> createState() => _ScannerPageState();
+  
 }
 
 class _ScannerPageState extends State<ScannerPage> {
-  late List<CameraDescription> cameras;
+  late Future<void> cameraValue;
+
   late CameraController cameraController;
 
   @override
@@ -21,9 +23,8 @@ class _ScannerPageState extends State<ScannerPage> {
   }
 
   void startCamera() async {
-    cameras = await availableCameras();
 
-    cameraController = CameraController(cameras[0], ResolutionPreset.ultraHigh,
+    cameraController = CameraController(widget.cameras[0], ResolutionPreset.ultraHigh,
         enableAudio: false);
 
     await cameraController.initialize().then((value) {
@@ -42,20 +43,41 @@ class _ScannerPageState extends State<ScannerPage> {
     super.dispose();
   }
 
+  List<String> list = <String>['Royce', 'Yvan', 'James'];
+
+  List<String> datata = [];
+
   @override
   Widget build(BuildContext context) {
     showAlertDialog(BuildContext context) {
       AlertDialog alert = AlertDialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         contentPadding: EdgeInsets.only(top: 10.0),
         title: Text(
           'Results',
           style: GoogleFonts.poppins(),
         ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("Cancel"),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text("Save"),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.blue[900]),
+          ),
+        ],
         content: SizedBox(
-          height: 300,
+          height: 350,
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -63,6 +85,19 @@ class _ScannerPageState extends State<ScannerPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton<String>(
+                    items: list.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (value) => null,
+                    value: list.first,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -112,6 +147,7 @@ class _ScannerPageState extends State<ScannerPage> {
             return alert;
           });
     }
+
     if (cameraController.value.isInitialized) {
       return Scaffold(
         body: Column(

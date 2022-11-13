@@ -1,22 +1,17 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data.dart' as global;
 
-class InputChipotle extends StatefulWidget {
+class ViewChipotle extends StatefulWidget {
   final String answer;
-  final String number;
-  final String subject;
-  const InputChipotle({Key? key, required this.answer, required this.number, required this.subject})
-      : super(key: key);
+  const ViewChipotle({super.key, required this.answer});
 
   @override
-  State<InputChipotle> createState() => InputChipotleState();
+  State<ViewChipotle> createState() => _ViewChipotleState();
 }
 
-class InputChipotleState extends State<InputChipotle>
-    with TickerProviderStateMixin {
+class _ViewChipotleState extends State<ViewChipotle> {
+
   var updatedIndex;
   var _selectedIndex;
   List<String> _options = ['A', 'B', 'C', 'D'];
@@ -24,25 +19,27 @@ class InputChipotleState extends State<InputChipotle>
   Widget _buildChips() {
     List<Widget> chips = [];
 
-    if (widget.answer == _options[0]) {
+    if (widget.answer == '0') {
       _selectedIndex = 0;
-    } else if (widget.answer == _options[1]) {
+    } else if (widget.answer == '1') {
       _selectedIndex = 1;
-    } else if (widget.answer == _options[2]) {
+    } else if (widget.answer == '2') {
       _selectedIndex = 2;
-    } else {
+    } else if(widget.answer == '3') {
       _selectedIndex = 3;
+    } else {
+      _selectedIndex = null;
     }
 
-    if (updatedIndex == 0) {
-      _selectedIndex = 0;
-    } else if (updatedIndex == 1) {
-      _selectedIndex = 1;
-    } else if (updatedIndex == 2) {
-      _selectedIndex = 2;
-    } else if (updatedIndex == 3) {
-      _selectedIndex = 3;
-    }
+    // if (updatedIndex == 0) {
+    //   _selectedIndex = 0;
+    // } else if (updatedIndex == 1) {
+    //   _selectedIndex = 1;
+    // } else if (updatedIndex == 2) {
+    //   _selectedIndex = 2;
+    // } else if (updatedIndex == 3) {
+    //   _selectedIndex = 3;
+    // }
 
 
     for (int i = 0; i < _options.length; i++) {
@@ -50,7 +47,7 @@ class InputChipotleState extends State<InputChipotle>
         selected: _selectedIndex == i,
         label: Text(
           _options[i],
-          style: GoogleFonts.poppins(color: Colors.black),
+          style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w700),
         ),
         elevation: 2,
         pressElevation: 5,
@@ -58,15 +55,7 @@ class InputChipotleState extends State<InputChipotle>
         backgroundColor: Colors.white,
         selectedColor: Colors.lightGreenAccent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onSelected: (bool selected) {
-          setState(() {
-            if (selected) {
-              _selectedIndex = i;
-              updatedIndex = i;
-              global.updateAnswerKeyCache(widget.subject, _options[_selectedIndex], int.parse(widget.number) - 1);
-            }
-          });
-        },
+        disabledColor: Colors.white,
       );
 
       chips.add(

@@ -4,27 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/answer_keys/viewanswerkey.dart';
 import 'package:smartcheck/pages/scanner.dart';
-import 'package:smartcheck/routes/applicant_dialog.dart';
-import 'data.dart' as global;
 
-var data = [];
 
-class BatchDetail extends StatefulWidget {
+class BatchDetailArchive extends StatefulWidget {
   final List batchData;
   final String name;
-  final List<CameraDescription> cameras;
-  const BatchDetail({
-    Key? key,
-    required this.batchData,
-    required this.name, required this.cameras,
-  }) : super(key: key);
-
+  const BatchDetailArchive({super.key, required this.batchData, required this.name});
 
   @override
-  State<BatchDetail> createState() => _BatchDetailState();
+  State<BatchDetailArchive> createState() => _BatchDetailArchiveState();
 }
 
-class _BatchDetailState extends State<BatchDetail> {
+class _BatchDetailArchiveState extends State<BatchDetailArchive> {
+  @override
   int _currentIndex = 0;
 
   void onTabTapped(int index) {
@@ -121,17 +113,6 @@ class _BatchDetailState extends State<BatchDetail> {
     return StatefulBuilder(
       builder: (context, setStateSB) {
         return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.camera_alt),
-            backgroundColor: HexColor('#35408f'),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ScannerPage(cameras: widget.cameras),
-                ),
-              );
-            },
-          ),
           backgroundColor: Colors.white,
           appBar: AppBar(
             leading: IconButton(

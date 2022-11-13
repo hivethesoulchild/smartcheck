@@ -1,12 +1,116 @@
 import 'backend/backendpy.dart';
 
-var batchData = [];
-//english 0, science 1, math 2, aptitude 3
-var answer_key = [[],[],[],[]];
+// {
+//   id,
+//   name,
+//   archived,
+//   applicants: [
+//     {
+//       applicantid,
+//       name,
+//       status,
+//       english,
+//       math,
+//       science,
+//       aptitude,
+//       recommendation []
+//     }
+//   ],
+//   date
+// }
 
-void setAnswerKeyCache(Map data)async{
-  print('run');
-  answer_key = [[],[],[],[]];
+// {
+//     "id": "1",
+//     "name": "NU Fairview",
+//     "archived": false,
+//     "applicants": [
+//       {
+//         "applicantId": "2019123",
+//         "name": "Royce",
+//         "status": false,
+//         "english": 0,
+//         "mathematics": 0,
+//         "science": 0,
+//         "aptitude": 0,
+//         "recommendation": []
+//       },
+//       {
+//         "applicantId": "2019124",
+//         "name": "Yvan",
+//         "status": false,
+//         "english": 0,
+//         "mathematics": 0,
+//         "science": 0,
+//         "aptitude": 0,
+//         "recommendation": []
+//       },
+//       {
+//         "applicantId": "2019125",
+//         "name": "Alli",
+//         "status": false,
+//         "english": 0,
+//         "mathematics": 0,
+//         "science": 0,
+//         "aptitude": 0,
+//         "recommendation": []
+//       },
+//     ],
+//     "date": "November 1, 2022"
+//   },
+//   {
+//     "id": "2",
+//     "name": "NU Manila",
+//     "archived": false,
+//     "applicants": [
+//       {
+//         "applicantId": "2019123",
+//         "name": "James",
+//         "status": false,
+//         "english": 0,
+//         "mathematics": 0,
+//         "science": 0,
+//         "aptitude": 0,
+//         "recommendation": []
+//       },
+//       {
+//         "applicantId": "2019124",
+//         "name": "Adrian",
+//         "status": false,
+//         "english": 0,
+//         "mathematics": 0,
+//         "science": 0,
+//         "aptitude": 0,
+//         "recommendation": []
+//       },
+//       {
+//         "applicantId": "2019125",
+//         "name": "Jhonson",
+//         "status": false,
+//         "english": 0,
+//         "mathematics": 0,
+//         "science": 0,
+//         "aptitude": 0,
+//         "recommendation": []
+//       },
+//     ],
+//     "date": "November 2, 2022"
+//   }
+var batchData = [
+  
+];
+var batchDataArchive = [
+  
+];
+
+//english 0, science 1, math 2, aptitude 3
+var answer_key = [[], [], [], []];
+
+var userList = [];
+
+var userLoggedIn;
+
+void setAnswerKeyCache(Map data) async {
+  answer_key = [[], [], [], []];
   answer_key[0].add(data["english"]["1"]);
   answer_key[0].add(data["english"]["2"]);
   answer_key[0].add(data["english"]["3"]);
@@ -145,27 +249,70 @@ void setAnswerKeyCache(Map data)async{
   answer_key[3].add(data["aptitude"]["13"]);
   answer_key[3].add(data["aptitude"]["14"]);
   answer_key[3].add(data["aptitude"]["15"]);
-
-  print(answer_key);
 }
 
-void updateAnswerKeyCache(String subject, String answer, int number){
-  if(subject == "english"){
+void updateAnswerKeyCache(String subject, String answer, int number) {
+  if (subject == "english") {
     answer_key[0][number] = answer;
-
-  }else if(subject == "science"){
+  } else if (subject == "science") {
     answer_key[1][number] = answer;
-  }else if(subject == "mathematics"){
+  } else if (subject == "mathematics") {
     answer_key[2][number] = answer;
-  }else if(subject == "aptitude"){
+  } else if (subject == "aptitude") {
     answer_key[3][number] = answer;
     print(answer_key[3]);
   }
 }
 
-void updateAnswerKeyDatabase() async{
-  print(answer_key[3]);
+void setUserListCache(List data){
+  userList = [];
+  data.forEach((element) {
+  userList.add({
+      "id" : element['_id'],
+      "username": element['username'],
+      "password": element['password'],
+      "role": element['role'],
+      "isActive": element['isActive'] 
+    });
+  });
+  // data.forEach((key, value) {
+  //   userList.add({
+  //     "id" : value['_id'],
+  //     "username": value['username'],
+  //     "password": value['password'],
+  //     "role": value['role'],
+  //     "isActive": value['isActive'] 
+  //   });
+  // });
+
+  print(userList);
 }
 
+void setUserLoggedIn(dynamic data){
+  userLoggedIn = data;
+}
 
-
+void setBatchData(List data){
+  batchData = [];
+  batchDataArchive = [];
+  data.forEach((element) {
+    if(element['archive'] == true){
+      batchDataArchive.add({
+      "_id": element['_id'],
+      "name": element['name'],
+      "applicants": element['applicants'],
+      "date": element['date'],
+      "archive" : element['archive']
+    });
+    }else{
+      batchData.add({
+      "_id": element['_id'],
+      "name": element['name'],
+      "applicants": element['applicants'],
+      "date": element['date'],
+      "archive" : element['archive']
+    });
+    }
+    
+  });
+}

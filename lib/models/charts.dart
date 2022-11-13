@@ -87,11 +87,11 @@ class _ChartState extends State<Chart> {
               ),
               itemBuilder: (context) => [
                 PopupMenuItem(
-                  child: Text("Sort by number"),
+                  child: Text("Sort by date"),
                   onTap: () {},
                 ),
                 PopupMenuItem(
-                  child: Text("Sort by items"),
+                  child: Text("Sort by school"),
                   onTap: () {},
                 ),
               ],

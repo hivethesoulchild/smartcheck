@@ -1,9 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smartcheck/pages/login.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({Key? key, required this.cameras}) : super(key: key);
+  final List<CameraDescription> cameras;
 
   @override
   Widget build(BuildContext context) {
@@ -126,8 +128,8 @@ class Settings extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Login()));
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => Login(cameras: cameras,)));
                         },
                         child: Align(
                           alignment: Alignment.centerLeft,

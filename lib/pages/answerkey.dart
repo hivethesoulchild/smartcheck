@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
@@ -25,9 +26,15 @@ class AnswerKeyPage extends StatelessWidget {
           child: new Icon(Icons.save),
           backgroundColor: HexColor('#35408f'),
           onPressed: () {
-            global.updateAnswerKeyDatabase();
             BackEndPy.updateAnswerKey('1', global.answer_key);
-
+            Fluttertoast.showToast(
+                msg: "Saved!",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.grey,
+                textColor: Colors.white,
+                fontSize: 16.0);
           },
         ),
         appBar: AppBar(
@@ -70,7 +77,7 @@ class AnswerKeyPage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             EnglishAnswerKey(),
             ScienceAnswerKey(),
