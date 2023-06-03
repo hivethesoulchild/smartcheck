@@ -13,7 +13,7 @@ class Settings extends StatelessWidget {
       AlertDialog alert = AlertDialog(
         title: const Text('Trojans'),
         content: SizedBox(
-          height: 400,
+          height: 200,
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -22,49 +22,33 @@ class Settings extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
+                    children: const [
                       Text('Royce Christopher Abante')
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
+                    children: const [
                       Text('Allisandra Nicole Bendijo')
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
+                    children: const [
                       Text('Yvan Roi Casa')
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text('Anthony Esteban Jr\.')
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text('Siddig Mahmoud')
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
+                    children: const [
                       Text('Roben Juanatas')
                     ],
                   ),
@@ -83,74 +67,53 @@ class Settings extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: Container(
-        child: ListView(
-          children: [
-            Padding(
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              child: Text(
-                                'Dark Mode',
-                                style: GoogleFonts.poppins(),
-                              ),
-                            ),
+              child: Container(
+                decoration: const BoxDecoration(color: Colors.white),
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        showAlertDialog(context);
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'About Us',
+                            style: GoogleFonts.poppins(),
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          showAlertDialog(context);
-                        },
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              child: Text(
-                                'About Us',
-                                style: GoogleFonts.poppins(),
-                              ),
-                            ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => Login(cameras: cameras,)));
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Log Out',
+                            style: GoogleFonts.poppins(color: Colors.red),
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) => Login(cameras: cameras,)));
-                        },
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Container(
-                              child: Text(
-                                'Log Out',
-                                style: GoogleFonts.poppins(color: Colors.red),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

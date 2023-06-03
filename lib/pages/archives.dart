@@ -16,6 +16,7 @@ class Archives extends StatefulWidget {
 
 class _ArchivesState extends State<Archives> {
   String date = DateFormat("MMMM dd, yyyy").format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,57 +25,66 @@ class _ArchivesState extends State<Archives> {
         padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Flexible(
+            Expanded(
               flex: 2,
-              fit: FlexFit.loose,
-              child: GridView.count(
+              child: GridView.builder(
                 padding: const EdgeInsets.all(5.0),
-                crossAxisCount: 1,
-                childAspectRatio: 2.6,
-                crossAxisSpacing: 120,
-                children: global.batchDataArchive.map((value) {
-                  print(value);
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: MediaQuery.of(context).size.width < 600 ? 1 : 2,
+                  childAspectRatio: MediaQuery.of(context).size.width < 600 ? 3.0 : 2.6,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                ),
+                itemCount: global.batchDataArchive.length,
+                itemBuilder: (context, index) {
+                  final value = global.batchDataArchive[index];
                   return InkWell(
                     onTap: () {
-                      setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BatchDetailArchive(batchData: value['applicants'], name: value['name'],)));
-                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BatchDetailArchive(
+                            batchData: value['applicants'],
+                            name: value['name'],
+                          ),
+                        ),
+                      );
                     },
                     child: Padding(
                       padding: EdgeInsets.all(3.0),
                       child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 4,
-                                offset: Offset(0, 3),
-                              )
-                            ]),
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 4,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
                             Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 12, bottom: 2, top: 10),
+                                    left: 12,
+                                    bottom: 2,
+                                    top: 10,
+                                  ),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       value['name'],
                                       style: GoogleFonts.poppins(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold,
-                                          color: HexColor("#35408f")),
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: HexColor("#35408f"),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -87,8 +97,7 @@ class _ArchivesState extends State<Archives> {
                                         child: Text('Archive'),
                                         value: 1,
                                         onTap: () {
-                                          BackEndPy.editApplicantList(
-                                              value['_id'], false);
+                                          BackEndPy.editApplicantList(value['_id'], false);
                                           global.batchData.add(value);
                                           global.batchDataArchive.removeWhere((item) =>
                                               item['_id'] == value['_id']);
@@ -99,13 +108,12 @@ class _ArchivesState extends State<Archives> {
                                         child: Text('Delete'),
                                         value: 2,
                                         onTap: () {
-                                          BackEndPy.deleteApplicantList(
-                                              value['_id']);
+                                          BackEndPy.deleteApplicantList(value['_id']);
                                           global.batchData.removeWhere((item) =>
                                               item['_id'] == value['_id']);
                                           setState(() {});
                                         },
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -114,41 +122,41 @@ class _ArchivesState extends State<Archives> {
                             Row(
                               children: [
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 16, top: 5),
+                                  padding: const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Number of Applicants: ${value['applicants'].length}',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 10,
-                                          color: HexColor("#35408f")),
+                                        fontSize: 10,
+                                        color: HexColor("#35408f"),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 16, top: 5),
+                                  padding: const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Submitted: ${value['applicants'].where((e) => e['status'] == true).length}',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 10,
-                                          color: HexColor("#35408f")),
+                                        fontSize: 10,
+                                        color: HexColor("#35408f"),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 16, top: 5),
+                                  padding: const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       'Did Not Submit: ${value['applicants'].where((e) => e['status'] == false).length}',
                                       style: GoogleFonts.prompt(
-                                          fontSize: 10,
-                                          color: HexColor("#35408f")),
+                                        fontSize: 10,
+                                        color: HexColor("#35408f"),
+                                      ),
                                       overflow: TextOverflow.fade,
                                       softWrap: false,
                                     ),
@@ -163,7 +171,9 @@ class _ArchivesState extends State<Archives> {
                                 child: Text(
                                   value['date'],
                                   style: GoogleFonts.prompt(
-                                      fontSize: 12, color: HexColor("#35408f")),
+                                    fontSize: 12,
+                                    color: HexColor("#35408f"),
+                                  ),
                                 ),
                               ),
                             ),
@@ -172,7 +182,7 @@ class _ArchivesState extends State<Archives> {
                       ),
                     ),
                   );
-                }).toList(),
+                },
               ),
             ),
           ],
