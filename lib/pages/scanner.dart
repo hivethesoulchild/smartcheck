@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -10,6 +11,28 @@ class ScannerPage extends StatefulWidget {
   State<ScannerPage> createState() => _ScannerPageState();
   
 }
+
+// void sendDataToAPI() async {
+//   try {
+//     final url = Uri.parse('#');
+    
+//     final response = await http.post(
+//       url,
+//       body: {
+//         'data': 'Some data',
+//       },
+//     );
+
+//     if (response.statusCode == 200) {
+//       print(response.body);
+//     } else {
+//       print('Request failed with status: ${response.statusCode}');
+//     }
+//   } catch (e) {
+//     print('Exception: $e');
+//   }
+// }
+
 
 class _ScannerPageState extends State<ScannerPage> {
   late Future<void> cameraValue;
@@ -43,7 +66,7 @@ class _ScannerPageState extends State<ScannerPage> {
     super.dispose();
   }
 
-  List<String> list = <String>['Royce', 'Yvan', 'James'];
+  List<String> list = <String>['Royce', 'Yvan', 'DJ Falcon'];
 
   List<String> datata = [];
 
