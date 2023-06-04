@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:smartcheck/answer_keys/english_answerkey.dart';
 import 'package:smartcheck/models/charts.dart';
+import 'package:smartcheck/models/create_answerkey.dart';
 import 'package:smartcheck/pages/answerkey.dart';
 import 'package:smartcheck/pages/dashboard.dart';
 import 'package:smartcheck/pages/login.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Dashboard(cameras: cameras,),
+      home: SplashScreen(cameras: cameras,),
     );
   }
 }
