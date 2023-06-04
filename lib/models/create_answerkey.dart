@@ -41,7 +41,7 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: HexColor('#35408f'),
+                      backgroundColor: HexColor('#35408f'),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0))),
                   onPressed: () {},
@@ -59,7 +59,10 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
-                  child: Text('1. ', style: GoogleFonts.nunito(color: Colors.black),),
+                  child: Text(
+                    '1. ',
+                    style: GoogleFonts.nunito(color: Colors.black),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -73,7 +76,7 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
+                      backgroundColor:
                           _AhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
@@ -89,8 +92,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _BhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -105,8 +108,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _ChasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -121,18 +124,23 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _DhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
-                  child: Text('2. ', style: GoogleFonts.nunito(color: Colors.black),),
+                  child: Text(
+                    '2. ',
+                    style: GoogleFonts.nunito(color: Colors.black),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -146,8 +154,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _AhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -162,8 +170,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _BhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -178,8 +186,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _ChasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -194,18 +202,23 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _DhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
-                  child: Text('3. ', style: GoogleFonts.nunito(color: Colors.black),),
+                  child: Text(
+                    '3. ',
+                    style: GoogleFonts.nunito(color: Colors.black),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -219,8 +232,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _AhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -235,8 +248,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _BhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -251,8 +264,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _ChasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
@@ -267,8 +280,8 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                   ),
                   style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
-                      primary:
-                      _DhasBeenPressed ? Colors.green[100] : Colors.white,
+                      backgroundColor:
+                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
                       padding: EdgeInsets.all(20)),
                 ),
               ],
