@@ -288,7 +288,7 @@ class _UserAccessState extends State<UserAccess> {
                 onPressed: () {
                   var uuid = const Uuid();
                   var uniqueId = uuid.v4();
-                  BackEndPy.addUser(uniqueId, newUsernameController.text,
+                  BackEndPy.addUser(newUsernameController.text,
                       newPasswordController.text, true, selectedValue);
                   global.userList.add({
                     "id": uniqueId,
