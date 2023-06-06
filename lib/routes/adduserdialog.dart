@@ -49,7 +49,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
             print('Username: $username');
             print('Password: $password');
 
-            BackEndPy.addUser(username, password, true, 'admin');
+            BackEndPy.addUser(username, password, true, 'USER');
 
             Navigator.pop(context);
           },
