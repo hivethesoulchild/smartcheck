@@ -45,7 +45,7 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                contentPadding: EdgeInsets.only(top: 10.0),
+                contentPadding: const EdgeInsets.only(top: 10.0),
                 title: Text(
                   'Scores',
                   style: GoogleFonts.poppins(),
@@ -127,21 +127,21 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
             backgroundColor: Colors.white,
             actions: [
               PopupMenuButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.sort,
                   color: Colors.grey,
                 ),
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    child: Text("Sort by name"),
+                    child: const Text("Sort by name"),
                     onTap: () {},
                   ),
                   PopupMenuItem(
-                    child: Text("Sort by number"),
+                    child: const Text("Sort by number"),
                     onTap: () {},
                   ),
                   PopupMenuItem(
-                    child: Text("Sort by status"),
+                    child: const Text("Sort by status"),
                     onTap: () {},
                   ),
                 ],
@@ -235,7 +235,7 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                                 color: Colors.grey.withOpacity(0.5),
                                 spreadRadius: 3,
                                 blurRadius: 3,
-                                offset: Offset(2, 3),
+                                offset: const Offset(2, 3),
                               )
                             ]),
                         child: Padding(
@@ -254,12 +254,12 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   InkWell(
                                     onTap: () {
                                       PopupMenuButton<int>(
                                         itemBuilder: (context) => [
-                                          PopupMenuItem(
+                                          const PopupMenuItem(
                                             child: Text('Details'),
                                           ),
                                         ],
@@ -279,9 +279,9 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                                         });
                                       },
                                       itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                          child: Text('View'),
+                                        const PopupMenuItem(
                                           value: 1,
+                                          child: Text('View'),
                                         ),
                                         // PopupMenuItem(
                                         //   value: 2,
@@ -306,7 +306,7 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5.0,
                               ),
                               Row(

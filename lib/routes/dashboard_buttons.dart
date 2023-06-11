@@ -7,7 +7,6 @@ import 'package:smartcheck/pages/item_analysis.dart';
 
 import '../pages/answerkey.dart';
 import '../models/charts.dart';
-import '../models/timer.dart';
 import '../pages/answerkey.dart';
 
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
