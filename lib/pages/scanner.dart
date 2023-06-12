@@ -11,13 +11,12 @@ class ScannerPage extends StatefulWidget {
 
   @override
   State<ScannerPage> createState() => _ScannerPageState();
-  
 }
 
 // void sendDataToAPI() async {
 //   try {
 //     final url = Uri.parse('#');
-    
+
 //     final response = await http.post(
 //       url,
 //       body: {
@@ -35,7 +34,6 @@ class ScannerPage extends StatefulWidget {
 //   }
 // }
 
-
 class _ScannerPageState extends State<ScannerPage> {
   late Future<void> cameraValue;
 
@@ -48,8 +46,8 @@ class _ScannerPageState extends State<ScannerPage> {
   }
 
   void startCamera() async {
-
-    cameraController = CameraController(widget.cameras[0], ResolutionPreset.ultraHigh,
+    cameraController = CameraController(
+        widget.cameras[0], ResolutionPreset.ultraHigh,
         enableAudio: false);
 
     await cameraController.initialize().then((value) {
@@ -74,7 +72,6 @@ class _ScannerPageState extends State<ScannerPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     showAlertDialog(BuildContext context) {
       AlertDialog alert = AlertDialog(
         shape: RoundedRectangleBorder(
@@ -90,16 +87,16 @@ class _ScannerPageState extends State<ScannerPage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text("Cancel"),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, foregroundColor: Colors.white),
+            child: const Text("Cancel"),
           ),
           ElevatedButton(
             onPressed: () {},
-            child: const Text("Save"),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.blue[900]),
+            child: const Text("Save"),
           ),
         ],
         content: SizedBox(
@@ -128,25 +125,25 @@ class _ScannerPageState extends State<ScannerPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [const Text('English: 17')],
+                    children: const [Text('English: 17')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [const Text('Mathematics: 15')],
+                    children: const [Text('Mathematics: 15')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [const Text('Science: 13')],
+                    children: const [Text('Science: 13')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [const Text('Aptitude: 10')],
+                    children: const [Text('Aptitude: 10')],
                   ),
                 ),
                 Container(
@@ -184,30 +181,57 @@ class _ScannerPageState extends State<ScannerPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  showAlertDialog(context);
-                },
-                child: const SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: Icon(
-                      Icons.camera_alt,
-                      size: 30,
-                      color: Colors.black,
-                    )),
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  shadowColor: Colors.black,
-                  backgroundColor: Colors.white,
-                ),
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      showAlertDialog(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      shadowColor: Colors.black,
+                      backgroundColor: Colors.white,
+                    ),
+                    child: const SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: Icon(
+                        Icons.list,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // TODO: Code for capture
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      shadowColor: Colors.black,
+                      backgroundColor: Colors.white,
+                    ),
+                    child: const SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: Icon(
+                        Icons.camera_alt,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  const Spacer(),
+                ],
               ),
             ),
           ],
         ),
       );
     } else {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
         ),
