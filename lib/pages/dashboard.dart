@@ -287,42 +287,43 @@ class _DashboardPageState extends State<DashboardPage> {
                   )
                 ],
               ),
+              // Replace Gridview count to GridView builder
               Flexible(
                 flex: 2,
                 fit: FlexFit.loose,
-                child: GridView.count(
-                  padding: const EdgeInsets.all(5.0),
-                  crossAxisCount: 1,
-                  childAspectRatio: 2.6,
-                  crossAxisSpacing: 120,
-                  children: global.batchData.map((value) {
+                child: GridView.builder(
+                  padding: EdgeInsets.all(7),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisExtent: 130,
+                    mainAxisSpacing: 5.0,
+                  ),
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
                         setState(() {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BatchDetail(
-                                        batchData: value['applicants'],
-                                        name: value['name'],
-                                        cameras: widget.cameras,
-                                      )));
+                            context,
+                            MaterialPageRoute(builder: (context) => BatchDetail(cameras: [], batchData: [], name: "Hakdog",)),
+                          );
                         });
                       },
                       child: Padding(
                         padding: EdgeInsets.all(3.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 4,
-                                  offset: Offset(0, 3),
-                                )
-                              ]),
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 4,
+                                offset: Offset(0, 3),
+                              )
+                            ],
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -330,22 +331,20 @@ class _DashboardPageState extends State<DashboardPage> {
                             children: <Widget>[
                               Row(
                                 children: [
-                                  SizedBox(
-                                    width: 80,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, bottom: 2, top: 10),
-                                      child: Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                          value['name'],
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.bold,
-                                              color: HexColor("#35408f")),
-                                          overflow: TextOverflow.fade,
-                                          maxLines: 1,
-                                          softWrap: true,
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 12,
+                                      bottom: 2,
+                                      top: 10,
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        'Batch $index',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColor("#35408f"),
                                         ),
                                       ),
                                     ),
@@ -358,30 +357,11 @@ class _DashboardPageState extends State<DashboardPage> {
                                         PopupMenuItem(
                                           child: Text('Archive'),
                                           value: 1,
-                                          onTap: () {
-                                            BackEndPy.editApplicantList(
-                                                value['_id'], true);
-                                            global.batchDataArchive.add(value);
-                                            global.batchData.removeWhere(
-                                                (item) =>
-                                                    item['_id'] ==
-                                                    value['_id']);
-                                            setState(() {});
-                                          },
                                         ),
                                         PopupMenuItem(
                                           child: Text('Delete'),
                                           value: 2,
-                                          onTap: () {
-                                            BackEndPy.deleteApplicantList(
-                                                value['_id']);
-                                            global.batchData.removeWhere(
-                                                (item) =>
-                                                    item['_id'] ==
-                                                    value['_id']);
-                                            setState(() {});
-                                          },
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -390,41 +370,50 @@ class _DashboardPageState extends State<DashboardPage> {
                               Row(
                                 children: [
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 16, top: 5),
+                                    padding: const EdgeInsets.only(
+                                      left: 16,
+                                      top: 5,
+                                    ),
                                     child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                        'Number of Applicants: ${value['applicants'].length}',
+                                        'Number of Applicants: 1',
                                         style: GoogleFonts.prompt(
-                                            fontSize: 10,
-                                            color: HexColor("#35408f")),
+                                          fontSize: 10,
+                                          color: HexColor("#35408f"),
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 16, top: 5),
+                                    padding: const EdgeInsets.only(
+                                      left: 16,
+                                      top: 5,
+                                    ),
                                     child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                        'Submitted: ${value['applicants'].where((e) => e['status'] == true).length}',
+                                        'Submitted: 1',
                                         style: GoogleFonts.prompt(
-                                            fontSize: 10,
-                                            color: HexColor("#35408f")),
+                                          fontSize: 10,
+                                          color: HexColor("#35408f"),
+                                        ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 16, top: 5),
+                                    padding: const EdgeInsets.only(
+                                      left: 16,
+                                      top: 5,
+                                    ),
                                     child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                        'Did Not Submit: ${value['applicants'].where((e) => e['status'] == false).length}',
+                                        'Did Not Submit: 0',
                                         style: GoogleFonts.prompt(
-                                            fontSize: 10,
-                                            color: HexColor("#35408f")),
+                                          fontSize: 10,
+                                          color: HexColor("#35408f"),
+                                        ),
                                         overflow: TextOverflow.fade,
                                         softWrap: false,
                                       ),
@@ -433,15 +422,18 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ],
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 16, top: 5),
+                                padding: const EdgeInsets.only(
+                                  left: 16,
+                                  top: 5,
+                                ),
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    value['date'],
+                                    'Hakdog',
                                     style: GoogleFonts.prompt(
-                                        fontSize: 12,
-                                        color: HexColor("#35408f")),
+                                      fontSize: 12,
+                                      color: HexColor("#35408f"),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -450,7 +442,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                       ),
                     );
-                  }).toList(),
+                  },
                 ),
               ),
             ],
@@ -748,3 +740,169 @@ class _DashboardPageState extends State<DashboardPage> {
 // )
 
 
+// Flexible(
+//                 flex: 2,
+//                 fit: FlexFit.loose,
+//                 child: GridView.count(
+//                   padding: const EdgeInsets.all(5.0),
+//                   crossAxisCount: 1,
+//                   childAspectRatio: 2.6,
+//                   crossAxisSpacing: 120,
+//                   children: global.batchData.map((value) {
+//                     return InkWell(
+//                       onTap: () {
+//                         setState(() {
+//                           Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => BatchDetail(
+//                                         batchData: value['applicants'],
+//                                         name: value['name'],
+//                                         cameras: widget.cameras,
+//                                       )));
+//                         });
+//                       },
+//                       child: Padding(
+//                         padding: EdgeInsets.all(3.0),
+//                         child: Container(
+//                           decoration: BoxDecoration(
+//                               borderRadius: BorderRadius.circular(12.0),
+//                               color: Colors.white,
+//                               boxShadow: [
+//                                 BoxShadow(
+//                                   color: Colors.grey.withOpacity(0.5),
+//                                   spreadRadius: 2,
+//                                   blurRadius: 4,
+//                                   offset: Offset(0, 3),
+//                                 )
+//                               ]),
+//                           child: Column(
+//                             mainAxisAlignment: MainAxisAlignment.start,
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             mainAxisSize: MainAxisSize.max,
+//                             children: <Widget>[
+//                               Row(
+//                                 children: [
+//                                   SizedBox(
+//                                     width: 80,
+//                                     child: Padding(
+//                                       padding: const EdgeInsets.only(
+//                                           left: 15, bottom: 2, top: 10),
+//                                       child: Align(
+//                                         alignment: Alignment.topLeft,
+//                                         child: Text(
+//                                           value['name'],
+//                                           style: GoogleFonts.poppins(
+//                                               fontSize: 19,
+//                                               fontWeight: FontWeight.bold,
+//                                               color: HexColor("#35408f")),
+//                                           overflow: TextOverflow.fade,
+//                                           maxLines: 1,
+//                                           softWrap: true,
+//                                         ),
+//                                       ),
+//                                     ),
+//                                   ),
+//                                   Spacer(),
+//                                   Padding(
+//                                     padding: const EdgeInsets.all(10.0),
+//                                     child: PopupMenuButton<int>(
+//                                       itemBuilder: (context) => [
+//                                         PopupMenuItem(
+//                                           child: Text('Archive'),
+//                                           value: 1,
+//                                           onTap: () {
+//                                             BackEndPy.editApplicantList(
+//                                                 value['_id'], true);
+//                                             global.batchDataArchive.add(value);
+//                                             global.batchData.removeWhere(
+//                                                 (item) =>
+//                                                     item['_id'] ==
+//                                                     value['_id']);
+//                                             setState(() {});
+//                                           },
+//                                         ),
+//                                         PopupMenuItem(
+//                                           child: Text('Delete'),
+//                                           value: 2,
+//                                           onTap: () {
+//                                             BackEndPy.deleteApplicantList(
+//                                                 value['_id']);
+//                                             global.batchData.removeWhere(
+//                                                 (item) =>
+//                                                     item['_id'] ==
+//                                                     value['_id']);
+//                                             setState(() {});
+//                                           },
+//                                         )
+//                                       ],
+//                                     ),
+//                                   ),
+//                                 ],
+//                               ),
+//                               Row(
+//                                 children: [
+//                                   Padding(
+//                                     padding:
+//                                         const EdgeInsets.only(left: 16, top: 5),
+//                                     child: Align(
+//                                       alignment: Alignment.topLeft,
+//                                       child: Text(
+//                                         'Number of Applicants: ${value['applicants'].length}',
+//                                         style: GoogleFonts.prompt(
+//                                             fontSize: 10,
+//                                             color: HexColor("#35408f")),
+//                                       ),
+//                                     ),
+//                                   ),
+//                                   Padding(
+//                                     padding:
+//                                         const EdgeInsets.only(left: 16, top: 5),
+//                                     child: Align(
+//                                       alignment: Alignment.topLeft,
+//                                       child: Text(
+//                                         'Submitted: ${value['applicants'].where((e) => e['status'] == true).length}',
+//                                         style: GoogleFonts.prompt(
+//                                             fontSize: 10,
+//                                             color: HexColor("#35408f")),
+//                                       ),
+//                                     ),
+//                                   ),
+//                                   Padding(
+//                                     padding:
+//                                         const EdgeInsets.only(left: 16, top: 5),
+//                                     child: Align(
+//                                       alignment: Alignment.topLeft,
+//                                       child: Text(
+//                                         'Did Not Submit: ${value['applicants'].where((e) => e['status'] == false).length}',
+//                                         style: GoogleFonts.prompt(
+//                                             fontSize: 10,
+//                                             color: HexColor("#35408f")),
+//                                         overflow: TextOverflow.fade,
+//                                         softWrap: false,
+//                                       ),
+//                                     ),
+//                                   ),
+//                                 ],
+//                               ),
+//                               Padding(
+//                                 padding:
+//                                     const EdgeInsets.only(left: 16, top: 5),
+//                                 child: Align(
+//                                   alignment: Alignment.topLeft,
+//                                   child: Text(
+//                                     value['date'],
+//                                     style: GoogleFonts.prompt(
+//                                         fontSize: 12,
+//                                         color: HexColor("#35408f")),
+//                                   ),
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ),
+//                     );
+//                   }).toList(),
+//                 ),
+//               ),
