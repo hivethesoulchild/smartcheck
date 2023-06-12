@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
+  // final List<String> itemList;
+
   const ScannerPage({Key? key, required this.cameras}) : super(key: key);
 
   @override
@@ -72,12 +74,13 @@ class _ScannerPageState extends State<ScannerPage> {
 
   @override
   Widget build(BuildContext context) {
+    
     showAlertDialog(BuildContext context) {
       AlertDialog alert = AlertDialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        contentPadding: EdgeInsets.only(top: 10.0),
+        contentPadding: const EdgeInsets.only(top: 10.0),
         title: Text(
           'Results',
           style: GoogleFonts.poppins(),
@@ -87,13 +90,13 @@ class _ScannerPageState extends State<ScannerPage> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, foregroundColor: Colors.white),
           ),
           ElevatedButton(
             onPressed: () {},
-            child: Text("Save"),
+            child: const Text("Save"),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.blue[900]),
@@ -124,25 +127,25 @@ class _ScannerPageState extends State<ScannerPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [Text('English: 17')],
+                    children: [const Text('English: 17')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [Text('Mathematics: 15')],
+                    children: [const Text('Mathematics: 15')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [Text('Science: 13')],
+                    children: [const Text('Science: 13')],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    children: [Text('Aptitude: 10')],
+                    children: [const Text('Aptitude: 10')],
                   ),
                 ),
                 Container(
@@ -186,12 +189,12 @@ class _ScannerPageState extends State<ScannerPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () {
                   showAlertDialog(context);
                 },
-                child: SizedBox(
+                child: const SizedBox(
                     height: 60,
                     width: 60,
                     child: Icon(
@@ -200,7 +203,7 @@ class _ScannerPageState extends State<ScannerPage> {
                       color: Colors.black,
                     )),
                 style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
+                  shape: const CircleBorder(),
                   shadowColor: Colors.black,
                   backgroundColor: Colors.white,
                 ),
@@ -210,7 +213,11 @@ class _ScannerPageState extends State<ScannerPage> {
         ),
       );
     } else {
-      return SizedBox();
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     }
   }
 }
