@@ -122,6 +122,7 @@ class _ScannerPageState extends State<ScannerPage> {
                     }).toList(),
                     onChanged: (value) => null,
                     value: list.first,
+                    isExpanded: true,
                   ),
                 ),
                 Padding(
@@ -152,13 +153,6 @@ class _ScannerPageState extends State<ScannerPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Status: Submitted',
-                    style: GoogleFonts.poppins(),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Recommendations: BS Information technology',
                     style: GoogleFonts.poppins(),
                   ),
                 ),
