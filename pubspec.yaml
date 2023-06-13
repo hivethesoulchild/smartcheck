@@ -1,5 +1,5 @@
 name: smartcheck
-description: A new Flutter project.
+description: A capstone project exclusively for National University Admission Office - Manila, it is a examination checker that will scan paper in lesser time.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

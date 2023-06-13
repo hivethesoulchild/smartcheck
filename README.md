@@ -1,16 +1,14 @@
 # Smartcheck
 
-A new Flutter project.
+A capstone project exclusively for National University Admission Office, it is a examination checker that will scan paper in seconds.
 
-## Getting Started
+## Technologies Used
 
-This project is a starting point for a Flutter application.
+- Python
+- Flutter Dart
+- OpenCV
 
-A few resources to get you started if this is your first Flutter project:
+## Contributors
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- hivethesoulchild (Frontend Developer)
+- not-nonano (Backend Developer)
