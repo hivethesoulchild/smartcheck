@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class BackEndPy {
-  static const String baseUrl = 'http://154.26.132.250:9090/';
+  static const String baseUrl = 'http://154.26.132.250:9090';
 
   static Future<dynamic> checkUser(String email, String password) async {
     final url = Uri.parse('$baseUrl/checkUser/');
