@@ -22,7 +22,6 @@ class AnswerKeyPage extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
-          child: new Icon(Icons.save),
           backgroundColor: HexColor('#35408f'),
           onPressed: () {
             BackEndPy.updateAnswerKey('1', global.answer_key);
@@ -35,6 +34,7 @@ class AnswerKeyPage extends StatelessWidget {
                 textColor: Colors.white,
                 fontSize: 16.0);
           },
+          child: const Icon(Icons.save),
         ),
         appBar: AppBar(
           leading: IconButton(
@@ -50,7 +50,7 @@ class AnswerKeyPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.white,
           bottom: TabBar(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             labelColor: HexColor('#35408f'),
             indicatorColor: HexColor('#35408f'),
             labelStyle: GoogleFonts.poppins(
@@ -59,7 +59,7 @@ class AnswerKeyPage extends StatelessWidget {
             unselectedLabelStyle: GoogleFonts.poppins(
               fontSize: 15,
             ),
-            tabs: [
+            tabs: const [
               Tab(
                 text: "English",
               ),
