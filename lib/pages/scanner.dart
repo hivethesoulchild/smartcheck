@@ -103,28 +103,28 @@ class _ScannerPageState extends State<ScannerPage> {
                   isExpanded: true,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Column(
-                  children: const [Text('English: 17')],
+                  children: [Text('English: 17')],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Column(
-                  children: const [Text('Mathematics: 15')],
+                  children: [Text('Mathematics: 15')],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Column(
-                  children: const [Text('Science: 13')],
+                  children: [Text('Science: 13')],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Column(
-                  children: const [Text('Aptitude: 10')],
+                  children: [Text('Aptitude: 10')],
                 ),
               ),
               Container(
@@ -172,73 +172,75 @@ class _ScannerPageState extends State<ScannerPage> {
       return Scaffold(
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(0),
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: Center(
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(0),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Center(
+                        child: SizedBox(
+                          height: 700,
+                          width: double.infinity,
+                          child: CameraPreview(cameraController),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      left: 0,
                       child: SizedBox(
-                        height: 650,
-                        width: 420,
-                        child: CameraPreview(cameraController),
+                        width: 50,
+                        height: 50,
+                        child: _buildSquare(
+                          Colors.white.withOpacity(0.2),
+                          Colors.transparent,
+                          Colors.white.withOpacity(0.2),
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: _buildSquare(
-                        Colors.white.withOpacity(0.2),
-                        Colors.transparent,
-                        Colors.white.withOpacity(0.2),
+                    Positioned(
+                      top: 0,
+                      left: 360,
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: _buildSquare(
+                          Colors.white.withOpacity(0.2),
+                          Colors.transparent,
+                          Colors.white.withOpacity(0.2),
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 420,
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: _buildSquare(
-                        Colors.white.withOpacity(0.2),
-                        Colors.transparent,
-                        Colors.white.withOpacity(0.2),
+                    Positioned(
+                      top: 500,
+                      left: 0,
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: _buildSquare(
+                          Colors.white.withOpacity(0.2),
+                          Colors.transparent,
+                          Colors.white.withOpacity(0.2),
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: 500,
-                    left: 0,
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: _buildSquare(
-                        Colors.white.withOpacity(0.2),
-                        Colors.transparent,
-                        Colors.white.withOpacity(0.2),
+                    Positioned(
+                      top: 500,
+                      left: 360,
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: _buildSquare(
+                          Colors.white.withOpacity(0.2),
+                          Colors.transparent,
+                          Colors.white.withOpacity(0.2),
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: 500,
-                    left: 420,
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: _buildSquare(
-                        Colors.white.withOpacity(0.2),
-                        Colors.transparent,
-                        Colors.white.withOpacity(0.2),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -315,7 +317,7 @@ class _ScannerPageState extends State<ScannerPage> {
             ),
             border: Border.all(
               color: Colors.black,
-              width: 0.2,
+              width: 1,
               style: BorderStyle.solid,
             ),
           ),
