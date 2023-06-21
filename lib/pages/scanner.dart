@@ -192,7 +192,11 @@ class _ScannerPageState extends State<ScannerPage> {
                     child: SizedBox(
                       width: 50,
                       height: 50,
-                      child: _buildSquare(Colors.white10),
+                      child: _buildSquare(
+                        Colors.white.withOpacity(0.2),
+                        Colors.transparent,
+                        Colors.white.withOpacity(0.2),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -201,7 +205,11 @@ class _ScannerPageState extends State<ScannerPage> {
                     child: SizedBox(
                       width: 50,
                       height: 50,
-                      child: _buildSquare(Colors.white10),
+                      child: _buildSquare(
+                        Colors.white.withOpacity(0.2),
+                        Colors.transparent,
+                        Colors.white.withOpacity(0.2),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -210,7 +218,11 @@ class _ScannerPageState extends State<ScannerPage> {
                     child: SizedBox(
                       width: 50,
                       height: 50,
-                      child: _buildSquare(Colors.white10),
+                      child: _buildSquare(
+                        Colors.white.withOpacity(0.2),
+                        Colors.transparent,
+                        Colors.white.withOpacity(0.2),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -219,7 +231,11 @@ class _ScannerPageState extends State<ScannerPage> {
                     child: SizedBox(
                       width: 50,
                       height: 50,
-                      child: _buildSquare(Colors.white10),
+                      child: _buildSquare(
+                        Colors.white.withOpacity(0.2),
+                        Colors.transparent,
+                        Colors.white.withOpacity(0.2),
+                      ),
                     ),
                   ),
                 ],
@@ -284,14 +300,25 @@ class _ScannerPageState extends State<ScannerPage> {
       );
     }
   }
-  Widget _buildSquare(Color color) {
+
+  Widget _buildSquare(Color color1, Color color2, Color color3) {
     return Center(
       child: AspectRatio(
         aspectRatio: 1.0,
         child: Container(
           decoration: BoxDecoration(
-              color: color,
-              border: Border.all(color: Colors.black, width: 3.0)),
+            gradient: LinearGradient(
+              colors: [color1, color2, color3],
+              stops: [0, 0.5, 1],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+            border: Border.all(
+              color: Colors.black,
+              width: 0.2,
+              style: BorderStyle.solid,
+            ),
+          ),
         ),
       ),
     );
