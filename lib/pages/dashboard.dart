@@ -20,32 +20,6 @@ import '../backend/backendpy.dart';
 import 'package:uuid/uuid.dart';
 import 'package:file_support/file_support.dart';
 
-var data = [
-  {
-    "id": "1",
-    "name": "NU",
-    "Applicants No": "10",
-    "submited": "10",
-    "notSubmitted": "10",
-    "date": "nov 10 2020"
-  },
-  {
-    "id": "1",
-    "name": "NU",
-    "Applicants No": "10",
-    "submited": "10",
-    "notSubmitted": "10",
-    "date": "nov 10 2020"
-  },
-  {
-    "id": "1",
-    "name": "NU",
-    "Applicants No": "10",
-    "submited": "10",
-    "notSubmitted": "10",
-    "date": "nov 10 2020"
-  }
-];
 
 class Dashboard extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -289,162 +263,164 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               // Replace Gridview count to GridView builder
               Flexible(
-                flex: 2,
-                fit: FlexFit.loose,
-                child: GridView.builder(
-                  padding: EdgeInsets.all(7),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    mainAxisExtent: 130,
-                    mainAxisSpacing: 5.0,
-                  ),
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => BatchDetail(cameras: [], batchData: [], name: "Hakdog",)),
-                          );
-                        });
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(3.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 4,
-                                offset: Offset(0, 3),
-                              )
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 12,
-                                      bottom: 2,
-                                      top: 10,
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        'Batch $index',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.bold,
-                                          color: HexColor("#35408f"),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: PopupMenuButton<int>(
-                                      itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                          child: Text('Archive'),
-                                          value: 1,
-                                        ),
-                                        PopupMenuItem(
-                                          child: Text('Delete'),
-                                          value: 2,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      top: 5,
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        'Number of Applicants: 1',
-                                        style: GoogleFonts.prompt(
-                                          fontSize: 10,
-                                          color: HexColor("#35408f"),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      top: 5,
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        'Submitted: 1',
-                                        style: GoogleFonts.prompt(
-                                          fontSize: 10,
-                                          color: HexColor("#35408f"),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16,
-                                      top: 5,
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        'Did Not Submit: 0',
-                                        style: GoogleFonts.prompt(
-                                          fontSize: 10,
-                                          color: HexColor("#35408f"),
-                                        ),
-                                        overflow: TextOverflow.fade,
-                                        softWrap: false,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 16,
-                                  top: 5,
-                                ),
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Hakdog',
-                                    style: GoogleFonts.prompt(
-                                      fontSize: 12,
-                                      color: HexColor("#35408f"),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+  flex: 2,
+  fit: FlexFit.loose,
+  child: GridView.builder(
+    padding: EdgeInsets.all(7),
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 1,
+      mainAxisExtent: 130,
+      mainAxisSpacing: 5.0,
+    ),
+    itemCount: global.batchData.length,
+    itemBuilder: (context, index) {
+      return InkWell(
+        onTap: () {
+          setState(() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BatchDetail(cameras: [], batchData: [], name: global.batchData[index]['name'],)),
+            );
+          });
+        },
+        child: Padding(
+          padding: EdgeInsets.all(3.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 4,
+                  offset: Offset(0, 3),
+                )
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 12,
+                        bottom: 2,
+                        top: 10,
+                      ),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          global.batchData[index]['name'],
+                          style: GoogleFonts.poppins(
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                            color: HexColor("#35408f"),
                           ),
                         ),
                       ),
-                    );
-                  },
+                    ),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: PopupMenuButton<int>(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: Text('Archive'),
+                            value: 1,
+                          ),
+                          PopupMenuItem(
+                            child: Text('Delete'),
+                            value: 2,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        top: 5,
+                      ),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Number of Applicants: ${global.batchData[index]['applicants'].length}',
+                          style: GoogleFonts.prompt(
+                            fontSize: 10,
+                            color: HexColor("#35408f"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        top: 5,
+                      ),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
+                          style: GoogleFonts.prompt(
+                            fontSize: 10,
+                            color: HexColor("#35408f"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        top: 5,
+                      ),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
+                          style: GoogleFonts.prompt(
+                            fontSize: 10,
+                            color: HexColor("#35408f"),
+                          ),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 5,
+                  ),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      global.batchData[index]['name'],
+                      style: GoogleFonts.prompt(
+                        fontSize: 12,
+                        color: HexColor("#35408f"),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  ),
+),
+
+
             ],
           ),
         ),

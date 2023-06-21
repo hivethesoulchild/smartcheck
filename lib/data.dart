@@ -39,20 +39,16 @@ void updateAnswerKeyCache(String subject, String answer, int number) {
 }
 
 void setUserListCache(List data) {
-  userList = [];
-
-  data.forEach((element) {
-    userList.add({
-      "id": element['_id'],
-      "username": element['username'],
-      "password": element['password'],
-      "role": element['role'],
-      "isActive": element['isActive']
-    });
-  });
-
+  userList = data.map((element) => {
+    "id": element['_id'],
+    "username": element['username'],
+    "password": element['password'],
+    "role": element['role'],
+    "isActive": element['isActive']
+  }).toList();
   print(userList);
 }
+
 
 void setUserLoggedIn(dynamic data) {
   userLoggedIn = data;
