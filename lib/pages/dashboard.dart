@@ -279,7 +279,7 @@ class _DashboardPageState extends State<DashboardPage> {
           setState(() {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BatchDetail(cameras: [], batchData: [], name: global.batchData[index]['name'],)),
+              MaterialPageRoute(builder: (context) => BatchDetail(cameras: [], batchData: global.batchData[index]['applicants'], name: global.batchData[index]['name'],)),
             );
           });
         },
@@ -329,13 +329,32 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: PopupMenuButton<int>(
                         itemBuilder: (context) => [
                           PopupMenuItem(
-                            child: Text('Archive'),
-                            value: 1,
-                          ),
-                          PopupMenuItem(
-                            child: Text('Delete'),
-                            value: 2,
-                          ),
+                                          child: Text('Archive'),
+                                          value: 1,
+                                          onTap: () {
+                                            BackEndPy.editApplicantList(
+                                                global.batchData[index]['_id'], true);
+                                            global.batchDataArchive.add(global.batchData[index]);
+                                            global.batchData.removeWhere(
+                                                (item) =>
+                                                    item['_id'] ==
+                                                    global.batchData[index]['_id']);
+                                            setState(() {});
+                                          },
+                                        ),
+                                        PopupMenuItem(
+                                          child: Text('Delete'),
+                                          value: 2,
+                                          onTap: () {
+                                            BackEndPy.deleteApplicantList(
+                                                global.batchData[index]['_id']);
+                                            global.batchData.removeWhere(
+                                                (item) =>
+                                                    item['_id'] ==
+                                                    global.batchData[index]['_id']);
+                                            setState(() {});
+                                          },
+                                        ),
                         ],
                       ),
                     ),
