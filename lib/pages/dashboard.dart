@@ -279,7 +279,7 @@ class _DashboardPageState extends State<DashboardPage> {
           setState(() {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BatchDetail(cameras: [], batchData: global.batchData[index]['applicants'], name: global.batchData[index]['name'],)),
+              MaterialPageRoute(builder: (context) => BatchDetail(cameras: widget.cameras, batchData: global.batchData[index]['applicants'], name: global.batchData[index]['name'],)),
             );
           });
         },

@@ -10,13 +10,14 @@ var userList = [];
 var userLoggedIn;
 
 void setAnswerKeyCache(Map data) async {
+  print(data);
   answer_key = [[], [], [], []];
 
-  for (int i = 1; i <= 40; i++) {
-    answer_key[0].add(data["english"]["$i"]);
-    answer_key[1].add(data["science"]["$i"]);
-    answer_key[2].add(data["mathematics"]["$i"]);
-    answer_key[3].add(data["aptitude"]["$i"]);
+  for (int i = 0; i <= 40; i++) {
+    answer_key[0].add(data["english"][i]);
+    answer_key[1].add(data["science"][i]);
+    answer_key[2].add(data["mathematics"][i]);
+    answer_key[3].add(data["aptitude"][i]);
   }
 }
 

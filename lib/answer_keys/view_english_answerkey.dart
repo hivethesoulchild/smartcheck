@@ -13,7 +13,6 @@ class ViewEnglishAnswerKey extends StatefulWidget {
 class _ViewEnglishAnswerKeyState extends State<ViewEnglishAnswerKey> {
   @override
   Widget build(BuildContext context) {
-    print(widget.answerKey);
     var row = <Widget>[];
     for (int i = 0; i < 40; i++) {
       row.add(

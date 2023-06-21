@@ -16,6 +16,7 @@ class _EnglishAnswerKeyState extends State<EnglishAnswerKey> {
 
   @override
   Widget build(BuildContext context) {
+    print(global.answer_key);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SizedBox(
