@@ -174,12 +174,55 @@ class _ScannerPageState extends State<ScannerPage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(0),
-              child: Center(
-                child: SizedBox(
-                  height: 650,
-                  width: 420,
-                  child: CameraPreview(cameraController),
-                ),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: Center(
+                      child: SizedBox(
+                        height: 650,
+                        width: 420,
+                        child: CameraPreview(cameraController),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: _buildSquare(Colors.white10),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 420,
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: _buildSquare(Colors.white10),
+                    ),
+                  ),
+                  Positioned(
+                    top: 500,
+                    left: 0,
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: _buildSquare(Colors.white10),
+                    ),
+                  ),
+                  Positioned(
+                    top: 500,
+                    left: 420,
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: _buildSquare(Colors.white10),
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -240,5 +283,17 @@ class _ScannerPageState extends State<ScannerPage> {
         ),
       );
     }
+  }
+  Widget _buildSquare(Color color) {
+    return Center(
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: Container(
+          decoration: BoxDecoration(
+              color: color,
+              border: Border.all(color: Colors.black, width: 3.0)),
+        ),
+      ),
+    );
   }
 }
