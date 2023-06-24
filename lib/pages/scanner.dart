@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'dart:ui';
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -160,6 +161,35 @@ class _ScannerPageState extends State<ScannerPage> {
     }
   }
 
+  // Function to process the shapes detected by the backend
+  void processShapes(List<Rect> shapes) {
+    for (var shape in shapes) {
+      // Perform your desired operations with each detected shape
+      // For example, you can print the coordinates of each shape
+      print(
+          'Shape detected at (${shape.left}, ${shape.top}) with width ${shape.width} and height ${shape.height}');
+
+      // You can also perform other tasks based on the shape, such as drawing on an image or performing calculations.
+      // Add your custom logic here.
+    }
+  }
+
+  // Dummy function to simulate shape detection in the backend
+  List<Rect> detectShapes() {
+    // Simulate shape detection by returning a list of rectangles (Rect)
+    // Replace this logic with your actual shape detection algorithm
+
+    // Creating a list of dummy shapes (rectangles)
+    List<Rect> shapes = [
+      Rect.fromLTWH(0, 450, 50, 50),
+      Rect.fromLTWH(450, 0, 50, 50),
+      Rect.fromLTWH(450, 450, 50, 50),
+      Rect.fromLTWH(0, 0, 50, 50),
+    ];
+
+    return shapes;
+  }
+
   Future<void> saveData() async {
     // TODO: Implement the logic to save data
   }
@@ -168,6 +198,8 @@ class _ScannerPageState extends State<ScannerPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Rect> detectedShapes = detectShapes();
+    processShapes(detectedShapes);
     if (cameraController.value.isInitialized) {
       return Scaffold(
         body: Column(
@@ -187,58 +219,69 @@ class _ScannerPageState extends State<ScannerPage> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: _buildSquare(
-                          Colors.white.withOpacity(0.2),
-                          Colors.transparent,
-                          Colors.white.withOpacity(0.2),
+                    for (var shape in detectedShapes)
+                      Positioned(
+                        top: shape.top,
+                        left: shape.left,
+                        child: SizedBox(
+                          width: shape.width,
+                          height: shape.height,
+                          child: _buildSquare(Colors.white10,
+                              Colors.transparent, Colors.white10),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 360,
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: _buildSquare(
-                          Colors.white.withOpacity(0.2),
-                          Colors.transparent,
-                          Colors.white.withOpacity(0.2),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 500,
-                      left: 0,
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: _buildSquare(
-                          Colors.white.withOpacity(0.2),
-                          Colors.transparent,
-                          Colors.white.withOpacity(0.2),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 500,
-                      left: 360,
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: _buildSquare(
-                          Colors.white.withOpacity(0.2),
-                          Colors.transparent,
-                          Colors.white.withOpacity(0.2),
-                        ),
-                      ),
-                    ),
+                    // Positioned(
+                    //   top: 0,
+                    //   left: 0,
+                    //   child: SizedBox(
+                    //     width: 50,
+                    //     height: 50,
+                    //     child: _buildSquare(
+                    //       Colors.white.withOpacity(0.2),
+                    //       Colors.transparent,
+                    //       Colors.white.withOpacity(0.2),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Positioned(
+                    //   top: 0,
+                    //   left: 360,
+                    //   child: SizedBox(
+                    //     width: 50,
+                    //     height: 50,
+                    //     child: _buildSquare(
+                    //       Colors.white.withOpacity(0.2),
+                    //       Colors.transparent,
+                    //       Colors.white.withOpacity(0.2),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Positioned(
+                    //   top: 500,
+                    //   left: 0,
+                    //   child: SizedBox(
+                    //     width: 50,
+                    //     height: 50,
+                    //     child: _buildSquare(
+                    //       Colors.white.withOpacity(0.2),
+                    //       Colors.transparent,
+                    //       Colors.white.withOpacity(0.2),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Positioned(
+                    //   top: 500,
+                    //   left: 360,
+                    //   child: SizedBox(
+                    //     width: 50,
+                    //     height: 50,
+                    //     child: _buildSquare(
+                    //       Colors.white.withOpacity(0.2),
+                    //       Colors.transparent,
+                    //       Colors.white.withOpacity(0.2),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
