@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:io';
 import 'dart:ui';
+import 'package:path/path.dart' as path;
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -148,18 +150,29 @@ class _ScannerPageState extends State<ScannerPage> {
     );
   }
 
-  Future<void> captureImage() async {
-    try {
-      // final path = join(
-      //   (await getTemporaryDirectory()).path,
-      //   '${DateTime.now()}.png',
-      // );
-      // await cameraController.takePicture(path);
-      // TODO: Process captured image (e.g., save it or send to an API)
-    } catch (e) {
-      print('Error capturing image: $e');
+  Future<XFile?> _captureImage() async {
+    if (!cameraController.value.isInitialized) {
+      print('Camera is not initialized.');
+      return null;
     }
+
+    final XFile imageFile = await cameraController.takePicture();
+    print('Image captured: ${imageFile.path}');
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Image captured',
+          style: GoogleFonts.poppins(),
+        ),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+
+    return imageFile;
   }
+
+
 
   // Function to process the shapes detected by the backend
   void processShapes(List<Rect> shapes) {
@@ -309,7 +322,7 @@ class _ScannerPageState extends State<ScannerPage> {
                   const Spacer(),
                   ElevatedButton(
                     onPressed: () async {
-                      await captureImage();
+                      await _captureImage();
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
