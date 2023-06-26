@@ -150,34 +150,36 @@ class _ScannerPageState extends State<ScannerPage> {
     );
   }
 
-  Future<XFile?> _captureImage() async {
+  Future<XFile?> _captureImage(BuildContext context) async {
     if (!cameraController.value.isInitialized) {
       print('Camera is not initialized.');
       return null;
     }
 
+    
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return _LoadingDialog();
+      },
+    );
+
     final XFile imageFile = await cameraController.takePicture();
     print('Image captured: ${imageFile.path}');
 
-    final File? savedImage = await _saveImage(File(imageFile.path));
+    final File? savedImage = await _saveImage(imageFile);
+    Navigator.pop(context); // Dismiss the loading dialog
+
     if (savedImage != null) {
       print('Image saved at: ${savedImage.path}');
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Image captured',
-          style: GoogleFonts.poppins(),
-        ),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-
     return imageFile;
   }
 
-  Future<File?> _saveImage(File imageFile) async {
+  Future<File?> _saveImage(XFile imageFile) async {
     try {
       final directory = await getExternalStorageDirectory();
       final String imagePath = '${directory!.path}/cardCapturedSakura.jpg';
@@ -340,7 +342,7 @@ class _ScannerPageState extends State<ScannerPage> {
                   const Spacer(),
                   ElevatedButton(
                     onPressed: () async {
-                      await _captureImage();
+                      await _captureImage(context);
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
@@ -389,6 +391,25 @@ class _ScannerPageState extends State<ScannerPage> {
             width: 2.5,
             style: BorderStyle.solid,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadingDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(height: 16),
+            Text('Saving image...'),
+          ],
         ),
       ),
     );
