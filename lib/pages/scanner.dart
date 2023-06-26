@@ -57,7 +57,7 @@ class _ScannerPageState extends State<ScannerPage> {
       ),
       contentPadding: const EdgeInsets.only(top: 10.0),
       title: Text(
-        'Results',
+        'Students',
         style: GoogleFonts.poppins(),
       ),
       actions: [
@@ -84,7 +84,7 @@ class _ScannerPageState extends State<ScannerPage> {
         ),
       ],
       content: SizedBox(
-        height: 350,
+        height: 100,
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -106,37 +106,37 @@ class _ScannerPageState extends State<ScannerPage> {
                   isExpanded: true,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [Text('English: 17')],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [Text('Mathematics: 15')],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [Text('Science: 13')],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [Text('Aptitude: 10')],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Status: Submitted',
-                  style: GoogleFonts.poppins(),
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: Column(
+              //     children: [Text('English: 17')],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: Column(
+              //     children: [Text('Mathematics: 15')],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: Column(
+              //     children: [Text('Science: 13')],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.all(8.0),
+              //   child: Column(
+              //     children: [Text('Aptitude: 10')],
+              //   ),
+              // ),
+              // Container(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Text(
+              //     'Status: Submitted',
+              //     style: GoogleFonts.poppins(),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -159,6 +159,11 @@ class _ScannerPageState extends State<ScannerPage> {
     final XFile imageFile = await cameraController.takePicture();
     print('Image captured: ${imageFile.path}');
 
+    final File? savedImage = await _saveImage(File(imageFile.path));
+    if (savedImage != null) {
+      print('Image saved at: ${savedImage.path}');
+    }
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -172,7 +177,20 @@ class _ScannerPageState extends State<ScannerPage> {
     return imageFile;
   }
 
+  Future<File?> _saveImage(File imageFile) async {
+    try {
+      final directory = await getExternalStorageDirectory();
+      final String imagePath = '${directory!.path}/cardCapturedSakura.jpg';
 
+      final List<int> imageBytes = await imageFile.readAsBytes();
+      await File(imagePath).writeAsBytes(imageBytes);
+
+      return File(imagePath);
+    } catch (e) {
+      print('Failed to save image: $e');
+      return null;
+    }
+  }
 
   // Function to process the shapes detected by the backend
   void processShapes(List<Rect> shapes) {
@@ -223,7 +241,7 @@ class _ScannerPageState extends State<ScannerPage> {
                       padding: const EdgeInsets.all(0),
                       child: Center(
                         child: SizedBox(
-                          height: 700,
+                          height: 600,
                           width: double.infinity,
                           child: CameraPreview(cameraController),
                         ),
