@@ -104,25 +104,25 @@ class _ScannerPageState extends State<ScannerPage> {
                   isExpanded: true,
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [Text('English: 17')],
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [Text('Mathematics: 15')],
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [Text('Science: 13')],
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [Text('Aptitude: 10')],
@@ -181,10 +181,7 @@ class _ScannerPageState extends State<ScannerPage> {
 
     // Creating a list of dummy shapes (rectangles)
     List<Rect> shapes = [
-      Rect.fromLTWH(0, 450, 50, 50),
-      Rect.fromLTWH(450, 0, 50, 50),
-      Rect.fromLTWH(450, 450, 50, 50),
-      Rect.fromLTWH(0, 0, 50, 50),
+      Rect.fromLTWH(30, 120, 350, 455),
     ];
 
     return shapes;
@@ -348,21 +345,18 @@ class _ScannerPageState extends State<ScannerPage> {
 
   Widget _buildSquare(Color color1, Color color2, Color color3) {
     return Center(
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [color1, color2, color3],
-              stops: [0, 0.5, 1],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-            border: Border.all(
-              color: Colors.black,
-              width: 1,
-              style: BorderStyle.solid,
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [color1, color2, color3],
+            stops: [0, 0.5, 1],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          border: Border.all(
+            color: Colors.black,
+            width: 2.5,
+            style: BorderStyle.solid,
           ),
         ),
       ),
