@@ -7,6 +7,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:io';
 import 'dart:ui';
 import 'package:path/path.dart' as path;
+import 'package:smartcheck/backend/backendpy.dart';
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -155,9 +156,6 @@ class _ScannerPageState extends State<ScannerPage> {
       print('Camera is not initialized.');
       return null;
     }
-
-    
-
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -168,6 +166,8 @@ class _ScannerPageState extends State<ScannerPage> {
 
     final XFile imageFile = await cameraController.takePicture();
     print('Image captured: ${imageFile.path}');
+
+    BackEndPy.uploadImage(imageFile);
 
     final File? savedImage = await _saveImage(imageFile);
     Navigator.pop(context); // Dismiss the loading dialog
@@ -214,7 +214,7 @@ class _ScannerPageState extends State<ScannerPage> {
 
     // Creating a list of dummy shapes (rectangles)
     List<Rect> shapes = [
-      Rect.fromLTWH(30, 120, 350, 455),
+      Rect.fromLTWH(17, 120, 378, 475),
     ];
 
     return shapes;
@@ -243,7 +243,7 @@ class _ScannerPageState extends State<ScannerPage> {
                       padding: const EdgeInsets.all(0),
                       child: Center(
                         child: SizedBox(
-                          height: 600,
+                          height: 700,
                           width: double.infinity,
                           child: CameraPreview(cameraController),
                         ),

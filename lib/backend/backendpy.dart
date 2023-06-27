@@ -1,12 +1,16 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
+import 'package:async/async.dart';
+import 'package:path/path.dart';
 
 class BackEndPy {
   static const String baseUrl = 'http://154.26.132.250:9090';
 
   static Future<dynamic> checkUser(String email, String password) async {
     final url = Uri.parse('$baseUrl/checkUser/');
-    final response = await http.post(url, body: json.encode({'username': email, 'password': password}));
+    final response = await http.post(url,
+        body: json.encode({'username': email, 'password': password}));
     return jsonDecode(response.body);
   }
 
@@ -18,13 +22,14 @@ class BackEndPy {
 
   static void updateAnswerKey(String id, List data) async {
     final url = Uri.parse('$baseUrl/updateAnswerKey/');
-    final response = await http.patch(url, body: json.encode({
-      'id': '1',
-      'english': data[0],
-      'science': data[1],
-      'mathematics': data[2],
-      'aptitude': data[3]
-    }));
+    final response = await http.patch(url,
+        body: json.encode({
+          'id': '1',
+          'english': data[0],
+          'science': data[1],
+          'mathematics': data[2],
+          'aptitude': data[3]
+        }));
 
     print(response.body);
   }
@@ -35,16 +40,18 @@ class BackEndPy {
     return jsonDecode(response.body) as List<dynamic>;
   }
 
-  static void addApplicantList(String id, String schoolName, List applicants, String username, String date, bool archive) async {
+  static void addApplicantList(String id, String schoolName, List applicants,
+      String username, String date, bool archive) async {
     final url = Uri.parse('$baseUrl/addApplicantList/');
-    final response = await http.post(url, body: json.encode({
-      '_id': id,
-      'schoolName': schoolName,
-      'applicants': applicants,
-      'proctor': username,
-      'date': date,
-      'archive': archive
-    }));
+    final response = await http.post(url,
+        body: json.encode({
+          '_id': id,
+          'schoolName': schoolName,
+          'applicants': applicants,
+          'proctor': username,
+          'date': date,
+          'archive': archive
+        }));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
     print(jsonResponse);
@@ -56,13 +63,12 @@ class BackEndPy {
     return jsonDecode(response.body) as List<dynamic>;
   }
 
-  static void getApplicantList(String id, String schoolName, List applicants) async {
+  static void getApplicantList(
+      String id, String schoolName, List applicants) async {
     final url = Uri.parse('$baseUrl/addApplicantList/');
-    final response = await http.post(url, body: json.encode({
-      '_id': id,
-      'schoolName': schoolName,
-      'applicants': applicants
-    }));
+    final response = await http.post(url,
+        body: json.encode(
+            {'_id': id, 'schoolName': schoolName, 'applicants': applicants}));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
     print(jsonResponse);
@@ -70,10 +76,8 @@ class BackEndPy {
 
   static void editApplicantList(String id, bool archive) async {
     final url = Uri.parse('$baseUrl/editApplicantList/');
-    final response = await http.patch(url, body: json.encode({
-      '_id': id,
-      'archive': archive
-    }));
+    final response = await http.patch(url,
+        body: json.encode({'_id': id, 'archive': archive}));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
     print(jsonResponse);
@@ -87,26 +91,30 @@ class BackEndPy {
     print(jsonResponse);
   }
 
-  static void addUser(String username, String password, bool isActive, String role) async {
+  static void addUser(
+      String username, String password, bool isActive, String role) async {
     final url = Uri.parse('$baseUrl/addUser/');
-    final response = await http.post(url, body: json.encode({
-      'username': username,
-      'password': password,
-      'isActive': isActive,
-      'role': role
-    }));
+    final response = await http.post(url,
+        body: json.encode({
+          'username': username,
+          'password': password,
+          'isActive': isActive,
+          'role': role
+        }));
 
     print(response.body);
   }
 
-  static void editUser(String id, String password, bool isActive, String role) async {
+  static void editUser(
+      String id, String password, bool isActive, String role) async {
     final url = Uri.parse('$baseUrl/editUser/');
-    final response = await http.patch(url, body: json.encode({
-      '_id': id,
-      'password': password,
-      'isActive': isActive,
-      'role': role
-    }));
+    final response = await http.patch(url,
+        body: json.encode({
+          '_id': id,
+          'password': password,
+          'isActive': isActive,
+          'role': role
+        }));
 
     print(response.body);
   }
@@ -116,5 +124,27 @@ class BackEndPy {
     final response = await http.delete(url, body: json.encode({'_id': id}));
 
     print(response.body);
+  }
+
+  static Future<void> uploadImage(dynamic imageFile) async {
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    final url = Uri.parse('$baseUrl/uploadImage/');
+
+    var request = http.MultipartRequest('POST', url);
+    var multipartFile = http.MultipartFile(
+      'file',
+      stream,
+      length,
+      filename: basename(imageFile.path),
+    );
+    request.files.add(multipartFile);
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      print('Image uploaded successfully');
+    } else {
+      print('Image upload failed with status code: ${response.statusCode}');
+    }
   }
 }
