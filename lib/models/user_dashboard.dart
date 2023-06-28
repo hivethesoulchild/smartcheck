@@ -246,10 +246,10 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                     return InkWell(
                       onTap: () {
                         setState(() {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BatchDetail(batchData: value['applicants'], name: value['name'], cameras: widget.cameras,)));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => BatchDetail(batchData: value['applicants'], name: value['name'], cameras: widget.cameras,)));
                         });
                       },
                       child: Padding(

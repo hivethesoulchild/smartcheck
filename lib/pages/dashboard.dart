@@ -288,6 +288,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       batchData: global.batchData[index]
                                           ['applicants'],
                                       name: global.batchData[index]['name'],
+                                      batchId: global.batchData[index]['_id']
                                     ),
                                   ),
                                 );

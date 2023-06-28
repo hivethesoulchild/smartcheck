@@ -12,8 +12,10 @@ import 'package:smartcheck/backend/backendpy.dart';
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
   final dynamic id;
+  final String batchId;
 
-  const ScannerPage({Key? key, required this.cameras, required this.id})
+  const ScannerPage(
+      {Key? key, required this.batchId, required this.cameras, required this.id})
       : super(key: key);
 
   @override

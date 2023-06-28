@@ -13,11 +13,13 @@ class BatchDetail extends StatefulWidget {
   final List batchData;
   final String name;
   final List<CameraDescription> cameras;
+  final String batchId;
   const BatchDetail({
     Key? key,
     required this.batchData,
     required this.name,
     required this.cameras,
+    required this.batchId
   }) : super(key: key);
 
   @override
@@ -308,6 +310,7 @@ class _BatchDetailState extends State<BatchDetail> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       ScannerPage(
+                                                        batchId: widget.batchId,
                                                         id: value['id'],
                                                           cameras:
                                                               widget.cameras)));

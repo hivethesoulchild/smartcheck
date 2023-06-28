@@ -145,6 +145,7 @@ class BackEndPy {
     var response = await request.send();
     if (response.statusCode == 200) {
       print('Image uploaded successfully');
+      print(response);
     } else {
       print('Image upload failed with status code: ${response.statusCode}');
     }
