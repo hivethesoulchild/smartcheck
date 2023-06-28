@@ -270,7 +270,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
-                          mainAxisExtent: 120,
+                          mainAxisExtent: 140,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
@@ -375,64 +375,142 @@ class _DashboardPageState extends State<DashboardPage> {
                                       ],
                                     ),
                                     Expanded(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 12,
-                                              top: 5,
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                'Number of Applicants: ${global.batchData[index]['applicants'].length}',
-                                                overflow: TextOverflow.fade,
-                                                style: GoogleFonts.prompt(
-                                                  fontSize: 10,
-                                                  color: HexColor("#35408f"),
+                                      child: LayoutBuilder(
+                                        builder: (BuildContext context,
+                                            BoxConstraints constraints) {
+                                          if (constraints.maxWidth < 300) {
+                                            // For smaller screens, use Wrap
+                                            return Wrap(
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12, top: 5),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Number of Applicants: ${global.batchData[index]['applicants'].length}',
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      style: GoogleFonts.prompt(
+                                                        fontSize: 12,
+                                                        color:
+                                                            HexColor("#35408f"),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 16,
-                                              top: 5,
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
-                                                style: GoogleFonts.prompt(
-                                                  fontSize: 10,
-                                                  color: HexColor("#35408f"),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12, top: 5),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
+                                                      style: GoogleFonts.prompt(
+                                                        fontSize: 12,
+                                                        color:
+                                                            HexColor("#35408f"),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 16,
-                                              top: 5,
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
-                                                style: GoogleFonts.prompt(
-                                                  fontSize: 10,
-                                                  color: HexColor("#35408f"),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12, top: 5),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
+                                                      style: GoogleFonts.prompt(
+                                                        fontSize: 12,
+                                                        color:
+                                                            HexColor("#35408f"),
+                                                      ),
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      softWrap: false,
+                                                    ),
+                                                  ),
                                                 ),
-                                                overflow: TextOverflow.fade,
-                                                softWrap: false,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                              ],
+                                            );
+                                          } else {
+                                            // For larger screens, use Row
+                                            return Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12, top: 5),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Number of Applicants: ${global.batchData[index]['applicants'].length}',
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      style: GoogleFonts.prompt(
+                                                        fontSize: 10,
+                                                        color:
+                                                            HexColor("#35408f"),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12, top: 5),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
+                                                      style: GoogleFonts.prompt(
+                                                        fontSize: 10,
+                                                        color:
+                                                            HexColor("#35408f"),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 12, top: 5),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
+                                                      style: GoogleFonts.prompt(
+                                                        fontSize: 10,
+                                                        color:
+                                                            HexColor("#35408f"),
+                                                      ),
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      softWrap: false,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          }
+                                        },
                                       ),
                                     ),
+
                                     // Expanded(
                                     //   child: Padding(
                                     //     padding: const EdgeInsets.only(
