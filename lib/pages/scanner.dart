@@ -262,10 +262,14 @@ class _ScannerPageState extends State<ScannerPage> {
                             top: shape.top,
                             left: MediaQuery.of(context).size.width < 360
                                 ? shape.left
-                                : 22,
+                                : 25,
                             child: SizedBox(
-                              width: shape.width,
-                              height: shape.height,
+                              width: MediaQuery.of(context).size.width < 360
+                                  ? shape.width
+                                  : 315,
+                              height: MediaQuery.of(context).size.width < 360
+                                  ? shape.height
+                                  : 395.84,
                               child: _buildSquare(
                                 Colors.white10,
                                 Colors.transparent,
