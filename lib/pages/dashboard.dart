@@ -137,7 +137,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Column(
                   children: [
                     Expanded(
-                      flex: 1,
+                      flex: 0,
                       child: GridView(
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(5.0),
@@ -155,111 +155,114 @@ class _DashboardPageState extends State<DashboardPage> {
                         ],
                       ),
                     ),
-                    Row(
-                      children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'Recent Batch',
-                            style: GoogleFonts.nunito(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 20,
-                              color: HexColor('#35408f'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Recent Batch',
+                              style: GoogleFonts.nunito(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 20,
+                                color: HexColor('#35408f'),
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding:
-                                const EdgeInsets.only(left: 10.0, right: 20.0),
-                            child: const Divider(
-                              color: Colors.black,
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 20.0),
+                              child: const Divider(
+                                color: Colors.black,
+                              ),
                             ),
                           ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            FilePickerResult? result =
-                                await FilePicker.platform.pickFiles(
-                              allowMultiple: false,
-                              withData: true,
-                              type: FileType.custom,
-                              allowedExtensions: ['csv'],
-                            );
-
-                            //set to database
-
-                            if (result != null) {
-                              final input =
-                                  File(result.files.single.path!).openRead();
-                              final fields = await input
-                                  .transform(utf8.decoder)
-                                  .transform(const CsvToListConverter())
-                                  .toList();
-                              final fileName =
-                                  result.files.first.name.split('.')[0];
-
-                              var question40 = [];
-
-                              for (int i = 0; i < 40; i++) {
-                                question40.add({"${i + 1}": -1});
-                              }
-
-                              var question15 = [];
-
-                              for (int i = 0; i < 15; i++) {
-                                question15.add({"${i + 1}": -1});
-                              }
-
-                              fields.asMap().forEach((key, value) {
-                                if (key == 0) {
-                                  return;
-                                }
-                                applicantList.add({
-                                  fields[0][0].toString().toLowerCase():
-                                      value[0],
-                                  fields[0][1].toString().toLowerCase():
-                                      value[1],
-                                  'applicantKeyEnglish': question40,
-                                  'applicantKeyScience': question40,
-                                  'applicantKeyMathematics': question40,
-                                  'applicantKeyAptitude': question15,
-                                  'English': 0,
-                                  'Mathematics': 0,
-                                  'Science': 0,
-                                  'Aptitude': 0,
-                                  'status': false,
-                                  'Recommendation': [],
-                                });
-                              });
-                              var uuid = const Uuid();
-                              var uniqueId = uuid.v4();
-                              var now = new DateTime.now();
-                              var formatter = new DateFormat('yyyy-MM-dd');
-                              String formattedDate = formatter.format(now);
-
-                              global.batchData.add({
-                                '_id': uniqueId,
-                                'name': fileName,
-                                'archive': false,
-                                'applicants': applicantList,
-                                'date': formattedDate,
-                                'proctor': global.userLoggedIn['username'],
-                              });
-                              BackEndPy.addApplicantList(
-                                uniqueId,
-                                fileName,
-                                applicantList,
-                                global.userLoggedIn['username'],
-                                formattedDate,
-                                false,
+                          InkWell(
+                            onTap: () async {
+                              FilePickerResult? result =
+                                  await FilePicker.platform.pickFiles(
+                                allowMultiple: false,
+                                withData: true,
+                                type: FileType.custom,
+                                allowedExtensions: ['csv'],
                               );
-                            }
-                            setStateSB(() {});
-                          },
-                          child: const Text("Add"),
-                        ),
-                      ],
+
+                              //set to database
+
+                              if (result != null) {
+                                final input =
+                                    File(result.files.single.path!).openRead();
+                                final fields = await input
+                                    .transform(utf8.decoder)
+                                    .transform(const CsvToListConverter())
+                                    .toList();
+                                final fileName =
+                                    result.files.first.name.split('.')[0];
+
+                                var question40 = [];
+
+                                for (int i = 0; i < 40; i++) {
+                                  question40.add({"${i + 1}": -1});
+                                }
+
+                                var question15 = [];
+
+                                for (int i = 0; i < 15; i++) {
+                                  question15.add({"${i + 1}": -1});
+                                }
+
+                                fields.asMap().forEach((key, value) {
+                                  if (key == 0) {
+                                    return;
+                                  }
+                                  applicantList.add({
+                                    fields[0][0].toString().toLowerCase():
+                                        value[0],
+                                    fields[0][1].toString().toLowerCase():
+                                        value[1],
+                                    'applicantKeyEnglish': question40,
+                                    'applicantKeyScience': question40,
+                                    'applicantKeyMathematics': question40,
+                                    'applicantKeyAptitude': question15,
+                                    'English': 0,
+                                    'Mathematics': 0,
+                                    'Science': 0,
+                                    'Aptitude': 0,
+                                    'status': false,
+                                    'Recommendation': [],
+                                  });
+                                });
+                                var uuid = const Uuid();
+                                var uniqueId = uuid.v4();
+                                var now = new DateTime.now();
+                                var formatter = new DateFormat('yyyy-MM-dd');
+                                String formattedDate = formatter.format(now);
+
+                                global.batchData.add({
+                                  '_id': uniqueId,
+                                  'name': fileName,
+                                  'archive': false,
+                                  'applicants': applicantList,
+                                  'date': formattedDate,
+                                  'proctor': global.userLoggedIn['username'],
+                                });
+                                BackEndPy.addApplicantList(
+                                  uniqueId,
+                                  fileName,
+                                  applicantList,
+                                  global.userLoggedIn['username'],
+                                  formattedDate,
+                                  false,
+                                );
+                              }
+                              setStateSB(() {});
+                            },
+                            child: const Text("Add"),
+                          ),
+                        ],
+                      ),
                     ),
                     Expanded(
                       child: GridView.builder(
