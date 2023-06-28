@@ -34,7 +34,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
               children: [
                 Image.asset(
                   'assets/icons8_bar_chart_1.png',
-                  scale: 5,
+                  scale: 6,
                 ),
                 SizedBox(
                   height: 20,
@@ -43,7 +43,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
                   'Analysis Chart',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -80,7 +80,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
               children: [
                 Image.asset(
                   'assets/icons8_user_account.png',
-                  scale: 5,
+                  scale: 6,
                 ),
                 SizedBox(
                   height: 20,
@@ -89,7 +89,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
                   'Manage Users',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -126,7 +126,7 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
               children: [
                 Image.asset(
                   'assets/icons8_test_1.png',
-                  scale: 5,
+                  scale: 6,
                 ),
                 SizedBox(
                   height: 20,
@@ -135,7 +135,7 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
                   'Answer Key',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
