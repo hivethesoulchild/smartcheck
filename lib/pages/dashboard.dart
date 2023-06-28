@@ -125,6 +125,8 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
+    // double screenWidth = MediaQuery.of(context).size.width;
+    // int screen = screenWidth < 360 ? 1 : screenWidth < 600 ? 2 : 3;
     var applicantList = [];
     return StatefulBuilder(builder: (context, setStateSB) {
       return Scaffold(
@@ -267,10 +269,12 @@ class _DashboardPageState extends State<DashboardPage> {
                     Expanded(
                       child: GridView.builder(
                         padding: const EdgeInsets.all(7),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent:
+                              MediaQuery.of(context).size.width < 380
+                                  ? 180
+                                  : 120,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
@@ -378,7 +382,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       child: LayoutBuilder(
                                         builder: (BuildContext context,
                                             BoxConstraints constraints) {
-                                          if (constraints.maxWidth < 400) {
+                                          if (constraints.maxWidth < 360) {
                                             // For smaller screens, use Wrap
                                             return Wrap(
                                               crossAxisAlignment:
