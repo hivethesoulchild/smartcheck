@@ -11,10 +11,10 @@ class ViewChipotle extends StatefulWidget {
 }
 
 class _ViewChipotleState extends State<ViewChipotle> {
-
   var updatedIndex;
   var _selectedIndex;
   List<String> _options = ['A', 'B', 'C', 'D'];
+  List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   Widget _buildChips() {
     List<Widget> chips = [];
@@ -25,8 +25,10 @@ class _ViewChipotleState extends State<ViewChipotle> {
       _selectedIndex = 1;
     } else if (widget.answer == '2') {
       _selectedIndex = 2;
-    } else if(widget.answer == '3') {
+    } else if (widget.answer == '3') {
       _selectedIndex = 3;
+    } else if (widget.answer == '4') {
+      _selectedIndex = 4;
     } else {
       _selectedIndex = null;
     }
@@ -41,13 +43,38 @@ class _ViewChipotleState extends State<ViewChipotle> {
     //   _selectedIndex = 3;
     // }
 
-
     for (int i = 0; i < _options.length; i++) {
       ChoiceChip choiceChip = ChoiceChip(
         selected: _selectedIndex == i,
         label: Text(
           _options[i],
-          style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w700),
+          style: GoogleFonts.poppins(
+              color: Colors.black, fontWeight: FontWeight.w700),
+        ),
+        elevation: 2,
+        pressElevation: 5,
+        shadowColor: Colors.teal,
+        backgroundColor: Colors.white,
+        selectedColor: Colors.lightGreenAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        disabledColor: Colors.white,
+      );
+
+      chips.add(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: choiceChip,
+        ),
+      );
+    }
+
+    for (int i = 0; i < _englishOptions.length; i++) {
+      ChoiceChip choiceChip = ChoiceChip(
+        selected: _selectedIndex == i,
+        label: Text(
+          _options[i],
+          style: GoogleFonts.poppins(
+              color: Colors.black, fontWeight: FontWeight.w700),
         ),
         elevation: 2,
         pressElevation: 5,
