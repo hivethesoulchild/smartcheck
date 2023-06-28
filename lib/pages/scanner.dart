@@ -239,82 +239,41 @@ class _ScannerPageState extends State<ScannerPage> {
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(0),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Center(
-                        child: SizedBox(
-                          height: 700,
-                          width: double.infinity,
-                          child: CameraPreview(cameraController),
+                child: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    return Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Center(
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height < 360
+                                  ? 700
+                                  : 750,
+                              width: double.infinity,
+                              child: CameraPreview(cameraController),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    for (var shape in detectedShapes)
-                      Positioned(
-                        top: shape.top,
-                        left: shape.left,
-                        child: SizedBox(
-                          width: shape.width,
-                          height: shape.height,
-                          child: _buildSquare(Colors.white10,
-                              Colors.transparent, Colors.white10),
-                        ),
-                      ),
-                    // Positioned(
-                    //   top: 0,
-                    //   left: 0,
-                    //   child: SizedBox(
-                    //     width: 50,
-                    //     height: 50,
-                    //     child: _buildSquare(
-                    //       Colors.white.withOpacity(0.2),
-                    //       Colors.transparent,
-                    //       Colors.white.withOpacity(0.2),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Positioned(
-                    //   top: 0,
-                    //   left: 360,
-                    //   child: SizedBox(
-                    //     width: 50,
-                    //     height: 50,
-                    //     child: _buildSquare(
-                    //       Colors.white.withOpacity(0.2),
-                    //       Colors.transparent,
-                    //       Colors.white.withOpacity(0.2),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Positioned(
-                    //   top: 500,
-                    //   left: 0,
-                    //   child: SizedBox(
-                    //     width: 50,
-                    //     height: 50,
-                    //     child: _buildSquare(
-                    //       Colors.white.withOpacity(0.2),
-                    //       Colors.transparent,
-                    //       Colors.white.withOpacity(0.2),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Positioned(
-                    //   top: 500,
-                    //   left: 360,
-                    //   child: SizedBox(
-                    //     width: 50,
-                    //     height: 50,
-                    //     child: _buildSquare(
-                    //       Colors.white.withOpacity(0.2),
-                    //       Colors.transparent,
-                    //       Colors.white.withOpacity(0.2),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
+                        for (var shape in detectedShapes)
+                          Positioned(
+                            top: shape.top,
+                            left: MediaQuery.of(context).size.width < 360
+                                ? shape.left
+                                : 22,
+                            child: SizedBox(
+                              width: shape.width,
+                              height: shape.height,
+                              child: _buildSquare(
+                                Colors.white10,
+                                Colors.transparent,
+                                Colors.white10,
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),
@@ -322,25 +281,7 @@ class _ScannerPageState extends State<ScannerPage> {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      showAlertDialog(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      shadowColor: Colors.black,
-                      backgroundColor: Colors.white,
-                    ),
-                    child: const SizedBox(
-                      height: 60,
-                      width: 60,
-                      child: Icon(
-                        Icons.list,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+                  const Spacer(),
                   const Spacer(),
                   ElevatedButton(
                     onPressed: () async {
