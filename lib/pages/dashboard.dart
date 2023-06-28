@@ -378,7 +378,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       child: LayoutBuilder(
                                         builder: (BuildContext context,
                                             BoxConstraints constraints) {
-                                          if (constraints.maxWidth < 300) {
+                                          if (constraints.maxWidth < 400) {
                                             // For smaller screens, use Wrap
                                             return Wrap(
                                               crossAxisAlignment:
