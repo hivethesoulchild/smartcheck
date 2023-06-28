@@ -125,8 +125,6 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    // double screenWidth = MediaQuery.of(context).size.width;
-    // int screen = screenWidth < 360 ? 1 : screenWidth < 600 ? 2 : 3;
     var applicantList = [];
     return StatefulBuilder(builder: (context, setStateSB) {
       return Scaffold(
