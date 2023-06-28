@@ -20,7 +20,7 @@ class _MathAnswerKeyState extends State<MathAnswerKey> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                for (int i = 0; i < global.answer_key[2].length; i++)
+                for (int i = 0; i < 30; i++)
                   Row(
                     children: [
                       Padding(
