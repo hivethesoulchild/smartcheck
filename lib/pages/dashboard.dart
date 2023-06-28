@@ -20,7 +20,6 @@ import '../backend/backendpy.dart';
 import 'package:uuid/uuid.dart';
 import 'package:file_support/file_support.dart';
 
-
 class Dashboard extends StatefulWidget {
   final List<CameraDescription> cameras;
   Dashboard({Key? key, required this.cameras}) : super(key: key);
@@ -78,7 +77,7 @@ class _DashboardState extends State<Dashboard> {
         ),
         body: _children[_currentIndex],
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(boxShadow: <BoxShadow>[
+          decoration: const BoxDecoration(boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.black,
               blurRadius: 1,
@@ -131,17 +130,14 @@ class _DashboardPageState extends State<DashboardPage> {
       return Scaffold(
         backgroundColor: HexColor('#FFFFFF'),
         body: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Flexible(
-                flex: 2,
-                fit: FlexFit.tight,
-                child: Row(
+              Expanded(
+                child: Column(
                   children: [
-                    Flexible(
+                    Expanded(
                       flex: 1,
-                      fit: FlexFit.tight,
                       child: GridView(
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(5.0),
@@ -159,287 +155,303 @@ class _DashboardPageState extends State<DashboardPage> {
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Recent Batch',
-                      style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                          color: HexColor('#35408f')),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(left: 10.0, right: 20.0),
-                      child: Divider(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      FilePickerResult? result = await FilePicker.platform
-                          .pickFiles(
+                    Row(
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Recent Batch',
+                            style: GoogleFonts.nunito(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 20,
+                              color: HexColor('#35408f'),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding:
+                                const EdgeInsets.only(left: 10.0, right: 20.0),
+                            child: const Divider(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles(
                               allowMultiple: false,
                               withData: true,
                               type: FileType.custom,
-                              allowedExtensions: ['csv']);
+                              allowedExtensions: ['csv'],
+                            );
 
-                      //set to database
+                            //set to database
 
-                      if (result != null) {
-                        final input =
-                            File(result.files.single.path!).openRead();
-                        final fields = await input
-                            .transform(utf8.decoder)
-                            .transform(const CsvToListConverter())
-                            .toList();
-                        final fileName = result.files.first.name.split('.')[0];
+                            if (result != null) {
+                              final input =
+                                  File(result.files.single.path!).openRead();
+                              final fields = await input
+                                  .transform(utf8.decoder)
+                                  .transform(const CsvToListConverter())
+                                  .toList();
+                              final fileName =
+                                  result.files.first.name.split('.')[0];
 
-                        var question40 = [];
+                              var question40 = [];
 
-                        for (int i = 0; i < 40; i++) {
-                          question40.add({"${i + 1}": -1});
-                        }
+                              for (int i = 0; i < 40; i++) {
+                                question40.add({"${i + 1}": -1});
+                              }
 
-                        var question15 = [];
+                              var question15 = [];
 
-                        for (int i = 0; i < 15; i++) {
-                          question15.add({"${i + 1}": -1});
-                        }
+                              for (int i = 0; i < 15; i++) {
+                                question15.add({"${i + 1}": -1});
+                              }
 
-                        fields.asMap().forEach((key, value) {
-                          if (key == 0) {
-                            return;
-                          }
-                          applicantList.add({
-                            fields[0][0].toString().toLowerCase(): value[0],
-                            fields[0][1].toString().toLowerCase(): value[1],
-                            'applicantKeyEnglish': question40,
-                            'applicantKeyScience': question40,
-                            'applicantKeyMathematics': question40,
-                            'applicantKeyAptitude': question15,
-                            'English': 0,
-                            'Mathematics': 0,
-                            'Science': 0,
-                            'Aptitude': 0,
-                            'status': false,
-                            'Recommendation': []
-                          });
-                        });
-                        var uuid = const Uuid();
-                        var uniqueId = uuid.v4();
-                        var now = new DateTime.now();
-                        var formatter = new DateFormat('yyyy-MM-dd');
-                        String formattedDate = formatter.format(now);
+                              fields.asMap().forEach((key, value) {
+                                if (key == 0) {
+                                  return;
+                                }
+                                applicantList.add({
+                                  fields[0][0].toString().toLowerCase():
+                                      value[0],
+                                  fields[0][1].toString().toLowerCase():
+                                      value[1],
+                                  'applicantKeyEnglish': question40,
+                                  'applicantKeyScience': question40,
+                                  'applicantKeyMathematics': question40,
+                                  'applicantKeyAptitude': question15,
+                                  'English': 0,
+                                  'Mathematics': 0,
+                                  'Science': 0,
+                                  'Aptitude': 0,
+                                  'status': false,
+                                  'Recommendation': [],
+                                });
+                              });
+                              var uuid = const Uuid();
+                              var uniqueId = uuid.v4();
+                              var now = new DateTime.now();
+                              var formatter = new DateFormat('yyyy-MM-dd');
+                              String formattedDate = formatter.format(now);
 
-                        global.batchData.add({
-                          '_id': uniqueId,
-                          'name': fileName,
-                          'archive': false,
-                          'applicants': applicantList,
-                          'date': formattedDate,
-                          'proctor': global.userLoggedIn['username']
-                        });
-                        BackEndPy.addApplicantList(
-                            uniqueId,
-                            fileName,
-                            applicantList,
-                            global.userLoggedIn['username'],
-                            formattedDate,
-                            false);
-                      }
-                      setStateSB(() {});
-                    },
-                    child: Container(child: Text("Add")),
-                  )
-                ],
+                              global.batchData.add({
+                                '_id': uniqueId,
+                                'name': fileName,
+                                'archive': false,
+                                'applicants': applicantList,
+                                'date': formattedDate,
+                                'proctor': global.userLoggedIn['username'],
+                              });
+                              BackEndPy.addApplicantList(
+                                uniqueId,
+                                fileName,
+                                applicantList,
+                                global.userLoggedIn['username'],
+                                formattedDate,
+                                false,
+                              );
+                            }
+                            setStateSB(() {});
+                          },
+                          child: const Text("Add"),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                        padding: const EdgeInsets.all(7),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          mainAxisExtent: 130,
+                          mainAxisSpacing: 5.0,
+                        ),
+                        itemCount: global.batchData.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BatchDetail(
+                                      cameras: widget.cameras,
+                                      batchData: global.batchData[index]
+                                          ['applicants'],
+                                      name: global.batchData[index]['name'],
+                                    ),
+                                  ),
+                                );
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 12,
+                                            bottom: 2,
+                                            top: 10,
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              global.batchData[index]['name'],
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 19,
+                                                fontWeight: FontWeight.bold,
+                                                color: HexColor("#35408f"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: PopupMenuButton<int>(
+                                            itemBuilder: (context) => [
+                                              PopupMenuItem(
+                                                child: const Text('Archive'),
+                                                value: 1,
+                                                onTap: () {
+                                                  BackEndPy.editApplicantList(
+                                                      global.batchData[index]
+                                                          ['_id'],
+                                                      true);
+                                                  global.batchDataArchive.add(
+                                                      global.batchData[index]);
+                                                  global.batchData.removeWhere(
+                                                      (item) =>
+                                                          item['_id'] ==
+                                                          global.batchData[
+                                                              index]['_id']);
+                                                  setState(() {});
+                                                },
+                                              ),
+                                              PopupMenuItem(
+                                                child: const Text('Delete'),
+                                                value: 2,
+                                                onTap: () {
+                                                  BackEndPy.deleteApplicantList(
+                                                      global.batchData[index]
+                                                          ['_id']);
+                                                  global.batchData.removeWhere(
+                                                      (item) =>
+                                                          item['_id'] ==
+                                                          global.batchData[
+                                                              index]['_id']);
+                                                  setState(() {});
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 16,
+                                            top: 5,
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              'Number of Applicants: ${global.batchData[index]['applicants'].length}',
+                                              style: GoogleFonts.prompt(
+                                                fontSize: 10,
+                                                color: HexColor("#35408f"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 16,
+                                            top: 5,
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
+                                              style: GoogleFonts.prompt(
+                                                fontSize: 10,
+                                                color: HexColor("#35408f"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 16,
+                                            top: 5,
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
+                                              style: GoogleFonts.prompt(
+                                                fontSize: 10,
+                                                color: HexColor("#35408f"),
+                                              ),
+                                              overflow: TextOverflow.fade,
+                                              softWrap: false,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16,
+                                        top: 5,
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                          global.batchData[index]['name'],
+                                          style: GoogleFonts.prompt(
+                                            fontSize: 12,
+                                            color: HexColor("#35408f"),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              // Replace Gridview count to GridView builder
-              Flexible(
-  flex: 2,
-  fit: FlexFit.loose,
-  child: GridView.builder(
-    padding: EdgeInsets.all(7),
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 1,
-      mainAxisExtent: 130,
-      mainAxisSpacing: 5.0,
-    ),
-    itemCount: global.batchData.length,
-    itemBuilder: (context, index) {
-      return InkWell(
-        onTap: () {
-          setState(() {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => BatchDetail(cameras: widget.cameras, batchData: global.batchData[index]['applicants'], name: global.batchData[index]['name'],)),
-            );
-          });
-        },
-        child: Padding(
-          padding: EdgeInsets.all(3.0),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  offset: Offset(0, 3),
-                )
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 12,
-                        bottom: 2,
-                        top: 10,
-                      ),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          global.batchData[index]['name'],
-                          style: GoogleFonts.poppins(
-                            fontSize: 19,
-                            fontWeight: FontWeight.bold,
-                            color: HexColor("#35408f"),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: PopupMenuButton<int>(
-                        itemBuilder: (context) => [
-                          PopupMenuItem(
-                                          child: Text('Archive'),
-                                          value: 1,
-                                          onTap: () {
-                                            BackEndPy.editApplicantList(
-                                                global.batchData[index]['_id'], true);
-                                            global.batchDataArchive.add(global.batchData[index]);
-                                            global.batchData.removeWhere(
-                                                (item) =>
-                                                    item['_id'] ==
-                                                    global.batchData[index]['_id']);
-                                            setState(() {});
-                                          },
-                                        ),
-                                        PopupMenuItem(
-                                          child: Text('Delete'),
-                                          value: 2,
-                                          onTap: () {
-                                            BackEndPy.deleteApplicantList(
-                                                global.batchData[index]['_id']);
-                                            global.batchData.removeWhere(
-                                                (item) =>
-                                                    item['_id'] ==
-                                                    global.batchData[index]['_id']);
-                                            setState(() {});
-                                          },
-                                        ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        top: 5,
-                      ),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          'Number of Applicants: ${global.batchData[index]['applicants'].length}',
-                          style: GoogleFonts.prompt(
-                            fontSize: 10,
-                            color: HexColor("#35408f"),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        top: 5,
-                      ),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
-                          style: GoogleFonts.prompt(
-                            fontSize: 10,
-                            color: HexColor("#35408f"),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        top: 5,
-                      ),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
-                          style: GoogleFonts.prompt(
-                            fontSize: 10,
-                            color: HexColor("#35408f"),
-                          ),
-                          overflow: TextOverflow.fade,
-                          softWrap: false,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    top: 5,
-                  ),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      global.batchData[index]['name'],
-                      style: GoogleFonts.prompt(
-                        fontSize: 12,
-                        color: HexColor("#35408f"),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    },
-  ),
-),
-
-
             ],
           ),
         ),
