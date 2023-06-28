@@ -16,9 +16,9 @@ class BatchDetail extends StatefulWidget {
   const BatchDetail({
     Key? key,
     required this.batchData,
-    required this.name, required this.cameras,
+    required this.name,
+    required this.cameras,
   }) : super(key: key);
-
 
   @override
   State<BatchDetail> createState() => _BatchDetailState();
@@ -118,56 +118,56 @@ class _BatchDetailState extends State<BatchDetail> {
           });
     }
 
-    return StatefulBuilder(
-      builder: (context, setStateSB) {
-        return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.camera_alt),
-            backgroundColor: HexColor('#35408f'),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ScannerPage(cameras: widget.cameras),
-                ),
-              );
-            },
+    return StatefulBuilder(builder: (context, setStateSB) {
+      return Scaffold(
+        // floatingActionButton: FloatingActionButton(
+        //   child: Icon(Icons.camera_alt),
+        //   backgroundColor: HexColor('#35408f'),
+        //   onPressed: () {
+        //     Navigator.of(context).push(
+        //       MaterialPageRoute(
+        //         builder: (context) => ScannerPage(cameras: widget.cameras),
+        //       ),
+        //     );
+        //   },
+        // ),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: HexColor('#35408f')),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          centerTitle: true,
+          title: Text(
+            widget.name,
+            style:
+                GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
           ),
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: HexColor('#35408f')),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            centerTitle: true,
-            title: Text(
-              widget.name,
-              style: GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
-            ),
-            backgroundColor: Colors.white,
-            actions: [
-              PopupMenuButton(
-                icon: Icon(
-                  Icons.sort,
-                  color: Colors.grey,
-                ),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: Text("Sort by name"),
-                    onTap: () {},
-                  ),
-                  PopupMenuItem(
-                    child: Text("Sort by number"),
-                    onTap: () {},
-                  ),
-                  PopupMenuItem(
-                    child: Text("Sort by status"),
-                    onTap: () {},
-                  ),
-                ],
+          actions: [
+            PopupMenuButton(
+              icon: Icon(
+                Icons.sort,
+                color: Colors.grey,
               ),
-            ],
-          ),
-          /*  body: Padding(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text("Sort by name"),
+                  onTap: () {},
+                ),
+                PopupMenuItem(
+                  child: Text("Sort by number"),
+                  onTap: () {},
+                ),
+                PopupMenuItem(
+                  child: Text("Sort by status"),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+        /*  body: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: ListView.builder(
@@ -231,130 +231,144 @@ class _BatchDetailState extends State<BatchDetail> {
                   ),
                 ),
               ), */
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: GridView.count(
-                crossAxisCount: 1,
-                childAspectRatio: 3,
-                mainAxisSpacing: 5.0,
-                children: widget.batchData.map((value) {
-                  return InkWell(
-                    onTap: () {
-                      showAlertDialog(context, value);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 3,
-                                blurRadius: 3,
-                                offset: Offset(2, 3),
-                              )
-                            ]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    value['name'],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: GridView.count(
+              crossAxisCount: 1,
+              childAspectRatio: 3,
+              mainAxisSpacing: 5.0,
+              children: widget.batchData.map((value) {
+                return InkWell(
+                  onTap: () {
+                    showAlertDialog(context, value);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 3,
+                              blurRadius: 3,
+                              offset: Offset(2, 3),
+                            )
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  value['name'],
+                                  softWrap: false,
+                                  overflow: TextOverflow.fade,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    color: HexColor("#35408f"),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    PopupMenuButton<int>(
+                                      itemBuilder: (context) => [
+                                        PopupMenuItem(
+                                          child: Text('Details'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                  child: PopupMenuButton(
+                                    onSelected: (thevalue) {
+                                      setStateSB(() {
+                                        if (thevalue == 1) {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => ViewAnswerKey(
+                                                  englishKey: value[
+                                                      'applicantKeyEnglish'],
+                                                  scienceKey: value[
+                                                      'applicantKeyScience'],
+                                                  mathematicsKey: value[
+                                                      'applicantKeyMathematics'],
+                                                  aptitudeKey: value[
+                                                      'applicantKeyAptitude']),
+                                            ),
+                                          );
+                                        }
+                                        if (thevalue == 2) {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ScannerPage(
+                                                          cameras:
+                                                              widget.cameras)));
+                                        }
+                                      });
+                                    },
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        child: Text('View'),
+                                        value: 1,
+                                      ),
+                                      PopupMenuItem(
+                                        value: 2,
+                                        child: Text('Scan Paper'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Applicant ID: ${value['id']}',
                                     softWrap: false,
                                     overflow: TextOverflow.fade,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 20,
-                                      color: HexColor("#35408f"),
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                        fontSize: 14,
+                                        color: HexColor("#35408f")),
                                   ),
-                                  Spacer(),
-                                  InkWell(
-                                    onTap: () {
-                                      PopupMenuButton<int>(
-                                        itemBuilder: (context) => [
-                                          PopupMenuItem(
-                                            child: Text('Details'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                    child: PopupMenuButton(
-                                      onSelected:  (thevalue) {
-                                        setStateSB(() {
-                                          if (thevalue == 1){
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ViewAnswerKey(englishKey: value['applicantKeyEnglish'],scienceKey: value['applicantKeyScience'], mathematicsKey: value['applicantKeyMathematics'],aptitudeKey: value['applicantKeyAptitude']),
-                                              ),
-                                            );
-                                          }
-                                        });
-                                      },
-                                      itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                          child: Text('View'),
-                                          value: 1,
-                                        ),
-                                        // PopupMenuItem(
-                                        //   value: 2,
-                                        //   child: Text('Delete'),
-                                        //   onTap: () {},
-                                        // ),
-                                      ],
-                                    ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5.0,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    (value['status'].toString() == 'true')
+                                        ? "Status: Submitted"
+                                        : "Status: Not yet taken",
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 14, color: Colors.black),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Applicant ID: ${value['id']}',
-                                      softWrap: false,
-                                      overflow: TextOverflow.fade,
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 14, color: HexColor("#35408f")),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5.0,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      (value['status'].toString() == 'true')
-                                          ? "Status: Submitted"
-                                          : "Status: Not yet taken",
-                                      softWrap: false,
-                                      overflow: TextOverflow.fade,
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 14, color: Colors.black),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                }).toList(),
-              ),
+                  ),
+                );
+              }).toList(),
             ),
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }
