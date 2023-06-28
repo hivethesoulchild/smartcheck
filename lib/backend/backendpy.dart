@@ -127,18 +127,20 @@ class BackEndPy {
   }
 
   static Future<void> uploadImage(dynamic imageFile) async {
-    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
-    var length = await imageFile.length();
-    final url = Uri.parse('$baseUrl/uploadImage/');
-
-    var request = http.MultipartRequest('POST', url);
-    var multipartFile = http.MultipartFile(
-      'file',
-      stream,
-      length,
-      filename: basename(imageFile.path),
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$baseUrl/upload'),
     );
-    request.files.add(multipartFile);
+    File file = File(imageFile.path);
+    // Attach the image file to the request
+    request.files.add(
+      http.MultipartFile(
+        'file',
+        file.readAsBytes().asStream(),
+        file.lengthSync(),
+        filename: imageFile.path.split('/').last,
+      ),
+    );
 
     var response = await request.send();
     if (response.statusCode == 200) {
