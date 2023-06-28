@@ -247,9 +247,9 @@ class _ScannerPageState extends State<ScannerPage> {
                           padding: const EdgeInsets.all(0),
                           child: Center(
                             child: SizedBox(
-                              height: MediaQuery.of(context).size.height < 360
-                                  ? 700
-                                  : 750,
+                              height: MediaQuery.of(context).size.width < 360
+                                  ? 600
+                                  : 700,
                               width: double.infinity,
                               child: CameraPreview(cameraController),
                             ),
