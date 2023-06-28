@@ -31,7 +31,7 @@ class _ScannerPageState extends State<ScannerPage> {
   void startCamera() async {
     cameraController = CameraController(
       widget.cameras[0],
-      ResolutionPreset.ultraHigh,
+      ResolutionPreset.max,
       enableAudio: false,
     );
 
@@ -39,6 +39,8 @@ class _ScannerPageState extends State<ScannerPage> {
       if (!mounted) {
         return;
       }
+      cameraController.setFocusMode(FocusMode.auto);
+      cameraController.setExposureMode(ExposureMode.auto);
       setState(() {});
     }).catchError((e) {
       print(e);
