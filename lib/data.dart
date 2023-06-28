@@ -10,15 +10,16 @@ var userList = [];
 var userLoggedIn;
 
 void setAnswerKeyCache(Map data) async {
-  print(data);
   answer_key = [[], [], [], []];
 
-  for (int i = 0; i <= 40; i++) {
+  for (int i = 0; i <= 30; i++) {
     answer_key[0].add(data["english"][i]);
     answer_key[1].add(data["science"][i]);
     answer_key[2].add(data["mathematics"][i]);
     answer_key[3].add(data["aptitude"][i]);
   }
+
+  print(answer_key);
 }
 
 void updateAnswerKeyCache(String subject, String answer, int number) {

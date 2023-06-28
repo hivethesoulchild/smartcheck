@@ -303,10 +303,12 @@ class _BatchDetailState extends State<BatchDetail> {
                                           );
                                         }
                                         if (thevalue == 2) {
+                                          print(value);
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       ScannerPage(
+                                                        id: value['id'],
                                                           cameras:
                                                               widget.cameras)));
                                         }
