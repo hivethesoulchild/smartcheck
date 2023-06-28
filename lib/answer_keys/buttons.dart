@@ -21,8 +21,8 @@ class InputChipotleState extends State<InputChipotle>
     with TickerProviderStateMixin {
   var updatedIndex;
   var _selectedIndex;
-  List<String> _options = ['A', 'B', 'C', 'D'];
-  List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
+  final List<String> _options = ['A', 'B', 'C', 'D', 'E'];
+  final List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   Widget _buildChips() {
     List<Widget> chips = [];
@@ -35,6 +35,18 @@ class InputChipotleState extends State<InputChipotle>
     } else if (widget.answer == _options[2]) {
       _selectedIndex = 2;
     } else if (widget.answer == _options[3]) {
+      _selectedIndex = 3;
+    } else {
+      _selectedIndex = 4;
+    }
+
+    if (widget.answer == _englishOptions[0]) {
+      _selectedIndex = 0;
+    } else if (widget.answer == _englishOptions[1]) {
+      _selectedIndex = 1;
+    } else if (widget.answer == _englishOptions[2]) {
+      _selectedIndex = 2;
+    } else if (widget.answer == _englishOptions[3]) {
       _selectedIndex = 3;
     } else {
       _selectedIndex = 4;
@@ -83,7 +95,7 @@ class InputChipotleState extends State<InputChipotle>
 
         chips.add(
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: choiceChip,
           ),
         );

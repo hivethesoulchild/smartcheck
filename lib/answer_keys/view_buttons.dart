@@ -13,7 +13,7 @@ class ViewChipotle extends StatefulWidget {
 class _ViewChipotleState extends State<ViewChipotle> {
   var updatedIndex;
   var _selectedIndex;
-  List<String> _options = ['A', 'B', 'C', 'D'];
+  List<String> _options = ['A', 'B', 'C', 'D', 'E'];
   List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   Widget _buildChips() {
@@ -33,68 +33,63 @@ class _ViewChipotleState extends State<ViewChipotle> {
       _selectedIndex = null;
     }
 
-    // if (updatedIndex == 0) {
-    //   _selectedIndex = 0;
-    // } else if (updatedIndex == 1) {
-    //   _selectedIndex = 1;
-    // } else if (updatedIndex == 2) {
-    //   _selectedIndex = 2;
-    // } else if (updatedIndex == 3) {
-    //   _selectedIndex = 3;
-    // }
+    bool isFiveLetters = widget.answer.length == 5;
 
-    for (int i = 0; i < _options.length; i++) {
-      ChoiceChip choiceChip = ChoiceChip(
-        selected: _selectedIndex == i,
-        label: Text(
-          _options[i],
-          style: GoogleFonts.poppins(
-              color: Colors.black, fontWeight: FontWeight.w700),
-        ),
-        elevation: 2,
-        pressElevation: 5,
-        shadowColor: Colors.teal,
-        backgroundColor: Colors.white,
-        selectedColor: Colors.lightGreenAccent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        disabledColor: Colors.white,
-      );
+    if (isFiveLetters) {
+      for (int i = 0; i < _englishOptions.length; i++) {
+        ChoiceChip choiceChip = ChoiceChip(
+          selected: _selectedIndex == i,
+          label: Text(
+            _englishOptions[i],
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontWeight: FontWeight.w700),
+          ),
+          elevation: 2,
+          pressElevation: 5,
+          shadowColor: Colors.teal,
+          backgroundColor: Colors.white,
+          selectedColor: Colors.lightGreenAccent,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          disabledColor: Colors.white,
+        );
 
-      chips.add(
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: choiceChip,
-        ),
-      );
-    }
+        chips.add(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: choiceChip,
+          ),
+        );
+      }
+    } else {
+      for (int i = 0; i < _options.length; i++) {
+        ChoiceChip choiceChip = ChoiceChip(
+          selected: _selectedIndex == i,
+          label: Text(
+            _options[i],
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontWeight: FontWeight.w700),
+          ),
+          elevation: 2,
+          pressElevation: 5,
+          shadowColor: Colors.teal,
+          backgroundColor: Colors.white,
+          selectedColor: Colors.lightGreenAccent,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          disabledColor: Colors.white,
+        );
 
-    for (int i = 0; i < _englishOptions.length; i++) {
-      ChoiceChip choiceChip = ChoiceChip(
-        selected: _selectedIndex == i,
-        label: Text(
-          _options[i],
-          style: GoogleFonts.poppins(
-              color: Colors.black, fontWeight: FontWeight.w700),
-        ),
-        elevation: 2,
-        pressElevation: 5,
-        shadowColor: Colors.teal,
-        backgroundColor: Colors.white,
-        selectedColor: Colors.lightGreenAccent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        disabledColor: Colors.white,
-      );
-
-      chips.add(
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: choiceChip,
-        ),
-      );
+        chips.add(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: choiceChip,
+          ),
+        );
+      }
     }
 
     return ListView(
-      // This next line does the trick.
       scrollDirection: Axis.horizontal,
       children: chips,
     );
