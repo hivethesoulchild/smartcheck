@@ -43,7 +43,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
                   'Analysis Chart',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -89,7 +89,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
                   'Manage Users',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -135,7 +135,7 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
                   'Answer Key',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
