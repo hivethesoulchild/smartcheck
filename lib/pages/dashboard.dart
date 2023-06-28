@@ -203,13 +203,13 @@ class _DashboardPageState extends State<DashboardPage> {
 
                                 var question40 = [];
 
-                                for (int i = 0; i < 40; i++) {
+                                for (int i = 0; i < 30; i++) {
                                   question40.add({"${i + 1}": -1});
                                 }
 
                                 var question15 = [];
 
-                                for (int i = 0; i < 15; i++) {
+                                for (int i = 0; i < 30; i++) {
                                   question15.add({"${i + 1}": -1});
                                 }
 

@@ -4,7 +4,9 @@ import '../data.dart' as global;
 
 class ViewAptitudeAnswerKey extends StatefulWidget {
   final dynamic answerKey;
-  const ViewAptitudeAnswerKey({super.key, required this.answerKey});
+
+  const ViewAptitudeAnswerKey({Key? key, required this.answerKey})
+      : super(key: key);
 
   @override
   State<ViewAptitudeAnswerKey> createState() => _ViewAptitudeAnswerKeyState();
@@ -13,8 +15,7 @@ class ViewAptitudeAnswerKey extends StatefulWidget {
 class _ViewAptitudeAnswerKeyState extends State<ViewAptitudeAnswerKey> {
   @override
   Widget build(BuildContext context) {
-
-     var row = <Widget>[];
+    var row = <Widget>[];
     for (int i = 0; i < 30; i++) {
       row.add(
         Row(
@@ -26,7 +27,7 @@ class _ViewAptitudeAnswerKeyState extends State<ViewAptitudeAnswerKey> {
             Center(
               child: SizedBox(
                 height: 50,
-                child: ViewChipotle(answer: widget.answerKey[i]['${i + 1}'].toString()),
+                child: ViewChipotle(answer: widget.answerKey[i].toString()),
                 width: 300,
               ),
             ),
@@ -41,7 +42,7 @@ class _ViewAptitudeAnswerKeyState extends State<ViewAptitudeAnswerKey> {
         height: 750,
         child: SingleChildScrollView(
           child: Column(
-            children: row
+            children: row,
           ),
         ),
       ),

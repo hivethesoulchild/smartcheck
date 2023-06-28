@@ -28,7 +28,7 @@ class _ViewMathAnswerKeyState extends State<ViewMathAnswerKey> {
             Center(
               child: SizedBox(
                 height: 50,
-                child: ViewChipotle(answer: widget.answerKey[i]['${i + 1}'].toString()),
+                child: ViewChipotle(answer: widget.answerKey[i].toString()),
                 width: 300,
               ),
             ),

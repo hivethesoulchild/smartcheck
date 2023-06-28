@@ -26,7 +26,7 @@ class _ViewEnglishAnswerKeyState extends State<ViewEnglishAnswerKey> {
               child: SizedBox(
                 height: 50,
                 width: 300,
-                child: ViewChipotle(answer: widget.answerKey[i]['${i + 1}'].toString()),
+                child: ViewChipotle(answer: widget.answerKey[i].toString()),
               ),
             ),
           ],
