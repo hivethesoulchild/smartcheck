@@ -17,7 +17,7 @@ class _ViewMathAnswerKeyState extends State<ViewMathAnswerKey> {
   Widget build(BuildContext context) {
 
      var row = <Widget>[];
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 30; i++) {
       row.add(
         Row(
           children: [
