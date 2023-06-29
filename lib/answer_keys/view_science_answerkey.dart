@@ -27,7 +27,7 @@ class _ViewScienceAnswerKeyState extends State<ViewScienceAnswerKey> {
             Center(
               child: SizedBox(
                 height: 50,
-                child: ViewChipotle(answer: widget.answerKey[i].toString()),
+                child: ViewChipotle(answer: widget.answerKey[i].toString(), optionType: 'science',),
                 width: 300,
               ),
             ),

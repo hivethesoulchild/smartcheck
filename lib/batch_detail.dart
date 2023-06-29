@@ -14,13 +14,13 @@ class BatchDetail extends StatefulWidget {
   final String name;
   final List<CameraDescription> cameras;
   final String batchId;
-  const BatchDetail({
-    Key? key,
-    required this.batchData,
-    required this.name,
-    required this.cameras,
-    required this.batchId
-  }) : super(key: key);
+  const BatchDetail(
+      {Key? key,
+      required this.batchData,
+      required this.name,
+      required this.cameras,
+      required this.batchId})
+      : super(key: key);
 
   @override
   State<BatchDetail> createState() => _BatchDetailState();
@@ -169,70 +169,6 @@ class _BatchDetailState extends State<BatchDetail> {
             ),
           ],
         ),
-        /*  body: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: ListView.builder(
-                    itemCount: global.batchData[i]['applicantList'].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          showDataAlert(i, index);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 3,
-                                    offset: Offset(2, 3),
-                                  )
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Applicant ID: ${global.batchData[i]['applicantList'][index]['id']}',
-                                          softWrap: false,
-                                          overflow: TextOverflow.fade,
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 14, color: HexColor("#35408f")),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          '${global.batchData[i]['applicantList'][index]['name']}',
-                                          softWrap: false,
-                                          overflow: TextOverflow.fade,
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 20, color: HexColor("#35408f")),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ), */
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
@@ -240,7 +176,8 @@ class _BatchDetailState extends State<BatchDetail> {
               crossAxisCount: 1,
               childAspectRatio: 3,
               mainAxisSpacing: 5.0,
-              children: widget.batchData.map((value) {
+              children: List.generate(widget.batchData.length, (index) {
+                final value = widget.batchData[index];
                 return InkWell(
                   onTap: () {
                     showAlertDialog(context, value);
@@ -249,16 +186,17 @@ class _BatchDetailState extends State<BatchDetail> {
                     padding: const EdgeInsets.all(2.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 3,
-                              blurRadius: 3,
-                              offset: Offset(2, 3),
-                            )
-                          ]),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 3,
+                            offset: Offset(2, 3),
+                          )
+                        ],
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
@@ -288,32 +226,35 @@ class _BatchDetailState extends State<BatchDetail> {
                                   },
                                   child: PopupMenuButton(
                                     onSelected: (thevalue) {
-                                      setStateSB(() {
+                                      setState(() {
                                         if (thevalue == 1) {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
-                                              builder: (context) => ViewAnswerKey(
-                                                  englishKey: value[
-                                                      'applicantKeyEnglish'],
-                                                  scienceKey: value[
-                                                      'applicantKeyScience'],
-                                                  mathematicsKey: value[
-                                                      'applicantKeyMathematics'],
-                                                  aptitudeKey: value[
-                                                      'applicantKeyAptitude']),
+                                              builder: (context) =>
+                                                  ViewAnswerKey(
+                                                englishKey: value[
+                                                    'applicantKeyEnglish'],
+                                                scienceKey: value[
+                                                    'applicantKeyScience'],
+                                                mathematicsKey: value[
+                                                    'applicantKeyMathematics'],
+                                                aptitudeKey: value[
+                                                    'applicantKeyAptitude'],
+                                              ),
                                             ),
                                           );
                                         }
                                         if (thevalue == 2) {
                                           print(value);
                                           Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ScannerPage(
-                                                        batchId: widget.batchId,
-                                                        id: value['id'],
-                                                          cameras:
-                                                              widget.cameras)));
+                                            MaterialPageRoute(
+                                              builder: (context) => ScannerPage(
+                                                batchId: widget.batchId,
+                                                id: index,
+                                                cameras: widget.cameras,
+                                              ),
+                                            ),
+                                          );
                                         }
                                       });
                                     },
@@ -339,8 +280,9 @@ class _BatchDetailState extends State<BatchDetail> {
                                     softWrap: false,
                                     overflow: TextOverflow.fade,
                                     style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: HexColor("#35408f")),
+                                      fontSize: 14,
+                                      color: HexColor("#35408f"),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -358,7 +300,9 @@ class _BatchDetailState extends State<BatchDetail> {
                                     softWrap: false,
                                     overflow: TextOverflow.fade,
                                     style: GoogleFonts.montserrat(
-                                        fontSize: 14, color: Colors.black),
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -369,7 +313,7 @@ class _BatchDetailState extends State<BatchDetail> {
                     ),
                   ),
                 );
-              }).toList(),
+              }),
             ),
           ),
         ),

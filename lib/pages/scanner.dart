@@ -172,8 +172,10 @@ class _ScannerPageState extends State<ScannerPage> {
 
     final XFile imageFile = await cameraController.takePicture();
     print('Image captured: ${imageFile.path}');
+    print(widget.id);
+    print(widget.batchId);
 
-    BackEndPy.uploadImage(imageFile);
+    BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
 
     final File? savedImage = await _saveImage(imageFile);
     Navigator.pop(context); // Dismiss the loading dialog

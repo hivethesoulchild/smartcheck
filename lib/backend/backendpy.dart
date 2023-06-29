@@ -126,28 +126,35 @@ class BackEndPy {
     print(response.body);
   }
 
-  static Future<void> uploadImage(dynamic imageFile) async {
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse('$baseUrl/upload'),
-    );
-    File file = File(imageFile.path);
-    // Attach the image file to the request
-    request.files.add(
-      http.MultipartFile(
-        'file',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
-        filename: imageFile.path.split('/').last,
-      ),
-    );
+  static Future<void> uploadImage(dynamic imageFile, String batchId, int id) async {
+  var request = http.MultipartRequest(
+    'POST',
+    Uri.parse('$baseUrl/upload'),
+  );
 
-    var response = await request.send();
-    if (response.statusCode == 200) {
-      print('Image uploaded successfully');
-      print(response);
-    } else {
-      print('Image upload failed with status code: ${response.statusCode}');
-    }
+  // Add batchId and id as fields in the request body
+  request.fields['batchId'] = batchId;
+  request.fields['id'] = id.toString();
+
+  File file = File(imageFile.path);
+
+  // Attach the image file to the request
+  request.files.add(
+    http.MultipartFile(
+      'file',
+      file.readAsBytes().asStream(),
+      file.lengthSync(),
+      filename: imageFile.path.split('/').last,
+    ),
+  );
+
+  var response = await request.send();
+  if (response.statusCode == 200) {
+    print('Image uploaded successfully');
+    print(response);
+  } else {
+    print('Image upload failed with status code: ${response.statusCode}');
   }
+}
+
 }

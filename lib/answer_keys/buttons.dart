@@ -6,12 +6,13 @@ class InputChipotle extends StatefulWidget {
   final String answer;
   final String number;
   final String subject;
-  const InputChipotle(
-      {Key? key,
-      required this.answer,
-      required this.number,
-      required this.subject})
-      : super(key: key);
+
+  const InputChipotle({
+    Key? key,
+    required this.answer,
+    required this.number,
+    required this.subject,
+  }) : super(key: key);
 
   @override
   State<InputChipotle> createState() => InputChipotleState();
@@ -19,109 +20,62 @@ class InputChipotle extends StatefulWidget {
 
 class InputChipotleState extends State<InputChipotle>
     with TickerProviderStateMixin {
-  var updatedIndex;
   var _selectedIndex;
   List<String> _options = ['A', 'B', 'C', 'D'];
   List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = getSelectedIndex(widget.answer);
+  }
+
+  int getSelectedIndex(String answer) {
+    if (_options.contains(answer)) {
+      return _options.indexOf(answer);
+    } else {
+      return _englishOptions.indexOf(answer);
+    }
+  }
+
+  List<String> getOptions() {
+    return widget.subject == 'english' ? _englishOptions : _options;
+  }
+
   Widget _buildChips() {
     List<Widget> chips = [];
-    bool isFiveLetters = widget.answer.length == 5;
+    List<String> options = getOptions();
 
-    if (widget.answer == _options[0]) {
-      _selectedIndex = 0;
-    } else if (widget.answer == _options[1]) {
-      _selectedIndex = 1;
-    } else if (widget.answer == _options[2]) {
-      _selectedIndex = 2;
-    } else if (widget.answer == _options[3]) {
-      _selectedIndex = 3;
-    } else {
-      _selectedIndex = 4;
-    }
+    for (int i = 0; i < options.length; i++) {
+      ChoiceChip choiceChip = ChoiceChip(
+        selected: _selectedIndex == i,
+        label: Text(
+          options[i],
+          style: GoogleFonts.poppins(color: Colors.black),
+        ),
+        elevation: 2,
+        pressElevation: 5,
+        shadowColor: Colors.teal,
+        backgroundColor: Colors.white,
+        selectedColor: Colors.lightGreenAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              _selectedIndex = i;
+              global.updateAnswerKeyCache(
+                  widget.subject, options[_selectedIndex], int.parse(widget.number) - 1);
+            }
+          });
+        },
+      );
 
-    if (updatedIndex == 0) {
-      _selectedIndex = 0;
-    } else if (updatedIndex == 1) {
-      _selectedIndex = 1;
-    } else if (updatedIndex == 2) {
-      _selectedIndex = 2;
-    } else if (updatedIndex == 3) {
-      _selectedIndex = 3;
-    } else if (updatedIndex == 4) {
-      _selectedIndex = 4;
-    }
-
-    if (isFiveLetters) {
-      for (int i = 0; i < _englishOptions.length; i++) {
-        ChoiceChip choiceChip = ChoiceChip(
-          selected: _selectedIndex == i,
-          label: Text(
-            _englishOptions[i],
-            style: GoogleFonts.poppins(color: Colors.black),
-          ),
-          elevation: 2,
-          pressElevation: 5,
-          shadowColor: Colors.teal,
-          backgroundColor: Colors.white,
-          selectedColor: Colors.lightGreenAccent,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          onSelected: (bool selected) {
-            setState(() {
-              if (selected) {
-                _selectedIndex = i;
-                updatedIndex = i;
-                global.updateAnswerKeyCache(
-                    widget.subject,
-                    _englishOptions[_selectedIndex],
-                    int.parse(widget.number) - 1);
-              }
-            });
-          },
-        );
-
-        chips.add(
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: choiceChip,
-          ),
-        );
-      }
-    } else {
-      for (int i = 0; i < _options.length; i++) {
-        ChoiceChip choiceChip = ChoiceChip(
-          selected: _selectedIndex == i,
-          label: Text(
-            _options[i],
-            style: GoogleFonts.poppins(color: Colors.black),
-          ),
-          elevation: 2,
-          pressElevation: 5,
-          shadowColor: Colors.teal,
-          backgroundColor: Colors.white,
-          selectedColor: Colors.lightGreenAccent,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          onSelected: (bool selected) {
-            setState(() {
-              if (selected) {
-                _selectedIndex = i;
-                updatedIndex = i;
-                global.updateAnswerKeyCache(widget.subject,
-                    _options[_selectedIndex], int.parse(widget.number) - 1);
-              }
-            });
-          },
-        );
-
-        chips.add(
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: choiceChip,
-          ),
-        );
-      }
+      chips.add(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 1),
+          child: choiceChip,
+        ),
+      );
     }
 
     return ListView(
@@ -134,7 +88,7 @@ class InputChipotleState extends State<InputChipotle>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(1.0),
         child: Column(
           children: <Widget>[
             Container(

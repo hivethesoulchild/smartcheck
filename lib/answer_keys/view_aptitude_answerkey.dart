@@ -27,7 +27,7 @@ class _ViewAptitudeAnswerKeyState extends State<ViewAptitudeAnswerKey> {
             Center(
               child: SizedBox(
                 height: 50,
-                child: ViewChipotle(answer: widget.answerKey[i].toString()),
+                child: ViewChipotle(answer: widget.answerKey[i].toString(), optionType: 'aptitude',),
                 width: 300,
               ),
             ),
