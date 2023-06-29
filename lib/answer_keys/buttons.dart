@@ -21,8 +21,8 @@ class InputChipotle extends StatefulWidget {
 class InputChipotleState extends State<InputChipotle>
     with TickerProviderStateMixin {
   var _selectedIndex;
-  final List<String> _options = ['A', 'B', 'C', 'D', 'E'];
-  final List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
+  List<String> _options = ['A', 'B', 'C', 'D'];
+  List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   @override
   void initState() {
