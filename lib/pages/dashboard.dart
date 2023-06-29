@@ -6,19 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:smartcheck/pages/answerkey.dart';
 import 'package:smartcheck/pages/archives.dart';
 import 'package:smartcheck/batch_detail.dart';
 import 'package:csv/csv.dart';
-import 'package:smartcheck/models/charts.dart';
 import 'package:smartcheck/models/settings.dart';
 import 'dart:convert' show utf8;
 import '../data.dart' as global;
 import '../routes/dashboard_buttons.dart';
 import '../backend/backendpy.dart';
 import 'package:uuid/uuid.dart';
-import 'package:file_support/file_support.dart';
 
 class Dashboard extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -285,11 +281,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   MaterialPageRoute(
                                     builder: (context) => BatchDetail(
                                       cameras: widget.cameras,
-                                      batchData: global.batchData[index]
-                                          ['applicants'],
-                                      name: global.batchData[index]['name'],
-                                      batchId: global.batchData[index]['_id']
-                                    ),
+                                      dataIndex: index,),
                                   ),
                                 );
                               });

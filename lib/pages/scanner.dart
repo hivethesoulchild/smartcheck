@@ -8,6 +8,8 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:path/path.dart' as path;
 import 'package:smartcheck/backend/backendpy.dart';
+import 'package:smartcheck/data.dart' as global;
+
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -15,7 +17,10 @@ class ScannerPage extends StatefulWidget {
   final String batchId;
 
   const ScannerPage(
-      {Key? key, required this.batchId, required this.cameras, required this.id})
+      {Key? key,
+      required this.batchId,
+      required this.cameras,
+      required this.id})
       : super(key: key);
 
   @override
@@ -178,6 +183,11 @@ class _ScannerPageState extends State<ScannerPage> {
     BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
 
     final File? savedImage = await _saveImage(imageFile);
+    Future.delayed(Duration(seconds: 2), () async {
+      // Code to be executed after the delay
+      final batchData = await BackEndPy.getAllApplicantList();
+      global.setBatchData(batchData);
+    });
     Navigator.pop(context); // Dismiss the loading dialog
 
     if (savedImage != null) {

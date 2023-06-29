@@ -10,16 +10,12 @@ import 'data.dart' as global;
 var data = [];
 
 class BatchDetail extends StatefulWidget {
-  final List batchData;
-  final String name;
   final List<CameraDescription> cameras;
-  final String batchId;
+  final int dataIndex;
   const BatchDetail(
       {Key? key,
-      required this.batchData,
-      required this.name,
-      required this.cameras,
-      required this.batchId})
+      required this.dataIndex,
+      required this.cameras,})
       : super(key: key);
 
   @override
@@ -45,6 +41,7 @@ class _BatchDetailState extends State<BatchDetail> {
 
   @override
   Widget build(BuildContext context) {
+    print(true);
     Future<dynamic> showAlertDialog(BuildContext context, dynamic value) async {
       var selectedItem = '';
       return showDialog(
@@ -122,17 +119,6 @@ class _BatchDetailState extends State<BatchDetail> {
 
     return StatefulBuilder(builder: (context, setStateSB) {
       return Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   child: Icon(Icons.camera_alt),
-        //   backgroundColor: HexColor('#35408f'),
-        //   onPressed: () {
-        //     Navigator.of(context).push(
-        //       MaterialPageRoute(
-        //         builder: (context) => ScannerPage(cameras: widget.cameras),
-        //       ),
-        //     );
-        //   },
-        // ),
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
@@ -141,7 +127,7 @@ class _BatchDetailState extends State<BatchDetail> {
           ),
           centerTitle: true,
           title: Text(
-            widget.name,
+            global.batchData[widget.dataIndex]["name"],
             style:
                 GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
           ),
@@ -176,8 +162,8 @@ class _BatchDetailState extends State<BatchDetail> {
               crossAxisCount: 1,
               childAspectRatio: 3,
               mainAxisSpacing: 5.0,
-              children: List.generate(widget.batchData.length, (index) {
-                final value = widget.batchData[index];
+              children: List.generate(global.batchData[widget.dataIndex]["applicants"].length, (index) {
+                final value = global.batchData[widget.dataIndex]["applicants"][index];
                 return InkWell(
                   onTap: () {
                     showAlertDialog(context, value);
@@ -249,7 +235,7 @@ class _BatchDetailState extends State<BatchDetail> {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => ScannerPage(
-                                                batchId: widget.batchId,
+                                                batchId: global.batchData[widget.dataIndex]["_id"],
                                                 id: index,
                                                 cameras: widget.cameras,
                                               ),
