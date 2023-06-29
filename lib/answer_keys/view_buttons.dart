@@ -14,8 +14,14 @@ class ViewChipotle extends StatefulWidget {
 }
 
 class _ViewChipotleState extends State<ViewChipotle> {
+<<<<<<< HEAD
   int _selectedIndex = -1;
   List<String> _options = ['A', 'B', 'C', 'D'];
+=======
+  var updatedIndex;
+  var _selectedIndex;
+  List<String> _options = ['A', 'B', 'C', 'D', 'E'];
+>>>>>>> f0b42ff11aa45532680f907c8979c2c84c32148f
   List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   @override
@@ -41,6 +47,7 @@ class _ViewChipotleState extends State<ViewChipotle> {
     }
   }
 
+<<<<<<< HEAD
   List<String> getOptions() {
     return widget.optionType == 'english' ? _englishOptions : _options;
   }
@@ -79,6 +86,66 @@ class _ViewChipotleState extends State<ViewChipotle> {
 
     return Wrap(
       spacing: 2,
+=======
+    bool isFiveLetters = widget.answer.length == 5;
+
+    if (isFiveLetters) {
+      for (int i = 0; i < _englishOptions.length; i++) {
+        ChoiceChip choiceChip = ChoiceChip(
+          selected: _selectedIndex == i,
+          label: Text(
+            _englishOptions[i],
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontWeight: FontWeight.w700),
+          ),
+          elevation: 2,
+          pressElevation: 5,
+          shadowColor: Colors.teal,
+          backgroundColor: Colors.white,
+          selectedColor: Colors.lightGreenAccent,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          disabledColor: Colors.white,
+        );
+
+        chips.add(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: choiceChip,
+          ),
+        );
+      }
+    } else {
+      for (int i = 0; i < _options.length; i++) {
+        ChoiceChip choiceChip = ChoiceChip(
+          selected: _selectedIndex == i,
+          label: Text(
+            _options[i],
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontWeight: FontWeight.w700),
+          ),
+          elevation: 2,
+          pressElevation: 5,
+          shadowColor: Colors.teal,
+          backgroundColor: Colors.white,
+          selectedColor: Colors.lightGreenAccent,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          disabledColor: Colors.white,
+        );
+
+        chips.add(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: choiceChip,
+          ),
+        );
+      }
+    }
+
+    return ListView(
+      scrollDirection: Axis.horizontal,
+>>>>>>> f0b42ff11aa45532680f907c8979c2c84c32148f
       children: chips,
     );
   }
