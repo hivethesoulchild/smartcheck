@@ -267,8 +267,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           crossAxisCount: 1,
                           mainAxisExtent:
                               MediaQuery.of(context).size.width < 380
-                                  ? 180
-                                  : 120,
+                                  ? 200
+                                  : 150,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
@@ -281,7 +281,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   MaterialPageRoute(
                                     builder: (context) => BatchDetail(
                                       cameras: widget.cameras,
-                                      dataIndex: index,),
+                                      dataIndex: index,
+                                    ),
                                   ),
                                 );
                               });
