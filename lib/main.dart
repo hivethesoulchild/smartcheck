@@ -7,7 +7,7 @@ import 'package:smartcheck/pages/answerkey.dart';
 import 'package:smartcheck/pages/dashboard.dart';
 import 'package:smartcheck/pages/login.dart';
 import 'package:smartcheck/pages/scanner.dart';
-import 'package:smartcheck/models/user_dashboard.dart';
+import 'package:smartcheck/pages/user_dashboard.dart';
 import 'package:smartcheck/pages/splash_screen.dart';
 import 'package:smartcheck/pages/user_access.dart';
 import 'backend/backendpy.dart';
