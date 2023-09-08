@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/data.dart' as global;
 import 'package:smartcheck/models/login_loading.dart';
-import 'package:smartcheck/models/user_dashboard.dart';
+import 'package:smartcheck/pages/user_dashboard.dart';
 import 'package:smartcheck/pages/dashboard.dart';
 
 class Login extends StatefulWidget {
