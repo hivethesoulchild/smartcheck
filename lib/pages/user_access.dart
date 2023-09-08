@@ -211,116 +211,117 @@ class _UserAccessState extends State<UserAccess> {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(builder: (context, setStateSB) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            contentPadding: EdgeInsets.only(top: 10.0),
-            title: Text(
-              'Add User',
-              style: GoogleFonts.poppins(),
-            ),
-            content: SingleChildScrollView(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 250,
-                    child: TextFormField(
-                      controller: newUsernameController,
-                      decoration: InputDecoration(
-                        hintText: 'Username',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 250,
-                    child: TextFormField(
-                      obscureText: true,
-                      controller: newPasswordController,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 250,
-                    child: DropdownButton(
-                      hint: Text("Select role.."),
-                      dropdownColor: Colors.white,
-                      items: superuser
-                          .map<DropdownMenuItem<String>>(
-                              (String value) => DropdownMenuItem<String>(
-                                    child: Text(value),
-                                    value: value,
-                                  ))
-                          .toList(),
-                      onChanged: (value) {
-                        setStateSB(
-                          () {
-                            setState(() {
-                              selectedValue = value.toString();
-                              print(value);
-                            });
-                          },
-                        );
-                      },
-                      value: selectedValue,
-                    ),
-                  )
-                ],
+        return StatefulBuilder(
+          builder: (context, setStateSB) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
               ),
-            ),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancel'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  textStyle: GoogleFonts.poppins(),
-                  foregroundColor: Colors.white,
+              contentPadding: EdgeInsets.only(top: 10.0),
+              title: Text(
+                'Add User',
+                style: GoogleFonts.poppins(),
+              ),
+              content: SingleChildScrollView(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 250,
+                      child: TextFormField(
+                        controller: newUsernameController,
+                        decoration: InputDecoration(
+                          hintText: 'Username',
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 250,
+                      child: TextFormField(
+                        obscureText: true,
+                        controller: newPasswordController,
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 250,
+                      child: DropdownButton(
+                        hint: Text("Select role.."),
+                        dropdownColor: Colors.white,
+                        items: superuser
+                            .map<DropdownMenuItem<String>>(
+                                (String value) => DropdownMenuItem<String>(
+                                      child: Text(value),
+                                      value: value,
+                                    ))
+                            .toList(),
+                        onChanged: (value) {
+                          setStateSB(
+                            () {
+                              setState(() {
+                                selectedValue = value.toString();
+                                print(value);
+                              });
+                            },
+                          );
+                        },
+                        value: selectedValue,
+                      ),
+                    )
+                  ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  var uuid = const Uuid();
-                  var uniqueId = uuid.v4();
-                  BackEndPy.addUser(newUsernameController.text,
-                      newPasswordController.text, true, selectedValue);
-                  global.userList.add({
-                    "id": uniqueId,
-                    "username": newUsernameController.text,
-                    "password": newPasswordController.text,
-                    "role": selectedValue,
-                    "isActive": true
-                  });
-                  setState(() {});
-                  Fluttertoast.showToast(
-                    msg: "User added!",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.grey,
-                    textColor: Colors.white,
-                    fontSize: 16.0,
-                  );
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    textStyle: GoogleFonts.poppins(),
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    var uuid = const Uuid();
+                    var uniqueId = uuid.v4();
+                    BackEndPy.addUser(newUsernameController.text,
+                        newPasswordController.text, true, selectedValue);
+                    global.userList.add({
+                      "id": uniqueId,
+                      "username": newUsernameController.text,
+                      "password": newPasswordController.text,
+                      "role": selectedValue,
+                      "isActive": true
+                    });
+                    setState(() {});
+                    Fluttertoast.showToast(
+                      msg: "User added!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.grey,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
 
-                  Navigator.pop(context);
-                },
-                child: Text('Done'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  textStyle: GoogleFonts.poppins(),
-                  foregroundColor: HexColor("#35408F"),
+                    Navigator.pop(context);
+                  },
+                  child: Text('Done'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    textStyle: GoogleFonts.poppins(),
+                    foregroundColor: HexColor("#35408F"),
+                  ),
                 ),
-              ),
-            ],
-          );
-        });
-        ;
+              ],
+            );
+          },
+        );
       },
     );
   }
