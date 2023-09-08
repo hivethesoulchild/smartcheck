@@ -12,11 +12,12 @@ import 'package:smartcheck/pages/splash_screen.dart';
 import 'package:smartcheck/pages/user_access.dart';
 import 'backend/backendpy.dart';
 
-
-Future <void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
-  runApp( MyApp(cameras: cameras,));
+  runApp(MyApp(
+    cameras: cameras,
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,15 +25,15 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.cameras}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SmartCheck',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(cameras: cameras,),
+      home: SplashScreen(
+        cameras: cameras,
+      ),
     );
   }
 }
-
