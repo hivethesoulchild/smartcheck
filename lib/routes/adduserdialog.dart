@@ -11,32 +11,32 @@ class AddUserDialog extends StatefulWidget {
 }
 
 class _AddUserDialogState extends State<AddUserDialog> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void showAddUserDialog(BuildContext context, String username, String password) {
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
-      contentPadding: EdgeInsets.only(top: 10.0),
+      contentPadding: const EdgeInsets.only(top: 10.0),
       title: Text(
         'Add User',
         style: GoogleFonts.poppins(),
       ),
       content: SingleChildScrollView(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             TextFormField(
               controller: _usernameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Username',
               ),
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Password',
               ),
             ),
@@ -53,7 +53,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
 
             Navigator.pop(context);
           },
-          child: Text('Done'),
+          child: const Text('Done'),
         ),
       ],
     );
@@ -70,13 +70,13 @@ class _AddUserDialogState extends State<AddUserDialog> {
     return Container(
       alignment: Alignment.topCenter,
       child: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ElevatedButton(
           onPressed: () {
             showAddUserDialog(context, _usernameController.text, _passwordController.text);
           },
           style: ElevatedButton.styleFrom(
-            primary: HexColor('#35408f'),
+            backgroundColor: HexColor('#35408f'),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
           ),
           child: Text(

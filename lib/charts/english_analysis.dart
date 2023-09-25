@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
-import 'package:flutter/widgets.dart';
 
 class BatchChart {
   final String batch;
@@ -134,24 +133,24 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
             ),
             actions: [
               PopupMenuButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.sort,
                   color: Colors.grey,
                 ),
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    child: Text("Sort by date"),
+                    child: const Text("Sort by date"),
                     onTap: () {},
                   ),
                   PopupMenuItem(
-                    child: Text("Sort by school"),
+                    child: const Text("Sort by school"),
                     onTap: () {},
                   ),
                 ],
               ),
             ],
             bottom: TabBar(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               labelColor: HexColor('#35408f'),
               indicatorColor: HexColor('#35408f'),
               labelStyle: GoogleFonts.poppins(
@@ -180,10 +179,10 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
             children: [
               Center(
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
@@ -196,8 +195,8 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                                     .map<DropdownMenuItem<String>>(
                                         (String value) =>
                                             DropdownMenuItem<String>(
-                                              child: Text(value),
                                               value: value,
+                                              child: Text(value),
                                             ))
                                     .toList(),
                                 onChanged: (String? value) {
@@ -208,7 +207,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
@@ -220,7 +219,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                         ),
                         child: charts.BarChart(
                           series,
-                          behaviors: [new charts.SeriesLegend()],
+                          behaviors: [charts.SeriesLegend()],
                         ),
                       ),
                     ],
@@ -229,10 +228,10 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
               ),
               Center(
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
@@ -245,8 +244,8 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                                     .map<DropdownMenuItem<String>>(
                                         (String value) =>
                                             DropdownMenuItem<String>(
-                                              child: Text(value),
                                               value: value,
+                                              child: Text(value),
                                             ))
                                     .toList(),
                                 onChanged: (String? value) {
@@ -257,7 +256,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
@@ -269,7 +268,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                         ),
                         child: charts.BarChart(
                           series2,
-                          behaviors: [new charts.SeriesLegend()],
+                          behaviors: [charts.SeriesLegend()],
                         ),
                       ),
                     ],
@@ -278,10 +277,10 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
               ),
               Center(
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
@@ -294,8 +293,8 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                                     .map<DropdownMenuItem<String>>(
                                         (String value) =>
                                             DropdownMenuItem<String>(
-                                              child: Text(value),
                                               value: value,
+                                              child: Text(value),
                                             ))
                                     .toList(),
                                 onChanged: (String? value) {
@@ -306,7 +305,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
@@ -318,7 +317,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                         ),
                         child: charts.BarChart(
                           series3,
-                          behaviors: [new charts.SeriesLegend()],
+                          behaviors: [charts.SeriesLegend()],
                         ),
                       ),
                     ],
@@ -327,10 +326,10 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
               ),
               Center(
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
@@ -343,8 +342,8 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                                     .map<DropdownMenuItem<String>>(
                                         (String value) =>
                                             DropdownMenuItem<String>(
-                                              child: Text(value),
                                               value: value,
+                                              child: Text(value),
                                             ))
                                     .toList(),
                                 onChanged: (String? value) {
@@ -355,7 +354,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Container(
@@ -367,7 +366,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                         ),
                         child: charts.BarChart(
                           series4,
-                          behaviors: [new charts.SeriesLegend()],
+                          behaviors: [charts.SeriesLegend()],
                         ),
                       ),
                     ],

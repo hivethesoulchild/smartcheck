@@ -5,7 +5,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/data.dart' as global;
-import 'package:smartcheck/models/login_loading.dart';
 import 'package:smartcheck/pages/user_dashboard.dart';
 import 'package:smartcheck/pages/dashboard.dart';
 
@@ -211,9 +210,9 @@ class _LoginState extends State<Login> {
                                   fontSize: 18,
                                 ),
                               )
-                            : Row(
+                            : const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   SizedBox(
                                     width: 15,
                                     height: 15,

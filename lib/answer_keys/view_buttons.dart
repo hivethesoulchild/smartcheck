@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../data.dart' as global;
 
 class ViewChipotle extends StatefulWidget {
   final String answer;
@@ -15,8 +14,8 @@ class ViewChipotle extends StatefulWidget {
 
 class _ViewChipotleState extends State<ViewChipotle> {
   int _selectedIndex = -1;
-  List<String> _options = ['A', 'B', 'C', 'D'];
-  List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
+  final List<String> _options = ['A', 'B', 'C', 'D'];
+  final List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   @override
   void initState() {

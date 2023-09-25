@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'buttons.dart';
 import '../data.dart' as global;
 
@@ -15,7 +14,7 @@ class _MathAnswerKeyState extends State<MathAnswerKey> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        body: Container(
+        body: SizedBox(
           height: 750,
           child: SingleChildScrollView(
             child: Column(
@@ -30,12 +29,12 @@ class _MathAnswerKeyState extends State<MathAnswerKey> {
                       Center(
                         child: SizedBox(
                           height: 50,
+                          width: 300,
                           child: InputChipotle(
                             answer: global.answer_key[2][i],
                             number: "${i + 1}",
                             subject: 'mathematics',
                           ),
-                          width: 300,
                         ),
                       ),
                     ],

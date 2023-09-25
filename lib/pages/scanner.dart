@@ -1,12 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:io';
-import 'dart:ui';
-import 'package:path/path.dart' as path;
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/data.dart' as global;
 
@@ -113,7 +109,7 @@ class _ScannerPageState extends State<ScannerPage> {
                       child: Text(value),
                     );
                   }).toList(),
-                  onChanged: (value) => null,
+                  onChanged: (value) {},
                   value: list.first,
                   isExpanded: true,
                 ),
@@ -183,7 +179,7 @@ class _ScannerPageState extends State<ScannerPage> {
     BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
 
     final File? savedImage = await _saveImage(imageFile);
-    Future.delayed(Duration(seconds: 2), () async {
+    Future.delayed(const Duration(seconds: 2), () async {
       // Code to be executed after the delay
       final batchData = await BackEndPy.getAllApplicantList();
       global.setBatchData(batchData);
@@ -232,7 +228,7 @@ class _ScannerPageState extends State<ScannerPage> {
 
     // Creating a list of dummy shapes (rectangles)
     List<Rect> shapes = [
-      Rect.fromLTWH(17, 120, 378, 475),
+      const Rect.fromLTWH(17, 120, 378, 475),
     ];
 
     return shapes;
@@ -345,7 +341,7 @@ class _ScannerPageState extends State<ScannerPage> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [color1, color2, color3],
-            stops: [0, 0.5, 1],
+            stops: const [0, 0.5, 1],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -365,8 +361,8 @@ class _LoadingDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
+        padding: const EdgeInsets.all(16),
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             CircularProgressIndicator(),

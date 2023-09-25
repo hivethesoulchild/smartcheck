@@ -47,7 +47,7 @@ class _ChartState extends State<Chart> {
   @override
   void initState() {
     Timer? timer;
-    timer = Timer.periodic(Duration(milliseconds: 1000), (_) {
+    timer = Timer.periodic(const Duration(milliseconds: 1000), (_) {
       setState(() {
         percent += 10;
         if (percent >= 50) {
@@ -88,29 +88,29 @@ class _ChartState extends State<Chart> {
           ),
           actions: [
             PopupMenuButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.sort,
                 color: Colors.grey,
               ),
               itemBuilder: (context) => [
                 PopupMenuItem(
-                  child: Text("Sort by date"),
+                  child: const Text("Sort by date"),
                   onTap: () {},
                 ),
                 PopupMenuItem(
-                  child: Text("Sort by school"),
+                  child: const Text("Sort by school"),
                   onTap: () {},
                 ),
               ],
             ),
           ],
           bottom: TabBar(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             labelColor: HexColor('#35408f'),
             indicatorColor: HexColor('#35408f'),
             labelStyle: GoogleFonts.poppins(fontSize: 17,),
             unselectedLabelStyle: GoogleFonts.poppins(fontSize: 17,),
-            tabs: [
+            tabs: const [
               Tab(
                 text: "1-10",
               ),
@@ -130,14 +130,14 @@ class _ChartState extends State<Chart> {
           children: List.generate(4, (index) {
             return Center(
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Text(
                       'Item Analysis',
                       style: GoogleFonts.poppins(),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 2,
@@ -147,7 +147,7 @@ class _ChartState extends State<Chart> {
                       ),
                       child: charts.BarChart(
                         series,
-                        behaviors: [new charts.SeriesLegend()],
+                        behaviors: [charts.SeriesLegend()],
                       ),
                     ),
                   ],

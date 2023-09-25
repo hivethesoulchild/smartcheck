@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
-import 'package:flutter/widgets.dart';
 
 class AptitudeAnalysis extends StatefulWidget {
   const AptitudeAnalysis({Key? key}) : super(key: key);
@@ -65,29 +64,29 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
               ),
               actions: [
                 PopupMenuButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.sort,
                     color: Colors.grey,
                   ),
                   itemBuilder: (context) => [
                     PopupMenuItem(
-                      child: Text("Sort by date"),
+                      child: const Text("Sort by date"),
                       onTap: () {},
                     ),
                     PopupMenuItem(
-                      child: Text("Sort by school"),
+                      child: const Text("Sort by school"),
                       onTap: () {},
                     ),
                   ],
                 ),
               ],
               bottom: TabBar(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 labelColor: HexColor('#35408f'),
                 indicatorColor: HexColor('#35408f'),
                 labelStyle: GoogleFonts.poppins(fontSize: 17,),
                 unselectedLabelStyle: GoogleFonts.poppins(fontSize: 17,),
-                tabs: [
+                tabs: const [
                   Tab(
                     text: "1-15",
                   ),
@@ -98,7 +97,7 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
               children: [
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
                         SizedBox(
@@ -111,8 +110,8 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
                                         .map<DropdownMenuItem<String>>(
                                             (String value) =>
                                                 DropdownMenuItem<String>(
-                                                  child: Text(value),
                                                   value: value,
+                                                  child: Text(value),
                                                 ))
                                         .toList(),
                                     onChanged: (String? value) {
@@ -123,7 +122,7 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
                               ],
                             ),
                           ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height / 2,
@@ -133,7 +132,7 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
                           ),
                           child: charts.BarChart(
                             series,
-                            behaviors: [new charts.SeriesLegend()],
+                            behaviors: [charts.SeriesLegend()],
                           ),
                         ),
                       ],

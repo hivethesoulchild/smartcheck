@@ -18,7 +18,7 @@ import 'package:uuid/uuid.dart';
 
 class Dashboard extends StatefulWidget {
   final List<CameraDescription> cameras;
-  Dashboard({Key? key, required this.cameras}) : super(key: key);
+  const Dashboard({Key? key, required this.cameras}) : super(key: key);
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -36,7 +36,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     var applicantList = [];
-    final List _children = [
+    final List children = [
       DashboardPage(cameras: widget.cameras),
       const Archives(),
       Settings(
@@ -71,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
             ),
           ],
         ),
-        body: _children[_currentIndex],
+        body: children[_currentIndex],
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(boxShadow: <BoxShadow>[
             BoxShadow(
@@ -232,8 +232,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                 });
                                 var uuid = const Uuid();
                                 var uniqueId = uuid.v4();
-                                var now = new DateTime.now();
-                                var formatter = new DateFormat('yyyy-MM-dd');
+                                var now = DateTime.now();
+                                var formatter = DateFormat('yyyy-MM-dd');
                                 String formattedDate = formatter.format(now);
 
                                 global.batchData.add({
@@ -265,10 +265,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         padding: const EdgeInsets.all(7),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
-                          mainAxisExtent:
-                              MediaQuery.of(context).size.width < 380
-                                  ? 200
-                                  : 150,
+                          mainAxisExtent: MediaQuery.of(context).size.width / 2,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
@@ -333,7 +330,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                           child: PopupMenuButton<int>(
                                             itemBuilder: (context) => [
                                               PopupMenuItem(
-                                                child: const Text('Archive'),
                                                 value: 1,
                                                 onTap: () {
                                                   BackEndPy.editApplicantList(
@@ -349,9 +345,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                                               index]['_id']);
                                                   setState(() {});
                                                 },
+                                                child: const Text('Archive'),
                                               ),
                                               PopupMenuItem(
-                                                child: const Text('Delete'),
                                                 value: 2,
                                                 onTap: () {
                                                   BackEndPy.deleteApplicantList(
@@ -364,6 +360,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                                               index]['_id']);
                                                   setState(() {});
                                                 },
+                                                child: const Text('Delete'),
                                               ),
                                             ],
                                           ),

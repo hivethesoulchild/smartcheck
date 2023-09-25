@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/answer_keys/viewanswerkey.dart';
 import 'package:smartcheck/pages/scanner.dart';
-import 'package:smartcheck/routes/applicant_dialog.dart';
 import 'data.dart' as global;
 
 var data = [];
@@ -52,7 +51,7 @@ class _BatchDetailState extends State<BatchDetail> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                contentPadding: EdgeInsets.only(top: 10.0),
+                contentPadding: const EdgeInsets.only(top: 10.0),
                 title: Text(
                   'Scores',
                   style: GoogleFonts.poppins(),
@@ -134,21 +133,21 @@ class _BatchDetailState extends State<BatchDetail> {
           backgroundColor: Colors.white,
           actions: [
             PopupMenuButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.sort,
                 color: Colors.grey,
               ),
               itemBuilder: (context) => [
                 PopupMenuItem(
-                  child: Text("Sort by name"),
+                  child: const Text("Sort by name"),
                   onTap: () {},
                 ),
                 PopupMenuItem(
-                  child: Text("Sort by number"),
+                  child: const Text("Sort by number"),
                   onTap: () {},
                 ),
                 PopupMenuItem(
-                  child: Text("Sort by status"),
+                  child: const Text("Sort by status"),
                   onTap: () {},
                 ),
               ],
@@ -179,7 +178,7 @@ class _BatchDetailState extends State<BatchDetail> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 3,
-                            offset: Offset(2, 3),
+                            offset: const Offset(2, 3),
                           )
                         ],
                       ),
@@ -199,12 +198,12 @@ class _BatchDetailState extends State<BatchDetail> {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 InkWell(
                                   onTap: () {
                                     PopupMenuButton<int>(
                                       itemBuilder: (context) => [
-                                        PopupMenuItem(
+                                        const PopupMenuItem(
                                           child: Text('Details'),
                                         ),
                                       ],
@@ -245,11 +244,11 @@ class _BatchDetailState extends State<BatchDetail> {
                                       });
                                     },
                                     itemBuilder: (context) => [
-                                      PopupMenuItem(
-                                        child: Text('View'),
+                                      const PopupMenuItem(
                                         value: 1,
+                                        child: Text('View'),
                                       ),
-                                      PopupMenuItem(
+                                      const PopupMenuItem(
                                         value: 2,
                                         child: Text('Scan Paper'),
                                       ),
@@ -273,7 +272,7 @@ class _BatchDetailState extends State<BatchDetail> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5.0,
                             ),
                             Row(

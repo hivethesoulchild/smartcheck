@@ -33,8 +33,8 @@ class _UserAccessState extends State<UserAccess> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            contentPadding: EdgeInsets.only(top: 20.0),
-            content: SingleChildScrollView(
+            contentPadding: const EdgeInsets.only(top: 20.0),
+            content: const SingleChildScrollView(
                 child: Column(
               children: [
                 Text("Are you sure you want to delete?"),
@@ -62,21 +62,21 @@ class _UserAccessState extends State<UserAccess> {
                   setState(() {});
                   Navigator.of(context).pop();
                 },
-                child: Text('Yes'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: HexColor("#35408F"),
                 ),
+                child: const Text('Yes'),
               ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("No"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: HexColor("#35408F"),
                 ),
+                child: const Text("No"),
               ),
             ],
           );
@@ -95,13 +95,13 @@ class _UserAccessState extends State<UserAccess> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            contentPadding: EdgeInsets.only(top: 10.0),
+            contentPadding: const EdgeInsets.only(top: 10.0),
             title: Text(
               'Edit User',
               style: GoogleFonts.poppins(),
             ),
             content: SingleChildScrollView(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
                   SizedBox(
@@ -109,7 +109,7 @@ class _UserAccessState extends State<UserAccess> {
                     child: TextFormField(
                       readOnly: true,
                       controller: usernameController..text = value['username'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Username',
                       ),
                     ),
@@ -119,7 +119,7 @@ class _UserAccessState extends State<UserAccess> {
                     child: TextFormField(
                       obscureText: true,
                       controller: passwordController..text = value['password'],
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Password',
                       ),
                     ),
@@ -132,8 +132,8 @@ class _UserAccessState extends State<UserAccess> {
                         items: superuser
                             .map<DropdownMenuItem<String>>(
                                 (String value) => DropdownMenuItem<String>(
-                                      child: Text(value),
                                       value: value,
+                                      child: Text(value),
                                     ))
                             .toList(),
                         onChanged: (String? value) {
@@ -145,11 +145,11 @@ class _UserAccessState extends State<UserAccess> {
                   SizedBox(
                     child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text("Active"),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Switch(
                           onChanged: (bool value) {
                             setStateSB(() {
@@ -169,12 +169,12 @@ class _UserAccessState extends State<UserAccess> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Cancel'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   textStyle: GoogleFonts.poppins(),
                   foregroundColor: Colors.white,
                 ),
+                child: const Text('Cancel'),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -191,12 +191,12 @@ class _UserAccessState extends State<UserAccess> {
                   );
                   Navigator.of(context).pop();
                 },
-                child: Text('Save'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: HexColor("#35408f"),
                   textStyle: GoogleFonts.poppins(),
                   foregroundColor: Colors.white,
                 ),
+                child: const Text('Save'),
               ),
             ],
           );
@@ -217,20 +217,20 @@ class _UserAccessState extends State<UserAccess> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              contentPadding: EdgeInsets.only(top: 10.0),
+              contentPadding: const EdgeInsets.only(top: 10.0),
               title: Text(
                 'Add User',
                 style: GoogleFonts.poppins(),
               ),
               content: SingleChildScrollView(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
                     SizedBox(
                       width: 250,
                       child: TextFormField(
                         controller: newUsernameController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Username',
                         ),
                       ),
@@ -240,7 +240,7 @@ class _UserAccessState extends State<UserAccess> {
                       child: TextFormField(
                         obscureText: true,
                         controller: newPasswordController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Password',
                         ),
                       ),
@@ -248,13 +248,13 @@ class _UserAccessState extends State<UserAccess> {
                     SizedBox(
                       width: 250,
                       child: DropdownButton(
-                        hint: Text("Select role.."),
+                        hint: const Text("Select role.."),
                         dropdownColor: Colors.white,
                         items: superuser
                             .map<DropdownMenuItem<String>>(
                                 (String value) => DropdownMenuItem<String>(
-                                      child: Text(value),
                                       value: value,
+                                      child: Text(value),
                                     ))
                             .toList(),
                         onChanged: (value) {
@@ -278,12 +278,12 @@ class _UserAccessState extends State<UserAccess> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Cancel'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     textStyle: GoogleFonts.poppins(),
                     foregroundColor: Colors.white,
                   ),
+                  child: const Text('Cancel'),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -311,12 +311,12 @@ class _UserAccessState extends State<UserAccess> {
 
                     Navigator.pop(context);
                   },
-                  child: Text('Done'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     textStyle: GoogleFonts.poppins(),
                     foregroundColor: HexColor("#35408F"),
                   ),
+                  child: const Text('Done'),
                 ),
               ],
             );
@@ -344,17 +344,17 @@ class _UserAccessState extends State<UserAccess> {
         backgroundColor: Colors.white,
         actions: [
           PopupMenuButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.sort,
               color: Colors.grey,
             ),
             itemBuilder: (context) => [
               PopupMenuItem(
-                child: Text("Sort by name"),
+                child: const Text("Sort by name"),
                 onTap: () {},
               ),
               PopupMenuItem(
-                child: Text("Sort by position"),
+                child: const Text("Sort by position"),
                 onTap: () {},
               ),
             ],
@@ -365,9 +365,9 @@ class _UserAccessState extends State<UserAccess> {
         onPressed: () {
           showAddUserDialog(context);
         },
-        child: new Icon(Icons.add),
         elevation: 0.0,
         backgroundColor: HexColor('#35408F'),
+        child: const Icon(Icons.add),
       ),
       body: Column(
         children: [
@@ -380,7 +380,7 @@ class _UserAccessState extends State<UserAccess> {
                 (value) {
                   _isSwitched = value['isActive'];
                   return Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
@@ -390,7 +390,7 @@ class _UserAccessState extends State<UserAccess> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 2,
                             blurRadius: 4,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -414,7 +414,7 @@ class _UserAccessState extends State<UserAccess> {
                                         color: HexColor("#35408f")),
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Padding(
                                   padding: EdgeInsets.zero,
                                   child: PopupMenuButton<int>(
@@ -426,13 +426,13 @@ class _UserAccessState extends State<UserAccess> {
                                       }
                                     },
                                     itemBuilder: (context) => [
-                                      PopupMenuItem(
-                                        child: Text('Edit'),
+                                      const PopupMenuItem(
                                         value: 1,
+                                        child: Text('Edit'),
                                       ),
-                                      PopupMenuItem(
-                                        child: Text('Delete'),
+                                      const PopupMenuItem(
                                         value: 2,
+                                        child: Text('Delete'),
                                       )
                                     ],
                                   ),

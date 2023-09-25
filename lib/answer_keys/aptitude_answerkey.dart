@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smartcheck/answer_keys/buttons.dart';
 import '../data.dart' as global;
 
@@ -15,7 +14,7 @@ class _AptitudeAnserKeyState extends State<AptitudeAnserKey> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: Container(
+      body: SizedBox(
         height: 750,
         child: SingleChildScrollView(
           child: Column(
@@ -30,12 +29,12 @@ class _AptitudeAnserKeyState extends State<AptitudeAnserKey> {
                     Center(
                       child: SizedBox(
                         height: 50,
+                        width: 300,
                         child: InputChipotle(
                           answer: global.answer_key[3][i],
                           number: "${i + 1}",
                           subject: 'aptitude',
                         ),
-                        width: 300,
                       ),
                     ),
                   ],

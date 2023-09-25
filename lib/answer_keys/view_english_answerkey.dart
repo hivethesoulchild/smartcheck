@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smartcheck/answer_keys/view_buttons.dart';
-import '../data.dart' as global;
 
 class ViewEnglishAnswerKey extends StatefulWidget {
   final dynamic answerKey;

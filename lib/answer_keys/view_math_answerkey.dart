@@ -1,8 +1,5 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:smartcheck/answer_keys/view_buttons.dart';
-import '../data.dart' as global;
 
 class ViewMathAnswerKey extends StatefulWidget {
   final dynamic answerKey;
@@ -28,8 +25,8 @@ class _ViewMathAnswerKeyState extends State<ViewMathAnswerKey> {
             Center(
               child: SizedBox(
                 height: 50,
-                child: ViewChipotle(answer: widget.answerKey[i].toString(), optionType: 'math',),
                 width: 300,
+                child: ViewChipotle(answer: widget.answerKey[i].toString(), optionType: 'math',),
               ),
             ),
           ],
@@ -39,7 +36,7 @@ class _ViewMathAnswerKeyState extends State<ViewMathAnswerKey> {
 
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        body: Container(
+        body: SizedBox(
           height: 750,
           child: SingleChildScrollView(
             child: Column(

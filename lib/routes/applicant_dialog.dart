@@ -56,7 +56,7 @@ class ApplicantBuilder extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        contentPadding: EdgeInsets.only(top: 10.0),
+        contentPadding: const EdgeInsets.only(top: 10.0),
         title: Text(
           'Scores',
           style: GoogleFonts.poppins(),
@@ -70,26 +70,26 @@ class ApplicantBuilder extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('English: 17')],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Mathematics: 15')],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Science: 13')],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Aptitude: 10')],
                   ),
@@ -135,7 +135,7 @@ class ApplicantBuilder extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 3,
                   blurRadius: 3,
-                  offset: Offset(2, 3),
+                  offset: const Offset(2, 3),
                 )
               ]),
           child: Padding(
@@ -154,12 +154,12 @@ class ApplicantBuilder extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     InkWell(
                       onTap: () {
                         PopupMenuButton<int>(
                           itemBuilder: (context) => [
-                            PopupMenuItem(
+                            const PopupMenuItem(
                               child: Text('Details'),
                             ),
                           ],
@@ -168,11 +168,11 @@ class ApplicantBuilder extends StatelessWidget {
                       child: PopupMenuButton(
                         itemBuilder: (context) => [
                           PopupMenuItem(
-                            child: Text('Edit'),
+                            child: const Text('Edit'),
                             onTap: () {},
                           ),
                           PopupMenuItem(
-                            child: Text('Delete'),
+                            child: const Text('Delete'),
                             onTap: () {},
                           ),
                         ],
@@ -193,7 +193,7 @@ class ApplicantBuilder extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5.0,
                 ),
                 Row(

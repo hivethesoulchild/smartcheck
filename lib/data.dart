@@ -1,4 +1,3 @@
-import 'backend/backendpy.dart';
 
 var batchData = [];
 var batchDataArchive = [];
@@ -60,7 +59,7 @@ void setBatchData(List data) {
   batchData = [];
   batchDataArchive = [];
 
-  data.forEach((element) {
+  for (var element in data) {
     if (element['archive'] == true) {
       batchDataArchive.add({
         "_id": element['_id'],
@@ -78,7 +77,7 @@ void setBatchData(List data) {
         "archive": element['archive']
       });
     }
-  });
+  }
 }
 
 // import 'backend/backendpy.dart';

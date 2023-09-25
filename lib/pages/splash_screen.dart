@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3)).then((value) => Navigator.of(context)
+    Future.delayed(const Duration(seconds: 3)).then((value) => Navigator.of(context)
         .pushReplacement(CupertinoPageRoute(builder: (context) => Login(cameras: widget.cameras,))));
   }
 
@@ -29,11 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
+            const Image(
               image: AssetImage('assets/smartcheck_logo.png'),
               width: 300,
             ),
-            SizedBox(
+            const SizedBox(
               height: 90,
             ),
             SpinKitThreeBounce(

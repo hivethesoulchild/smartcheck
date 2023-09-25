@@ -9,7 +9,7 @@ import 'package:smartcheck/charts/science_analysis.dart';
 Widget buildEnglishButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => EnglishAnalysis()));
+            .push(MaterialPageRoute(builder: (context) => const EnglishAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -20,7 +20,7 @@ Widget buildEnglishButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -33,7 +33,7 @@ Widget buildEnglishButton(BuildContext context) => InkWell(
                   'assets/icons8_spell_check.png',
                   scale: 5,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -54,7 +54,7 @@ Widget buildEnglishButton(BuildContext context) => InkWell(
 Widget buildScienceButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ScienceAnalysis()));
+            .push(MaterialPageRoute(builder: (context) => const ScienceAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -65,7 +65,7 @@ Widget buildScienceButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -78,7 +78,7 @@ Widget buildScienceButton(BuildContext context) => InkWell(
                   'assets/icons8_physics.png',
                   scale: 5,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -99,7 +99,7 @@ Widget buildScienceButton(BuildContext context) => InkWell(
 Widget buildMathematicsButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => MathAnalysis()));
+            .push(MaterialPageRoute(builder: (context) => const MathAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -110,7 +110,7 @@ Widget buildMathematicsButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -123,7 +123,7 @@ Widget buildMathematicsButton(BuildContext context) => InkWell(
                   'assets/icons8_calculator_1.png',
                   scale: 5,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -144,7 +144,7 @@ Widget buildMathematicsButton(BuildContext context) => InkWell(
 Widget buildAptitudeButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => AptitudeAnalysis()));
+            .push(MaterialPageRoute(builder: (context) => const AptitudeAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -155,7 +155,7 @@ Widget buildAptitudeButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -168,7 +168,7 @@ Widget buildAptitudeButton(BuildContext context) => InkWell(
                   'assets/icons8_discrepancy_1.png',
                   scale: 5,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(

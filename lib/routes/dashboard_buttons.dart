@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smartcheck/pages/scanner.dart';
 import 'package:smartcheck/pages/user_access.dart';
 import 'package:smartcheck/pages/item_analysis.dart';
 
-import '../pages/answerkey.dart';
-import '../models/charts.dart';
 import '../pages/answerkey.dart';
 
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ItemAnalysis()));
+            .push(MaterialPageRoute(builder: (context) => const ItemAnalysis()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -23,7 +20,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -36,7 +33,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
                   'assets/icons8_bar_chart_1.png',
                   scale: 6,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -58,7 +55,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
 Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => UserAccess()));
+            .push(MaterialPageRoute(builder: (context) => const UserAccess()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -69,7 +66,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -82,7 +79,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
                   'assets/icons8_user_account.png',
                   scale: 6,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -104,7 +101,7 @@ Widget buildPrivilegedUserButton(BuildContext context) => InkWell(
 Widget buildAnswerKeyButton(BuildContext context) => InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AnswerKeyPage()));
+            context, MaterialPageRoute(builder: (context) => const AnswerKeyPage()));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -115,7 +112,7 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0,
                 blurRadius: 4,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               )
             ]),
         child: Padding(
@@ -128,7 +125,7 @@ Widget buildAnswerKeyButton(BuildContext context) => InkWell(
                   'assets/icons8_test_1.png',
                   scale: 6,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(

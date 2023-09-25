@@ -1,8 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
-import 'package:async/async.dart';
-import 'package:path/path.dart';
 
 class BackEndPy {
   static const String baseUrl = 'http://154.26.132.250:9090';

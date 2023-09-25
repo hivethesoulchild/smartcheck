@@ -5,8 +5,6 @@ import 'package:smartcheck/answer_keys/view_aptitude_answerkey.dart';
 import 'package:smartcheck/answer_keys/view_english_answerkey.dart';
 import 'package:smartcheck/answer_keys/view_math_answerkey.dart';
 import 'package:smartcheck/answer_keys/view_science_answerkey.dart';
-import 'package:smartcheck/backend/backendpy.dart';
-import '../data.dart' as global;
 
 class ViewAnswerKey extends StatefulWidget {
   final dynamic englishKey;
@@ -45,7 +43,7 @@ class _ViewAnswerKeyState extends State<ViewAnswerKey> {
           centerTitle: true,
           backgroundColor: Colors.white,
           bottom: TabBar(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             labelColor: HexColor('#35408f'),
             indicatorColor: HexColor('#35408f'),
             labelStyle: GoogleFonts.poppins(

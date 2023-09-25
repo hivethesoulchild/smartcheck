@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:smartcheck/answer_keys/buttons.dart';
-import '../backend/backendpy.dart';
 import '../data.dart' as global;
 
 class EnglishAnswerKey extends StatefulWidget {
@@ -34,12 +32,12 @@ class _EnglishAnswerKeyState extends State<EnglishAnswerKey> {
                     Center(
                       child: SizedBox(
                         height: 50,
+                        width: 300,
                         child: InputChipotle(
                           answer: global.answer_key[0][i],
                           number: "${i + 1}",
                           subject: 'english',
                         ),
-                        width: 300,
                       ),
                     ),
                   ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -11,20 +10,20 @@ class LoginLoading extends StatefulWidget {
 }
 
 showLoaderDialog(BuildContext context) async {
-  Future.delayed(Duration(seconds: 2))
+  Future.delayed(const Duration(seconds: 2))
       .then((value) => Navigator.of(context).pop());
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    content: new Row(
+    content: Row(
       children: [
         CircularProgressIndicator(
           color: HexColor('35408F'),
         ),
-        SizedBox(
+        const SizedBox(
           width: 3,
         ),
         Container(
-            margin: EdgeInsets.only(left: 7),
+            margin: const EdgeInsets.only(left: 7),
             child: Text(
               "Loading...",
               style: GoogleFonts.montserrat(),
@@ -44,11 +43,11 @@ showLoaderDialog(BuildContext context) async {
 class _LoginLoadingState extends State<LoginLoading> {
   showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
-      content: new Row(
+      content: Row(
         children: [
-          CircularProgressIndicator(),
+          const CircularProgressIndicator(),
           Container(
-              margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+              margin: const EdgeInsets.only(left: 7), child: const Text("Loading...")),
         ],
       ),
     );

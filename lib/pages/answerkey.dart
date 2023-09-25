@@ -7,7 +7,6 @@ import 'package:smartcheck/answer_keys/aptitude_answerkey.dart';
 import 'package:smartcheck/answer_keys/english_answerkey.dart';
 import 'package:smartcheck/answer_keys/math_answerkey.dart';
 import 'package:smartcheck/answer_keys/science_answerkey.dart';
-import 'package:smartcheck/models/create_answerkey.dart';
 import '../data.dart' as global;
 import '../backend/backendpy.dart';
 

@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:smartcheck/pages/batch_detail_archive.dart';
-import '../batch_detail.dart';
 import '../backend/backendpy.dart';
 import '../data.dart' as global;
 
@@ -22,7 +21,7 @@ class _ArchivesState extends State<Archives> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             Expanded(
@@ -51,7 +50,7 @@ class _ArchivesState extends State<Archives> {
                       );
                     },
                     child: Padding(
-                      padding: EdgeInsets.all(3.0),
+                      padding: const EdgeInsets.all(3.0),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
@@ -61,7 +60,7 @@ class _ArchivesState extends State<Archives> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 4,
-                              offset: Offset(0, 3),
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
@@ -88,13 +87,12 @@ class _ArchivesState extends State<Archives> {
                                     ),
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: PopupMenuButton<int>(
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
-                                        child: Text('Archive'),
                                         value: 1,
                                         onTap: () {
                                           BackEndPy.editApplicantList(value['_id'], false);
@@ -103,9 +101,9 @@ class _ArchivesState extends State<Archives> {
                                               item['_id'] == value['_id']);
                                           setState(() {});
                                         },
+                                        child: const Text('Archive'),
                                       ),
                                       PopupMenuItem(
-                                        child: Text('Delete'),
                                         value: 2,
                                         onTap: () {
                                           BackEndPy.deleteApplicantList(value['_id']);
@@ -113,6 +111,7 @@ class _ArchivesState extends State<Archives> {
                                               item['_id'] == value['_id']);
                                           setState(() {});
                                         },
+                                        child: const Text('Delete'),
                                       ),
                                     ],
                                   ),

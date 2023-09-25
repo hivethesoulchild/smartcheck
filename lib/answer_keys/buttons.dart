@@ -21,8 +21,8 @@ class InputChipotle extends StatefulWidget {
 class InputChipotleState extends State<InputChipotle>
     with TickerProviderStateMixin {
   var _selectedIndex;
-  List<String> _options = ['A', 'B', 'C', 'D'];
-  List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
+  final List<String> _options = ['A', 'B', 'C', 'D'];
+  final List<String> _englishOptions = ['A', 'B', 'C', 'D', 'E'];
 
   @override
   void initState() {
@@ -72,7 +72,7 @@ class InputChipotleState extends State<InputChipotle>
 
       chips.add(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 1),
+          padding: const EdgeInsets.symmetric(horizontal: 1),
           child: choiceChip,
         ),
       );
@@ -91,7 +91,7 @@ class InputChipotleState extends State<InputChipotle>
         padding: const EdgeInsets.all(1.0),
         child: Column(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 30,
               child: _buildChips(),
             ),

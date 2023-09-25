@@ -10,45 +10,45 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     showAlertDialog(BuildContext context) {
-      AlertDialog alert = AlertDialog(
-        title: const Text('Trojans'),
+      AlertDialog alert = const AlertDialog(
+        title: Text('Trojans'),
         content: SizedBox(
           height: 200,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Text('Royce Christopher Abante')
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Text('Allisandra Nicole Bendijo')
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Text('Yvan Roi Casa')
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Text('Roben Juanatas')
                     ],
                   ),

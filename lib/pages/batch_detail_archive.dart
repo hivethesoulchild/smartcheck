@@ -1,9 +1,7 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/answer_keys/viewanswerkey.dart';
-import 'package:smartcheck/pages/scanner.dart';
 
 
 class BatchDetailArchive extends StatefulWidget {

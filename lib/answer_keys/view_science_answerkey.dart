@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smartcheck/answer_keys/view_buttons.dart';
-import '../data.dart' as global;
 
 class ViewScienceAnswerKey extends StatefulWidget {
   final List answerKey;
@@ -15,7 +14,7 @@ class ViewScienceAnswerKey extends StatefulWidget {
 class _ViewScienceAnswerKeyState extends State<ViewScienceAnswerKey> {
   @override
   Widget build(BuildContext context) {
-    var row = <Widget>[];;
+    var row = <Widget>[];
     for (int i = 0; i < 30; i++) {
       row.add(
         Row(
@@ -27,8 +26,8 @@ class _ViewScienceAnswerKeyState extends State<ViewScienceAnswerKey> {
             Center(
               child: SizedBox(
                 height: 50,
-                child: ViewChipotle(answer: widget.answerKey[i].toString(), optionType: 'science',),
                 width: 300,
+                child: ViewChipotle(answer: widget.answerKey[i].toString(), optionType: 'science',),
               ),
             ),
           ],
@@ -38,7 +37,7 @@ class _ViewScienceAnswerKeyState extends State<ViewScienceAnswerKey> {
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: Container(
+      body: SizedBox(
         height: 750,
         child: SingleChildScrollView(
           child: Column(

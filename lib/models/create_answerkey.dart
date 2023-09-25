@@ -70,15 +70,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _AhasBeenPressed = !_AhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'A',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -86,15 +86,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _BhasBeenPressed = !_BhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'B',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -102,15 +102,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _ChasBeenPressed = !_ChasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'C',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -118,19 +118,19 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _DhasBeenPressed = !_DhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'D',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -148,15 +148,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _AhasBeenPressed = !_AhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'A',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -164,15 +164,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _BhasBeenPressed = !_BhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'B',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -180,15 +180,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _ChasBeenPressed = !_ChasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'C',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -196,19 +196,19 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _DhasBeenPressed = !_DhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'D',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -226,15 +226,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _AhasBeenPressed = !_AhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'A',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _AhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -242,15 +242,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _BhasBeenPressed = !_BhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'B',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _BhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -258,15 +258,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _ChasBeenPressed = !_ChasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'C',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _ChasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
                 ElevatedButton(
                   onPressed: () => {
@@ -274,15 +274,15 @@ class _CreateAnswerKeyState extends State<CreateAnswerKey> {
                       _DhasBeenPressed = !_DhasBeenPressed;
                     })
                   },
-                  child: new Text(
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor:
+                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
+                      padding: const EdgeInsets.all(20)),
+                  child: Text(
                     'D',
                     style: GoogleFonts.nunito(color: Colors.black),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      backgroundColor:
-                          _DhasBeenPressed ? Colors.green[100] : Colors.white,
-                      padding: EdgeInsets.all(20)),
                 ),
               ],
             ),
