@@ -43,7 +43,7 @@ dependencies:
   percent_indicator: ^4.2.2
   camera: ^0.10.0
   flutter_spinkit: ^5.1.0
-  opencv_4: ^1.0.0
+#  opencv_4: ^1.0.0
   http: ^0.13.5
   glassmorphism: ^3.0.0
   file_support: ^1.0.6
