@@ -63,13 +63,6 @@ class _DashboardState extends State<Dashboard> {
               ),
             ],
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
-              color: HexColor('#35408f'),
-            ),
-          ],
         ),
         body: children[_currentIndex],
         bottomNavigationBar: Container(
@@ -265,7 +258,10 @@ class _DashboardPageState extends State<DashboardPage> {
                         padding: const EdgeInsets.all(7),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
-                          mainAxisExtent: MediaQuery.of(context).size.width / 2,
+                          mainAxisExtent:
+                              MediaQuery.of(context).size.width <= 480
+                                  ? MediaQuery.of(context).size.width * 0.4
+                                  : MediaQuery.of(context).size.width * 0.2,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,

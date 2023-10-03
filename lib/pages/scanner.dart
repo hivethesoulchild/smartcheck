@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/data.dart' as global;
 
-
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
   final dynamic id;
