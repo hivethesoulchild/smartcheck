@@ -37,6 +37,10 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
               ),
               actions: [
                 PopupMenuButton(
+                  icon: Icon(
+                    Icons.more_vert,
+                    color: HexColor('#35408F'),
+                  ),
                   itemBuilder: (context) => [
                     PopupMenuItem(
                       onTap: (() {}),
