@@ -35,6 +35,17 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
                   color: HexColor('#35408F'),
                 ),
               ),
+              actions: [
+                PopupMenuButton(
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      onTap: (() {}),
+                      value: 1,
+                      child: const Text('Export'),
+                    )
+                  ],
+                )
+              ],
               bottom: TabBar(
                 physics: const BouncingScrollPhysics(),
                 labelColor: HexColor('#35408f'),
