@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 class BackEndPy {
-  static const String baseUrl = 'http://154.26.132.250:9090';
+  static const String baseUrl = 'http://192.168.195.241:8000';
 
   static Future<dynamic> checkUser(String email, String password) async {
     final url = Uri.parse('$baseUrl/checkUser/');
@@ -124,35 +124,35 @@ class BackEndPy {
     print(response.body);
   }
 
-  static Future<void> uploadImage(dynamic imageFile, String batchId, int id) async {
-  var request = http.MultipartRequest(
-    'POST',
-    Uri.parse('$baseUrl/upload'),
-  );
+  static Future<void> uploadImage(
+      dynamic imageFile, String batchId, int id) async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$baseUrl/upload'),
+    );
 
-  // Add batchId and id as fields in the request body
-  request.fields['batchId'] = batchId;
-  request.fields['id'] = id.toString();
+    // Add batchId and id as fields in the request body
+    request.fields['batchId'] = batchId;
+    request.fields['id'] = id.toString();
 
-  File file = File(imageFile.path);
+    File file = File(imageFile.path);
 
-  // Attach the image file to the request
-  request.files.add(
-    http.MultipartFile(
-      'file',
-      file.readAsBytes().asStream(),
-      file.lengthSync(),
-      filename: imageFile.path.split('/').last,
-    ),
-  );
+    // Attach the image file to the request
+    request.files.add(
+      http.MultipartFile(
+        'file',
+        file.readAsBytes().asStream(),
+        file.lengthSync(),
+        filename: imageFile.path.split('/').last,
+      ),
+    );
 
-  var response = await request.send();
-  if (response.statusCode == 200) {
-    print('Image uploaded successfully');
-    print(response);
-  } else {
-    print('Image upload failed with status code: ${response.statusCode}');
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      print('Image uploaded successfully');
+      print(response);
+    } else {
+      print('Image upload failed with status code: ${response.statusCode}');
+    }
   }
-}
-
 }
