@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
+import 'package:google_fonts/google_fonts.dart';
 import '../models/charts.dart';
 
 class Item {
@@ -31,7 +32,7 @@ class _MathAnalysisState extends State<MathAnalysis> {
   final List<Item> _data = List<Item>.generate(
     30,
     (int index) => Item(
-      headerText: 'Item $index',
+      headerText: 'Item ${index + 1}',
       chartData: [
         charts.Series<dynamic, String>(
           id: 'Sample Data',
@@ -60,19 +61,25 @@ class _MathAnalysisState extends State<MathAnalysis> {
       child: ExpansionPanelList(
         expansionCallback: (int index, bool isExpanded) {
           setState(() {
-            _data[index].isExpanded = !isExpanded;
+            _data[index].isExpanded = isExpanded;
           });
         },
         children: _data.map<ExpansionPanel>((Item item) {
           return ExpansionPanel(
             headerBuilder: (BuildContext context, bool isExpanded) {
-              return ListTile(
-                title: Text(item.headerText),
+              return Padding(
+                padding: const EdgeInsets.only(top: 0.0),
+                child: ListTile(
+                  title: Text(
+                    item.headerText,
+                    style: GoogleFonts.poppins(),
+                  ),
+                ),
               );
             },
             body: Column(
               children: [
-                Text('Hello, ${item.headerText}'),
+                Text('Analysis for ${item.headerText}'),
                 item.buildChartWidget(),
               ],
             ),
