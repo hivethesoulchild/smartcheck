@@ -283,6 +283,7 @@ class _ScannerPageState extends State<ScannerPage> {
                                 Colors.white10,
                                 Colors.transparent,
                                 Colors.white10,
+                                MediaQuery.of(context).size.width,
                               ),
                             ),
                           ),
@@ -334,9 +335,18 @@ class _ScannerPageState extends State<ScannerPage> {
     }
   }
 
-  Widget _buildSquare(Color color1, Color color2, Color color3) {
+  Widget _buildSquare(
+      Color color1, Color color2, Color color3, double screenWidth) {
+    // Calculate the rectangle size and position based on screen width
+    double rectangleWidth = screenWidth < 360 ? 315 : 395.84;
+    double rectangleHeight = screenWidth < 360 ? 550 : 630;
+    double rectangleLeft = screenWidth < 360 ? 17 : 25;
+
     return Center(
       child: Container(
+        margin: EdgeInsets.only(left: rectangleLeft),
+        width: rectangleWidth,
+        height: rectangleHeight,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [color1, color2, color3],
