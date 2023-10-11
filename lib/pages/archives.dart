@@ -29,8 +29,10 @@ class _ArchivesState extends State<Archives> {
               child: GridView.builder(
                 padding: const EdgeInsets.all(5.0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: MediaQuery.of(context).size.width < 600 ? 1 : 2,
-                  childAspectRatio: MediaQuery.of(context).size.width < 600 ? 3.0 : 2.6,
+                  crossAxisCount:
+                      MediaQuery.of(context).size.width < 600 ? 1 : 2,
+                  childAspectRatio:
+                      MediaQuery.of(context).size.width < 600 ? 3.0 : 2.6,
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
                 ),
@@ -95,18 +97,21 @@ class _ArchivesState extends State<Archives> {
                                       PopupMenuItem(
                                         value: 1,
                                         onTap: () {
-                                          BackEndPy.editApplicantList(value['_id'], false);
+                                          BackEndPy.editApplicantList(
+                                              value['_id'], false);
                                           global.batchData.add(value);
-                                          global.batchDataArchive.removeWhere((item) =>
-                                              item['_id'] == value['_id']);
+                                          global.batchDataArchive.removeWhere(
+                                              (item) =>
+                                                  item['_id'] == value['_id']);
                                           setState(() {});
                                         },
-                                        child: const Text('Archive'),
+                                        child: const Text('Unarchive'),
                                       ),
                                       PopupMenuItem(
                                         value: 2,
                                         onTap: () {
-                                          BackEndPy.deleteApplicantList(value['_id']);
+                                          BackEndPy.deleteApplicantList(
+                                              value['_id']);
                                           global.batchData.removeWhere((item) =>
                                               item['_id'] == value['_id']);
                                           setState(() {});
@@ -121,7 +126,8 @@ class _ArchivesState extends State<Archives> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16, top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
@@ -134,7 +140,8 @@ class _ArchivesState extends State<Archives> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16, top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
@@ -147,7 +154,8 @@ class _ArchivesState extends State<Archives> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16, top: 5),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 5),
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(

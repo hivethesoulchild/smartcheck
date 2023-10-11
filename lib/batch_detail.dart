@@ -11,11 +11,11 @@ var data = [];
 class BatchDetail extends StatefulWidget {
   final List<CameraDescription> cameras;
   final int dataIndex;
-  const BatchDetail(
-      {Key? key,
-      required this.dataIndex,
-      required this.cameras,})
-      : super(key: key);
+  const BatchDetail({
+    Key? key,
+    required this.dataIndex,
+    required this.cameras,
+  }) : super(key: key);
 
   @override
   State<BatchDetail> createState() => _BatchDetailState();
@@ -161,8 +161,11 @@ class _BatchDetailState extends State<BatchDetail> {
               crossAxisCount: 1,
               childAspectRatio: 3,
               mainAxisSpacing: 5.0,
-              children: List.generate(global.batchData[widget.dataIndex]["applicants"].length, (index) {
-                final value = global.batchData[widget.dataIndex]["applicants"][index];
+              children: List.generate(
+                  global.batchData[widget.dataIndex]["applicants"].length,
+                  (index) {
+                final value =
+                    global.batchData[widget.dataIndex]["applicants"][index];
                 return InkWell(
                   onTap: () {
                     showAlertDialog(context, value);
@@ -234,7 +237,8 @@ class _BatchDetailState extends State<BatchDetail> {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => ScannerPage(
-                                                batchId: global.batchData[widget.dataIndex]["_id"],
+                                                batchId: global.batchData[
+                                                    widget.dataIndex]["_id"],
                                                 id: index,
                                                 cameras: widget.cameras,
                                               ),
@@ -246,11 +250,11 @@ class _BatchDetailState extends State<BatchDetail> {
                                     itemBuilder: (context) => [
                                       const PopupMenuItem(
                                         value: 1,
-                                        child: Text('View'),
+                                        child: Text('View Answer'),
                                       ),
                                       const PopupMenuItem(
                                         value: 2,
-                                        child: Text('Scan Paper'),
+                                        child: Text('Check Paper'),
                                       ),
                                     ],
                                   ),

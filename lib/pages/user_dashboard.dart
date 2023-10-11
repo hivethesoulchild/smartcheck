@@ -132,23 +132,6 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
               Expanded(
                 child: Column(
                   children: [
-                    Expanded(
-                      flex: 0,
-                      child: GridView(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.all(5.0),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                          mainAxisExtent: 130,
-                          mainAxisSpacing: 5.0,
-                          crossAxisSpacing: 5.0,
-                        ),
-                        children: [
-                          buildAnswerKeyButton(context),
-                        ],
-                      ),
-                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
