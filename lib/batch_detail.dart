@@ -23,6 +23,7 @@ class BatchDetail extends StatefulWidget {
 
 class _BatchDetailState extends State<BatchDetail> {
   int _currentIndex = 0;
+  List<dynamic> applicants = [];
 
   void onTabTapped(int index) {
     setState(() {
@@ -161,8 +162,10 @@ class _BatchDetailState extends State<BatchDetail> {
               crossAxisCount: 1,
               childAspectRatio: 3,
               mainAxisSpacing: 5.0,
-              children: List.generate(global.batchData[widget.dataIndex]["applicants"].length, (index) {
-                final value = global.batchData[widget.dataIndex]["applicants"][index];
+              children: List.generate(applicants.length, (index) {
+                //List.generate(global.batchData[widget.dataIndex]["applicants"].length, (index) {
+                //final value = global.batchData[widget.dataIndex]["applicants"][index];
+                final value = applicants[index];
                 return InkWell(
                   onTap: () {
                     showAlertDialog(context, value);
@@ -304,5 +307,11 @@ class _BatchDetailState extends State<BatchDetail> {
         ),
       );
     });
+  }
+  
+  @override
+  void initState() {
+    super.initState();
+    applicants = global.batchData[widget.dataIndex]["applicants"];
   }
 }
