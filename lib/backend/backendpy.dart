@@ -18,8 +18,26 @@ class BackEndPy {
     return jsonDecode(response.body);
   }
 
-  static Future<dynamic> getAnalysisData() async {
-    final url = Uri.parse('$baseUrl/getAnalysisData/');
+  static Future<dynamic> getAnalysisDataEnglish() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataEnglish/');
+    final response = await http.get(url);
+    return jsonDecode(response.body)
+  }
+  
+  static Future<dynamic> getAnalysisDataScience() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataScience/');
+    final response = await http.get(url);
+    return jsonDecode(response.body)
+  }
+  
+  static Future<dynamic> getAnalysisDataMath() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataMath/');
+    final response = await http.get(url);
+    return jsonDecode(response.body)
+  }
+  
+  static Future<dynamic> getAnalysisDataAptitude() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataAptitude/');
     final response = await http.get(url);
     return jsonDecode(response.body)
   }
