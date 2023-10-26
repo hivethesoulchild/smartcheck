@@ -30,7 +30,7 @@ class AptitudeAnalysis extends StatefulWidget {
 }
 
 class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
-  final api = BackEndPy.getAnalysisDataEnglish();
+  final api = await BackEndPy.getAnalysisDataAptitude();
   final List<Item> _data = List<Item>.generate(
     15,
     (index) => Item(
