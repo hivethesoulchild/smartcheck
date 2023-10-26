@@ -18,6 +18,12 @@ class BackEndPy {
     return jsonDecode(response.body);
   }
 
+  static Future<dynamic> getAnalysisData() async {
+    final url = Uri.parse('$baseUrl/getAnalysisData/');
+    final response = await http.get(url);
+    return jsonDecode(response.body)
+  }
+
   static void updateAnswerKey(String id, List data) async {
     final url = Uri.parse('$baseUrl/updateAnswerKey/');
     final response = await http.patch(url,
