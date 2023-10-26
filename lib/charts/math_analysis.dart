@@ -41,12 +41,12 @@ class _MathAnalysisState extends State<MathAnalysis> {
           data: [
             {
               'label': 'A',
-              'value': 10,
-              'color': Colors.green
+              'value': api['aptitudeCount']['A'][index],
+              'color': Colors.blue
             }, // Correct answer
-            {'label': 'B', 'value': 20, 'color': Colors.red},
-            {'label': 'C', 'value': 30, 'color': Colors.red},
-            {'label': 'D', 'value': 15, 'color': Colors.red},
+            {'label': 'B', 'value': api['aptitudeCount']['B'][index], 'color': Colors.blue},
+            {'label': 'C', 'value': api['aptitudeCount']['C'][index], 'color': Colors.blue},
+            {'label': 'D', 'value': api['aptitudeCount']['D'][index], 'color': Colors.blue},
           ],
           colorFn: (dynamic data, _) =>
               charts.ColorUtil.fromDartColor(data['color']),
