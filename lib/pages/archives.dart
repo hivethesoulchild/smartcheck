@@ -112,7 +112,7 @@ class _ArchivesState extends State<Archives> {
                                         onTap: () {
                                           BackEndPy.deleteApplicantList(
                                               value['_id']);
-                                          global.batchData.removeWhere((item) =>
+                                          global.batchDataArchive.removeWhere((item) =>
                                               item['_id'] == value['_id']);
                                           setState(() {});
                                         },
