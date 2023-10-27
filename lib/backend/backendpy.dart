@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 class BackEndPy {
-  static const String baseUrl = 'http://192.168.195.241:8000';
+  static const String baseUrl = 'http://194.233.94.255:8000';
 
   static Future<dynamic> checkUser(String email, String password) async {
     final url = Uri.parse('$baseUrl/checkUser/');
@@ -14,6 +14,30 @@ class BackEndPy {
 
   static Future<dynamic> getAnswerKey() async {
     final url = Uri.parse('$baseUrl/getAnswerKey/');
+    final response = await http.get(url);
+    return jsonDecode(response.body);
+  }
+
+  static Future<dynamic> getAnalysisDataEnglish() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataEnglish/');
+    final response = await http.get(url);
+    return jsonDecode(response.body);
+  }
+  
+  static Future<dynamic> getAnalysisDataScience() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataScience/');
+    final response = await http.get(url);
+    return jsonDecode(response.body);
+  }
+  
+  static Future<dynamic> getAnalysisDataMath() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataMath/');
+    final response = await http.get(url);
+    return jsonDecode(response.body);
+  }
+  
+  static Future<dynamic> getAnalysisDataAptitude() async {
+    final url = Uri.parse('$baseUrl/getAnalysisDataAptitude/');
     final response = await http.get(url);
     return jsonDecode(response.body);
   }
