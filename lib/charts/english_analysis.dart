@@ -41,7 +41,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
   }
 
   Future<void> _fetchEnglishData() async {
-    api = await BackEndPy.getAnalysisDataAptitude();
+    api = await BackEndPy.getAnalysisDataEnglish();
 
     _data = List<Item>.generate(
       15,
