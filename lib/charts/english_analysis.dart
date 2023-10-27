@@ -33,18 +33,11 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
   late Map<String, dynamic> api;
   late List<Item> _data;
 
-  @override
-  void initState() {
-    super.initState();
-    // Fetch data from the API when the widget initializes.
-    _fetchEnglishData();
-  }
-
   Future<void> _fetchEnglishData() async {
     api = await BackEndPy.getAnalysisDataAptitude();
 
     _data = List<Item>.generate(
-      15,
+      30,
       (index) => Item(
         headerText: 'Item ${index + 1}',
         chartData: [
@@ -56,27 +49,27 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
               {
                 'label': 'A',
                 'value': api['englishCount']['A'][index],
-                'color': Colors.blue
-              }, // Correct answer
+                'color': Colors.blue,
+              },
               {
                 'label': 'B',
                 'value': api['englishCount']['B'][index],
-                'color': Colors.blue
+                'color': Colors.blue,
               },
               {
                 'label': 'C',
                 'value': api['englishCount']['C'][index],
-                'color': Colors.blue
+                'color': Colors.blue,
               },
               {
                 'label': 'D',
                 'value': api['englishCount']['D'][index],
-                'color': Colors.blue
+                'color': Colors.blue,
               },
               {
                 'label': 'E',
                 'value': api['englishCount']['E'][index],
-                'color': Colors.blue
+                'color': Colors.blue,
               },
             ],
             colorFn: (dynamic data, _) =>
@@ -85,14 +78,24 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
         ],
       ),
     );
-    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return api == null
-        ? CircularProgressIndicator() // Show a loading indicator while data is being fetched.
-        : SingleChildScrollView(
+    return FutureBuilder<void>(
+      future: _fetchEnglishData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Show a loading indicator while data is being fetched.
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return SingleChildScrollView(
             child: ExpansionPanelList(
               expansionCallback: (int index, bool isExpanded) {
                 setState(() {
@@ -123,5 +126,8 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
               }).toList(),
             ),
           );
+        }
+      },
+    );
   }
 }

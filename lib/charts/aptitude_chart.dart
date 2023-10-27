@@ -33,18 +33,11 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
   late Map<String, dynamic> api;
   late List<Item> _data;
 
-  @override
-  void initState() {
-    super.initState();
-    // Fetch data from the API when the widget initializes.
-    _fetchAptitudeData();
-  }
-
   Future<void> _fetchAptitudeData() async {
     api = await BackEndPy.getAnalysisDataAptitude();
 
     _data = List<Item>.generate(
-      15,
+      30,
       (index) => Item(
         headerText: 'Item ${index + 1}',
         chartData: [
@@ -56,23 +49,23 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
               {
                 'label': 'A',
                 'value': api['aptitudeCount']['A'][index],
-                'color': Colors.blue
-              }, // Correct answer
+                'color': Colors.blue,
+              },
               {
                 'label': 'B',
                 'value': api['aptitudeCount']['B'][index],
-                'color': Colors.blue
+                'color': Colors.blue,
               },
               {
                 'label': 'C',
                 'value': api['aptitudeCount']['C'][index],
-                'color': Colors.blue
+                'color': Colors.blue,
               },
               {
                 'label': 'D',
                 'value': api['aptitudeCount']['D'][index],
-                'color': Colors.blue
-              },
+                'color': Colors.blue,
+              }
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),
@@ -80,14 +73,24 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
         ],
       ),
     );
-    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return api == null
-        ? CircularProgressIndicator() // Show a loading indicator while data is being fetched.
-        : SingleChildScrollView(
+    return FutureBuilder<void>(
+      future: _fetchAptitudeData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Show a loading indicator while data is being fetched.
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return SingleChildScrollView(
             child: ExpansionPanelList(
               expansionCallback: (int index, bool isExpanded) {
                 setState(() {
@@ -118,5 +121,8 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
               }).toList(),
             ),
           );
+        }
+      },
+    );
   }
 }
