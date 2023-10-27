@@ -4,7 +4,7 @@
     tools:targetApi="froyo">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="smartcheck"
+        android:label="NU SmartCheck"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
