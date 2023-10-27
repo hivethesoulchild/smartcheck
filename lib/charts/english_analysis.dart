@@ -16,7 +16,7 @@ class Item {
 
   Widget buildChartWidget() {
     return SizedBox(
-      height: 180,
+      height: 150,
       child: ItemChart(chartData),
     );
   }
@@ -36,14 +36,16 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
   @override
   void initState() {
     super.initState();
+    // Fetch data from the API when the widget initializes.
     _fetchEnglishData();
   }
 
   Future<void> _fetchEnglishData() async {
-    api = await BackEndPy.getAnalysisDataEnglish();
+    api = await BackEndPy.getAnalysisDataAptitude();
+
     _data = List<Item>.generate(
-      30,
-      (int index) => Item(
+      15,
+      (index) => Item(
         headerText: 'Item ${index + 1}',
         chartData: [
           charts.Series<dynamic, String>(
@@ -55,7 +57,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                 'label': 'A',
                 'value': api['englishCount']['A'][index],
                 'color': Colors.blue
-              },
+              }, // Correct answer
               {
                 'label': 'B',
                 'value': api['englishCount']['B'][index],
@@ -107,15 +109,15 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
                           item.headerText,
                           style: GoogleFonts.poppins(),
                         ),
-                      );
-                    };
+                      ),
+                    );
                   },
                   body: Column(
                     children: [
                       Text('Analysis for ${item.headerText}'),
                       item.buildChartWidget(),
                     ],
-                  },
+                  ),
                   isExpanded: item.isExpanded,
                 );
               }).toList(),

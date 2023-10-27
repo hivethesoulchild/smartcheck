@@ -39,7 +39,7 @@ class BackEndPy {
   static Future<dynamic> getAnalysisDataAptitude() async {
     final url = Uri.parse('$baseUrl/getAnalysisDataAptitude/');
     final response = await http.get(url);
-    return jsonDecode(response.body)
+    return jsonDecode(response.body);
   }
 
   static void updateAnswerKey(String id, List data) async {

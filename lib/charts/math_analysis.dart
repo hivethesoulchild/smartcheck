@@ -16,7 +16,7 @@ class Item {
 
   Widget buildChartWidget() {
     return SizedBox(
-      height: 180,
+      height: 150,
       child: ItemChart(chartData),
     );
   }
@@ -36,14 +36,16 @@ class _MathAnalysisState extends State<MathAnalysis> {
   @override
   void initState() {
     super.initState();
+    // Fetch data from the API when the widget initializes.
     _fetchMathData();
   }
 
   Future<void> _fetchMathData() async {
     api = await BackEndPy.getAnalysisDataMath();
+
     _data = List<Item>.generate(
-      30,
-      (int index) => Item(
+      15,
+      (index) => Item(
         headerText: 'Item ${index + 1}',
         chartData: [
           charts.Series<dynamic, String>(
@@ -55,7 +57,7 @@ class _MathAnalysisState extends State<MathAnalysis> {
                 'label': 'A',
                 'value': api['mathCount']['A'][index],
                 'color': Colors.blue
-              },
+              }, // Correct answer
               {
                 'label': 'B',
                 'value': api['mathCount']['B'][index],
@@ -70,7 +72,7 @@ class _MathAnalysisState extends State<MathAnalysis> {
                 'label': 'D',
                 'value': api['mathCount']['D'][index],
                 'color': Colors.blue
-              }
+              },
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),
@@ -102,15 +104,15 @@ class _MathAnalysisState extends State<MathAnalysis> {
                           item.headerText,
                           style: GoogleFonts.poppins(),
                         ),
-                      );
-                    };
+                      ),
+                    );
                   },
                   body: Column(
                     children: [
                       Text('Analysis for ${item.headerText}'),
                       item.buildChartWidget(),
                     ],
-                  },
+                  ),
                   isExpanded: item.isExpanded,
                 );
               }).toList(),
