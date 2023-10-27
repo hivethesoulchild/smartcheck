@@ -11,11 +11,11 @@ var data = [];
 class BatchDetail extends StatefulWidget {
   final List<CameraDescription> cameras;
   final int dataIndex;
-  const BatchDetail(
-      {Key? key,
-      required this.dataIndex,
-      required this.cameras,})
-      : super(key: key);
+  const BatchDetail({
+    Key? key,
+    required this.dataIndex,
+    required this.cameras,
+  }) : super(key: key);
 
   @override
   State<BatchDetail> createState() => _BatchDetailState();
@@ -237,7 +237,8 @@ class _BatchDetailState extends State<BatchDetail> {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => ScannerPage(
-                                                batchId: global.batchData[widget.dataIndex]["_id"],
+                                                batchId: global.batchData[
+                                                    widget.dataIndex]["_id"],
                                                 id: index,
                                                 cameras: widget.cameras,
                                               ),
@@ -308,7 +309,7 @@ class _BatchDetailState extends State<BatchDetail> {
       );
     });
   }
-  
+
   @override
   void initState() {
     super.initState();

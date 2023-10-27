@@ -34,7 +34,7 @@ class _ScienceAnalysisState extends State<ScienceAnalysis> {
   late List<Item> _data;
 
   Future<void> _fetchScienceData() async {
-    api = await BackEndPy.getAnalysisDataAptitude();
+    api = await BackEndPy.getAnalysisDataScience();
 
     _data = List<Item>.generate(
       30,
