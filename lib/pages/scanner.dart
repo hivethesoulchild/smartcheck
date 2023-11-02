@@ -254,36 +254,27 @@ class _ScannerPageState extends State<ScannerPage> {
                   builder: (BuildContext context, BoxConstraints constraints) {
                     return Stack(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: Center(
-                            child: SizedBox(
-                              height: MediaQuery.of(context).size.width < 360
-                                  ? 550
-                                  : 630,
-                              width: double.infinity,
-                              child: CameraPreview(cameraController),
-                            ),
+                        Center(
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.width * 16 / 9,
+                            child: CameraPreview(cameraController),
                           ),
                         ),
                         for (var shape in detectedShapes)
                           Positioned(
-                            top: shape.top,
-                            left: MediaQuery.of(context).size.width < 360
-                                ? shape.left
-                                : 25,
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width < 360
-                                  ? shape.width
-                                  : 315,
-                              height: MediaQuery.of(context).size.width < 360
-                                  ? shape.height
-                                  : 395.84,
-                              child: _buildSquare(
-                                Colors.white10,
-                                Colors.transparent,
-                                Colors.white10,
-                              ),
+                            left: (MediaQuery.of(context).size.width -
+                                    shape.width) /
+                                2,
+                            top: (MediaQuery.of(context).size.height -
+                                    shape.height) /
+                                4,
+                            width: shape.width,
+                            height: shape.height,
+                            child: _buildSquare(
+                              Colors.white10,
+                              Colors.transparent,
+                              Colors.white10,
                             ),
                           ),
                       ],
