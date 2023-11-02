@@ -132,28 +132,6 @@ class _BatchDetailState extends State<BatchDetail> {
                 GoogleFonts.poppins(fontSize: 18, color: HexColor('#35408f')),
           ),
           backgroundColor: Colors.white,
-          actions: [
-            PopupMenuButton(
-              icon: const Icon(
-                Icons.sort,
-                color: Colors.grey,
-              ),
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: const Text("Sort by name"),
-                  onTap: () {},
-                ),
-                PopupMenuItem(
-                  child: const Text("Sort by number"),
-                  onTap: () {},
-                ),
-                PopupMenuItem(
-                  child: const Text("Sort by status"),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

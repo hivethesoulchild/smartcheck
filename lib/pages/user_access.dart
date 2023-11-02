@@ -342,24 +342,6 @@ class _UserAccessState extends State<UserAccess> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        actions: [
-          PopupMenuButton(
-            icon: const Icon(
-              Icons.sort,
-              color: Colors.grey,
-            ),
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                child: const Text("Sort by name"),
-                onTap: () {},
-              ),
-              PopupMenuItem(
-                child: const Text("Sort by position"),
-                onTap: () {},
-              ),
-            ],
-          ),
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
