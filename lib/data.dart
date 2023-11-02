@@ -1,4 +1,6 @@
 
+import 'package:smartcheck/backend/backendpy.dart';
+
 var batchData = [];
 var batchDataArchive = [];
 
@@ -7,6 +9,11 @@ var answer_key = [[], [], [], []];
 var userList = [];
 
 var userLoggedIn;
+
+var analysisEnglishData = {};
+var analysisMathData= {};
+var analysisScienceData = {};
+var analysisAptitudeData= {};
 
 void setAnswerKeyCache(Map data) async {
   answer_key = [[], [], [], []];
@@ -78,6 +85,15 @@ void setBatchData(List data) {
       });
     }
   }
+}
+
+void setAnalysistData() async {
+analysisEnglishData = await BackEndPy.getAnalysisDataEnglish();
+analysisMathData = await BackEndPy.getAnalysisDataMath();
+analysisScienceData = await BackEndPy.getAnalysisDataScience();
+analysisAptitudeData = await BackEndPy.getAnalysisDataAptitude();
+
+print(analysisMathData);
 }
 
 // import 'backend/backendpy.dart';

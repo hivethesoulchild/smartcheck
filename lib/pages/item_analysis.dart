@@ -10,6 +10,7 @@ import 'package:smartcheck/charts/science_analysis.dart';
 import 'package:smartcheck/routes/analysis_per_subject_button.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:smartcheck/data.dart' as global; 
 
 Future<void> exportData() async {
   // Get the document directory
@@ -35,7 +36,6 @@ Future<void> exportData() async {
 
 class ItemAnalysis extends StatefulWidget {
   const ItemAnalysis({Key? key}) : super(key: key);
-
   @override
   State<ItemAnalysis> createState() => _ItemAnalysisState();
 }
@@ -43,6 +43,13 @@ class ItemAnalysis extends StatefulWidget {
 class _ItemAnalysisState extends State<ItemAnalysis> {
   void exportData() {
     // add logic here
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    global.setAnalysistData();
   }
   @override
   Widget build(BuildContext context) => DefaultTabController(
