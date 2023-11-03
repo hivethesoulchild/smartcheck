@@ -10,29 +10,10 @@ import 'package:smartcheck/charts/science_analysis.dart';
 import 'package:smartcheck/routes/analysis_per_subject_button.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:smartcheck/data.dart' as global; 
-
-Future<void> exportData() async {
-  // Get the document directory
-  final directory = await getApplicationDocumentsDirectory();
-
-  // Define the file path where you want to save your exported data
-  final filePath = '${directory.path}/exported_data.txt';
-
-  // Implement your export logic here
-  // For example, you can write data to the file using the File class:
-  final file = File(filePath);
-  await file.writeAsString('Your exported data goes here.');
-
-  // Show a toast message to confirm the export
-  Fluttertoast.showToast(
-    msg: 'Data exported successfully!',
-    toastLength: Toast.LENGTH_SHORT, // You can customize the duration
-    gravity: ToastGravity.BOTTOM, // You can customize the position
-    backgroundColor: Colors.green, // You can customize the background color
-    textColor: Colors.white, // You can customize the text color
-  );
-}
+import 'package:smartcheck/data.dart' as global;
+import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:csv/csv.dart';
 
 class ItemAnalysis extends StatefulWidget {
   const ItemAnalysis({Key? key}) : super(key: key);
@@ -41,8 +22,98 @@ class ItemAnalysis extends StatefulWidget {
 }
 
 class _ItemAnalysisState extends State<ItemAnalysis> {
-  void exportData() {
-    // add logic here
+  Future<void> exportData() async {
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+
+    if (status.isGranted) {
+      // final directory =
+      //     await getExternalStorageDirectory(); // This is the path to external storage on Android.
+      // final customFolder = Directory('${directory?.path}SmartCheck');
+      // customFolder.createSync(recursive: true);
+
+      final directory = Directory(
+          '/storage/emulated/0/'); // This is the path to external storage on Android.
+      final customFolder = Directory('${directory.path}SmartCheck');
+      customFolder.createSync(recursive: true);
+
+      var dataEnglish = global.analysisEnglishData;
+      var dataMath = global.analysisMathData;
+      var dataScience = global.analysisScienceData;
+      var dataAptitude = global.analysisAptitudeData;
+
+      List<List<dynamic>> rows = [
+        ['English'],
+        ['Item Number', 'A', 'B', 'C', 'D', 'E']
+      ];
+
+      for (int rowNumber = 0;
+          rowNumber < dataEnglish['englishCount']['0'].length;
+          rowNumber++) {
+        rows.add([
+          '${rowNumber + 1}',
+          '${dataEnglish['englishCount']['0'][rowNumber]}',
+          '${dataEnglish['englishCount']['1'][rowNumber]}',
+          '${dataEnglish['englishCount']['2'][rowNumber]}',
+          '${dataEnglish['englishCount']['3'][rowNumber]}',
+          '${dataEnglish['englishCount']['4'][rowNumber]}'
+        ]);
+      }
+      rows.add(['Mathematics']);
+      rows.add(['Item Number', 'A', 'B', 'C', 'D']);
+      for (int rowNumber = 0;
+          rowNumber < dataMath['mathCount']['0'].length;
+          rowNumber++) {
+        rows.add([
+          '${rowNumber + 1}',
+          '${dataMath['mathCount']['0'][rowNumber]}',
+          '${dataMath['mathCount']['1'][rowNumber]}',
+          '${dataMath['mathCount']['2'][rowNumber]}',
+          '${dataMath['mathCount']['3'][rowNumber]}'
+        ]);
+      }
+      rows.add(['Science']);
+      rows.add(['Item Number', 'A', 'B', 'C', 'D']);
+      for (int rowNumber = 0;
+          rowNumber < dataScience['scienceCount']['0'].length;
+          rowNumber++) {
+        rows.add([
+          '${rowNumber + 1}',
+          '${dataScience['scienceCount']['0'][rowNumber]}',
+          '${dataScience['scienceCount']['1'][rowNumber]}',
+          '${dataScience['scienceCount']['2'][rowNumber]}',
+          '${dataScience['scienceCount']['3'][rowNumber]}'
+        ]);
+      }
+      rows.add(['Aptitude']);
+      rows.add(['Item Number', 'A', 'B', 'C', 'D']);
+      for (int rowNumber = 0; rowNumber < 15; rowNumber++) {
+        rows.add([
+          '${rowNumber + 1}',
+          '${dataAptitude['aptitudeCount']['0'][rowNumber]}',
+          '${dataAptitude['aptitudeCount']['1'][rowNumber]}',
+          '${dataAptitude['aptitudeCount']['2'][rowNumber]}',
+          '${dataAptitude['aptitudeCount']['3'][rowNumber]}'
+        ]);
+      }
+
+      String csv = const ListToCsvConverter().convert(rows);
+      final file = File('${directory?.path}/my_data.csv');
+      await file.writeAsString(csv);
+
+      // Show a toast message to confirm the export
+      Fluttertoast.showToast(
+        msg: 'Data exported successfully! $file',
+        toastLength: Toast.LENGTH_SHORT, // You can customize the duration
+        gravity: ToastGravity.BOTTOM, // You can customize the position
+        backgroundColor: Colors.green, // You can customize the background color
+        textColor: Colors.white, // You can customize the text color
+      );
+    } else {
+      // Handle denied or restricted permissions.
+    }
   }
 
   @override
@@ -51,6 +122,7 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     super.initState();
     global.setAnalysistData();
   }
+
   @override
   Widget build(BuildContext context) => DefaultTabController(
         length: 4,

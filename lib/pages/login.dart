@@ -87,6 +87,7 @@ class _LoginState extends State<Login> {
         global.setUserListCache(allUserValue);
         global.setUserLoggedIn(user);
         global.setBatchData(batchData);
+        global.setAnalysistData();
 
         formKey.currentState?.save();
 

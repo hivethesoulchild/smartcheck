@@ -11,6 +11,7 @@ import 'package:smartcheck/pages/user_dashboard.dart';
 import 'package:smartcheck/pages/splash_screen.dart';
 import 'package:smartcheck/pages/user_access.dart';
 import 'backend/backendpy.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,10 @@ Future<void> main() async {
   runApp(MyApp(
     cameras: cameras,
   ));
+  var status = await Permission.storage.status;
+  if (!status.isGranted) {
+    await Permission.storage.request();
+  }
 }
 
 class MyApp extends StatelessWidget {

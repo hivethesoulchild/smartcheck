@@ -1,5 +1,6 @@
 
 import 'package:smartcheck/backend/backendpy.dart';
+import 'dart:async';
 
 var batchData = [];
 var batchDataArchive = [];
@@ -87,13 +88,13 @@ void setBatchData(List data) {
   }
 }
 
-void setAnalysistData() async {
+Future <void> setAnalysistData() async {
 analysisEnglishData = await BackEndPy.getAnalysisDataEnglish();
 analysisMathData = await BackEndPy.getAnalysisDataMath();
 analysisScienceData = await BackEndPy.getAnalysisDataScience();
 analysisAptitudeData = await BackEndPy.getAnalysisDataAptitude();
 
-print(analysisMathData);
+Completer().complete(true);
 }
 
 // import 'backend/backendpy.dart';
