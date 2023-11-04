@@ -100,8 +100,26 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
       }
 
       String csv = const ListToCsvConverter().convert(rows);
-      final file = File('${directory?.path}/my_data.csv');
-      await file.writeAsString(csv);
+      final file = File('${directory.path}/my_data.csv');
+
+      try {
+        await file.writeAsString(csv);
+        Fluttertoast.showToast(
+          msg: 'Data exported successfully! $file',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+      } catch (e) {
+        Fluttertoast.showToast(
+          msg: 'Error exporting data: $e',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+      }
 
       // Show a toast message to confirm the export
       Fluttertoast.showToast(
@@ -113,12 +131,18 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
       );
     } else {
       // Handle denied or restricted permissions.
+      Fluttertoast.showToast(
+        msg: 'Permission denied to access storage',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     global.setAnalysistData();
   }
@@ -127,70 +151,71 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
   Widget build(BuildContext context) => DefaultTabController(
         length: 4,
         child: Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: HexColor('#35408f'),
-                ),
-                onPressed: () => Navigator.of(context).pop(),
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: HexColor('#35408f'),
               ),
-              centerTitle: true,
-              backgroundColor: HexColor('#ffffff'),
-              title: Text(
-                'Item Analysis',
-                style: GoogleFonts.poppins(
-                  color: HexColor('#35408F'),
-                ),
-              ),
-              actions: [
-                PopupMenuButton(
-                  icon: Icon(
-                    Icons.more_vert,
-                    color: HexColor('#35408F'),
-                  ),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                      onTap: exportData,
-                      value: 1,
-                      child: const Text('Export'),
-                    )
-                  ],
-                )
-              ],
-              bottom: TabBar(
-                physics: const BouncingScrollPhysics(),
-                labelColor: HexColor('#35408f'),
-                indicatorColor: HexColor('#35408f'),
-                labelStyle: GoogleFonts.poppins(
-                  fontSize: 15,
-                ),
-                unselectedLabelStyle: GoogleFonts.poppins(
-                  fontSize: 15,
-                ),
-                tabs: const [
-                  Tab(
-                    text: "English",
-                  ),
-                  Tab(
-                    text: "Science",
-                  ),
-                  Tab(
-                    text: "Math",
-                  ),
-                  Tab(
-                    text: "Aptitude",
-                  ),
-                ],
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            centerTitle: true,
+            backgroundColor: HexColor('#ffffff'),
+            title: Text(
+              'Item Analysis',
+              style: GoogleFonts.poppins(
+                color: HexColor('#35408F'),
               ),
             ),
-            body: const TabBarView(
-              children: [
-                EnglishAnalysis(),
-                ScienceAnalysis(),
-                MathAnalysis(),
-                AptitudeAnalysis(),
+            actions: [
+              PopupMenuButton(
+                icon: Icon(
+                  Icons.more_vert,
+                  color: HexColor('#35408F'),
+                ),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    onTap: exportData,
+                    value: 1,
+                    child: const Text('Export'),
+                  )
+                ],
+              )
+            ],
+            bottom: TabBar(
+              physics: const BouncingScrollPhysics(),
+              labelColor: HexColor('#35408f'),
+              indicatorColor: HexColor('#35408f'),
+              labelStyle: GoogleFonts.poppins(
+                fontSize: 15,
+              ),
+              unselectedLabelStyle: GoogleFonts.poppins(
+                fontSize: 15,
+              ),
+              tabs: const [
+                Tab(
+                  text: "English",
+                ),
+                Tab(
+                  text: "Science",
+                ),
+                Tab(
+                  text: "Math",
+                ),
+                Tab(
+                  text: "Aptitude",
+                ),
               ],
-            )),
+            ),
+          ),
+          body: const TabBarView(
+            children: [
+              EnglishAnalysis(),
+              ScienceAnalysis(),
+              MathAnalysis(),
+              AptitudeAnalysis(),
+            ],
+          ),
+        ),
       );
 }
