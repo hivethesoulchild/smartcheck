@@ -23,9 +23,9 @@ class ItemAnalysis extends StatefulWidget {
 
 class _ItemAnalysisState extends State<ItemAnalysis> {
   Future<void> exportData() async {
-    var status = await Permission.storage.status;
+    var status = await Permission.manageExternalStorage.status;
     if (!status.isGranted) {
-      await Permission.storage.request();
+      await Permission.manageExternalStorage.request();
     }
 
     if (status.isGranted) {
