@@ -29,12 +29,11 @@ class _ArchivesState extends State<Archives> {
               child: GridView.builder(
                 padding: const EdgeInsets.all(5.0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount:
-                      MediaQuery.of(context).size.width < 600 ? 1 : 2,
+                  crossAxisCount: 1,
                   childAspectRatio:
-                      MediaQuery.of(context).size.width < 600 ? 3.0 : 2.6,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
+                      MediaQuery.of(context).size.width < 480 ? 2.5 : 4.0,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
                 ),
                 itemCount: global.batchDataArchive.length,
                 itemBuilder: (context, index) {
@@ -112,8 +111,9 @@ class _ArchivesState extends State<Archives> {
                                         onTap: () {
                                           BackEndPy.deleteApplicantList(
                                               value['_id']);
-                                          global.batchDataArchive.removeWhere((item) =>
-                                              item['_id'] == value['_id']);
+                                          global.batchDataArchive.removeWhere(
+                                              (item) =>
+                                                  item['_id'] == value['_id']);
                                           setState(() {});
                                         },
                                         child: const Text('Delete'),

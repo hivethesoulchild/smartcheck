@@ -261,7 +261,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           mainAxisExtent:
                               MediaQuery.of(context).size.width <= 480
                                   ? MediaQuery.of(context).size.width * 0.4
-                                  : MediaQuery.of(context).size.width * 0.2,
+                                  : MediaQuery.of(context).size.width * 0.18,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
