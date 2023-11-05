@@ -122,13 +122,13 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
       }
 
       // Show a toast message to confirm the export
-      Fluttertoast.showToast(
-        msg: 'Data exported successfully! $file',
-        toastLength: Toast.LENGTH_SHORT, // You can customize the duration
-        gravity: ToastGravity.BOTTOM, // You can customize the position
-        backgroundColor: Colors.green, // You can customize the background color
-        textColor: Colors.white, // You can customize the text color
-      );
+      // Fluttertoast.showToast(
+      //   msg: 'Data exported successfully! $file',
+      //   toastLength: Toast.LENGTH_SHORT, // You can customize the duration
+      //   gravity: ToastGravity.BOTTOM, // You can customize the position
+      //   backgroundColor: Colors.green, // You can customize the background color
+      //   textColor: Colors.white, // You can customize the text color
+      // );
     } else {
       // Handle denied or restricted permissions.
       Fluttertoast.showToast(
