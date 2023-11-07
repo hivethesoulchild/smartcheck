@@ -5,6 +5,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/answer_keys/viewanswerkey.dart';
 import 'package:smartcheck/pages/scanner.dart';
 import 'data.dart' as global;
+import 'backend/backendpy.dart';
+import 'dart:async';
 
 var data = [];
 
@@ -24,6 +26,28 @@ class BatchDetail extends StatefulWidget {
 class _BatchDetailState extends State<BatchDetail> {
   int _currentIndex = 0;
   List<dynamic> applicants = [];
+  late Timer _timer;
+
+  Future<void> fetchData() async {
+    var batchData = await BackEndPy.getAllApplicantList();
+
+    if (batchData != null) {
+      // If the server returns a 200 OK response, parse the JSON.
+      setState(() {
+        global.setBatchData(batchData);
+        applicants = global.batchData[widget.dataIndex]["applicants"];
+      });
+    } else {
+      // Handle errors or no response.
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+    print('disposed');
+  }
 
   void onTabTapped(int index) {
     setState(() {
@@ -41,7 +65,6 @@ class _BatchDetailState extends State<BatchDetail> {
 
   @override
   Widget build(BuildContext context) {
-    print(true);
     Future<dynamic> showAlertDialog(BuildContext context, dynamic value) async {
       var selectedItem = '';
       return showDialog(
@@ -289,9 +312,14 @@ class _BatchDetailState extends State<BatchDetail> {
     });
   }
 
-  @override
+
+@override
   void initState() {
     super.initState();
+    fetchData(); // Initial data fetch
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
+      fetchData(); // Fetch data every 5 seconds
+    });
     applicants = global.batchData[widget.dataIndex]["applicants"];
   }
 }

@@ -53,7 +53,6 @@ class BackEndPy {
           'aptitude': data[3]
         }));
 
-    print(response.body);
   }
 
   static Future<dynamic> getAllUser() async {
@@ -76,7 +75,6 @@ class BackEndPy {
         }));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
-    print(jsonResponse);
   }
 
   static Future<dynamic> getAllApplicantList() async {
@@ -93,7 +91,6 @@ class BackEndPy {
             {'_id': id, 'schoolName': schoolName, 'applicants': applicants}));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
-    print(jsonResponse);
   }
 
   static void editApplicantList(String id, bool archive) async {
@@ -102,7 +99,6 @@ class BackEndPy {
         body: json.encode({'_id': id, 'archive': archive}));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
-    print(jsonResponse);
   }
 
   static void deleteApplicantList(String id) async {
@@ -110,7 +106,6 @@ class BackEndPy {
     final response = await http.delete(url, body: json.encode({'_id': id}));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
-    print(jsonResponse);
   }
 
   static void addUser(
@@ -124,7 +119,6 @@ class BackEndPy {
           'role': role
         }));
 
-    print(response.body);
   }
 
   static void editUser(
@@ -138,14 +132,12 @@ class BackEndPy {
           'role': role
         }));
 
-    print(response.body);
   }
 
   static void deleteUser(String id) async {
     final url = Uri.parse('$baseUrl/deleteUser/');
     final response = await http.delete(url, body: json.encode({'_id': id}));
 
-    print(response.body);
   }
 
   static Future<void> uploadImage(
