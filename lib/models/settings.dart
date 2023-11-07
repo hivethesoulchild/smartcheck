@@ -11,18 +11,18 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     showAlertDialog(BuildContext context) {
       AlertDialog alert = AlertDialog(
-        title: Text('Trojans'),
+        title: const Text('Trojans'),
         content: SizedBox(
           height: 210,
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Text(
@@ -32,32 +32,32 @@ class Settings extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Royce Christopher Abante')],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Marinelle Bagona')],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Allisandra Nicole Bendijo')],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Yvan Roi Casa')],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Text(
