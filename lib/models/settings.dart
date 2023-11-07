@@ -13,7 +13,7 @@ class Settings extends StatelessWidget {
       AlertDialog alert = const AlertDialog(
         title: Text('Trojans'),
         content: SizedBox(
-          height: 200,
+          height: 210,
           child: SingleChildScrollView(
             padding: EdgeInsets.all(8.0),
             child: Column(
@@ -24,33 +24,31 @@ class Settings extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text('Royce Christopher Abante')
-                    ],
+                    children: [Text('Royce Christopher Abante')],
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text('Allisandra Nicole Bendijo')
-                    ],
+                    children: [Text('Marinelle Bagona')],
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text('Yvan Roi Casa')
-                    ],
+                    children: [Text('Allisandra Nicole Bendijo')],
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
-                    children: [
-                      Text('Roben Juanatas')
-                    ],
+                    children: [Text('Yvan Roi Casa')],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [Text('Roben Juanatas')],
                   ),
                 ),
               ],
@@ -94,8 +92,12 @@ class Settings extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Login(cameras: cameras,)));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Login(
+                                      cameras: cameras,
+                                    )));
                       },
                       child: Align(
                         alignment: Alignment.centerLeft,
