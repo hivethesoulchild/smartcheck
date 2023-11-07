@@ -81,7 +81,7 @@ class _BatchDetailState extends State<BatchDetail> {
                   style: GoogleFonts.poppins(),
                 ),
                 content: SizedBox(
-                  height: 300,
+                  height: 200,
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -121,13 +121,6 @@ class _BatchDetailState extends State<BatchDetail> {
                             (value['status'].toString() == 'true')
                                 ? "Status: Submitted"
                                 : "Status: Not yet taken",
-                            style: GoogleFonts.poppins(),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Recommendations: ${value['Recommendation']}',
                             style: GoogleFonts.poppins(),
                           ),
                         ),
@@ -312,8 +305,7 @@ class _BatchDetailState extends State<BatchDetail> {
     });
   }
 
-
-@override
+  @override
   void initState() {
     super.initState();
     fetchData(); // Initial data fetch

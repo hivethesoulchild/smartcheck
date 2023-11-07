@@ -49,7 +49,7 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                   style: GoogleFonts.poppins(),
                 ),
                 content: SizedBox(
-                  height: 300,
+                  height: 200,
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -89,13 +89,6 @@ class _BatchDetailArchiveState extends State<BatchDetailArchive> {
                             (value['status'].toString() == 'true')
                                 ? "Status: Submitted"
                                 : "Status: Not yet taken",
-                            style: GoogleFonts.poppins(),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Recommendations: ${value['Recommendation']}',
                             style: GoogleFonts.poppins(),
                           ),
                         ),
