@@ -10,7 +10,7 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     showAlertDialog(BuildContext context) {
-      AlertDialog alert = const AlertDialog(
+      AlertDialog alert = AlertDialog(
         title: Text('Trojans'),
         content: SizedBox(
           height: 210,
@@ -21,6 +21,17 @@ class Settings extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Members',
+                        style: GoogleFonts.nunito(fontWeight: FontWeight.w200),
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
@@ -46,6 +57,17 @@ class Settings extends StatelessWidget {
                   ),
                 ),
                 Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Adviser',
+                        style: GoogleFonts.nunito(fontWeight: FontWeight.w200),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [Text('Roben Juanatas')],
