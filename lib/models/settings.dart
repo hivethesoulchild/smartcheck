@@ -13,7 +13,7 @@ class Settings extends StatelessWidget {
       AlertDialog alert = AlertDialog(
         title: const Text('Trojans'),
         content: SizedBox(
-          height: 210,
+          height: 300,
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
             child: Column(
