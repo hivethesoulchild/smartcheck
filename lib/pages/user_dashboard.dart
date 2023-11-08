@@ -63,13 +63,6 @@ class _UserDashboardState extends State<UserDashboard> {
               ),
             ],
           ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
-              color: HexColor('#35408f'),
-            ),
-          ],
         ),
         body: children[_currentIndex],
         bottomNavigationBar: Container(
@@ -345,6 +338,12 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                                   setState(() {});
                                                 },
                                                 child: const Text('Delete'),
+                                              ),
+                                              PopupMenuItem(
+                                                value: 3,
+                                                onTap: (() {}),
+                                                child:
+                                                    const Text('Export Data'),
                                               ),
                                             ],
                                           ),
