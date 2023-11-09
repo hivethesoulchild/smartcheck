@@ -533,17 +533,16 @@ class _DashboardPageState extends State<DashboardPage> {
 
                                                     for (int rowNumber = 0;
                                                         rowNumber <
-                                                            dataEnglish['englishCount']
-                                                                    ['0']
+                                                            dataEnglish['0']
                                                                 .length;
                                                         rowNumber++) {
                                                       rows.add([
                                                         '${rowNumber + 1}',
-                                                        '${dataEnglish['englishCount']['0'][rowNumber]}',
-                                                        '${dataEnglish['englishCount']['1'][rowNumber]}',
-                                                        '${dataEnglish['englishCount']['2'][rowNumber]}',
-                                                        '${dataEnglish['englishCount']['3'][rowNumber]}',
-                                                        '${dataEnglish['englishCount']['4'][rowNumber]}'
+                                                        '${dataEnglish['0'][rowNumber]}',
+                                                        '${dataEnglish['1'][rowNumber]}',
+                                                        '${dataEnglish['2'][rowNumber]}',
+                                                        '${dataEnglish['3'][rowNumber]}',
+                                                        '${dataEnglish['4'][rowNumber]}'
                                                       ]);
                                                     }
                                                     rows.add(['Mathematics']);
@@ -556,16 +555,15 @@ class _DashboardPageState extends State<DashboardPage> {
                                                     ]);
                                                     for (int rowNumber = 0;
                                                         rowNumber <
-                                                            dataMath['mathCount']
-                                                                    ['0']
+                                                            dataMath['0']
                                                                 .length;
                                                         rowNumber++) {
                                                       rows.add([
                                                         '${rowNumber + 1}',
-                                                        '${dataMath['mathCount']['0'][rowNumber]}',
-                                                        '${dataMath['mathCount']['1'][rowNumber]}',
-                                                        '${dataMath['mathCount']['2'][rowNumber]}',
-                                                        '${dataMath['mathCount']['3'][rowNumber]}'
+                                                        '${dataMath['0'][rowNumber]}',
+                                                        '${dataMath['1'][rowNumber]}',
+                                                        '${dataMath['2'][rowNumber]}',
+                                                        '${dataMath['3'][rowNumber]}'
                                                       ]);
                                                     }
                                                     rows.add(['Science']);
@@ -578,16 +576,15 @@ class _DashboardPageState extends State<DashboardPage> {
                                                     ]);
                                                     for (int rowNumber = 0;
                                                         rowNumber <
-                                                            dataScience['scienceCount']
-                                                                    ['0']
+                                                            dataScience['0']
                                                                 .length;
                                                         rowNumber++) {
                                                       rows.add([
                                                         '${rowNumber + 1}',
-                                                        '${dataScience['scienceCount']['0'][rowNumber]}',
-                                                        '${dataScience['scienceCount']['1'][rowNumber]}',
-                                                        '${dataScience['scienceCount']['2'][rowNumber]}',
-                                                        '${dataScience['scienceCount']['3'][rowNumber]}'
+                                                        '${dataScience['0'][rowNumber]}',
+                                                        '${dataScience['1'][rowNumber]}',
+                                                        '${dataScience['2'][rowNumber]}',
+                                                        '${dataScience['3'][rowNumber]}'
                                                       ]);
                                                     }
                                                     rows.add(['Aptitude']);
@@ -603,10 +600,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                                         rowNumber++) {
                                                       rows.add([
                                                         '${rowNumber + 1}',
-                                                        '${dataAptitude['aptitudeCount']['0'][rowNumber]}',
-                                                        '${dataAptitude['aptitudeCount']['1'][rowNumber]}',
-                                                        '${dataAptitude['aptitudeCount']['2'][rowNumber]}',
-                                                        '${dataAptitude['aptitudeCount']['3'][rowNumber]}'
+                                                        '${dataAptitude['0'][rowNumber]}',
+                                                        '${dataAptitude['1'][rowNumber]}',
+                                                        '${dataAptitude['2'][rowNumber]}',
+                                                        '${dataAptitude['3'][rowNumber]}'
                                                       ]);
                                                     }
 
