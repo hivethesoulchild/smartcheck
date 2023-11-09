@@ -18,24 +18,30 @@ class BackEndPy {
     return jsonDecode(response.body);
   }
 
+  static Future<dynamic> getBatchData(String id) async {
+    final url = Uri.parse('$baseUrl/getBatchData/');
+    final response = await http.post(url, body: json.encode({'_id': id}));
+    return jsonDecode(response.body);
+  }
+
   static Future<dynamic> getAnalysisDataEnglish() async {
     final url = Uri.parse('$baseUrl/getAnalysisDataEnglish/');
     final response = await http.get(url);
     return jsonDecode(response.body);
   }
-  
+
   static Future<dynamic> getAnalysisDataScience() async {
     final url = Uri.parse('$baseUrl/getAnalysisDataScience/');
     final response = await http.get(url);
     return jsonDecode(response.body);
   }
-  
+
   static Future<dynamic> getAnalysisDataMath() async {
     final url = Uri.parse('$baseUrl/getAnalysisDataMath/');
     final response = await http.get(url);
     return jsonDecode(response.body);
   }
-  
+
   static Future<dynamic> getAnalysisDataAptitude() async {
     final url = Uri.parse('$baseUrl/getAnalysisDataAptitude/');
     final response = await http.get(url);
@@ -52,7 +58,6 @@ class BackEndPy {
           'mathematics': data[2],
           'aptitude': data[3]
         }));
-
   }
 
   static Future<dynamic> getAllUser() async {
@@ -118,7 +123,6 @@ class BackEndPy {
           'isActive': isActive,
           'role': role
         }));
-
   }
 
   static void editUser(
@@ -131,13 +135,11 @@ class BackEndPy {
           'isActive': isActive,
           'role': role
         }));
-
   }
 
   static void deleteUser(String id) async {
     final url = Uri.parse('$baseUrl/deleteUser/');
     final response = await http.delete(url, body: json.encode({'_id': id}));
-
   }
 
   static Future<void> uploadImage(
