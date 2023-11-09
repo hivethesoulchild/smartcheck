@@ -498,17 +498,17 @@ class _DashboardPageState extends State<DashboardPage> {
                                                   }
 
                                                   if (status.isGranted) {
-                                                    final directory =
-                                                        await getExternalStorageDirectory(); // This is the path to external storage on Android.
-                                                    final customFolder = Directory('${directory?.path}SmartCheck');
-                                                    customFolder.createSync(recursive: true);
+                                                    // final directory =
+                                                    //     await getExternalStorageDirectory(); // This is the path to external storage on Android.
+                                                    // final customFolder = Directory('${directory?.path}SmartCheck');
+                                                    // customFolder.createSync(recursive: true);
 
-                                                    // final directory = Directory(
-                                                    //     '/storage/emulated/0/');
-                                                    // final customFolder = Directory(
-                                                    //     '${directory.path}SmartCheck');
-                                                    // customFolder.createSync(
-                                                    //     recursive: true);
+                                                    final directory = Directory(
+                                                        '/storage/emulated/0/');
+                                                    final customFolder = Directory(
+                                                        '${directory.path}SmartCheck');
+                                                    customFolder.createSync(
+                                                        recursive: true);
 
                                                     var dataEnglish =
                                                         data["englishCount"];
@@ -614,7 +614,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                                         const ListToCsvConverter()
                                                             .convert(rows);
                                                     final file = File(
-                                                        '${directory?.path}/${data["name"]}.csv');
+                                                        '${directory.path}/${data["name"]}.csv');
 
                                                     try {
                                                       await file
