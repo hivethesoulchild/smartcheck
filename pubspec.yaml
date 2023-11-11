@@ -53,6 +53,8 @@ dependencies:
   path: ^1.8.2
   permission_handler: ^10.4.5
   flutter_easyloading: ^3.0.5
+  flutter_bcrypt: ^1.0.8
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
