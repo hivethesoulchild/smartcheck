@@ -24,6 +24,10 @@ class _UserAccessState extends State<UserAccess> {
   TextEditingController passwordController = TextEditingController();
   String selectedValue = 'SUPERUSER';
 
+  RegExp passwordRegex = RegExp(
+    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$',
+  );
+
   Future<dynamic> showDeleteDialog(BuildContext context, dynamic value) async {
     return showDialog(
       context: context,
@@ -178,6 +182,20 @@ class _UserAccessState extends State<UserAccess> {
               ),
               ElevatedButton(
                 onPressed: () {
+
+                  if (!passwordRegex.hasMatch(passwordController.text)) {
+                    Fluttertoast.showToast(
+                      msg: "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.grey,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                    return; // Stop further processing if the password is invalid
+                  }
+
                   BackEndPy.editUser(value['id'], passwordController.text,
                       _isSwitched, selectedValue);
                   Fluttertoast.showToast(
@@ -208,6 +226,9 @@ class _UserAccessState extends State<UserAccess> {
   Future<dynamic> showAddUserDialog(BuildContext context) async {
     TextEditingController newUsernameController = TextEditingController();
     TextEditingController newPasswordController = TextEditingController();
+
+
+
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -287,6 +308,20 @@ class _UserAccessState extends State<UserAccess> {
                 ),
                 ElevatedButton(
                   onPressed: () {
+
+                    if (!passwordRegex.hasMatch(newPasswordController.text)) {
+                    Fluttertoast.showToast(
+                      msg: "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.",
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.grey,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
+                    return; // Stop further processing if the password is invalid
+                  }
+
                     var uuid = const Uuid();
                     var uniqueId = uuid.v4();
                     BackEndPy.addUser(newUsernameController.text,
