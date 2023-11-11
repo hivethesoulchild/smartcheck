@@ -40,12 +40,12 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
             {
               'label': 'A',
               'value':  global.analysisEnglishData['englishCount']['0'][index],
-              'color': Colors.blue
+              'color': (global.answer_key[0][index] == 'A') ? Colors.blue : Colors.grey
             }, // Correct answer
-            {'label': 'B', 'value': global.analysisEnglishData['englishCount']['1'][index], 'color': Colors.blue},
-            {'label': 'C', 'value': global.analysisEnglishData['englishCount']['2'][index], 'color': Colors.blue},
-            {'label': 'D', 'value': global.analysisEnglishData['englishCount']['3'][index], 'color': Colors.blue},
-            {'label': 'E', 'value': global.analysisEnglishData['englishCount']['4'][index], 'color': Colors.blue},
+            {'label': 'B', 'value': global.analysisEnglishData['englishCount']['1'][index], 'color': (global.answer_key[0][index] == 'B') ? Colors.blue : Colors.grey},
+            {'label': 'C', 'value': global.analysisEnglishData['englishCount']['2'][index], 'color': (global.answer_key[0][index] == 'C') ? Colors.blue : Colors.grey},
+            {'label': 'D', 'value': global.analysisEnglishData['englishCount']['3'][index], 'color': (global.answer_key[0][index] == 'D') ? Colors.blue : Colors.grey},
+            {'label': 'E', 'value': global.analysisEnglishData['englishCount']['4'][index], 'color': (global.answer_key[0][index] == 'E') ? Colors.blue : Colors.grey},
           ],
           colorFn: (dynamic data, _) =>
               charts.ColorUtil.fromDartColor(data['color']),

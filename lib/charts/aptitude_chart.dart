@@ -20,6 +20,7 @@ class Item {
     );
   }
 }
+
 class AptitudeAnalysis extends StatefulWidget {
   const AptitudeAnalysis({Key? key}) : super(key: key);
   @override
@@ -39,13 +40,32 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
           data: [
             {
               'label': 'A',
-              'value':  global.analysisAptitudeData['aptitudeCount']['0'][index],
-              'color': Colors.blue
+              'value': global.analysisAptitudeData['aptitudeCount']['0'][index],
+              'color': (global.answer_key[3][index] == 'A')
+                  ? Colors.blue
+                  : Colors.grey
             }, // Correct answer
-            {'label': 'B', 'value': global.analysisAptitudeData['aptitudeCount']['1'][index], 'color': Colors.blue},
-            {'label': 'C', 'value': global.analysisAptitudeData['aptitudeCount']['2'][index], 'color': Colors.blue},
-            {'label': 'D', 'value': global.analysisAptitudeData['aptitudeCount']['3'][index], 'color': Colors.blue},
-            {'label': 'E', 'value': global.analysisAptitudeData['aptitudeCount']['4'][index], 'color': Colors.blue},
+            {
+              'label': 'B',
+              'value': global.analysisAptitudeData['aptitudeCount']['1'][index],
+              'color': (global.answer_key[3][index] == 'B')
+                  ? Colors.blue
+                  : Colors.grey
+            },
+            {
+              'label': 'C',
+              'value': global.analysisAptitudeData['aptitudeCount']['2'][index],
+              'color': (global.answer_key[3][index] == 'C')
+                  ? Colors.blue
+                  : Colors.grey
+            },
+            {
+              'label': 'D',
+              'value': global.analysisAptitudeData['aptitudeCount']['3'][index],
+              'color': (global.answer_key[3][index] == 'D')
+                  ? Colors.blue
+                  : Colors.grey
+            },
           ],
           colorFn: (dynamic data, _) =>
               charts.ColorUtil.fromDartColor(data['color']),
@@ -53,7 +73,6 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
       ],
     ),
   );
-
 
   @override
   Widget build(BuildContext context) {

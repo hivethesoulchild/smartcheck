@@ -20,6 +20,7 @@ class Item {
     );
   }
 }
+
 class MathAnalysis extends StatefulWidget {
   const MathAnalysis({Key? key}) : super(key: key);
   @override
@@ -39,13 +40,32 @@ class _MathAnalysisState extends State<MathAnalysis> {
           data: [
             {
               'label': 'A',
-              'value':  global.analysisMathData['mathCount']['0'][index],
-              'color': Colors.blue
+              'value': global.analysisMathData['mathCount']['0'][index],
+              'color': (global.answer_key[2][index] == 'A')
+                  ? Colors.blue
+                  : Colors.grey
             }, // Correct answer
-            {'label': 'B', 'value': global.analysisMathData['mathCount']['1'][index], 'color': Colors.blue},
-            {'label': 'C', 'value': global.analysisMathData['mathCount']['2'][index], 'color': Colors.blue},
-            {'label': 'D', 'value': global.analysisMathData['mathCount']['3'][index], 'color': Colors.blue},
-            {'label': 'E', 'value': global.analysisMathData['mathCount']['4'][index], 'color': Colors.blue},
+            {
+              'label': 'B',
+              'value': global.analysisMathData['mathCount']['1'][index],
+              'color': (global.answer_key[2][index] == 'B')
+                  ? Colors.blue
+                  : Colors.grey
+            },
+            {
+              'label': 'C',
+              'value': global.analysisMathData['mathCount']['2'][index],
+              'color': (global.answer_key[2][index] == 'C')
+                  ? Colors.blue
+                  : Colors.grey
+            },
+            {
+              'label': 'D',
+              'value': global.analysisMathData['mathCount']['3'][index],
+              'color': (global.answer_key[2][index] == 'D')
+                  ? Colors.blue
+                  : Colors.grey
+            }
           ],
           colorFn: (dynamic data, _) =>
               charts.ColorUtil.fromDartColor(data['color']),
@@ -53,7 +73,6 @@ class _MathAnalysisState extends State<MathAnalysis> {
       ],
     ),
   );
-
 
   @override
   Widget build(BuildContext context) {

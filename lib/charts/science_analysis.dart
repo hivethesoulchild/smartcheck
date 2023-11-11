@@ -20,6 +20,7 @@ class Item {
     );
   }
 }
+
 class ScienceAnalysis extends StatefulWidget {
   const ScienceAnalysis({Key? key}) : super(key: key);
   @override
@@ -39,13 +40,32 @@ class _ScienceAnalysisState extends State<ScienceAnalysis> {
           data: [
             {
               'label': 'A',
-              'value':  global.analysisScienceData['scienceCount']['0'][index],
-              'color': Colors.blue
+              'value': global.analysisScienceData['scienceCount']['0'][index],
+              'color': (global.answer_key[1][index] == 'A')
+                  ? Colors.blue
+                  : Colors.grey
             }, // Correct answer
-            {'label': 'B', 'value': global.analysisScienceData['scienceCount']['1'][index], 'color': Colors.blue},
-            {'label': 'C', 'value': global.analysisScienceData['scienceCount']['2'][index], 'color': Colors.blue},
-            {'label': 'D', 'value': global.analysisScienceData['scienceCount']['3'][index], 'color': Colors.blue},
-            {'label': 'E', 'value': global.analysisScienceData['scienceCount']['4'][index], 'color': Colors.blue},
+            {
+              'label': 'B',
+              'value': global.analysisScienceData['scienceCount']['1'][index],
+              'color': (global.answer_key[1][index] == 'B')
+                  ? Colors.blue
+                  : Colors.grey
+            },
+            {
+              'label': 'C',
+              'value': global.analysisScienceData['scienceCount']['2'][index],
+              'color': (global.answer_key[1][index] == 'C')
+                  ? Colors.blue
+                  : Colors.grey
+            },
+            {
+              'label': 'D',
+              'value': global.analysisScienceData['scienceCount']['3'][index],
+              'color': (global.answer_key[1][index] == 'D')
+                  ? Colors.blue
+                  : Colors.grey
+            },
           ],
           colorFn: (dynamic data, _) =>
               charts.ColorUtil.fromDartColor(data['color']),
@@ -53,7 +73,6 @@ class _ScienceAnalysisState extends State<ScienceAnalysis> {
       ],
     ),
   );
-
 
   @override
   Widget build(BuildContext context) {
