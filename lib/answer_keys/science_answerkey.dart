@@ -31,7 +31,7 @@ class _ScienceAnswerKeyState extends State<ScienceAnswerKey> {
                           height: 50,
                           width: 300,
                           child: InputChipotle(
-                            answer: global.answer_key[1][i],
+                            answer: global.answer_key_temp[1][i],
                             number: "${i + 1}",
                             subject: 'science',
                           ),

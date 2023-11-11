@@ -6,6 +6,7 @@ var batchData = [];
 var batchDataArchive = [];
 
 var answer_key = [[], [], [], []];
+var answer_key_temp;
 
 var userList = [];
 
@@ -25,26 +26,28 @@ void setAnswerKeyCache(Map data) async {
     answer_key[2].add(data["mathematics"][i]);
     answer_key[3].add(data["aptitude"][i]);
   }
-
-  print(answer_key);
+  answer_key_temp = answer_key;
 }
 
 void updateAnswerKeyCache(String subject, String answer, int number) {
   switch (subject) {
     case "english":
-      answer_key[0][number] = answer;
+      answer_key_temp[0][number] = answer;
       break;
     case "science":
-      answer_key[1][number] = answer;
+      answer_key_temp[1][number] = answer;
       break;
     case "mathematics":
-      answer_key[2][number] = answer;
+      answer_key_temp[2][number] = answer;
       break;
     case "aptitude":
-      answer_key[3][number] = answer;
-      print(answer_key[3]);
+      answer_key_temp[3][number] = answer;
       break;
   }
+}
+
+void updateAnswerKey (){
+  answer_key = answer_key_temp;
 }
 
 void setUserListCache(List data) {
@@ -55,7 +58,6 @@ void setUserListCache(List data) {
     "role": element['role'],
     "isActive": element['isActive']
   }).toList();
-  print(userList);
 }
 
 

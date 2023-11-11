@@ -41,7 +41,8 @@ class AnswerKeyPage extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         // Save the answer key
-                        BackEndPy.updateAnswerKey('1', global.answer_key);
+                        BackEndPy.updateAnswerKey('1', global.answer_key_temp);
+                        global.updateAnswerKey();
                         Fluttertoast.showToast(
                           msg: "Saved!",
                           toastLength: Toast.LENGTH_SHORT,

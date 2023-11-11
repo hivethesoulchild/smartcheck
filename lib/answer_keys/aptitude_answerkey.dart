@@ -31,7 +31,7 @@ class _AptitudeAnserKeyState extends State<AptitudeAnserKey> {
                         height: 50,
                         width: 300,
                         child: InputChipotle(
-                          answer: global.answer_key[3][i],
+                          answer: global.answer_key_temp[3][i],
                           number: "${i + 1}",
                           subject: 'aptitude',
                         ),
