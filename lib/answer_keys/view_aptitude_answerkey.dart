@@ -15,7 +15,7 @@ class _ViewAptitudeAnswerKeyState extends State<ViewAptitudeAnswerKey> {
   @override
   Widget build(BuildContext context) {
     var row = <Widget>[];
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 15; i++) {
       row.add(
         Row(
           children: [

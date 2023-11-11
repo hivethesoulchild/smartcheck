@@ -19,7 +19,7 @@ class _AptitudeAnserKeyState extends State<AptitudeAnserKey> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              for (int i = 0; i < 30; i++)
+              for (int i = 0; i < 15; i++)
                 Row(
                   children: [
                     Padding(
