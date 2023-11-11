@@ -113,37 +113,6 @@ class _ScannerPageState extends State<ScannerPage> {
                   isExpanded: true,
                 ),
               ),
-              // Padding(
-              //   padding: EdgeInsets.all(8.0),
-              //   child: Column(
-              //     children: [Text('English: 17')],
-              //   ),
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.all(8.0),
-              //   child: Column(
-              //     children: [Text('Mathematics: 15')],
-              //   ),
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.all(8.0),
-              //   child: Column(
-              //     children: [Text('Science: 13')],
-              //   ),
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.all(8.0),
-              //   child: Column(
-              //     children: [Text('Aptitude: 10')],
-              //   ),
-              // ),
-              // Container(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Text(
-              //     'Status: Submitted',
-              //     style: GoogleFonts.poppins(),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -158,39 +127,45 @@ class _ScannerPageState extends State<ScannerPage> {
   }
 
   Future<XFile?> _captureImage(BuildContext context) async {
-    if (!cameraController.value.isInitialized) {
-      print('Camera is not initialized.');
-      return null;
-    }
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return _LoadingDialog();
-      },
-    );
+  if (!cameraController.value.isInitialized) {
+    return null;
+  }
 
+  // Show the loading dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return _LoadingDialog();
+    },
+  );
+
+  try {
+    // Capture the image
     final XFile imageFile = await cameraController.takePicture();
-    print('Image captured: ${imageFile.path}');
-    print(widget.id);
-    print(widget.batchId);
 
-    BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
+    // Upload the image
+    await BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
 
+    // Save the image locally
     final File? savedImage = await _saveImage(imageFile);
-    Future.delayed(const Duration(seconds: 2), () async {
-      // Code to be executed after the delay
-      final batchData = await BackEndPy.getAllApplicantList();
-      global.setBatchData(batchData);
-    });
-    Navigator.pop(context); // Dismiss the loading dialog
+    
+    // Dismiss the loading dialog
+    Navigator.pop(context);
 
     if (savedImage != null) {
       print('Image saved at: ${savedImage.path}');
     }
 
     return imageFile;
+  } catch (e) {
+    // Handle errors
+    print('Error capturing/uploading image: $e');
+    Navigator.pop(context); // Dismiss the loading dialog in case of an error
+    return null;
   }
+}
+
 
   Future<File?> _saveImage(XFile imageFile) async {
     try {
@@ -207,11 +182,8 @@ class _ScannerPageState extends State<ScannerPage> {
     }
   }
 
-  // Function to process the shapes detected by the backend
   void processShapes(List<Rect> shapes) {
     for (var shape in shapes) {
-      // Perform your desired operations with each detected shape
-      // For example, you can print the coordinates of each shape
       print(
           'Shape detected at (${shape.left}, ${shape.top}) with width ${shape.width} and height ${shape.height}');
 
@@ -220,12 +192,7 @@ class _ScannerPageState extends State<ScannerPage> {
     }
   }
 
-  // Dummy function to simulate shape detection in the backend
   List<Rect> detectShapes() {
-    // Simulate shape detection by returning a list of rectangles (Rect)
-    // Replace this logic with your actual shape detection algorithm
-
-    // Creating a list of dummy shapes (rectangles)
     List<Rect> shapes = [
       const Rect.fromLTWH(17, 120, 378, 475),
     ];
@@ -292,6 +259,8 @@ class _ScannerPageState extends State<ScannerPage> {
                   ElevatedButton(
                     onPressed: () async {
                       await _captureImage(context);
+                      //return to page
+                    
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
