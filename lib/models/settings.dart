@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smartcheck/models/privacypolicy.dart';
 import 'package:smartcheck/pages/login.dart';
 
 class Settings extends StatelessWidget {
@@ -107,6 +108,21 @@ class Settings extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'About Us',
+                            style: GoogleFonts.poppins(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        PrivacyPolicyDialog().show(context);
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Privacy Policy',
                             style: GoogleFonts.poppins(),
                           ),
                         ),

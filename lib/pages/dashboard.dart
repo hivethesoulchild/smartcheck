@@ -435,7 +435,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                             child: Text(
                                               global.batchData[index]['name'],
                                               style: GoogleFonts.poppins(
-                                                fontSize: 19,
+                                                fontSize: 17,
                                                 fontWeight: FontWeight.bold,
                                                 color: HexColor("#35408f"),
                                               ),
