@@ -7,6 +7,7 @@ import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/data.dart' as global;
 import 'package:smartcheck/pages/user_dashboard.dart';
 import 'package:smartcheck/pages/dashboard.dart';
+import 'package:flutter_bcrypt/flutter_bcrypt.dart';
 
 class Login extends StatefulWidget {
   final List<CameraDescription> cameras;

@@ -50,6 +50,10 @@ void updateAnswerKey (){
   answer_key = answer_key_temp;
 }
 
+void resetAnswerKey(){
+  answer_key_temp = answer_key;
+}
+
 void setUserListCache(List data) {
   userList = data.map((element) => {
     "id": element['_id'],

@@ -483,11 +483,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                               PopupMenuItem(
                                                 value: 3,
                                                 onTap: (() async {
-                                                  var data = await BackEndPy
-                                                      .getBatchData(global
-                                                              .batchData[index]
-                                                          ['_id']);
-
                                                   var status = await Permission
                                                       .manageExternalStorage
                                                       .status;
@@ -510,6 +505,11 @@ class _DashboardPageState extends State<DashboardPage> {
                                                     customFolder.createSync(
                                                         recursive: true);
 
+                                                    var data = await BackEndPy
+                                                        .getBatchData(
+                                                            global.batchData[
+                                                                index]['_id']);
+
                                                     var dataEnglish =
                                                         data["englishCount"];
                                                     var dataMath =
@@ -518,6 +518,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                         data["scienceCount"];
                                                     var dataAptitude =
                                                         data["aptitudeCount"];
+                                                    var applicants =
+                                                        data["applicants"];
 
                                                     List<List<dynamic>> rows = [
                                                       ['English'],
@@ -607,9 +609,41 @@ class _DashboardPageState extends State<DashboardPage> {
                                                       ]);
                                                     }
 
+                                                    List<List<dynamic>>
+                                                        applicantResult = [
+                                                      [
+                                                        'id',
+                                                        'name',
+                                                        'English',
+                                                        'Mathematics',
+                                                        'Science',
+                                                        'Aptitude'
+                                                      ]
+                                                    ];
+
+                                                    for (var applicant
+                                                        in applicants) {
+                                                      applicantResult.add([
+                                                        applicant['id'],
+                                                        applicant['name'],
+                                                        applicant['English'],
+                                                        applicant[
+                                                            'Mathematics'],
+                                                        applicant['Science'],
+                                                        applicant['Aptitude'],
+                                                      ]);
+                                                    }
+
                                                     String csv =
                                                         const ListToCsvConverter()
                                                             .convert(rows);
+
+                                                    csv += '\n\n';
+
+                                                    csv +=
+                                                        const ListToCsvConverter()
+                                                            .convert(
+                                                                applicantResult);
                                                     final file = File(
                                                         '${directory.path}/${data["name"]}.csv');
 

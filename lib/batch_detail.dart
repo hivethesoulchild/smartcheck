@@ -115,6 +115,12 @@ class _BatchDetailState extends State<BatchDetail> {
                             children: [Text('Aptitude: ${value['Aptitude']}')],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [Text('Result: ${value['Result']}')],
+                          ),
+                        ),
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(

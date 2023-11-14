@@ -3,11 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smartcheck/pages/user_access.dart';
 import 'package:smartcheck/pages/item_analysis.dart';
+import 'package:smartcheck/data.dart' as global;
 
 import '../pages/answerkey.dart';
 
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () {
+        global.resetAnswerKey();
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => const ItemAnalysis()));
       },
