@@ -1,20 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:smartcheck/answer_keys/english_answerkey.dart';
-import 'package:smartcheck/models/charts.dart';
-import 'package:smartcheck/models/create_answerkey.dart';
-import 'package:smartcheck/pages/answerkey.dart';
-import 'package:smartcheck/pages/dashboard.dart';
-import 'package:smartcheck/pages/login.dart';
-import 'package:smartcheck/pages/scanner.dart';
-import 'package:smartcheck/pages/user_dashboard.dart';
 import 'package:smartcheck/pages/splash_screen.dart';
-import 'package:smartcheck/pages/user_access.dart';
-import 'backend/backendpy.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
   runApp(MyApp(

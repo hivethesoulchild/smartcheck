@@ -13,16 +13,13 @@ class UserAccess extends StatefulWidget {
   State<UserAccess> createState() => _UserAccessState();
 }
 
-//TODO: fix SUPERUSER AND USER default Value
-
 class _UserAccessState extends State<UserAccess> {
-  bool _isSwitched = false;
 
-  List<String> superuser = ['SUPERUSER', 'USER'];
+  List<String> admin = ['ADMIN', 'PROCTOR'];
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  String selectedValue = 'SUPERUSER';
+  String selectedValue = 'ADMIN';
 
   RegExp passwordRegex = RegExp(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$',
@@ -48,7 +45,7 @@ class _UserAccessState extends State<UserAccess> {
               ElevatedButton(
                 onPressed: () {
                   //chuchu
-                  if (global.userLoggedIn['_id'] == value['id']) {
+                  if (global.userId == value['id']) {
                     Fluttertoast.showToast(
                         msg: "Error: Cannot delete the current logged in...",
                         toastLength: Toast.LENGTH_SHORT,
@@ -133,7 +130,7 @@ class _UserAccessState extends State<UserAccess> {
                     child: DropdownButton(
                         dropdownColor: Colors.white,
                         value: selectedValue,
-                        items: superuser
+                        items: admin
                             .map<DropdownMenuItem<String>>(
                                 (String value) => DropdownMenuItem<String>(
                                       value: value,
@@ -145,25 +142,6 @@ class _UserAccessState extends State<UserAccess> {
                             selectedValue = value!;
                           });
                         }),
-                  ),
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Active"),
-                        ),
-                        const Spacer(),
-                        Switch(
-                          onChanged: (bool value) {
-                            setStateSB(() {
-                              _isSwitched = value;
-                            });
-                          },
-                          value: _isSwitched,
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),
@@ -182,10 +160,10 @@ class _UserAccessState extends State<UserAccess> {
               ),
               ElevatedButton(
                 onPressed: () {
-
                   if (!passwordRegex.hasMatch(passwordController.text)) {
                     Fluttertoast.showToast(
-                      msg: "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.",
+                      msg:
+                          "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.",
                       toastLength: Toast.LENGTH_LONG,
                       gravity: ToastGravity.BOTTOM,
                       timeInSecForIosWeb: 1,
@@ -195,9 +173,8 @@ class _UserAccessState extends State<UserAccess> {
                     );
                     return; // Stop further processing if the password is invalid
                   }
+                  BackEndPy.editUser(value['id'], passwordController.text, selectedValue);
 
-                  BackEndPy.editUser(value['id'], passwordController.text,
-                      _isSwitched, selectedValue);
                   Fluttertoast.showToast(
                     msg: "User saved!",
                     toastLength: Toast.LENGTH_SHORT,
@@ -226,8 +203,6 @@ class _UserAccessState extends State<UserAccess> {
   Future<dynamic> showAddUserDialog(BuildContext context) async {
     TextEditingController newUsernameController = TextEditingController();
     TextEditingController newPasswordController = TextEditingController();
-
-
 
     return showDialog(
       context: context,
@@ -271,7 +246,7 @@ class _UserAccessState extends State<UserAccess> {
                       child: DropdownButton(
                         hint: const Text("Select role.."),
                         dropdownColor: Colors.white,
-                        items: superuser
+                        items: admin
                             .map<DropdownMenuItem<String>>(
                                 (String value) => DropdownMenuItem<String>(
                                       value: value,
@@ -308,30 +283,29 @@ class _UserAccessState extends State<UserAccess> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-
                     if (!passwordRegex.hasMatch(newPasswordController.text)) {
-                    Fluttertoast.showToast(
-                      msg: "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.",
-                      toastLength: Toast.LENGTH_LONG,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.grey,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                    );
-                    return; // Stop further processing if the password is invalid
-                  }
+                      Fluttertoast.showToast(
+                        msg:
+                            "Password must be at least 8 characters long and include uppercase letters, lowercase letters, and numbers.",
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.grey,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                      return; // Stop further processing if the password is invalid
+                    }
 
                     var uuid = const Uuid();
                     var uniqueId = uuid.v4();
                     BackEndPy.addUser(newUsernameController.text,
-                        newPasswordController.text, true, selectedValue);
+                        newPasswordController.text, selectedValue);
                     global.userList.add({
                       "id": uniqueId,
                       "username": newUsernameController.text,
                       "password": newPasswordController.text,
                       "role": selectedValue,
-                      "isActive": true
                     });
                     setState(() {});
                     Fluttertoast.showToast(
@@ -395,7 +369,6 @@ class _UserAccessState extends State<UserAccess> {
               childAspectRatio: 3.4,
               children: global.userList.map(
                 (value) {
-                  _isSwitched = value['isActive'];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(

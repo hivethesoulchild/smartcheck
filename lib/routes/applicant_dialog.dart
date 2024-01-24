@@ -2,50 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-
-var data = [
-  {
-    "id" : "0123",
-    "name": "Royce",
-    "status": "taken",
-    "english": "0",
-    "science": "0",
-    "mathematics": "0",
-    "aptitude": "0",
-    "Recommendations": ["BSIT", "BSCS"]
-  },
-  {
-    "id" : "012213",
-    "name": "chris",
-    "status": "taken",
-    "english": "0",
-    "science": "0",
-    "mathematics": "0",
-    "aptitude": "0",
-    "Recommendations": ["BSIT", "BSCS"]
-  },
-  {
-    "id" : "01233",
-    "name": "abante",
-    "status": "taken",
-    "english": "0",
-    "science": "0",
-    "mathematics": "0",
-    "aptitude": "0",
-    "Recommendations": ["BSIT", "BSCS"]
-  },
-  {
-    "id" : "014123",
-    "name": "Royce",
-    "status": "taken",
-    "english": "0",
-    "science": "0",
-    "mathematics": "0",
-    "aptitude": "0",
-    "Recommendations": ["BSIT", "BSCS"]
-  },
-];
-
 class ApplicantBuilder extends StatelessWidget {
   const ApplicantBuilder({Key? key}) : super(key: key);
 

@@ -12,9 +12,9 @@ import 'package:csv/csv.dart';
 import 'package:smartcheck/models/settings.dart';
 import 'dart:convert' show utf8;
 import '../data.dart' as global;
-import '../routes/dashboard_buttons.dart';
 import '../backend/backendpy.dart';
 import 'package:uuid/uuid.dart';
+
 
 class UserDashboard extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -216,13 +216,13 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                   'archive': false,
                                   'applicants': applicantList,
                                   'date': formattedDate,
-                                  'proctor': global.userLoggedIn['username'],
+                                  'proctor': global.username,
                                 });
                                 BackEndPy.addApplicantList(
                                   uniqueId,
                                   fileName,
                                   applicantList,
-                                  global.userLoggedIn['username'],
+                                  global.username,
                                   formattedDate,
                                   false,
                                 );

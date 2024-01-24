@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:smartcheck/backend/backendpy.dart';
-import 'package:smartcheck/data.dart' as global;
+import 'package:uuid/uuid.dart';
 
 class ScannerPage extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -127,50 +127,53 @@ class _ScannerPageState extends State<ScannerPage> {
   }
 
   Future<XFile?> _captureImage(BuildContext context) async {
-  if (!cameraController.value.isInitialized) {
-    return null;
-  }
-
-  // Show the loading dialog
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return _LoadingDialog();
-    },
-  );
-
-  try {
-    // Capture the image
-    final XFile imageFile = await cameraController.takePicture();
-
-    // Upload the image
-    await BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
-
-    // Save the image locally
-    final File? savedImage = await _saveImage(imageFile);
-    
-    // Dismiss the loading dialog
-    Navigator.pop(context);
-
-    if (savedImage != null) {
-      print('Image saved at: ${savedImage.path}');
+    if (!cameraController.value.isInitialized) {
+      return null;
     }
 
-    return imageFile;
-  } catch (e) {
-    // Handle errors
-    print('Error capturing/uploading image: $e');
-    Navigator.pop(context); // Dismiss the loading dialog in case of an error
-    return null;
-  }
-}
+    // Show the loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return _LoadingDialog();
+      },
+    );
 
+    try {
+      // Capture the image
+      final XFile imageFile = await cameraController.takePicture();
+
+      // Upload the image
+      await BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
+
+      // Save the image locally
+      final File? savedImage = await _saveImage(imageFile);
+
+      // Dismiss the loading dialog
+      Navigator.pop(context);
+
+      if (savedImage != null) {
+        print('Image saved at: ${savedImage.path}');
+      }
+
+      return imageFile;
+    } catch (e) {
+      // Handle errors
+      print('Error capturing/uploading image: $e');
+      Navigator.pop(context); // Dismiss the loading dialog in case of an error
+      return null;
+    }
+  }
 
   Future<File?> _saveImage(XFile imageFile) async {
     try {
       final directory = await getExternalStorageDirectory();
-      final String imagePath = '${directory!.path}/cardCapturedSakura.jpg';
+
+      var uuid = const Uuid();
+      var uniqueId = uuid.v4();
+
+      final String imagePath = '${directory!.path}/$uniqueId.jpg';
 
       final List<int> imageBytes = await imageFile.readAsBytes();
       await File(imagePath).writeAsBytes(imageBytes);
@@ -260,7 +263,6 @@ class _ScannerPageState extends State<ScannerPage> {
                     onPressed: () async {
                       await _captureImage(context);
                       //return to page
-                    
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),

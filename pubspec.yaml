@@ -55,6 +55,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   flutter_bcrypt: ^1.0.8
   uuid: ^3.0.7
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +86,7 @@ flutter:
     - assets/icons8_spell_check.png
     - assets/icons8_test_1.png
     - assets/icons8_user_account.png
+    - assets/.env
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

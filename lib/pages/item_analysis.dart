@@ -3,15 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/intl.dart';
 import 'package:smartcheck/charts/aptitude_chart.dart';
 import 'package:smartcheck/charts/english_analysis.dart';
 import 'package:smartcheck/charts/math_analysis.dart';
 import 'package:smartcheck/charts/science_analysis.dart';
-import 'package:smartcheck/routes/analysis_per_subject_button.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartcheck/data.dart' as global;
-import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:csv/csv.dart';
 
@@ -22,6 +20,87 @@ class ItemAnalysis extends StatefulWidget {
 }
 
 class _ItemAnalysisState extends State<ItemAnalysis> {
+  void showFilterDialog(BuildContext context) {
+    final _startDateController = TextEditingController();
+    final _endDateController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Filter by Date'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: _startDateController,
+                  decoration: InputDecoration(
+                    labelText: 'Start Date',
+                    suffixIcon: Icon(Icons.calendar_today),
+                  ),
+                  onTap: () async {
+                    final selectedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2030),
+                    );
+                    if (selectedDate != null) {
+                      _startDateController.text =
+                          DateFormat('yyyy-MM-dd').format(selectedDate);
+                    }
+                  },
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: _endDateController,
+                  decoration: InputDecoration(
+                    labelText: 'End Date',
+                    suffixIcon: Icon(Icons.calendar_today),
+                  ),
+                  onTap: () async {
+                    final selectedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2030),
+                    );
+                    if (selectedDate != null) {
+                      _endDateController.text =
+                          DateFormat('yyyy-MM-dd').format(selectedDate);
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Apply filtering logic based on start and end dates
+                // (Ex: retrieve data within the selected date range)
+                _applyFilter(
+                    _startDateController.text, _endDateController.text);
+                Navigator.pop(context);
+              },
+              child: Text('Filter'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _applyFilter(String startDate, String endDate) {
+    // Implement your filtering logic based on the selected dates
+    // (Ex: query a database, filter a list of items, etc.)
+  }
+
   Future<void> exportData() async {
     var status = await Permission.manageExternalStorage.status;
     if (!status.isGranted) {
@@ -100,7 +179,7 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
       }
 
       String csv = const ListToCsvConverter().convert(rows);
-      final file = File('${directory.path}/my_data.csv');
+      final file = File('${customFolder.path}/my_data.csv');
 
       try {
         await file.writeAsString(csv);
@@ -120,15 +199,6 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
           textColor: Colors.white,
         );
       }
-
-      // Show a toast message to confirm the export
-      // Fluttertoast.showToast(
-      //   msg: 'Data exported successfully! $file',
-      //   toastLength: Toast.LENGTH_SHORT, // You can customize the duration
-      //   gravity: ToastGravity.BOTTOM, // You can customize the position
-      //   backgroundColor: Colors.green, // You can customize the background color
-      //   textColor: Colors.white, // You can customize the text color
-      // );
     } else {
       // Handle denied or restricted permissions.
       Fluttertoast.showToast(
@@ -168,19 +238,9 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
               ),
             ),
             actions: [
-              PopupMenuButton(
-                icon: Icon(
-                  Icons.more_vert,
-                  color: HexColor('#35408F'),
-                ),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    onTap: exportData,
-                    value: 1,
-                    child: const Text('Export'),
-                  )
-                ],
-              )
+              IconButton(
+                  onPressed: () => exportData, icon: Icon(Icons.save_alt)),
+              IconButton(onPressed: () => showFilterDialog(context), icon: Icon(Icons.tune)),
             ],
             bottom: TabBar(
               physics: const BouncingScrollPhysics(),

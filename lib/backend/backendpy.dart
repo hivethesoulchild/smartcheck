@@ -1,9 +1,20 @@
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class BackEndPy {
-  static const String baseUrl = 'http://194.233.94.255:8000';
+  static String baseUrl = dotenv.get("API_URL");
+
+  static Future<dynamic> authentication(
+      String username, String password) async {
+    final url = Uri.parse('$baseUrl/authenticateUser/');
+    final response = await http.post(url,
+        body: json.encode({'username': username, 'password': password}));
+
+    return jsonDecode(response.body);
+  }
 
   static Future<dynamic> checkUser(String email, String password) async {
     final url = Uri.parse('$baseUrl/checkUser/');
@@ -113,33 +124,40 @@ class BackEndPy {
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
   }
 
-  static void addUser(
-      String username, String password, bool isActive, String role) async {
-    final url = Uri.parse('$baseUrl/addUser/');
+  static void addUser(String username, String password, String role) async {
+    final url = Uri.parse('$baseUrl/addUser/v2');
     final response = await http.post(url,
-        body: json.encode({
-          'username': username,
-          'password': password,
-          'isActive': isActive,
-          'role': role
-        }));
+        body: json.encode(
+            {'username': username, 'password': password, 'role': role}));
   }
 
-  static void editUser(
-      String id, String password, bool isActive, String role) async {
-    final url = Uri.parse('$baseUrl/editUser/');
+  static void changePassword(
+      String id, String password) async {
+    final url = Uri.parse('$baseUrl/changePassword/');
     final response = await http.patch(url,
         body: json.encode({
           '_id': id,
           'password': password,
-          'isActive': isActive,
-          'role': role
         }));
+  }
+
+  static void editUser(String id, String password, String role) async {
+    final url = Uri.parse('$baseUrl/editUser/');
+    final response = await http.patch(url,
+        body: json.encode({'_id': id, 'password': password, 'role': role}));
   }
 
   static void deleteUser(String id) async {
     final url = Uri.parse('$baseUrl/deleteUser/');
     final response = await http.delete(url, body: json.encode({'_id': id}));
+  }
+
+  static Future<dynamic> userValid(String username) async {
+    final url = Uri.parse('$baseUrl/userValid/');
+    final response = await http.post(url, body: json.encode({"username": username}));
+
+    final result = jsonDecode(response.body) as Map<String, dynamic>;
+    return result["exist"];
   }
 
   static Future<void> uploadImage(
