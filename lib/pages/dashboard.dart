@@ -381,8 +381,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           crossAxisCount: 1,
                           mainAxisExtent:
                               MediaQuery.of(context).size.width <= 480
-                                  ? MediaQuery.of(context).size.width * 0.4
-                                  : MediaQuery.of(context).size.width * 0.18,
+                                  ? MediaQuery.of(context).size.width * 0.5
+                                  : MediaQuery.of(context).size.width * 0.4,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
@@ -441,24 +441,24 @@ class _DashboardPageState extends State<DashboardPage> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 12,
-                                            bottom: 2,
-                                            top: 10,
-                                          ),
-                                          child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              global.batchData[index]['date'],
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.normal,
-                                                color: HexColor("#35408f"),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.only(
+                                        //     left: 12,
+                                        //     bottom: 2,
+                                        //     top: 10,
+                                        //   ),
+                                        //   child: Align(
+                                        //     alignment: Alignment.topLeft,
+                                        //     child: Text(
+                                        //       global.batchData[index]['date'],
+                                        //       style: GoogleFonts.poppins(
+                                        //         fontSize: 10,
+                                        //         fontWeight: FontWeight.normal,
+                                        //         color: HexColor("#35408f"),
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
                                         const Spacer(),
                                         Padding(
                                           padding: const EdgeInsets.all(10.0),
@@ -848,6 +848,42 @@ class _DashboardPageState extends State<DashboardPage> {
                                             );
                                           }
                                         },
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 12, top: 12),
+                                        child: Align(
+                                          alignment: Alignment.bottomLeft,
+                                          child: Text(
+                                            '${global.batchData[index]['proctor']}',
+                                            style: GoogleFonts.prompt(
+                                              fontSize: 12,
+                                              color: HexColor("#35408f"),
+                                            ),
+                                            overflow: TextOverflow.fade,
+                                            softWrap: false,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 12, top: 5),
+                                        child: Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                            '${global.batchData[index]['date']}',
+                                            style: GoogleFonts.prompt(
+                                              fontSize: 12,
+                                              color: HexColor("#35408f"),
+                                            ),
+                                            overflow: TextOverflow.fade,
+                                            softWrap: false,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ],
