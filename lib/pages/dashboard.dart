@@ -233,6 +233,25 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  Widget buildText(String text, double fontSize,
+      {TextOverflow? overflow, bool softWrap = true}) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12, top: 0),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          text,
+          style: GoogleFonts.prompt(
+            fontSize: fontSize,
+            color: HexColor("#35408f"),
+          ),
+          overflow: overflow,
+          softWrap: softWrap,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var applicantList = [];
@@ -382,7 +401,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           mainAxisExtent:
                               MediaQuery.of(context).size.width <= 480
                                   ? MediaQuery.of(context).size.width * 0.5
-                                  : MediaQuery.of(context).size.width * 0.4,
+                                  : MediaQuery.of(context).size.width * 0.32,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
@@ -401,494 +420,392 @@ class _DashboardPageState extends State<DashboardPage> {
                                 );
                               });
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 4,
-                                      offset: const Offset(0, 3),
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 4,
+                                          offset: const Offset(0, 3),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 12,
-                                            bottom: 2,
-                                            top: 10,
-                                          ),
-                                          child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              global.batchData[index]['name'],
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.bold,
-                                                color: HexColor("#35408f"),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: <Widget>[
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 12,
+                                                bottom: 2,
+                                                top: 10,
+                                              ),
+                                              child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  global.batchData[index]
+                                                      ['name'],
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: HexColor("#35408f"),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                        // Padding(
-                                        //   padding: const EdgeInsets.only(
-                                        //     left: 12,
-                                        //     bottom: 2,
-                                        //     top: 10,
-                                        //   ),
-                                        //   child: Align(
-                                        //     alignment: Alignment.topLeft,
-                                        //     child: Text(
-                                        //       global.batchData[index]['date'],
-                                        //       style: GoogleFonts.poppins(
-                                        //         fontSize: 10,
-                                        //         fontWeight: FontWeight.normal,
-                                        //         color: HexColor("#35408f"),
-                                        //       ),
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        const Spacer(),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: PopupMenuButton<int>(
-                                            itemBuilder: (context) => [
-                                              PopupMenuItem(
-                                                value: 1,
-                                                onTap: () {
-                                                  BackEndPy.editApplicantList(
-                                                      global.batchData[index]
-                                                          ['_id'],
-                                                      true);
-                                                  global.batchDataArchive.add(
-                                                      global.batchData[index]);
-                                                  global.batchData.removeWhere(
-                                                      (item) =>
-                                                          item['_id'] ==
-                                                          global.batchData[
-                                                              index]['_id']);
-                                                  setState(() {});
-                                                },
-                                                child: const Text('Archive'),
-                                              ),
-                                              PopupMenuItem(
-                                                value: 2,
-                                                onTap: () {
-                                                  BackEndPy.deleteApplicantList(
-                                                      global.batchData[index]
-                                                          ['_id']);
-                                                  global.batchData.removeWhere(
-                                                      (item) =>
-                                                          item['_id'] ==
-                                                          global.batchData[
-                                                              index]['_id']);
-                                                  setState(() {});
-                                                },
-                                                child: const Text('Delete'),
-                                              ),
-                                              PopupMenuItem(
-                                                value: 3,
-                                                onTap: (() async {
-                                                  var status = await Permission
-                                                      .manageExternalStorage
-                                                      .status;
-                                                  if (!status.isGranted) {
-                                                    await Permission
-                                                        .manageExternalStorage
-                                                        .request();
-                                                  }
+                                            const Spacer(),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: PopupMenuButton<int>(
+                                                itemBuilder: (context) => [
+                                                  PopupMenuItem(
+                                                    value: 1,
+                                                    onTap: () {
+                                                      BackEndPy
+                                                          .editApplicantList(
+                                                              global.batchData[
+                                                                  index]['_id'],
+                                                              true);
+                                                      global.batchDataArchive
+                                                          .add(global.batchData[
+                                                              index]);
+                                                      global.batchData
+                                                          .removeWhere((item) =>
+                                                              item['_id'] ==
+                                                              global.batchData[
+                                                                      index]
+                                                                  ['_id']);
+                                                      setState(() {});
+                                                    },
+                                                    child:
+                                                        const Text('Archive'),
+                                                  ),
+                                                  PopupMenuItem(
+                                                    value: 2,
+                                                    onTap: () {
+                                                      BackEndPy
+                                                          .deleteApplicantList(
+                                                              global.batchData[
+                                                                      index]
+                                                                  ['_id']);
+                                                      global.batchData
+                                                          .removeWhere((item) =>
+                                                              item['_id'] ==
+                                                              global.batchData[
+                                                                      index]
+                                                                  ['_id']);
+                                                      setState(() {});
+                                                    },
+                                                    child: const Text('Delete'),
+                                                  ),
+                                                  PopupMenuItem(
+                                                    value: 3,
+                                                    onTap: (() async {
+                                                      var status = await Permission
+                                                          .manageExternalStorage
+                                                          .status;
+                                                      if (!status.isGranted) {
+                                                        await Permission
+                                                            .manageExternalStorage
+                                                            .request();
+                                                      }
 
-                                                  if (status.isGranted) {
-                                                    // final directory =
-                                                    //     await getExternalStorageDirectory(); // This is the path to external storage on Android.
-                                                    // final customFolder = Directory('${directory?.path}SmartCheck');
-                                                    // customFolder.createSync(recursive: true);
+                                                      if (status.isGranted) {
+                                                        // final directory =
+                                                        //     await getExternalStorageDirectory(); // This is the path to external storage on Android.
+                                                        // final customFolder = Directory('${directory?.path}SmartCheck');
+                                                        // customFolder.createSync(recursive: true);
 
-                                                    final directory = Directory(
-                                                        '/storage/emulated/0/');
-                                                    final customFolder = Directory(
-                                                        '${directory.path}SmartCheck');
-                                                    customFolder.createSync(
-                                                        recursive: true);
+                                                        final directory = Directory(
+                                                            '/storage/emulated/0/');
+                                                        final customFolder =
+                                                            Directory(
+                                                                '${directory.path}SmartCheck');
+                                                        customFolder.createSync(
+                                                            recursive: true);
 
-                                                    var data = await BackEndPy
-                                                        .getBatchData(
-                                                            global.batchData[
+                                                        var data = await BackEndPy
+                                                            .getBatchData(global
+                                                                    .batchData[
                                                                 index]['_id']);
 
-                                                    var dataEnglish =
-                                                        data["englishCount"];
-                                                    var dataMath =
-                                                        data["mathCount"];
-                                                    var dataScience =
-                                                        data["scienceCount"];
-                                                    var dataAptitude =
-                                                        data["aptitudeCount"];
-                                                    var applicants =
-                                                        data["applicants"];
+                                                        var dataEnglish = data[
+                                                            "englishCount"];
+                                                        var dataMath =
+                                                            data["mathCount"];
+                                                        var dataScience = data[
+                                                            "scienceCount"];
+                                                        var dataAptitude = data[
+                                                            "aptitudeCount"];
+                                                        var applicants =
+                                                            data["applicants"];
 
-                                                    List<List<dynamic>> rows = [
-                                                      ['English'],
-                                                      [
-                                                        'Item Number',
-                                                        'A',
-                                                        'B',
-                                                        'C',
-                                                        'D',
-                                                        'E'
-                                                      ]
-                                                    ];
+                                                        List<List<dynamic>>
+                                                            rows = [
+                                                          ['English'],
+                                                          [
+                                                            'Item Number',
+                                                            'A',
+                                                            'B',
+                                                            'C',
+                                                            'D',
+                                                            'E'
+                                                          ]
+                                                        ];
 
-                                                    for (int rowNumber = 0;
-                                                        rowNumber <
-                                                            dataEnglish['0']
-                                                                .length;
-                                                        rowNumber++) {
-                                                      rows.add([
-                                                        '${rowNumber + 1}',
-                                                        '${dataEnglish['0'][rowNumber]}',
-                                                        '${dataEnglish['1'][rowNumber]}',
-                                                        '${dataEnglish['2'][rowNumber]}',
-                                                        '${dataEnglish['3'][rowNumber]}',
-                                                        '${dataEnglish['4'][rowNumber]}'
-                                                      ]);
-                                                    }
-                                                    rows.add(['Mathematics']);
-                                                    rows.add([
-                                                      'Item Number',
-                                                      'A',
-                                                      'B',
-                                                      'C',
-                                                      'D'
-                                                    ]);
-                                                    for (int rowNumber = 0;
-                                                        rowNumber <
-                                                            dataMath['0']
-                                                                .length;
-                                                        rowNumber++) {
-                                                      rows.add([
-                                                        '${rowNumber + 1}',
-                                                        '${dataMath['0'][rowNumber]}',
-                                                        '${dataMath['1'][rowNumber]}',
-                                                        '${dataMath['2'][rowNumber]}',
-                                                        '${dataMath['3'][rowNumber]}'
-                                                      ]);
-                                                    }
-                                                    rows.add(['Science']);
-                                                    rows.add([
-                                                      'Item Number',
-                                                      'A',
-                                                      'B',
-                                                      'C',
-                                                      'D'
-                                                    ]);
-                                                    for (int rowNumber = 0;
-                                                        rowNumber <
-                                                            dataScience['0']
-                                                                .length;
-                                                        rowNumber++) {
-                                                      rows.add([
-                                                        '${rowNumber + 1}',
-                                                        '${dataScience['0'][rowNumber]}',
-                                                        '${dataScience['1'][rowNumber]}',
-                                                        '${dataScience['2'][rowNumber]}',
-                                                        '${dataScience['3'][rowNumber]}'
-                                                      ]);
-                                                    }
-                                                    rows.add(['Aptitude']);
-                                                    rows.add([
-                                                      'Item Number',
-                                                      'A',
-                                                      'B',
-                                                      'C',
-                                                      'D'
-                                                    ]);
-                                                    for (int rowNumber = 0;
-                                                        rowNumber < 15;
-                                                        rowNumber++) {
-                                                      rows.add([
-                                                        '${rowNumber + 1}',
-                                                        '${dataAptitude['0'][rowNumber]}',
-                                                        '${dataAptitude['1'][rowNumber]}',
-                                                        '${dataAptitude['2'][rowNumber]}',
-                                                        '${dataAptitude['3'][rowNumber]}'
-                                                      ]);
-                                                    }
+                                                        for (int rowNumber = 0;
+                                                            rowNumber <
+                                                                dataEnglish['0']
+                                                                    .length;
+                                                            rowNumber++) {
+                                                          rows.add([
+                                                            '${rowNumber + 1}',
+                                                            '${dataEnglish['0'][rowNumber]}',
+                                                            '${dataEnglish['1'][rowNumber]}',
+                                                            '${dataEnglish['2'][rowNumber]}',
+                                                            '${dataEnglish['3'][rowNumber]}',
+                                                            '${dataEnglish['4'][rowNumber]}'
+                                                          ]);
+                                                        }
+                                                        rows.add(
+                                                            ['Mathematics']);
+                                                        rows.add([
+                                                          'Item Number',
+                                                          'A',
+                                                          'B',
+                                                          'C',
+                                                          'D'
+                                                        ]);
+                                                        for (int rowNumber = 0;
+                                                            rowNumber <
+                                                                dataMath['0']
+                                                                    .length;
+                                                            rowNumber++) {
+                                                          rows.add([
+                                                            '${rowNumber + 1}',
+                                                            '${dataMath['0'][rowNumber]}',
+                                                            '${dataMath['1'][rowNumber]}',
+                                                            '${dataMath['2'][rowNumber]}',
+                                                            '${dataMath['3'][rowNumber]}'
+                                                          ]);
+                                                        }
+                                                        rows.add(['Science']);
+                                                        rows.add([
+                                                          'Item Number',
+                                                          'A',
+                                                          'B',
+                                                          'C',
+                                                          'D'
+                                                        ]);
+                                                        for (int rowNumber = 0;
+                                                            rowNumber <
+                                                                dataScience['0']
+                                                                    .length;
+                                                            rowNumber++) {
+                                                          rows.add([
+                                                            '${rowNumber + 1}',
+                                                            '${dataScience['0'][rowNumber]}',
+                                                            '${dataScience['1'][rowNumber]}',
+                                                            '${dataScience['2'][rowNumber]}',
+                                                            '${dataScience['3'][rowNumber]}'
+                                                          ]);
+                                                        }
+                                                        rows.add(['Aptitude']);
+                                                        rows.add([
+                                                          'Item Number',
+                                                          'A',
+                                                          'B',
+                                                          'C',
+                                                          'D'
+                                                        ]);
+                                                        for (int rowNumber = 0;
+                                                            rowNumber < 15;
+                                                            rowNumber++) {
+                                                          rows.add([
+                                                            '${rowNumber + 1}',
+                                                            '${dataAptitude['0'][rowNumber]}',
+                                                            '${dataAptitude['1'][rowNumber]}',
+                                                            '${dataAptitude['2'][rowNumber]}',
+                                                            '${dataAptitude['3'][rowNumber]}'
+                                                          ]);
+                                                        }
 
-                                                    List<List<dynamic>>
-                                                        applicantResult = [
-                                                      [
-                                                        'id',
-                                                        'name',
-                                                        'English',
-                                                        'Mathematics',
-                                                        'Science',
-                                                        'Aptitude'
-                                                      ]
-                                                    ];
+                                                        List<List<dynamic>>
+                                                            applicantResult = [
+                                                          [
+                                                            'id',
+                                                            'name',
+                                                            'English',
+                                                            'Mathematics',
+                                                            'Science',
+                                                            'Aptitude'
+                                                          ]
+                                                        ];
 
-                                                    for (var applicant
-                                                        in applicants) {
-                                                      applicantResult.add([
-                                                        applicant['id'],
-                                                        applicant['name'],
-                                                        applicant['English'],
-                                                        applicant[
-                                                            'Mathematics'],
-                                                        applicant['Science'],
-                                                        applicant['Aptitude'],
-                                                      ]);
-                                                    }
+                                                        for (var applicant
+                                                            in applicants) {
+                                                          applicantResult.add([
+                                                            applicant['id'],
+                                                            applicant['name'],
+                                                            applicant[
+                                                                'English'],
+                                                            applicant[
+                                                                'Mathematics'],
+                                                            applicant[
+                                                                'Science'],
+                                                            applicant[
+                                                                'Aptitude'],
+                                                          ]);
+                                                        }
 
-                                                    String csv =
-                                                        const ListToCsvConverter()
-                                                            .convert(rows);
+                                                        String csv =
+                                                            const ListToCsvConverter()
+                                                                .convert(rows);
 
-                                                    csv += '\n\n';
+                                                        csv += '\n\n';
 
-                                                    csv +=
-                                                        const ListToCsvConverter()
+                                                        csv += const ListToCsvConverter()
                                                             .convert(
                                                                 applicantResult);
-                                                    final file = File(
-                                                        '${directory.path}/${data["name"]}.csv');
+                                                        final file = File(
+                                                            '${directory.path}/${data["name"]}.csv');
 
-                                                    try {
-                                                      await file
-                                                          .writeAsString(csv);
-                                                      Fluttertoast.showToast(
-                                                        msg:
-                                                            'Data exported successfully! $file',
-                                                        toastLength:
-                                                            Toast.LENGTH_SHORT,
-                                                        gravity:
-                                                            ToastGravity.BOTTOM,
-                                                        backgroundColor:
-                                                            Colors.green,
-                                                        textColor: Colors.white,
-                                                      );
-                                                    } catch (e) {
-                                                      Fluttertoast.showToast(
-                                                        msg:
-                                                            'Error exporting data: $e',
-                                                        toastLength:
-                                                            Toast.LENGTH_SHORT,
-                                                        gravity:
-                                                            ToastGravity.BOTTOM,
-                                                        backgroundColor:
-                                                            Colors.red,
-                                                        textColor: Colors.white,
-                                                      );
-                                                    }
-                                                  } else {
-                                                    // Handle denied or restricted permissions.
-                                                    Fluttertoast.showToast(
-                                                      msg:
-                                                          'Permission denied to access storage',
-                                                      toastLength:
-                                                          Toast.LENGTH_SHORT,
-                                                      gravity:
-                                                          ToastGravity.BOTTOM,
-                                                      backgroundColor:
-                                                          Colors.red,
-                                                      textColor: Colors.white,
-                                                    );
-                                                  }
-                                                }),
-                                                child:
-                                                    const Text('Export Data'),
+                                                        try {
+                                                          await file
+                                                              .writeAsString(
+                                                                  csv);
+                                                          Fluttertoast
+                                                              .showToast(
+                                                            msg:
+                                                                'Data exported successfully! $file',
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity:
+                                                                ToastGravity
+                                                                    .BOTTOM,
+                                                            backgroundColor:
+                                                                Colors.green,
+                                                            textColor:
+                                                                Colors.white,
+                                                          );
+                                                        } catch (e) {
+                                                          Fluttertoast
+                                                              .showToast(
+                                                            msg:
+                                                                'Error exporting data: $e',
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity:
+                                                                ToastGravity
+                                                                    .BOTTOM,
+                                                            backgroundColor:
+                                                                Colors.red,
+                                                            textColor:
+                                                                Colors.white,
+                                                          );
+                                                        }
+                                                      } else {
+                                                        // Handle denied or restricted permissions.
+                                                        Fluttertoast.showToast(
+                                                          msg:
+                                                              'Permission denied to access storage',
+                                                          toastLength: Toast
+                                                              .LENGTH_SHORT,
+                                                          gravity: ToastGravity
+                                                              .BOTTOM,
+                                                          backgroundColor:
+                                                              Colors.red,
+                                                          textColor:
+                                                              Colors.white,
+                                                        );
+                                                      }
+                                                    }),
+                                                    child: const Text(
+                                                        'Export Data'),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
+                                          ],
+                                        ),
+                                        LayoutBuilder(
+                                          builder: (BuildContext context,
+                                              BoxConstraints constraints) {
+                                            if (constraints.maxWidth < 360) {
+                                              // For smaller screens, use Wrap
+                                              return Wrap(
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.start,
+                                                children: [
+                                                  buildText(
+                                                      'Number of Applicants: ${global.batchData[index]['applicants'].length}',
+                                                      12),
+                                                  buildText(
+                                                      'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
+                                                      12),
+                                                  buildText(
+                                                      'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
+                                                      12,
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      softWrap: false),
+                                                ],
+                                              );
+                                            } else {
+                                              // For larger screens, use Row
+                                              return Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  buildText(
+                                                      'Number of Applicants: ${global.batchData[index]['applicants'].length}',
+                                                      10),
+                                                  buildText(
+                                                      'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
+                                                      10),
+                                                  buildText(
+                                                      'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
+                                                      10,
+                                                      overflow:
+                                                          TextOverflow.fade,
+                                                      softWrap: false),
+                                                ],
+                                              );
+                                            }
+                                          },
+                                        ),
+                                        Align(
+                                          alignment: Alignment.bottomLeft,
+                                          child: buildText(
+                                              '${global.batchData[index]['proctor']}',
+                                              12),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: buildText(
+                                                '${global.batchData[index]['date']}',
+                                                12),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    Expanded(
-                                      child: LayoutBuilder(
-                                        builder: (BuildContext context,
-                                            BoxConstraints constraints) {
-                                          if (constraints.maxWidth < 360) {
-                                            // For smaller screens, use Wrap
-                                            return Wrap(
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 12, top: 5),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Number of Applicants: ${global.batchData[index]['applicants'].length}',
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                      style: GoogleFonts.prompt(
-                                                        fontSize: 12,
-                                                        color:
-                                                            HexColor("#35408f"),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 12, top: 5),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
-                                                      style: GoogleFonts.prompt(
-                                                        fontSize: 12,
-                                                        color:
-                                                            HexColor("#35408f"),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 12, top: 5),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
-                                                      style: GoogleFonts.prompt(
-                                                        fontSize: 12,
-                                                        color:
-                                                            HexColor("#35408f"),
-                                                      ),
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                      softWrap: false,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          } else {
-                                            // For larger screens, use Row
-                                            return Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 12, top: 5),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Number of Applicants: ${global.batchData[index]['applicants'].length}',
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                      style: GoogleFonts.prompt(
-                                                        fontSize: 10,
-                                                        color:
-                                                            HexColor("#35408f"),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 12, top: 5),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Submitted: ${global.batchData[index]['applicants'].where((e) => e['status'] == true).length}',
-                                                      style: GoogleFonts.prompt(
-                                                        fontSize: 10,
-                                                        color:
-                                                            HexColor("#35408f"),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 12, top: 5),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                      'Did Not Submit: ${global.batchData[index]['applicants'].where((e) => e['status'] == false).length}',
-                                                      style: GoogleFonts.prompt(
-                                                        fontSize: 10,
-                                                        color:
-                                                            HexColor("#35408f"),
-                                                      ),
-                                                      overflow:
-                                                          TextOverflow.fade,
-                                                      softWrap: false,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            );
-                                          }
-                                        },
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 12, top: 12),
-                                        child: Align(
-                                          alignment: Alignment.bottomLeft,
-                                          child: Text(
-                                            '${global.batchData[index]['proctor']}',
-                                            style: GoogleFonts.prompt(
-                                              fontSize: 12,
-                                              color: HexColor("#35408f"),
-                                            ),
-                                            overflow: TextOverflow.fade,
-                                            softWrap: false,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 12, top: 5),
-                                        child: Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                            '${global.batchData[index]['date']}',
-                                            style: GoogleFonts.prompt(
-                                              fontSize: 12,
-                                              color: HexColor("#35408f"),
-                                            ),
-                                            overflow: TextOverflow.fade,
-                                            softWrap: false,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           );
                         },
