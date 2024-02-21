@@ -7,6 +7,7 @@ var batchDataArchive = [];
 
 var answer_key = [[], [], [], []];
 var answer_key_temp;
+var filtered_answerKey = [[],[],[],[]];
 
 var userList = [];
 
@@ -17,6 +18,7 @@ var analysisEnglishData = {};
 var analysisMathData= {};
 var analysisScienceData = {};
 var analysisAptitudeData= {};
+
 
 void setProfile(String id, String username) async {
 userId = userId;
@@ -80,6 +82,7 @@ void setBatchData(List data) {
         "_id": element['_id'],
         "name": element['name'],
         "applicants": element['applicants'],
+        "proctor": element['proctor'],
         "date": element['date'],
         "archive": element['archive']
       });
@@ -88,12 +91,16 @@ void setBatchData(List data) {
         "_id": element['_id'],
         "name": element['name'],
         "applicants": element['applicants'],
+        "proctor": element['proctor'],
         "date": element['date'],
         "archive": element['archive']
       });
     }
   }
 }
+
+// //need to change
+// TODO: get the latest answer and get the after date of that answer also set the filtered answer
 
 Future <void> setAnalysistData() async {
 analysisEnglishData = await BackEndPy.getAnalysisDataEnglish();
@@ -103,3 +110,5 @@ analysisAptitudeData = await BackEndPy.getAnalysisDataAptitude();
 
 Completer().complete(true);
 }
+
+

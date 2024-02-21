@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
+import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/charts/aptitude_chart.dart';
 import 'package:smartcheck/charts/english_analysis.dart';
 import 'package:smartcheck/charts/math_analysis.dart';
@@ -12,6 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartcheck/data.dart' as global;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:csv/csv.dart';
+import 'dart:async';
 
 class ItemAnalysis extends StatefulWidget {
   const ItemAnalysis({Key? key}) : super(key: key);
@@ -20,6 +22,13 @@ class ItemAnalysis extends StatefulWidget {
 }
 
 class _ItemAnalysisState extends State<ItemAnalysis> {
+  late Timer _timer;
+
+  var analysisEnglish;
+  var analysisScience;
+  var analysisMath;
+  var analysisAptitude;
+
   void showFilterDialog(BuildContext context) {
     final _startDateController = TextEditingController();
     final _endDateController = TextEditingController();
@@ -80,8 +89,8 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
               onPressed: () {
                 // Apply filtering logic based on start and end dates
                 // (Ex: retrieve data within the selected date range)
-                _applyFilter(
-                    _startDateController.text, _endDateController.text);
+                _applyFilter(context, DateTime.parse(_startDateController.text),
+                    DateTime.parse(_endDateController.text));
                 Navigator.pop(context);
               },
               child: Text('Filter'),
@@ -96,9 +105,23 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     );
   }
 
-  void _applyFilter(String startDate, String endDate) {
-    // Implement your filtering logic based on the selected dates
-    // (Ex: query a database, filter a list of items, etc.)
+  void _applyFilter(
+      BuildContext context, DateTime startDate, DateTime endDate) async {
+    var englishFiltered =
+        await BackEndPy.getFilteredAnalysisDataEnglish(startDate, endDate);
+    var scienceFiltered =
+        await BackEndPy.getFilteredAnalysisDataScience(startDate, endDate);
+    var mathFiltered =
+        await BackEndPy.getFilteredAnalysisDataMath(startDate, endDate);
+    var aptitudeFiltered =
+        await BackEndPy.getFilteredAnalysisDataAptitude(startDate, endDate);
+
+    setState(() {
+      analysisEnglish = englishFiltered;
+      analysisScience = scienceFiltered;
+      analysisMath = mathFiltered;
+      analysisAptitude = aptitudeFiltered;
+    });
   }
 
   Future<void> exportData() async {
@@ -108,11 +131,6 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     }
 
     if (status.isGranted) {
-      // final directory =
-      //     await getExternalStorageDirectory(); // This is the path to external storage on Android.
-      // final customFolder = Directory('${directory?.path}SmartCheck');
-      // customFolder.createSync(recursive: true);
-
       final directory = Directory(
           '/storage/emulated/0/'); // This is the path to external storage on Android.
       final customFolder = Directory('${directory.path}SmartCheck');
@@ -211,11 +229,37 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     }
   }
 
+  // Future<void> fetchData() async {
+  //   var batchData = await BackEndPy.getAllApplicantList();
+
+  //   if (batchData != null) {
+  //     // If the server returns a 200 OK response, parse the JSON.
+  //     setState(() {
+  //       global.setBatchData(batchData);
+  //       applicants = global.batchData[widget.dataIndex]["applicants"];
+  //     });
+  //   } else {
+  //     // Handle errors or no response.
+  //   }
+  // }
   @override
   void initState() {
     super.initState();
-    global.setAnalysistData();
+    // Call the asynchronous method and handle the result with then
+    BackEndPy.getAnalysisDataEnglish().then((data) {
+      setState(() {
+        analysisEnglish = data;
+        global.setAnalysistData();
+      });
+    });
   }
+
+  // @override
+  // void dispose() {
+  //   _timer.cancel();
+  //   super.dispose();
+  //   print('disposed');
+  // }
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
@@ -240,7 +284,9 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
             actions: [
               IconButton(
                   onPressed: () => exportData, icon: Icon(Icons.save_alt)),
-              IconButton(onPressed: () => showFilterDialog(context), icon: Icon(Icons.tune)),
+              IconButton(
+                  onPressed: () => showFilterDialog(context),
+                  icon: Icon(Icons.tune)),
             ],
             bottom: TabBar(
               physics: const BouncingScrollPhysics(),
@@ -268,9 +314,9 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
               ],
             ),
           ),
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              EnglishAnalysis(),
+              EnglishAnalysis(analysisEnglishData: analysisEnglish),
               ScienceAnalysis(),
               MathAnalysis(),
               AptitudeAnalysis(),

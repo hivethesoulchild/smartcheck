@@ -21,39 +21,42 @@ class Item {
   }
 }
 class EnglishAnalysis extends StatefulWidget {
-  const EnglishAnalysis({Key? key}) : super(key: key);
+  final dynamic analysisEnglishData;
+  const EnglishAnalysis({Key? key, required this.analysisEnglishData}) : super(key: key);
   @override
   State<EnglishAnalysis> createState() => _EnglishAnalysisState();
 }
 
 class _EnglishAnalysisState extends State<EnglishAnalysis> {
-  final List<Item> _data = List<Item>.generate(
-    30,
-    (int index) => Item(
-      headerText: 'Item ${index + 1}',
-      chartData: [
-        charts.Series<dynamic, String>(
-          id: 'Sample Data',
-          domainFn: (dynamic data, _) => data['label'],
-          measureFn: (dynamic data, _) => data['value'],
-          data: [
-            {
-              'label': 'A',
-              'value':  global.analysisEnglishData['englishCount']['0'][index],
-              'color': (global.answer_key[0][index] == 'A') ? Colors.blue : Colors.grey
-            }, // Correct answer
-            {'label': 'B', 'value': global.analysisEnglishData['englishCount']['1'][index], 'color': (global.answer_key[0][index] == 'B') ? Colors.blue : Colors.grey},
-            {'label': 'C', 'value': global.analysisEnglishData['englishCount']['2'][index], 'color': (global.answer_key[0][index] == 'C') ? Colors.blue : Colors.grey},
-            {'label': 'D', 'value': global.analysisEnglishData['englishCount']['3'][index], 'color': (global.answer_key[0][index] == 'D') ? Colors.blue : Colors.grey},
-            {'label': 'E', 'value': global.analysisEnglishData['englishCount']['4'][index], 'color': (global.answer_key[0][index] == 'E') ? Colors.blue : Colors.grey},
-          ],
-          colorFn: (dynamic data, _) =>
-              charts.ColorUtil.fromDartColor(data['color']),
-        ),
-      ],
-    ),
-  );
 
+  late List<Item> _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = List<Item>.generate(
+      30,
+      (int index) => Item(
+        headerText: 'Item ${index + 1}',
+        chartData: [
+          charts.Series<dynamic, String>(
+            id: 'Sample Data',
+            domainFn: (dynamic data, _) => data['label'],
+            measureFn: (dynamic data, _) => data['value'],
+            data: [
+              {'label': 'A', 'value': widget.analysisEnglishData['englishCount']['0'][index], 'color': (global.answer_key[0][index] == 'A') ? Colors.blue : Colors.grey}, // Correct answer
+              {'label': 'B', 'value': widget.analysisEnglishData['englishCount']['1'][index], 'color': (global.answer_key[0][index] == 'B') ? Colors.blue : Colors.grey},
+              {'label': 'C', 'value': widget.analysisEnglishData['englishCount']['2'][index], 'color': (global.answer_key[0][index] == 'C') ? Colors.blue : Colors.grey},
+              {'label': 'D', 'value': widget.analysisEnglishData['englishCount']['3'][index], 'color': (global.answer_key[0][index] == 'D') ? Colors.blue : Colors.grey},
+              {'label': 'E', 'value': widget.analysisEnglishData['englishCount']['4'][index], 'color': (global.answer_key[0][index] == 'E') ? Colors.blue : Colors.grey},
+            ],
+            colorFn: (dynamic data, _) =>
+                charts.ColorUtil.fromDartColor(data['color']),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
