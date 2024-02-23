@@ -34,7 +34,11 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
   @override
   void initState() {
     super.initState();
-    _data = List<Item>.generate(
+    _data = _generateData();
+  }
+
+  List<Item> _generateData(){
+    return List<Item>.generate(
       30,
       (int index) => Item(
         headerText: 'Item ${index + 1}',
@@ -56,6 +60,16 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
         ],
       ),
     );
+  }
+
+  @override
+  void didUpdateWidget(covariant EnglishAnalysis oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.analysisEnglishData != widget.analysisEnglishData) {
+      setState(() {
+        _data = _generateData();
+      });
+    }
   }
 
   @override
