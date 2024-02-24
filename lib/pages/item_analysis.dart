@@ -16,7 +16,18 @@ import 'package:csv/csv.dart';
 import 'dart:async';
 
 class ItemAnalysis extends StatefulWidget {
-  const ItemAnalysis({Key? key}) : super(key: key);
+  final dynamic analysisEnglish;
+  final dynamic analysisScience;
+  final dynamic analysisMath;
+  final dynamic analysisAptitude;
+
+  const ItemAnalysis(
+      {Key? key,
+      required this.analysisEnglish,
+      required this.analysisScience,
+      required this.analysisMath,
+      required this.analysisAptitude})
+      : super(key: key);
   @override
   State<ItemAnalysis> createState() => _ItemAnalysisState();
 }
@@ -245,13 +256,10 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
   @override
   void initState() {
     super.initState();
-    // Call the asynchronous method and handle the result with then
-    BackEndPy.getAnalysisDataEnglish().then((data) {
-      setState(() {
-        analysisEnglish = data;
-        global.setAnalysistData();
-      });
-    });
+    analysisEnglish = widget.analysisEnglish;
+    analysisScience = widget.analysisScience;
+    analysisMath = widget.analysisMath;
+    analysisAptitude = widget.analysisAptitude;
   }
 
   // @override
@@ -317,9 +325,11 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
           body: TabBarView(
             children: [
               EnglishAnalysis(analysisEnglishData: analysisEnglish),
-              ScienceAnalysis(),
-              MathAnalysis(),
-              AptitudeAnalysis(),
+              ScienceAnalysis(analysisScienceData: analysisScience),
+              MathAnalysis(analysisMathData: analysisMath),
+              AptitudeAnalysis(
+                analysisAptitudeData: analysisAptitude,
+              ),
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/pages/user_access.dart';
 import 'package:smartcheck/pages/item_analysis.dart';
 import 'package:smartcheck/data.dart' as global;
@@ -8,10 +9,19 @@ import 'package:smartcheck/data.dart' as global;
 import '../pages/answerkey.dart';
 
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
-      onTap: () {
+      onTap: () async {
         global.resetAnswerKey();
+        var analysisEnglish = await BackEndPy.getAnalysisDataEnglish();
+        var analysisScience = await BackEndPy.getAnalysisDataScience();
+        var analysisMath = await BackEndPy.getAnalysisDataMath();
+        var analysisAptitude = await BackEndPy.getAnalysisDataAptitude();
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const ItemAnalysis()));
+            .push(MaterialPageRoute(builder: (context) => ItemAnalysis(
+              analysisEnglish: analysisEnglish,
+              analysisScience: analysisScience,
+              analysisMath:  analysisMath,
+              analysisAptitude: analysisAptitude,
+            )));
       },
       child: Container(
         decoration: BoxDecoration(

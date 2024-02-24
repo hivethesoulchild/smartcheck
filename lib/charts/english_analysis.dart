@@ -68,6 +68,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
     if (oldWidget.analysisEnglishData != widget.analysisEnglishData) {
       setState(() {
         _data = _generateData();
+        print("triggered English");
       });
     }
   }

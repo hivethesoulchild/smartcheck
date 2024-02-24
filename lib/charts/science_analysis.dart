@@ -22,57 +22,56 @@ class Item {
 }
 
 class ScienceAnalysis extends StatefulWidget {
-  const ScienceAnalysis({Key? key}) : super(key: key);
+  final dynamic analysisScienceData;
+  const ScienceAnalysis({Key? key, required this.analysisScienceData}) : super(key: key);
   @override
   State<ScienceAnalysis> createState() => _ScienceAnalysisState();
 }
 
 class _ScienceAnalysisState extends State<ScienceAnalysis> {
-  final List<Item> _data = List<Item>.generate(
-    30,
-    (int index) => Item(
-      headerText: 'Item ${index + 1}',
-      chartData: [
-        charts.Series<dynamic, String>(
-          id: 'Sample Data',
-          domainFn: (dynamic data, _) => data['label'],
-          measureFn: (dynamic data, _) => data['value'],
-          data: [
-            {
-              'label': 'A',
-              'value': global.analysisScienceData['scienceCount']['0'][index],
-              'color': (global.answer_key[1][index] == 'A')
-                  ? Colors.blue
-                  : Colors.grey
-            }, // Correct answer
-            {
-              'label': 'B',
-              'value': global.analysisScienceData['scienceCount']['1'][index],
-              'color': (global.answer_key[1][index] == 'B')
-                  ? Colors.blue
-                  : Colors.grey
-            },
-            {
-              'label': 'C',
-              'value': global.analysisScienceData['scienceCount']['2'][index],
-              'color': (global.answer_key[1][index] == 'C')
-                  ? Colors.blue
-                  : Colors.grey
-            },
-            {
-              'label': 'D',
-              'value': global.analysisScienceData['scienceCount']['3'][index],
-              'color': (global.answer_key[1][index] == 'D')
-                  ? Colors.blue
-                  : Colors.grey
-            },
-          ],
-          colorFn: (dynamic data, _) =>
-              charts.ColorUtil.fromDartColor(data['color']),
-        ),
-      ],
-    ),
-  );
+  late List<Item> _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = _generateData();
+  }
+
+  List<Item> _generateData(){
+    return List<Item>.generate(
+      30,
+      (int index) => Item(
+        headerText: 'Item ${index + 1}',
+        chartData: [
+          charts.Series<dynamic, String>(
+            id: 'Sample Data',
+            domainFn: (dynamic data, _) => data['label'],
+            measureFn: (dynamic data, _) => data['value'],
+            data: [
+              {'label': 'A', 'value': widget.analysisScienceData['scienceCount']['0'][index], 'color': (global.answer_key[0][index] == 'A') ? Colors.blue : Colors.grey}, // Correct answer
+              {'label': 'B', 'value': widget.analysisScienceData['scienceCount']['1'][index], 'color': (global.answer_key[0][index] == 'B') ? Colors.blue : Colors.grey},
+              {'label': 'C', 'value': widget.analysisScienceData['scienceCount']['2'][index], 'color': (global.answer_key[0][index] == 'C') ? Colors.blue : Colors.grey},
+              {'label': 'D', 'value': widget.analysisScienceData['scienceCount']['3'][index], 'color': (global.answer_key[0][index] == 'D') ? Colors.blue : Colors.grey},
+              {'label': 'E', 'value': widget.analysisScienceData['scienceCount']['4'][index], 'color': (global.answer_key[0][index] == 'E') ? Colors.blue : Colors.grey},
+            ],
+            colorFn: (dynamic data, _) =>
+                charts.ColorUtil.fromDartColor(data['color']),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant ScienceAnalysis oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.analysisScienceData != widget.analysisScienceData) {
+      setState(() {
+        _data = _generateData();
+        print("triggered Science");
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
