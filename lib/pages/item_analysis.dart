@@ -291,10 +291,17 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
             ),
             actions: [
               IconButton(
-                  onPressed: () => exportData, icon: Icon(Icons.save_alt)),
+                  onPressed: () => exportData,
+                  icon: Icon(
+                    Icons.save_alt,
+                    color: Colors.black,
+                  )),
               IconButton(
                   onPressed: () => showFilterDialog(context),
-                  icon: Icon(Icons.tune)),
+                  icon: Icon(
+                    Icons.tune,
+                    color: Colors.black,
+                  )),
             ],
             bottom: TabBar(
               physics: const BouncingScrollPhysics(),
