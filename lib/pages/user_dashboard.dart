@@ -15,7 +15,6 @@ import '../data.dart' as global;
 import '../backend/backendpy.dart';
 import 'package:uuid/uuid.dart';
 
-
 class UserDashboard extends StatefulWidget {
   final List<CameraDescription> cameras;
   const UserDashboard({Key? key, required this.cameras}) : super(key: key);

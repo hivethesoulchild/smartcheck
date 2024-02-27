@@ -205,6 +205,21 @@ class Settings extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
+                        showPasswordDialog(context);
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'User Manual',
+                            style: GoogleFonts.poppins(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
                         showAlertDialog(context);
                       },
                       child: Align(

@@ -160,8 +160,7 @@ class _BatchDetailState extends State<BatchDetail> {
           child: Center(
             child: GridView.count(
               crossAxisCount: 1,
-              childAspectRatio:
-                  MediaQuery.of(context).size.width < 480 ? 2.7 : 4.2,
+              childAspectRatio: MediaQuery.of(context).size.width / 150,
               mainAxisSpacing: 5.0,
               children: List.generate(applicants.length, (index) {
                 //List.generate(global.batchData[widget.dataIndex]["applicants"].length, (index) {
