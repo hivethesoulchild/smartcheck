@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smartcheck/models/privacypolicy.dart';
+import 'package:smartcheck/models/usermanual.dart';
 import 'package:smartcheck/pages/login.dart';
 import 'package:smartcheck/backend/backendpy.dart';
 import 'package:smartcheck/data.dart' as global;
@@ -205,7 +206,10 @@ class Settings extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        showPasswordDialog(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const UserManual()));
                       },
                       child: Align(
                         alignment: Alignment.centerLeft,

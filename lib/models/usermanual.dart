@@ -28,7 +28,7 @@ class _UserManualState extends State<UserManual> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: SfPdfViewer.asset(""),
+      body: SfPdfViewer.asset("assets/smartcheck_user_manual.pdf"),
     );
   }
 }

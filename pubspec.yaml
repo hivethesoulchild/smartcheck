@@ -88,6 +88,7 @@ flutter:
     - assets/icons8_test_1.png
     - assets/icons8_user_account.png
     - assets/.env
+    - assets/smartcheck_user_manual.pdf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
