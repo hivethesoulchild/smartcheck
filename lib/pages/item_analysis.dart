@@ -118,20 +118,21 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
 
   void _applyFilter(
       BuildContext context, DateTime startDate, DateTime endDate) async {
-    var englishFiltered =
-        await BackEndPy.getFilteredAnalysisDataEnglish(startDate, endDate);
-    var scienceFiltered =
-        await BackEndPy.getFilteredAnalysisDataScience(startDate, endDate);
-    var mathFiltered =
-        await BackEndPy.getFilteredAnalysisDataMath(startDate, endDate);
-    var aptitudeFiltered =
-        await BackEndPy.getFilteredAnalysisDataAptitude(startDate, endDate);
+    var analysis = await BackEndPy.getFilteredAnalysisData(startDate, endDate);
+    // var englishFiltered =
+    //     await BackEndPy.getFilteredAnalysisDataEnglish(startDate, endDate);
+    // var scienceFiltered =
+    //     await BackEndPy.getFilteredAnalysisDataScience(startDate, endDate);
+    // var mathFiltered =
+    //     await BackEndPy.getFilteredAnalysisDataMath(startDate, endDate);
+    // var aptitudeFiltered =
+    //     await BackEndPy.getFilteredAnalysisDataAptitude(startDate, endDate);
 
     setState(() {
-      analysisEnglish = englishFiltered;
-      analysisScience = scienceFiltered;
-      analysisMath = mathFiltered;
-      analysisAptitude = aptitudeFiltered;
+      analysisEnglish = analysis;
+      analysisScience = analysis;
+      analysisMath = analysis;
+      analysisAptitude = analysis;
     });
   }
 
@@ -147,10 +148,10 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
       final customFolder = Directory('${directory.path}SmartCheck');
       customFolder.createSync(recursive: true);
 
-      var dataEnglish = global.analysisEnglishData;
-      var dataMath = global.analysisMathData;
-      var dataScience = global.analysisScienceData;
-      var dataAptitude = global.analysisAptitudeData;
+      var dataEnglish = analysisEnglish;
+      var dataMath = analysisMath;
+      var dataScience = analysisScience;
+      var dataAptitude = analysisAptitude;
 
       List<List<dynamic>> rows = [
         ['English'],

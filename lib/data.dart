@@ -14,10 +14,10 @@ var userList = [];
 var userId;
 var username;
 
-var analysisEnglishData = {};
-var analysisMathData= {};
-var analysisScienceData = {};
-var analysisAptitudeData= {};
+// var analysisEnglishData = {};
+// var analysisMathData= {};
+// var analysisScienceData = {};
+// var analysisAptitudeData= {};
 
 
 void setProfile(String id, String username) async {
@@ -102,13 +102,13 @@ void setBatchData(List data) {
 // //need to change
 // TODO: get the latest answer and get the after date of that answer also set the filtered answer
 
-Future <void> setAnalysistData() async {
-analysisEnglishData = await BackEndPy.getAnalysisDataEnglish();
-analysisMathData = await BackEndPy.getAnalysisDataMath();
-analysisScienceData = await BackEndPy.getAnalysisDataScience();
-analysisAptitudeData = await BackEndPy.getAnalysisDataAptitude();
+// Future <void> setAnalysistData() async {
+// analysisEnglishData = await BackEndPy.getAnalysisDataEnglish();
+// analysisMathData = await BackEndPy.getAnalysisDataMath();
+// analysisScienceData = await BackEndPy.getAnalysisDataScience();
+// analysisAptitudeData = await BackEndPy.getAnalysisDataAptitude();
 
-Completer().complete(true);
-}
+// Completer().complete(true);
+// }
 
 

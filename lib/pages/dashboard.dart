@@ -52,10 +52,12 @@ class _DashboardState extends State<Dashboard> {
       final customFolder = Directory('${directory.path}SmartCheck');
       customFolder.createSync(recursive: true);
 
-      var dataEnglish = global.analysisEnglishData;
-      var dataMath = global.analysisMathData;
-      var dataScience = global.analysisScienceData;
-      var dataAptitude = global.analysisAptitudeData;
+      var analysis = await BackEndPy.getAnalysisData();
+
+      // var dataEnglish = global.analysisEnglishData;
+      // var dataMath = global.analysisMathData;
+      // var dataScience = global.analysisScienceData;
+      // var dataAptitude = global.analysisAptitudeData;
 
       List<List<dynamic>> rows = [
         ['English'],
@@ -63,41 +65,41 @@ class _DashboardState extends State<Dashboard> {
       ];
 
       for (int rowNumber = 0;
-          rowNumber < dataEnglish['englishCount']['0'].length;
+          rowNumber < analysis['englishCount']['0'].length;
           rowNumber++) {
         rows.add([
           '${rowNumber + 1}',
-          '${dataEnglish['englishCount']['0'][rowNumber]}',
-          '${dataEnglish['englishCount']['1'][rowNumber]}',
-          '${dataEnglish['englishCount']['2'][rowNumber]}',
-          '${dataEnglish['englishCount']['3'][rowNumber]}',
-          '${dataEnglish['englishCount']['4'][rowNumber]}'
+          '${analysis['englishCount']['0'][rowNumber]}',
+          '${analysis['englishCount']['1'][rowNumber]}',
+          '${analysis['englishCount']['2'][rowNumber]}',
+          '${analysis['englishCount']['3'][rowNumber]}',
+          '${analysis['englishCount']['4'][rowNumber]}'
         ]);
       }
       rows.add(['Mathematics']);
       rows.add(['Item Number', 'A', 'B', 'C', 'D']);
       for (int rowNumber = 0;
-          rowNumber < dataMath['mathCount']['0'].length;
+          rowNumber < analysis['mathCount']['0'].length;
           rowNumber++) {
         rows.add([
           '${rowNumber + 1}',
-          '${dataMath['mathCount']['0'][rowNumber]}',
-          '${dataMath['mathCount']['1'][rowNumber]}',
-          '${dataMath['mathCount']['2'][rowNumber]}',
-          '${dataMath['mathCount']['3'][rowNumber]}'
+          '${analysis['mathCount']['0'][rowNumber]}',
+          '${analysis['mathCount']['1'][rowNumber]}',
+          '${analysis['mathCount']['2'][rowNumber]}',
+          '${analysis['mathCount']['3'][rowNumber]}'
         ]);
       }
       rows.add(['Science']);
       rows.add(['Item Number', 'A', 'B', 'C', 'D']);
       for (int rowNumber = 0;
-          rowNumber < dataScience['scienceCount']['0'].length;
+          rowNumber < analysis['scienceCount']['0'].length;
           rowNumber++) {
         rows.add([
           '${rowNumber + 1}',
-          '${dataScience['scienceCount']['0'][rowNumber]}',
-          '${dataScience['scienceCount']['1'][rowNumber]}',
-          '${dataScience['scienceCount']['2'][rowNumber]}',
-          '${dataScience['scienceCount']['3'][rowNumber]}'
+          '${analysis['scienceCount']['0'][rowNumber]}',
+          '${analysis['scienceCount']['1'][rowNumber]}',
+          '${analysis['scienceCount']['2'][rowNumber]}',
+          '${analysis['scienceCount']['3'][rowNumber]}'
         ]);
       }
       rows.add(['Aptitude']);
@@ -105,10 +107,10 @@ class _DashboardState extends State<Dashboard> {
       for (int rowNumber = 0; rowNumber < 15; rowNumber++) {
         rows.add([
           '${rowNumber + 1}',
-          '${dataAptitude['aptitudeCount']['0'][rowNumber]}',
-          '${dataAptitude['aptitudeCount']['1'][rowNumber]}',
-          '${dataAptitude['aptitudeCount']['2'][rowNumber]}',
-          '${dataAptitude['aptitudeCount']['3'][rowNumber]}'
+          '${analysis['aptitudeCount']['0'][rowNumber]}',
+          '${analysis['aptitudeCount']['1'][rowNumber]}',
+          '${analysis['aptitudeCount']['2'][rowNumber]}',
+          '${analysis['aptitudeCount']['3'][rowNumber]}'
         ]);
       }
 

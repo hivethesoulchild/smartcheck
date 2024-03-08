@@ -11,16 +11,17 @@ import '../pages/answerkey.dart';
 Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () async {
         global.resetAnswerKey();
-        var analysisEnglish = await BackEndPy.getAnalysisDataEnglish();
-        var analysisScience = await BackEndPy.getAnalysisDataScience();
-        var analysisMath = await BackEndPy.getAnalysisDataMath();
-        var analysisAptitude = await BackEndPy.getAnalysisDataAptitude();
+        var analysis = await BackEndPy.getAnalysisData();
+        // var analysisEnglish = await BackEndPy.getAnalysisDataEnglish();
+        // var analysisScience = await BackEndPy.getAnalysisDataScience();
+        // var analysisMath = await BackEndPy.getAnalysisDataMath();
+        // var analysisAptitude = await BackEndPy.getAnalysisDataAptitude();
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ItemAnalysis(
-              analysisEnglish: analysisEnglish,
-              analysisScience: analysisScience,
-              analysisMath:  analysisMath,
-              analysisAptitude: analysisAptitude,
+              analysisEnglish: analysis,
+              analysisScience: analysis,
+              analysisMath:  analysis,
+              analysisAptitude: analysis,
             )));
       },
       child: Container(

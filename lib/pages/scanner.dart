@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -144,14 +145,32 @@ class _ScannerPageState extends State<ScannerPage> {
       // Capture the image
       final XFile imageFile = await cameraController.takePicture();
 
-      // Upload the image
-      await BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
-
       // Save the image locally
       final File? savedImage = await _saveImage(imageFile);
 
+      // Upload the image
+      var response = await BackEndPy.uploadImage(savedImage, widget.batchId, widget.id);
+
       // Dismiss the loading dialog
       Navigator.pop(context);
+
+      if(response['status'] == "fail"){
+         Fluttertoast.showToast(
+          msg: 'Please try again!',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+      }else{
+        Fluttertoast.showToast(
+          msg: 'Successful!',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+      }
 
       if (savedImage != null) {
         print('Image saved at: ${savedImage.path}');
@@ -328,7 +347,7 @@ class _LoadingDialog extends StatelessWidget {
           children: [
             CircularProgressIndicator(),
             SizedBox(height: 16),
-            Text('Saving image...'),
+            Text('Processing...'),
           ],
         ),
       ),
