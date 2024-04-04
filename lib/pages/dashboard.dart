@@ -348,22 +348,24 @@ class _DashboardPageState extends State<DashboardPage> {
                                   if (key == 0) {
                                     return;
                                   }
-                                  applicantList.add({
-                                    fields[0][0].toString().toLowerCase():
-                                        value[0],
-                                    fields[0][1].toString().toLowerCase():
-                                        value[1],
-                                    'applicantKeyEnglish': question40,
-                                    'applicantKeyScience': question40,
-                                    'applicantKeyMathematics': question40,
-                                    'applicantKeyAptitude': question15,
-                                    'English': 0,
-                                    'Mathematics': 0,
-                                    'Science': 0,
-                                    'Aptitude': 0,
-                                    'status': false,
-                                    'Recommendation': [],
-                                  });
+                                  if (value.length >= 2) {
+                                    applicantList.add({
+                                      fields[0][0].toString().toLowerCase():
+                                          value[0],
+                                      fields[0][1].toString().toLowerCase():
+                                          value[1],
+                                      'applicantKeyEnglish': question40,
+                                      'applicantKeyScience': question40,
+                                      'applicantKeyMathematics': question40,
+                                      'applicantKeyAptitude': question15,
+                                      'English': 0,
+                                      'Mathematics': 0,
+                                      'Science': 0,
+                                      'Aptitude': 0,
+                                      'status': false,
+                                      'Recommendation': [],
+                                    });
+                                  }
                                 });
                                 var uuid = const Uuid();
                                 var uniqueId = uuid.v4();
