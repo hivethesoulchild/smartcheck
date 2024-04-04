@@ -145,7 +145,8 @@ class _ScannerPageState extends State<ScannerPage> {
       final XFile imageFile = await cameraController.takePicture();
 
       // Upload the image
-      var response = await BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
+      var response =
+          await BackEndPy.uploadImage(imageFile, widget.batchId, widget.id);
 
       // Save the image locally
       final File? savedImage = await _saveImage(imageFile);
@@ -153,15 +154,15 @@ class _ScannerPageState extends State<ScannerPage> {
       // Dismiss the loading dialog
       Navigator.pop(context);
 
-      if(response['status'] == "fail"){
-         Fluttertoast.showToast(
+      if (response['status'] == "fail") {
+        Fluttertoast.showToast(
           msg: 'Please try again!',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
           textColor: Colors.white,
         );
-      }else{
+      } else {
         Fluttertoast.showToast(
           msg: 'Successful!',
           toastLength: Toast.LENGTH_SHORT,

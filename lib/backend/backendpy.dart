@@ -1,4 +1,3 @@
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
@@ -41,13 +40,14 @@ class BackEndPy {
     return jsonDecode(response.body);
   }
 
-  static Future<dynamic> getFilteredAnalysisData(DateTime start, DateTime end) async {
+  static Future<dynamic> getFilteredAnalysisData(
+      DateTime start, DateTime end) async {
     final url = Uri.parse('$baseUrl/getFilteredAnalysisData/');
     final response = await http.post(url,
-    body: json.encode({
-        "start": start.toIso8601String(), // Format dates for JSON
-        "end": end.toIso8601String(),
-      }));
+        body: json.encode({
+          "start": start.toIso8601String(), // Format dates for JSON
+          "end": end.toIso8601String(),
+        }));
     return jsonDecode(response.body);
   }
 
@@ -133,8 +133,7 @@ class BackEndPy {
             {'username': username, 'password': password, 'role': role}));
   }
 
-  static void changePassword(
-      String id, String password) async {
+  static void changePassword(String id, String password) async {
     final url = Uri.parse('$baseUrl/changePassword/');
     final response = await http.patch(url,
         body: json.encode({
@@ -156,7 +155,8 @@ class BackEndPy {
 
   static Future<dynamic> userValid(String username) async {
     final url = Uri.parse('$baseUrl/userValid/');
-    final response = await http.post(url, body: json.encode({"username": username}));
+    final response =
+        await http.post(url, body: json.encode({"username": username}));
 
     final result = jsonDecode(response.body) as Map<String, dynamic>;
     return result["exist"];
