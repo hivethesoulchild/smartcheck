@@ -46,7 +46,6 @@ class _BatchDetailState extends State<BatchDetail> {
   void dispose() {
     _timer.cancel();
     super.dispose();
-    print('disposed');
   }
 
   void onTabTapped(int index) {
@@ -233,7 +232,6 @@ class _BatchDetailState extends State<BatchDetail> {
                                           );
                                         }
                                         if (thevalue == 2) {
-                                          print(value);
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => ScannerPage(

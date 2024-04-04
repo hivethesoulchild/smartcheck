@@ -14,11 +14,6 @@ var userList = [];
 var userId;
 var username;
 
-// var analysisEnglishData = {};
-// var analysisMathData= {};
-// var analysisScienceData = {};
-// var analysisAptitudeData= {};
-
 
 void setProfile(String id, String username) async {
 userId = userId;

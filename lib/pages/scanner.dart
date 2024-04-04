@@ -48,7 +48,6 @@ class _ScannerPageState extends State<ScannerPage> {
       cameraController.setExposureMode(ExposureMode.auto);
       setState(() {});
     }).catchError((e) {
-      print(e);
     });
   }
 
@@ -173,13 +172,11 @@ class _ScannerPageState extends State<ScannerPage> {
       }
 
       if (savedImage != null) {
-        print('Image saved at: ${savedImage.path}');
       }
 
       return imageFile;
     } catch (e) {
       // Handle errors
-      print('Error capturing/uploading image: $e');
       Navigator.pop(context); // Dismiss the loading dialog in case of an error
       return null;
     }
@@ -199,16 +196,12 @@ class _ScannerPageState extends State<ScannerPage> {
 
       return File(imagePath);
     } catch (e) {
-      print('Failed to save image: $e');
       return null;
     }
   }
 
   void processShapes(List<Rect> shapes) {
     for (var shape in shapes) {
-      print(
-          'Shape detected at (${shape.left}, ${shape.top}) with width ${shape.width} and height ${shape.height}');
-
       // You can also perform other tasks based on the shape, such as drawing on an image or performing calculations.
       // Add your custom logic here.
     }
@@ -226,7 +219,7 @@ class _ScannerPageState extends State<ScannerPage> {
     // TODO: Implement the logic to save data
   }
 
-  List<String> list = <String>['Royce', 'Yvan', 'DJ Falcon'];
+  List<String> list = <String>['', '', ''];
 
   @override
   Widget build(BuildContext context) {

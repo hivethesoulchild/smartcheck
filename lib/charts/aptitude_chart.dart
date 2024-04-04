@@ -23,7 +23,8 @@ class Item {
 
 class AptitudeAnalysis extends StatefulWidget {
   final dynamic analysisAptitudeData;
-  const AptitudeAnalysis({Key? key, required this.analysisAptitudeData}) : super(key: key);
+  final dynamic answerKey;
+  const AptitudeAnalysis({Key? key, required this.analysisAptitudeData, required this.answerKey}) : super(key: key);
   @override
   State<AptitudeAnalysis> createState() => _AptitudeAnalysisState();
 }
@@ -49,11 +50,11 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
             domainFn: (dynamic data, _) => data['label'],
             measureFn: (dynamic data, _) => data['value'],
             data: [
-              {'label': 'A', 'value': widget.analysisAptitudeData['aptitudeCount']['0'][index], 'color': (global.answer_key[0][index] == 'A') ? Colors.blue : Colors.grey}, // Correct answer
-              {'label': 'B', 'value': widget.analysisAptitudeData['aptitudeCount']['1'][index], 'color': (global.answer_key[0][index] == 'B') ? Colors.blue : Colors.grey},
-              {'label': 'C', 'value': widget.analysisAptitudeData['aptitudeCount']['2'][index], 'color': (global.answer_key[0][index] == 'C') ? Colors.blue : Colors.grey},
-              {'label': 'D', 'value': widget.analysisAptitudeData['aptitudeCount']['3'][index], 'color': (global.answer_key[0][index] == 'D') ? Colors.blue : Colors.grey},
-              {'label': 'E', 'value': widget.analysisAptitudeData['aptitudeCount']['4'][index], 'color': (global.answer_key[0][index] == 'E') ? Colors.blue : Colors.grey},
+              {'label': 'A', 'value': widget.analysisAptitudeData['aptitudeCount']['0'][index], 'color': (widget.answerKey['aptitude'][index] == 'A') ? Colors.blue : Colors.grey}, // Correct answer
+              {'label': 'B', 'value': widget.analysisAptitudeData['aptitudeCount']['1'][index], 'color': (widget.answerKey['aptitude'][index] == 'B') ? Colors.blue : Colors.grey},
+              {'label': 'C', 'value': widget.analysisAptitudeData['aptitudeCount']['2'][index], 'color': (widget.answerKey['aptitude'][index] == 'C') ? Colors.blue : Colors.grey},
+              {'label': 'D', 'value': widget.analysisAptitudeData['aptitudeCount']['3'][index], 'color': (widget.answerKey['aptitude'][index] == 'D') ? Colors.blue : Colors.grey},
+              {'label': 'E', 'value': widget.analysisAptitudeData['aptitudeCount']['4'][index], 'color': (widget.answerKey['aptitude'][index] == 'E') ? Colors.blue : Colors.grey},
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),
@@ -69,7 +70,6 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
     if (oldWidget.analysisAptitudeData != widget.analysisAptitudeData) {
       setState(() {
         _data = _generateData();
-        print("triggered Aptitude");
       });
     }
   }

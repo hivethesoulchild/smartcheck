@@ -23,7 +23,8 @@ class Item {
 
 class ScienceAnalysis extends StatefulWidget {
   final dynamic analysisScienceData;
-  const ScienceAnalysis({Key? key, required this.analysisScienceData}) : super(key: key);
+  final dynamic answerKey;
+  const ScienceAnalysis({Key? key, required this.analysisScienceData, required this.answerKey}) : super(key: key);
   @override
   State<ScienceAnalysis> createState() => _ScienceAnalysisState();
 }
@@ -48,11 +49,11 @@ class _ScienceAnalysisState extends State<ScienceAnalysis> {
             domainFn: (dynamic data, _) => data['label'],
             measureFn: (dynamic data, _) => data['value'],
             data: [
-              {'label': 'A', 'value': widget.analysisScienceData['scienceCount']['0'][index], 'color': (global.answer_key[0][index] == 'A') ? Colors.blue : Colors.grey}, // Correct answer
-              {'label': 'B', 'value': widget.analysisScienceData['scienceCount']['1'][index], 'color': (global.answer_key[0][index] == 'B') ? Colors.blue : Colors.grey},
-              {'label': 'C', 'value': widget.analysisScienceData['scienceCount']['2'][index], 'color': (global.answer_key[0][index] == 'C') ? Colors.blue : Colors.grey},
-              {'label': 'D', 'value': widget.analysisScienceData['scienceCount']['3'][index], 'color': (global.answer_key[0][index] == 'D') ? Colors.blue : Colors.grey},
-              {'label': 'E', 'value': widget.analysisScienceData['scienceCount']['4'][index], 'color': (global.answer_key[0][index] == 'E') ? Colors.blue : Colors.grey},
+              {'label': 'A', 'value': widget.analysisScienceData['scienceCount']['0'][index], 'color': (widget.answerKey['science'][index] == 'A') ? Colors.blue : Colors.grey}, // Correct answer
+              {'label': 'B', 'value': widget.analysisScienceData['scienceCount']['1'][index], 'color': (widget.answerKey['science'][index] == 'B') ? Colors.blue : Colors.grey},
+              {'label': 'C', 'value': widget.analysisScienceData['scienceCount']['2'][index], 'color': (widget.answerKey['science'][index] == 'C') ? Colors.blue : Colors.grey},
+              {'label': 'D', 'value': widget.analysisScienceData['scienceCount']['3'][index], 'color': (widget.answerKey['science'][index] == 'D') ? Colors.blue : Colors.grey},
+              {'label': 'E', 'value': widget.analysisScienceData['scienceCount']['4'][index], 'color': (widget.answerKey['science'][index] == 'E') ? Colors.blue : Colors.grey},
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),
@@ -68,7 +69,6 @@ class _ScienceAnalysisState extends State<ScienceAnalysis> {
     if (oldWidget.analysisScienceData != widget.analysisScienceData) {
       setState(() {
         _data = _generateData();
-        print("triggered Science");
       });
     }
   }

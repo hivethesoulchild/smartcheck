@@ -10,7 +10,6 @@ import 'package:smartcheck/charts/english_analysis.dart';
 import 'package:smartcheck/charts/math_analysis.dart';
 import 'package:smartcheck/charts/science_analysis.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:smartcheck/data.dart' as global;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:csv/csv.dart';
 import 'dart:async';
@@ -20,13 +19,15 @@ class ItemAnalysis extends StatefulWidget {
   final dynamic analysisScience;
   final dynamic analysisMath;
   final dynamic analysisAptitude;
+  final dynamic answerKey;
 
   const ItemAnalysis(
       {Key? key,
       required this.analysisEnglish,
       required this.analysisScience,
       required this.analysisMath,
-      required this.analysisAptitude})
+      required this.analysisAptitude,
+      required this.answerKey})
       : super(key: key);
   @override
   State<ItemAnalysis> createState() => _ItemAnalysisState();
@@ -39,6 +40,7 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
   var analysisScience;
   var analysisMath;
   var analysisAptitude;
+  var answerKey;
 
   void showFilterDialog(BuildContext context) {
     final _startDateController = TextEditingController();
@@ -69,6 +71,8 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
                     if (selectedDate != null) {
                       _startDateController.text =
                           DateFormat('yyyy-MM-dd').format(selectedDate);
+                    } else {
+                      _startDateController.text = '';
                     }
                   },
                 ),
@@ -89,6 +93,9 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
                     if (selectedDate != null) {
                       _endDateController.text =
                           DateFormat('yyyy-MM-dd').format(selectedDate);
+                    } else {
+                      _endDateController.text =
+                          ''; // or any default value you prefer
                     }
                   },
                 ),
@@ -98,11 +105,28 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
           actions: [
             TextButton(
               onPressed: () {
-                // Apply filtering logic based on start and end dates
-                // (Ex: retrieve data within the selected date range)
-                _applyFilter(context, DateTime.parse(_startDateController.text),
-                    DateTime.parse(_endDateController.text));
-                Navigator.pop(context);
+                if ((_startDateController.text.isNotEmpty ||
+                        _endDateController.text.isNotEmpty) &&
+                    !(_startDateController.text.isNotEmpty &&
+                        _endDateController.text.isNotEmpty)) {
+                  Fluttertoast.showToast(
+                    msg: 'Both start and end dates must be provided.',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                } else if (_startDateController.text.isNotEmpty &&
+                    _endDateController.text.isNotEmpty) {
+                  _applyFilter(
+                      context,
+                      DateTime.parse(_startDateController.text),
+                      DateTime.parse(_endDateController.text));
+                  Navigator.pop(context);
+                } else {
+                  _resetFilter(context);
+                  Navigator.pop(context);
+                }
               },
               child: Text('Filter'),
             ),
@@ -116,23 +140,30 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     );
   }
 
-  void _applyFilter(
-      BuildContext context, DateTime startDate, DateTime endDate) async {
-    var analysis = await BackEndPy.getFilteredAnalysisData(startDate, endDate);
-    // var englishFiltered =
-    //     await BackEndPy.getFilteredAnalysisDataEnglish(startDate, endDate);
-    // var scienceFiltered =
-    //     await BackEndPy.getFilteredAnalysisDataScience(startDate, endDate);
-    // var mathFiltered =
-    //     await BackEndPy.getFilteredAnalysisDataMath(startDate, endDate);
-    // var aptitudeFiltered =
-    //     await BackEndPy.getFilteredAnalysisDataAptitude(startDate, endDate);
+  void _resetFilter(BuildContext context) async {
+    var analysis = await BackEndPy.getAnalysisData();
+    var answers = await BackEndPy.getAnswerKey();
 
     setState(() {
       analysisEnglish = analysis;
       analysisScience = analysis;
       analysisMath = analysis;
       analysisAptitude = analysis;
+      answerKey = answers;
+    });
+  }
+
+  void _applyFilter(
+      BuildContext context, DateTime startDate, DateTime endDate) async {
+    var analysis = await BackEndPy.getFilteredAnalysisData(startDate, endDate);
+    var answers = await BackEndPy.getFilteredAnswerKey(startDate);
+
+    setState(() {
+      analysisEnglish = analysis;
+      analysisScience = analysis;
+      analysisMath = analysis;
+      analysisAptitude = analysis;
+      answerKey = answers;
     });
   }
 
@@ -241,19 +272,6 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     }
   }
 
-  // Future<void> fetchData() async {
-  //   var batchData = await BackEndPy.getAllApplicantList();
-
-  //   if (batchData != null) {
-  //     // If the server returns a 200 OK response, parse the JSON.
-  //     setState(() {
-  //       global.setBatchData(batchData);
-  //       applicants = global.batchData[widget.dataIndex]["applicants"];
-  //     });
-  //   } else {
-  //     // Handle errors or no response.
-  //   }
-  // }
   @override
   void initState() {
     super.initState();
@@ -261,14 +279,8 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
     analysisScience = widget.analysisScience;
     analysisMath = widget.analysisMath;
     analysisAptitude = widget.analysisAptitude;
+    answerKey = widget.answerKey;
   }
-
-  // @override
-  // void dispose() {
-  //   _timer.cancel();
-  //   super.dispose();
-  //   print('disposed');
-  // }
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
@@ -285,7 +297,7 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
             centerTitle: true,
             backgroundColor: HexColor('#ffffff'),
             title: Text(
-              'Item Analysis',
+              'Data Visualization',
               style: GoogleFonts.poppins(
                 color: HexColor('#35408F'),
               ),
@@ -332,11 +344,21 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
           ),
           body: TabBarView(
             children: [
-              EnglishAnalysis(analysisEnglishData: analysisEnglish),
-              ScienceAnalysis(analysisScienceData: analysisScience),
-              MathAnalysis(analysisMathData: analysisMath),
+              EnglishAnalysis(
+                analysisEnglishData: analysisEnglish,
+                answerKey: answerKey,
+              ),
+              ScienceAnalysis(
+                analysisScienceData: analysisScience,
+                answerKey: answerKey,
+              ),
+              MathAnalysis(
+                analysisMathData: analysisMath,
+                answerKey: answerKey,
+              ),
               AptitudeAnalysis(
                 analysisAptitudeData: analysisAptitude,
+                answerKey: answerKey,
               ),
             ],
           ),

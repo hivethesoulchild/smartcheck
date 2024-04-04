@@ -12,7 +12,6 @@ class BackEndPy {
     final url = Uri.parse('$baseUrl/authenticateUser/');
     final response = await http.post(url,
         body: json.encode({'username': username, 'password': password}));
-
     return jsonDecode(response.body);
   }
 
@@ -20,6 +19,7 @@ class BackEndPy {
     final url = Uri.parse('$baseUrl/checkUser/');
     final response = await http.post(url,
         body: json.encode({'username': email, 'password': password}));
+    
     return jsonDecode(response.body);
   }
 
@@ -51,69 +51,15 @@ class BackEndPy {
     return jsonDecode(response.body);
   }
 
-  // static Future<dynamic> getFilteredAnalysisDataEnglish(DateTime start, DateTime end) async {
-  //   final url = Uri.parse('$baseUrl/getFilteredDataEnglish/');
-  //   final response = await http.post(url,
-  //   body: json.encode({
-  //       "start": start.toIso8601String(), // Format dates for JSON
-  //       "end": end.toIso8601String(),
-  //     }));
-  //   return jsonDecode(response.body);
-  // }
+  static Future<dynamic> getFilteredAnswerKey(DateTime start) async {
+    final url = Uri.parse('$baseUrl/getFilteredAnswerKey/');
+    final response = await http.post(url,
+    body: json.encode({
+      "start": start.toIso8601String()
+    }));
 
-  // static Future<dynamic> getFilteredAnalysisDataScience(DateTime start, DateTime end) async {
-  //   final url = Uri.parse('$baseUrl/getFilteredDataScience/');
-  //   final response = await http.post(url,
-  //   body: json.encode({
-  //       "start": start.toIso8601String(), // Format dates for JSON
-  //       "end": end.toIso8601String(),
-  //     }));
-  //   return jsonDecode(response.body);
-  // }
-
-  // static Future<dynamic> getFilteredAnalysisDataMath(DateTime start, DateTime end) async {
-  //   final url = Uri.parse('$baseUrl/getFilteredDataMath/');
-  //   final response = await http.post(url,
-  //   body: json.encode({
-  //       "start": start.toIso8601String(), // Format dates for JSON
-  //       "end": end.toIso8601String(),
-  //     }));
-  //   return jsonDecode(response.body);
-  // }
-
-  // static Future<dynamic> getFilteredAnalysisDataAptitude(DateTime start, DateTime end) async {
-  //   final url = Uri.parse('$baseUrl/getFilteredDataAptitude/');
-  //   final response = await http.post(url,
-  //   body: json.encode({
-  //       "start": start.toIso8601String(), // Format dates for JSON
-  //       "end": end.toIso8601String(),
-  //     }));
-  //   return jsonDecode(response.body);
-  // }
-
-  // static Future<dynamic> getAnalysisDataEnglish() async {
-  //   final url = Uri.parse('$baseUrl/getAnalysisDataEnglish/');
-  //   final response = await http.get(url);
-  //   return jsonDecode(response.body);
-  // }
-
-  // static Future<dynamic> getAnalysisDataScience() async {
-  //   final url = Uri.parse('$baseUrl/getAnalysisDataScience/');
-  //   final response = await http.get(url);
-  //   return jsonDecode(response.body);
-  // }
-
-  // static Future<dynamic> getAnalysisDataMath() async {
-  //   final url = Uri.parse('$baseUrl/getAnalysisDataMath/');
-  //   final response = await http.get(url);
-  //   return jsonDecode(response.body);
-  // }
-
-  // static Future<dynamic> getAnalysisDataAptitude() async {
-  //   final url = Uri.parse('$baseUrl/getAnalysisDataAptitude/');
-  //   final response = await http.get(url);
-  //   return jsonDecode(response.body);
-  // }
+    return jsonDecode(response.body);
+  }
 
   static void updateAnswerKey(String id, List data) async {
     final url = Uri.parse('$baseUrl/updateAnswerKey/');
@@ -241,9 +187,11 @@ class BackEndPy {
 
     var response = await request.send();
     if (response.statusCode == 200) {
-      return response;
+      String responseBody = await response.stream.bytesToString();
+      return jsonDecode(responseBody);
     } else {
-      return response;
+      String errorBody = await response.stream.bytesToString();
+      return jsonDecode(errorBody);
     }
   }
 }

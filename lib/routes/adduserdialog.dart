@@ -46,9 +46,6 @@ class _AddUserDialogState extends State<AddUserDialog> {
       actions: [
         ElevatedButton(
           onPressed: () {
-            print('Username: $username');
-            print('Password: $password');
-
             BackEndPy.addUser(username, password, 'USER');
 
             Navigator.pop(context);

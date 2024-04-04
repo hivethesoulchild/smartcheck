@@ -12,6 +12,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
       onTap: () async {
         global.resetAnswerKey();
         var analysis = await BackEndPy.getAnalysisData();
+        var answerKey = await BackEndPy.getAnswerKey();
         // var analysisEnglish = await BackEndPy.getAnalysisDataEnglish();
         // var analysisScience = await BackEndPy.getAnalysisDataScience();
         // var analysisMath = await BackEndPy.getAnalysisDataMath();
@@ -22,6 +23,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
               analysisScience: analysis,
               analysisMath:  analysis,
               analysisAptitude: analysis,
+              answerKey: answerKey
             )));
       },
       child: Container(
@@ -50,7 +52,7 @@ Widget buildAnalysisChartButton(BuildContext context) => InkWell(
                   height: 20,
                 ),
                 Text(
-                  'Analysis Chart',
+                  'Data Visualization',
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
                     fontSize: 15,

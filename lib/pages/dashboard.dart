@@ -115,7 +115,7 @@ class _DashboardState extends State<Dashboard> {
       }
 
       String csv = const ListToCsvConverter().convert(rows);
-      final file = File('${directory.path}/my_data.csv');
+      final file = File('${customFolder}/my_data.csv');
 
       try {
         await file.writeAsString(csv);
