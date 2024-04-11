@@ -381,7 +381,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                   formattedDate,
                                   false,
                                 );
-                                print(response);
                                 if (response['duplicate']) {
                                   Fluttertoast.showToast(
                                     msg:

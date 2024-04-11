@@ -14,7 +14,6 @@ class UserAccess extends StatefulWidget {
 }
 
 class _UserAccessState extends State<UserAccess> {
-
   List<String> admin = ['ADMIN', 'PROCTOR'];
 
   TextEditingController usernameController = TextEditingController();
@@ -44,7 +43,6 @@ class _UserAccessState extends State<UserAccess> {
             actions: [
               ElevatedButton(
                 onPressed: () {
-                  //chuchu
                   if (global.userId == value['id']) {
                     Fluttertoast.showToast(
                         msg: "Error: Cannot delete the current logged in...",
@@ -173,7 +171,8 @@ class _UserAccessState extends State<UserAccess> {
                     );
                     return; // Stop further processing if the password is invalid
                   }
-                  BackEndPy.editUser(value['id'], passwordController.text, selectedValue);
+                  BackEndPy.editUser(
+                      value['id'], passwordController.text, selectedValue);
 
                   Fluttertoast.showToast(
                     msg: "User saved!",
@@ -408,6 +407,18 @@ class _UserAccessState extends State<UserAccess> {
                                   padding: EdgeInsets.zero,
                                   child: PopupMenuButton<int>(
                                     onSelected: (index) {
+                                      if (value['role'] == "ADMIN" && !(global.userId == value['id'])) {
+                                        Fluttertoast.showToast(
+                                            msg:
+                                                "Error: Cannot modify another Admin Account",
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.red,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0);
+                                        return;
+                                      }
                                       if (index == 1) {
                                         showEditUserDialog(context, value);
                                       } else if (index == 2) {
