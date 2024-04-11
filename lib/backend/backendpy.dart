@@ -79,7 +79,7 @@ class BackEndPy {
     return jsonDecode(response.body) as List<dynamic>;
   }
 
-  static void addApplicantList(String id, String schoolName, List applicants,
+  static Future<dynamic> addApplicantList(String id, String schoolName, List applicants,
       String username, String date, bool archive) async {
     final url = Uri.parse('$baseUrl/addApplicantList/');
     final response = await http.post(url,
@@ -93,6 +93,7 @@ class BackEndPy {
         }));
 
     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+    return jsonResponse;
   }
 
   static Future<dynamic> getAllApplicantList() async {

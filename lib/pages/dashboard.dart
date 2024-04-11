@@ -372,16 +372,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                 var now = DateTime.now();
                                 var formatter = DateFormat('yyyy-MM-dd');
                                 String formattedDate = formatter.format(now);
-
-                                global.batchData.add({
-                                  '_id': uniqueId,
-                                  'name': fileName,
-                                  'archive': false,
-                                  'applicants': applicantList,
-                                  'date': formattedDate,
-                                  'proctor': global.username,
-                                });
-                                BackEndPy.addApplicantList(
+                                
+                                var response = await BackEndPy.addApplicantList(
                                   uniqueId,
                                   fileName,
                                   applicantList,
@@ -389,6 +381,27 @@ class _DashboardPageState extends State<DashboardPage> {
                                   formattedDate,
                                   false,
                                 );
+                                print(response);
+                                if (response['duplicate']) {
+                                  Fluttertoast.showToast(
+                                    msg:
+                                        'Failed to add due to duplicate entries',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                  );
+                                }
+                                else{
+                                  global.batchData.add({
+                                  '_id': uniqueId,
+                                  'name': fileName,
+                                  'archive': false,
+                                  'applicants': applicantList,
+                                  'date': formattedDate,
+                                  'proctor': global.username,
+                                });
+                                }
                               }
                               setStateSB(() {});
                             },

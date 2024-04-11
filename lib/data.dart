@@ -15,9 +15,9 @@ var userId;
 var username;
 
 
-void setProfile(String id, String username) async {
-userId = userId;
-username = username;
+void setProfile(String id, String name) async {
+userId = id;
+username = name;
 }
 
 void setAnswerKeyCache(Map data) async {
