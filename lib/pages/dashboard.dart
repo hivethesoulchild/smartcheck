@@ -372,7 +372,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 var now = DateTime.now();
                                 var formatter = DateFormat('yyyy-MM-dd');
                                 String formattedDate = formatter.format(now);
-                                
+
                                 var response = await BackEndPy.addApplicantList(
                                   uniqueId,
                                   fileName,
@@ -390,16 +390,15 @@ class _DashboardPageState extends State<DashboardPage> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                   );
-                                }
-                                else{
+                                } else {
                                   global.batchData.add({
-                                  '_id': uniqueId,
-                                  'name': fileName,
-                                  'archive': false,
-                                  'applicants': applicantList,
-                                  'date': formattedDate,
-                                  'proctor': global.username,
-                                });
+                                    '_id': uniqueId,
+                                    'name': fileName,
+                                    'archive': false,
+                                    'applicants': applicantList,
+                                    'date': formattedDate,
+                                    'proctor': global.username,
+                                  });
                                 }
                               }
                               setStateSB(() {});
@@ -753,6 +752,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                                         'Export Data'),
                                                   ),
                                                 ],
+                                                color: Colors.white,
                                               ),
                                             ),
                                           ],
