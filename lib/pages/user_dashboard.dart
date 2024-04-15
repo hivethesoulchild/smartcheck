@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
@@ -186,22 +187,24 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                   if (key == 0) {
                                     return;
                                   }
-                                  applicantList.add({
-                                    fields[0][0].toString().toLowerCase():
-                                        value[0],
-                                    fields[0][1].toString().toLowerCase():
-                                        value[1],
-                                    'applicantKeyEnglish': question40,
-                                    'applicantKeyScience': question40,
-                                    'applicantKeyMathematics': question40,
-                                    'applicantKeyAptitude': question15,
-                                    'English': 0,
-                                    'Mathematics': 0,
-                                    'Science': 0,
-                                    'Aptitude': 0,
-                                    'status': false,
-                                    'Recommendation': [],
-                                  });
+                                  if (value.length >= 2) {
+                                    applicantList.add({
+                                      fields[0][0].toString().toLowerCase():
+                                          value[0],
+                                      fields[0][1].toString().toLowerCase():
+                                          value[1],
+                                      'applicantKeyEnglish': question40,
+                                      'applicantKeyScience': question40,
+                                      'applicantKeyMathematics': question40,
+                                      'applicantKeyAptitude': question15,
+                                      'English': 0,
+                                      'Mathematics': 0,
+                                      'Science': 0,
+                                      'Aptitude': 0,
+                                      'status': false,
+                                      'Recommendation': [],
+                                    });
+                                  }
                                 });
                                 var uuid = const Uuid();
                                 var uniqueId = uuid.v4();
@@ -209,15 +212,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                 var formatter = DateFormat('yyyy-MM-dd');
                                 String formattedDate = formatter.format(now);
 
-                                global.batchData.add({
-                                  '_id': uniqueId,
-                                  'name': fileName,
-                                  'archive': false,
-                                  'applicants': applicantList,
-                                  'date': formattedDate,
-                                  'proctor': global.username,
-                                });
-                                BackEndPy.addApplicantList(
+                                var response = await BackEndPy.addApplicantList(
                                   uniqueId,
                                   fileName,
                                   applicantList,
@@ -225,6 +220,25 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                   formattedDate,
                                   false,
                                 );
+                                if (response['duplicate']) {
+                                  Fluttertoast.showToast(
+                                    msg:
+                                        'Failed to add due to duplicate entries',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                  );
+                                } else {
+                                  global.batchData.add({
+                                    '_id': uniqueId,
+                                    'name': fileName,
+                                    'archive': false,
+                                    'applicants': applicantList,
+                                    'date': formattedDate,
+                                    'proctor': global.username,
+                                  });
+                                }
                               }
                               setStateSB(() {});
                             },
@@ -345,6 +359,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                                     const Text('Export Data'),
                                               ),
                                             ],
+                                            color: Colors.white,
                                           ),
                                         ),
                                       ],
