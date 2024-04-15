@@ -253,9 +253,9 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
                           mainAxisExtent:
-                              MediaQuery.of(context).size.width < 380
-                                  ? 200
-                                  : 150,
+                              MediaQuery.of(context).size.width <= 480
+                                  ? MediaQuery.of(context).size.width * 0.45
+                                  : MediaQuery.of(context).size.width * 0.32,
                           mainAxisSpacing: 5.0,
                         ),
                         itemCount: global.batchData.length,
