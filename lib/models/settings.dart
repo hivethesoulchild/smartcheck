@@ -20,6 +20,15 @@ class Settings extends StatelessWidget {
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$',
     );
 
+    void _logout(BuildContext context) {
+      global.clearSessionData();
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Login(cameras: cameras)),
+      );
+    }
+
     showDialog(
       context: context,
       builder: (context) {

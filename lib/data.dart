@@ -1,4 +1,3 @@
-
 import 'package:smartcheck/backend/backendpy.dart';
 import 'dart:async';
 
@@ -7,17 +6,16 @@ var batchDataArchive = [];
 
 var answer_key = [[], [], [], []];
 var answer_key_temp;
-var filtered_answerKey = [[],[],[],[]];
+var filtered_answerKey = [[], [], [], []];
 
 var userList = [];
 
 var userId;
 var username;
 
-
 void setProfile(String id, String name) async {
-userId = id;
-username = name;
+  userId = id;
+  username = name;
 }
 
 void setAnswerKeyCache(Map data) async {
@@ -49,22 +47,24 @@ void updateAnswerKeyCache(String subject, String answer, int number) {
   }
 }
 
-void updateAnswerKey (){
+void updateAnswerKey() {
   answer_key = answer_key_temp;
 }
 
-void resetAnswerKey(){
+void resetAnswerKey() {
   answer_key_temp = answer_key;
 }
 
 void setUserListCache(List data) {
-  userList = data.map((element) => {
-    "id": element['_id'],
-    "username": element['username'],
-    "password": element['password'],
-    "role": element['role'],
-    "isActive": element['isActive']
-  }).toList();
+  userList = data
+      .map((element) => {
+            "id": element['_id'],
+            "username": element['username'],
+            "password": element['password'],
+            "role": element['role'],
+            "isActive": element['isActive']
+          })
+      .toList();
 }
 
 void setBatchData(List data) {
@@ -92,6 +92,17 @@ void setBatchData(List data) {
       });
     }
   }
+}
+
+void clearSessionData() {
+  batchData = [];
+  batchDataArchive = [];
+  answer_key = [[], [], [], []];
+  answer_key_temp = null;
+  filtered_answerKey = [[], [], [], []];
+  userList = [];
+  userId = null;
+  username = null;
 }
 
 // //need to change
