@@ -399,6 +399,12 @@ class _DashboardPageState extends State<DashboardPage> {
                                     'date': formattedDate,
                                     'proctor': global.username,
                                   });
+                                  Fluttertoast.showToast(
+                                      msg: 'Added successfully!',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white);
                                 }
                               }
                               setStateSB(() {});
