@@ -53,7 +53,7 @@ class _ScienceAnalysisState extends State<ScienceAnalysis> {
               {'label': 'B', 'value': widget.analysisScienceData['scienceCount']['1'][index], 'color': (widget.answerKey['science'][index] == 'B') ? Colors.blue : Colors.grey},
               {'label': 'C', 'value': widget.analysisScienceData['scienceCount']['2'][index], 'color': (widget.answerKey['science'][index] == 'C') ? Colors.blue : Colors.grey},
               {'label': 'D', 'value': widget.analysisScienceData['scienceCount']['3'][index], 'color': (widget.answerKey['science'][index] == 'D') ? Colors.blue : Colors.grey},
-              {'label': 'E', 'value': widget.analysisScienceData['scienceCount']['4'][index], 'color': (widget.answerKey['science'][index] == 'E') ? Colors.blue : Colors.grey},
+              {'label': 'Void', 'value': widget.analysisScienceData['scienceCount']['4'][index], 'color':Colors.grey},
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),

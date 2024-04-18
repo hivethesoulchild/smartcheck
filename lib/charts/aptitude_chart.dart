@@ -54,7 +54,7 @@ class _AptitudeAnalysisState extends State<AptitudeAnalysis> {
               {'label': 'B', 'value': widget.analysisAptitudeData['aptitudeCount']['1'][index], 'color': (widget.answerKey['aptitude'][index] == 'B') ? Colors.blue : Colors.grey},
               {'label': 'C', 'value': widget.analysisAptitudeData['aptitudeCount']['2'][index], 'color': (widget.answerKey['aptitude'][index] == 'C') ? Colors.blue : Colors.grey},
               {'label': 'D', 'value': widget.analysisAptitudeData['aptitudeCount']['3'][index], 'color': (widget.answerKey['aptitude'][index] == 'D') ? Colors.blue : Colors.grey},
-              {'label': 'E', 'value': widget.analysisAptitudeData['aptitudeCount']['4'][index], 'color': (widget.answerKey['aptitude'][index] == 'E') ? Colors.blue : Colors.grey},
+              {'label': 'Void', 'value': widget.analysisAptitudeData['aptitudeCount']['4'][index], 'color': Colors.grey},
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),

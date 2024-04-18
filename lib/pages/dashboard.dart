@@ -578,7 +578,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             'B',
                                                             'C',
                                                             'D',
-                                                            'E'
+                                                            'E',
+                                                            "void"
                                                           ]
                                                         ];
 
@@ -593,7 +594,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             '${dataEnglish['1'][rowNumber]}',
                                                             '${dataEnglish['2'][rowNumber]}',
                                                             '${dataEnglish['3'][rowNumber]}',
-                                                            '${dataEnglish['4'][rowNumber]}'
+                                                            '${dataEnglish['4'][rowNumber]}',
+                                                            '${dataEnglish['5'][rowNumber]}'
                                                           ]);
                                                         }
                                                         rows.add(
@@ -603,7 +605,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                           'A',
                                                           'B',
                                                           'C',
-                                                          'D'
+                                                          'D',
+                                                          'void'
                                                         ]);
                                                         for (int rowNumber = 0;
                                                             rowNumber <
@@ -615,7 +618,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             '${dataMath['0'][rowNumber]}',
                                                             '${dataMath['1'][rowNumber]}',
                                                             '${dataMath['2'][rowNumber]}',
-                                                            '${dataMath['3'][rowNumber]}'
+                                                            '${dataMath['3'][rowNumber]}',
+                                                            '${dataMath['4'][rowNumber]}'
                                                           ]);
                                                         }
                                                         rows.add(['Science']);
@@ -624,7 +628,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                           'A',
                                                           'B',
                                                           'C',
-                                                          'D'
+                                                          'D',
+                                                          'void'
                                                         ]);
                                                         for (int rowNumber = 0;
                                                             rowNumber <
@@ -636,7 +641,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             '${dataScience['0'][rowNumber]}',
                                                             '${dataScience['1'][rowNumber]}',
                                                             '${dataScience['2'][rowNumber]}',
-                                                            '${dataScience['3'][rowNumber]}'
+                                                            '${dataScience['3'][rowNumber]}',
+                                                            '${dataScience['4'][rowNumber]}'
+                                                            
                                                           ]);
                                                         }
                                                         rows.add(['Aptitude']);
@@ -645,7 +652,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                           'A',
                                                           'B',
                                                           'C',
-                                                          'D'
+                                                          'D',
+                                                          'void'
                                                         ]);
                                                         for (int rowNumber = 0;
                                                             rowNumber < 15;
@@ -655,7 +663,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             '${dataAptitude['0'][rowNumber]}',
                                                             '${dataAptitude['1'][rowNumber]}',
                                                             '${dataAptitude['2'][rowNumber]}',
-                                                            '${dataAptitude['3'][rowNumber]}'
+                                                            '${dataAptitude['3'][rowNumber]}',
+                                                            '${dataAptitude['4'][rowNumber]}'
                                                           ]);
                                                         }
 

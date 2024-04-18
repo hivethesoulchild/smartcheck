@@ -54,6 +54,7 @@ class _EnglishAnalysisState extends State<EnglishAnalysis> {
               {'label': 'C', 'value': widget.analysisEnglishData['englishCount']['2'][index], 'color': (widget.answerKey['english'][index] == 'C') ? Colors.blue : Colors.grey},
               {'label': 'D', 'value': widget.analysisEnglishData['englishCount']['3'][index], 'color': (widget.answerKey['english'][index] == 'D') ? Colors.blue : Colors.grey},
               {'label': 'E', 'value': widget.analysisEnglishData['englishCount']['4'][index], 'color': (widget.answerKey['english'][index] == 'E') ? Colors.blue : Colors.grey},
+              {'label': 'Void', 'value': widget.analysisEnglishData['englishCount']['5'][index], 'color': Colors.grey},
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),
