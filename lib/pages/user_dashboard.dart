@@ -238,6 +238,12 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                                     'date': formattedDate,
                                     'proctor': global.username,
                                   });
+                                  Fluttertoast.showToast(
+                                      msg: 'Added successfully!',
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white);
                                 }
                               }
                               setStateSB(() {});
@@ -254,7 +260,7 @@ class _UserDashboardPageState extends State<UserDashboardPage> {
                           crossAxisCount: 1,
                           mainAxisExtent:
                               MediaQuery.of(context).size.width <= 480
-                                  ? MediaQuery.of(context).size.width * 0.45
+                                  ? MediaQuery.of(context).size.width * 0.5
                                   : MediaQuery.of(context).size.width * 0.32,
                           mainAxisSpacing: 5.0,
                         ),
