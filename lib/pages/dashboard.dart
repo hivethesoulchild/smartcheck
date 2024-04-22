@@ -648,7 +648,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                                             '${dataScience['2'][rowNumber]}',
                                                             '${dataScience['3'][rowNumber]}',
                                                             '${dataScience['4'][rowNumber]}'
-                                                            
                                                           ]);
                                                         }
                                                         rows.add(['Aptitude']);
