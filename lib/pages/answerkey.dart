@@ -30,7 +30,8 @@ class AnswerKeyPage extends StatelessWidget {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Text("Confirm Save"),
-                  content: Text("Are you sure you want to save the answer key?"),
+                  content:
+                      Text("Are you sure you want to save the answer key?"),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
@@ -61,7 +62,10 @@ class AnswerKeyPage extends StatelessWidget {
               },
             );
           },
-          child: const Icon(Icons.save),
+          child: const Icon(
+            Icons.save,
+            color: Colors.white,
+          ),
         ),
         appBar: AppBar(
           leading: IconButton(
