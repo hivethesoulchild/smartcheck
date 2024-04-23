@@ -236,6 +236,20 @@ class _ScannerPageState extends State<ScannerPage> {
                       child: CameraPreview(cameraController),
                     ),
                   ),
+                  Positioned(
+                    top: 40.0,
+                    left: 16.0,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        // Handle back button press
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
                   for (var shape in detectedShapes)
                     Positioned(
                       left:
