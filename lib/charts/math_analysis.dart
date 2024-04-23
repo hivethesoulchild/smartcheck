@@ -53,7 +53,7 @@ class _MathAnalysisState extends State<MathAnalysis> {
               {'label': 'B', 'value': widget.analysisMathData['mathCount']['1'][index], 'color': (widget.answerKey['mathematics'][index] == 'B') ? Colors.blue : Colors.grey},
               {'label': 'C', 'value': widget.analysisMathData['mathCount']['2'][index], 'color': (widget.answerKey['mathematics'][index] == 'C') ? Colors.blue : Colors.grey},
               {'label': 'D', 'value': widget.analysisMathData['mathCount']['3'][index], 'color': (widget.answerKey['mathematics'][index] == 'D') ? Colors.blue : Colors.grey},
-              {'label': 'Void', 'value': widget.analysisMathData['mathCount']['4'][index], 'color': Colors.grey},
+              //{'label': 'Void', 'value': widget.analysisMathData['mathCount']['4'][index], 'color': Colors.grey},
             ],
             colorFn: (dynamic data, _) =>
                 charts.ColorUtil.fromDartColor(data['color']),
