@@ -39,7 +39,6 @@ class _ScannerPageState extends State<ScannerPage> {
       ResolutionPreset.max,
       enableAudio: false,
     );
-
     await cameraController.initialize().then((value) {
       if (!mounted) {
         return;
@@ -226,56 +225,62 @@ class _ScannerPageState extends State<ScannerPage> {
     processShapes(detectedShapes);
     if (cameraController.value.isInitialized) {
       return Scaffold(
-        body: Stack(
+        body: Column(
           children: [
-            Positioned.fill(
-              child: CameraPreview(cameraController),
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                        await _captureImage(context);
-                        //return to page
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        shadowColor: Colors.black,
-                        backgroundColor: Colors.white,
-                      ),
-                      child: const SizedBox(
-                        height: 60,
-                        width: 60,
-                        child: Icon(
-                          Icons.camera_alt,
-                          size: 30,
-                          color: Colors.black,
-                        ),
+            Expanded(
+              child: Stack(
+                children: [
+                  Center(
+                    child: AspectRatio(
+                      aspectRatio: 9 / 16, // Set aspect ratio for portrait mode
+                      child: CameraPreview(cameraController),
+                    ),
+                  ),
+                  for (var shape in detectedShapes)
+                    Positioned(
+                      left:
+                          (MediaQuery.of(context).size.width - shape.width) / 2,
+                      top: (MediaQuery.of(context).size.height - shape.height) /
+                          3,
+                      width: shape.width,
+                      height: shape.height,
+                      child: _buildSquare(
+                        Colors.white10,
+                        Colors.transparent,
+                        Colors.white10,
                       ),
                     ),
-                  ],
-                ),
+                ],
               ),
             ),
-            for (var shape in detectedShapes)
-              Positioned(
-                left: (MediaQuery.of(context).size.width - shape.width) / 2,
-                top: (MediaQuery.of(context).size.height - shape.height) / 3,
-                width: shape.width,
-                height: shape.height,
-                child: _buildSquare(
-                  Colors.white10,
-                  Colors.transparent,
-                  Colors.white10,
-                ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      await _captureImage(context);
+                      //return to page
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      shadowColor: Colors.black,
+                      backgroundColor: Colors.white,
+                    ),
+                    child: const SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: Icon(
+                        Icons.camera_alt,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
+            ),
           ],
         ),
       );

@@ -123,6 +123,13 @@ class _ItemAnalysisState extends State<ItemAnalysis> {
                       DateTime.parse(_startDateController.text),
                       DateTime.parse(_endDateController.text));
                   Navigator.pop(context);
+                  Fluttertoast.showToast(
+                    msg: 'Data has been filtered.',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                  );
                 } else {
                   _resetFilter(context);
                   Navigator.pop(context);
