@@ -57,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2+3"
+  camera_windows:
+    dependency: "direct main"
+    description:
+      name: camera_windows
+      sha256: "56383a3197c239ddebd41c1da360af17dc33a76d9712db404d19d2d5b4d32cff"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   characters:
     dependency: transitive
     description:

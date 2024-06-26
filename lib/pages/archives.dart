@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
-import 'package:smartcheck/pages/batch_detail_archive.dart';
+import 'package:smartcheck/components/dashboard/batch_detail_archive.dart';
 import '../backend/backendpy.dart';
-import '../data.dart' as global;
+import '../backend/data.dart' as global;
 
 class Archives extends StatefulWidget {
   const Archives({Key? key}) : super(key: key);
