@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartcheck/backend/backendpy.dart';
-import 'package:smartcheck/data.dart' as global;
-import 'package:smartcheck/pages/user_dashboard.dart';
-import 'package:smartcheck/pages/dashboard.dart';
+import 'package:smartcheck/backend/data.dart' as global;
+import 'package:smartcheck/pages/proctor/user_dashboard.dart';
+import 'package:smartcheck/pages/admin/dashboard.dart';
 
 class Login extends StatefulWidget {
   final List<CameraDescription> cameras;
